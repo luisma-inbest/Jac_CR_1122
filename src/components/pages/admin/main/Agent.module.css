@@ -1,0 +1,21 @@
+/*nav*/
+.navContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* main  */
+main {
+	height: calc(100vh - 9rem);
+	width: 100%;
+}
+
+/**/
+.calendar {
+	height: 30vh;
+}
+
+/**/
+.reviews {
+}

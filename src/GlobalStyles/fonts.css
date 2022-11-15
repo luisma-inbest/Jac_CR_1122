@@ -1,0 +1,100 @@
+@font-face {
+	font-family: "Monserrat";
+	src: url("./../assets/font/Montserrat.ttf") format("opentype");
+	font-weight: normal;
+	font-style: normal;
+}
+
+:root {
+	/*Font Sizes*/
+	--h1: 3.6rem;
+	--h2: 3rem;
+	--h3: 2.8rem;
+	--h4: 2.6rem;
+	--h5: 2.4rem;
+	--h6: 2.2rem;
+	--p: 2rem;
+	--p2: 1.8rem;
+	--p3: 1.6rem;
+	--p4: 1.4rem;
+	--margin-tittle: 1.5rem;
+	--margin-text: 1rem;
+}
+html * {
+	font-family: "Monserrat";
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+.p1,
+.p2,
+.p3,
+.p4 {
+	color: var(--text);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0.5rem 0 1rem 0;
+	margin-bottom: var(--margin-tittle);
+	border: 0;
+	font-weight: normal;
+}
+p,
+.p1,
+.p2,
+.p3,
+.p4 {
+	margin: 0.5rem 0 1rem 0;
+	margin-bottom: var(--margin-text);
+}
+h1 {
+	font-size: var(--h1);
+}
+h2 {
+	font-size: var(--h2);
+}
+h3 {
+	font-size: var(--h3);
+}
+h4 {
+	font-size: var(--h4);
+}
+h5 {
+	font-size: var(--h5);
+}
+h6 {
+	font-size: var(--h6);
+}
+p {
+	font-size: var(--p);
+}
+.p2 {
+	font-size: var(--p2);
+}
+.p3 {
+	font-size: var(--p3);
+}
+.p4 {
+	font-size: var(--p4);
+}
+.text-bold {
+	font-weight: bold;
+}
+.text-bolder {
+	font-weight: 900;
+}
+.text-center {
+	text-align: center;
+}
+
+.highlight {
+	color: var(--tittle);
+}

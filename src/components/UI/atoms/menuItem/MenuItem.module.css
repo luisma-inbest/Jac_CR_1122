@@ -1,0 +1,31 @@
+.menuItemContainer {
+	height: 3rem;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 1rem;
+	padding: 0 1rem;
+	border-radius: var(--border-radius);
+	margin-bottom: 1rem;
+}
+@media (max-width: 48em) {
+	.menuItemContainer {
+		height: 4rem;
+	}
+}
+
+.menuItemContainer:not(.active):hover {
+	background-color: var(--background-outstanding);
+}
+
+.active {
+	background-color: var(--color-secondary);
+}
+
+.active svg path {
+	fill: var(--white);
+}
+
+.active p {
+	color: var(--white);
+}

@@ -1,0 +1,76 @@
+/* nav  */
+.navContainerOpened {
+	background-color: rgba(18, 18, 18, 0.3);
+	backdrop-filter: blur(4px);
+	height: 100vh;
+	width: 100vw;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+}
+nav {
+	height: calc(100vh - 12rem - 3rem);
+	width: 2vw;
+	box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.09);
+	border-radius: var(--border-radius);
+	background-color: var(--white);
+	display: flex;
+	flex-direction: row;
+	padding: 2rem 1rem;
+	transform: scale(0.5);
+
+	/* position: fixed; */
+	position: fixed;
+	left: -30%;
+	top: calc(6rem + 3rem + 2rem);
+	transition: all 0.8s ease-in-out;
+}
+.opened {
+	width: 17vw;
+	left: 2rem;
+	transform: scale(1);
+}
+@media (max-width: 62em) {
+	.opened {
+		width: 25vw;
+	}
+}
+@media (max-width: 48em) {
+	.opened {
+		width: 70vw;
+		left: 2rem;
+		transform: scale(1);
+		left: calc(50% - 35vw);
+	}
+}
+
+.mainMenu {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+	width: 100%;
+}
+
+.userContainer {
+	display: flex;
+	align-items: center;
+}
+
+.userPhoto {
+	width: 50%;
+	height: auto;
+	border-radius: 50%;
+}
+@media (max-width: 48em) {
+	.userPhoto {
+		width: 30%;
+	}
+}
+
+nav ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}

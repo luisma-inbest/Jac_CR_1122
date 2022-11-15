@@ -1,0 +1,30 @@
+/*nav*/
+.navContainer {
+	display: flex;
+	justify-content: center;
+	/* align-items: center; */
+}
+
+/* main  */
+main {
+	height: calc(100vh - 9rem);
+	width: 100%;
+}
+
+/**/
+.calendar {
+	height: 30vh;
+}
+
+/*
+.reviews {
+}
+
+.scrolling {
+	height: 100%;
+	overflow-y: auto;
+	scrollbar-gutter: stable;
+	scrollbar-color: var(--text) #e0e0e0;
+	scrollbar-width: thin;
+}
+*/

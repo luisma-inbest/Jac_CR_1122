@@ -1,0 +1,26 @@
+[
+	{
+		"pos": 0,
+		"text": "Propiedades",
+		"icon": "home",
+		"route": "/agent"
+	},
+	{
+		"pos": 1,
+		"text": "Ventas",
+		"icon": "add",
+		"route": "/agent/sells"
+	},
+	{
+		"pos": 2,
+		"text": "Prospectos",
+		"icon": "upload",
+		"route": "/agent/prospects"
+	},
+	{
+		"pos": 3,
+		"text": "Agentes",
+		"icon": "list",
+		"route": "/agent/agents"
+	}
+]

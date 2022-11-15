@@ -1,0 +1,93 @@
+@import "./fonts.css";
+@import "./spacings.css";
+
+:root {
+	/*colors*/
+	--black: #000;
+	--white: #fff;
+
+	--blue1: #2c74bb;
+	--blue2: #062236;
+	--gray1: #eeeeee;
+	--gray2: #d9d9d9;
+	--gray3: #5a5a5a;
+	--green: #04cc00;
+	--red: #d63944;
+
+	--background: #eeeeee;
+	--color-main: #0008cc;
+	--color-secondary: #0008cc;
+
+	--warm-lead: #eed347;
+	--cold-lead: #8dbdec;
+	--tracing: #e08a08;
+	--messages: #dcf8c8;
+
+	--text: #777;
+
+	--br-1: 0.5rem;
+	--br-2: 1rem;
+	--br-3: 2rem;
+}
+*,
+*:before,
+*:after {
+	-webkit-box-sizing: inherit;
+	-moz-box-sizing: inherit;
+	box-sizing: inherit;
+	padding: 0;
+	border: 0;
+	margin: 0;
+}
+html,
+html * {
+	font-size: 10px;
+	font-family: "Monserrat";
+}
+body {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0;
+	border: 0;
+	margin: 0;
+	font-weight: normal;
+	line-height: 1.4rem;
+	background-color: var(--background);
+}
+
+.fullPage {
+	min-height: 100vh;
+}
+
+.content-side {
+	padding: 3rem 0 3rem 2rem;
+}
+
+.navbar-side {
+	padding: 3rem 0rem 3rem 0;
+}
+
+.mainContainer {
+	background-color: var(--white);
+	padding: 2rem;
+	border-radius: var(--border-radius-two);
+}
+
+a {
+	text-decoration: none;
+}
+hr {
+	border: 0;
+	border-top: 3px solid var(--color-secondary);
+	border-radius: var(--border-radious-two);
+}
+
+/*
+$grid-breakpoints: (
+  xs: 0,
+  sm: 48em,
+  md: 62em,
+  lg:75em,
+);
+*/
