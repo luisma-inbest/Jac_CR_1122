@@ -5,13 +5,11 @@ import {useEffect} from "react";
 /* custom imports */
 import "./GlobalStyles/flexboxgrid.css";
 import "./GlobalStyles/GlobalStyles.css";
-import {Counter} from "./Counter";
+import "./GlobalStyles/fonts.css";
 import {UserProvider} from "./context/UserContext";
 import {Routing} from "./routes/Routing";
 
 function App() {
-	const [count, setCount] = useState(0);
-
 	return (
 		<UserProvider>
 			<BrowserRouter>

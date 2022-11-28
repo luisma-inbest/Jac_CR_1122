@@ -8,7 +8,7 @@ interface Props {
 export const IconNotification = (props: Props) => {
 	return (
 		<svg
-			style={{width: `${props.size}`, height: `${props.size}`}}
+			style={{width: `auto`, height: `${props.size}`}}
 			viewBox="0 0 18 22"
 			fill="none"
 		>

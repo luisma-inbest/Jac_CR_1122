@@ -2,7 +2,7 @@ import React from "react";
 
 interface Props {
 	color: string;
-	size: number;
+	size: string;
 }
 /*
 	width="94"
@@ -12,7 +12,7 @@ interface Props {
 export const LogoFull = (props: Props) => {
 	return (
 		<svg
-			style={{width: `${props.size * 3.8}`, height: `${props.size}`}}
+			style={{width: `auto`, height: `${props.size}`}}
 			viewBox="0 0 146 58"
 			fill="none"
 		>

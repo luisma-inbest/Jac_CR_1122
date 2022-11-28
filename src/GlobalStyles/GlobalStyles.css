@@ -71,7 +71,7 @@ body {
 .mainContainer {
 	background-color: var(--white);
 	padding: 2rem;
-	border-radius: var(--border-radius-two);
+	border-radius: var(--br-2);
 }
 
 a {
@@ -80,7 +80,11 @@ a {
 hr {
 	border: 0;
 	border-top: 3px solid var(--color-secondary);
-	border-radius: var(--border-radious-two);
+	border-radius: var(--br-2);
+}
+
+.no-margin {
+	margin: 0 !important;
 }
 
 /*

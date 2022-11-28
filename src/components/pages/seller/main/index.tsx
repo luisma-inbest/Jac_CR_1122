@@ -7,7 +7,7 @@ export const Seller = () => {
 		<div className="contentVerticalPadding">
 			<div className="row mb-3">
 				<div className="col-xs-12">
-					<h1 className="text-bold">Vendedor</h1>
+					<h1 className="bold">Vendedor</h1>
 					<hr />
 				</div>
 			</div>

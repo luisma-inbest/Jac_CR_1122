@@ -1,12 +1,18 @@
 .menuItemContainer {
 	height: 3rem;
+	width: 97%;
 	display: flex;
-	justify-content: flex-start;
+	flex-direction: row;
+	justify-content: space-between;
+
 	align-items: center;
-	gap: 1rem;
-	padding: 0 1rem;
-	border-radius: var(--border-radius);
+	padding: 0 15px;
+	border-radius: var(--br-2);
 	margin-bottom: 1rem;
+
+	border-top-right-radius: 10rem;
+	border-bottom-right-radius: 10rem;
+	transition: all 0.2s linear;
 }
 @media (max-width: 48em) {
 	.menuItemContainer {
@@ -14,8 +20,46 @@
 	}
 }
 
-.menuItemContainer:not(.active):hover {
-	background-color: var(--background-outstanding);
+.selected {
+	background-color: var(--blue2);
+	transition: all 0.3s linear;
+}
+.selected p {
+	color: var(--white);
+}
+
+.menuLeft {
+	width: auto;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 1rem;
+	padding: 0 1rem;
+	border-radius: var(--br-2);
+}
+.menuRight {
+	width: 3rem;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.iconContainer {
+	height: 1.5rem;
+}
+@media (max-width: 48em) {
+	.iconContainer {
+		height: 1.7rem;
+	}
+}
+
+.rotate {
+	transform: rotate(90deg);
+	transition: all 0.5s ease-out;
+}
+.normal {
+	transform: rotate(0deg);
+	transition: all 0.5s ease-out;
 }
 
 .active {

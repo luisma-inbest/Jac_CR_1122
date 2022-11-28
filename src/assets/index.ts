@@ -4,31 +4,41 @@ import {Logo} from "./img/Logo";
 import {LogoFull} from "./img/LogoFull";
 
 import {IconMenu} from "./icons/IconMenu";
-import {IconHome} from "./icons/IconHome";
 import {IconNotification} from "./icons/IconNotification";
-import {IconAdd} from "./icons/IconAdd";
-import {IconUpload} from "./icons/IconUpload";
+
 import {IconList} from "./icons/IconList";
 import {IconBed} from "./icons/IconBed";
-import {IconBath} from "./icons/IconBath";
+
 import {IconSettings} from "./icons/IconSettings";
 import {IconBlueprint} from "./icons/IconBlueprint";
-import AgentMenu from "./agentMenu.json";
+import {IconCross} from "./icons/IconCross";
+import {IconSells} from "./icons/IconSells";
+import {IconSupport} from "./icons/IconSupport";
+import {IconMarketing} from "./icons/IconMarketing";
+import {IconHR} from "./icons/IconHR";
+import {IconProduct} from "./icons/IconProduct";
+import {IconLocation} from "./icons/IconLocation";
+import {IconUser} from "./icons/IconUser";
+import {IconArrow} from "./icons/IconArrow";
 
 export {
 	Logo,
 	LogoFull,
 	logoHorizontal,
 	user,
-	IconUpload,
-	IconHome,
 	IconNotification,
 	IconMenu,
-	IconAdd,
 	IconList,
 	IconBed,
-	IconBath,
 	IconBlueprint,
-	AgentMenu,
 	IconSettings,
+	IconCross,
+	IconSells,
+	IconSupport,
+	IconMarketing,
+	IconHR,
+	IconProduct,
+	IconLocation,
+	IconUser,
+	IconArrow,
 };

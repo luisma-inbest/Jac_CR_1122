@@ -2,13 +2,13 @@ import React from "react";
 
 interface Props {
 	color: string;
-	size: number;
+	size: string;
 }
 
 export const IconMenu = (props: Props) => {
 	return (
 		<svg
-			style={{width: `${props.size}`, height: `${props.size}`}}
+			style={{width: `auto`, height: `${props.size}`}}
 			fill={props.color}
 			viewBox="0 0 64 64"
 		>

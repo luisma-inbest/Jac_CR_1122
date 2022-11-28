@@ -1,4 +1,4 @@
-/* nav  */
+/* nav background  */
 .navContainerOpened {
 	background-color: rgba(18, 18, 18, 0.3);
 	backdrop-filter: blur(4px);
@@ -9,39 +9,41 @@
 	left: 0;
 	z-index: 100;
 }
+/*nav styles*/
 nav {
 	height: calc(100vh - 12rem - 3rem);
-	width: 2vw;
+	width: 100vw;
 	box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.09);
-	border-radius: var(--border-radius);
+	border-radius: var(--br-2);
 	background-color: var(--white);
 	display: flex;
 	flex-direction: row;
-	padding: 2rem 1rem;
-	transform: scale(0.5);
+	padding: 0;
+	transform: scale(0.1);
 
 	/* position: fixed; */
 	position: fixed;
-	left: -30%;
+	left: -100%;
 	top: calc(6rem + 3rem + 2rem);
-	transition: all 0.8s ease-in-out;
+	transition: all 0.5s linear;
+	overflow-y: scroll;
 }
 .opened {
-	width: 17vw;
+	width: 28vw;
 	left: 2rem;
 	transform: scale(1);
 }
 @media (max-width: 62em) {
 	.opened {
-		width: 25vw;
+		width: 33vw;
 	}
 }
 @media (max-width: 48em) {
 	.opened {
-		width: 70vw;
-		left: 2rem;
-		transform: scale(1);
-		left: calc(50% - 35vw);
+		width: 100vw;
+		height: 100vh;
+		left: 0;
+		top: 0;
 	}
 }
 
@@ -53,20 +55,56 @@ nav {
 	width: 100%;
 }
 
-.userContainer {
+.navHeader {
+	background-color: var(--blue2);
+	padding: 1rem 1rem 2rem 1rem;
+	border-bottom-left-radius: 2rem;
+	border-bottom-right-radius: 2rem;
+}
+.navTop {
+	height: 4rem;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+@media (max-width: 48em) {
+	.navTop {
+		height: 5rem;
+	}
+}
+.crossIcon {
+	height: 100%;
+}
+@media (max-width: 48em) {
+	.iconContainer {
+		height: 1rem;
+	}
+}
+.navUser {
 	display: flex;
 	align-items: center;
+	gap: 1rem;
 }
-
 .userPhoto {
-	width: 50%;
-	height: auto;
+	width: 5rem;
+	height: 5rem;
+	border: 0.4rem solid #fff;
 	border-radius: 50%;
 }
 @media (max-width: 48em) {
 	.userPhoto {
-		width: 30%;
+		width: 7rem;
+		height: 7rem;
 	}
+}
+.userInfo {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
+}
+.userInfo * {
+	margin: 0 !important;
+	text-align: left;
 }
 
 nav ul {

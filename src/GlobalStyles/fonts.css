@@ -7,16 +7,18 @@
 
 :root {
 	/*Font Sizes*/
-	--h1: 3.6rem;
-	--h2: 3rem;
-	--h3: 2.8rem;
-	--h4: 2.6rem;
-	--h5: 2.4rem;
-	--h6: 2.2rem;
-	--p: 2rem;
-	--p2: 1.8rem;
-	--p3: 1.6rem;
-	--p4: 1.4rem;
+	--h1: 3.4rem;
+	--h2: 2.8rem;
+	--h3: 2.6rem;
+	--h4: 2.4rem;
+	--h5: 2rem;
+	--h6: 1.8rem;
+	--p: 1.8rem;
+	--p2: 1.6rem;
+	--p3: 1.4rem;
+	--p4: 1.2rem;
+	--p5: 1rem;
+	--p6: 0.8rem;
 	--margin-tittle: 1.5rem;
 	--margin-text: 1rem;
 }
@@ -85,16 +87,27 @@ p {
 .p4 {
 	font-size: var(--p4);
 }
-.text-bold {
+.p5 {
+	font-size: var(--p5);
+}
+.p6 {
+	font-size: var(--p6);
+}
+.bold {
 	font-weight: bold;
 }
-.text-bolder {
+.bolder {
 	font-weight: 900;
 }
 .text-center {
 	text-align: center;
 }
-
+.white {
+	color: var(--white);
+}
+.blue2 {
+	color: var(--blue2);
+}
 .highlight {
 	color: var(--tittle);
 }

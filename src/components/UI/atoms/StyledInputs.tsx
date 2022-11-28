@@ -89,7 +89,7 @@ export const StyledInputDate = styled.input.attrs({
 	border: none;
 	background-color: var(--white);
 	padding: 0.3em 0.5em;
-	border-radius: var(--border-radius-two);
+	border-radius: var(--br-2);
 
 	font-size: var(--p3);
 	color: var(--text);
@@ -121,7 +121,7 @@ export const StyledInputSelect = styled.select.attrs({
       no-repeat right 0.8em center / 1em,
     var(--white);
   color: var(--text);
-  border-radius: var(--border-radius-two);
+  border-radius: var(--br-2);
   /*box-shadow: 0 0 0.em 0 rgba(0, 0, 0, 0.2);*/
   cursor: pointer;
 	

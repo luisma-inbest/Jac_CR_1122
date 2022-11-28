@@ -7,7 +7,8 @@ import {
 } from "./StyledInputs";
 
 import {NavbarLink} from "./StyledLink";
-
+import {Input} from "./input";
+import {DropdownMenu} from "./dropdownMenu";
 import {MenuItem} from "./menuItem";
 
 export {
@@ -16,6 +17,8 @@ export {
 	StyledInputDate,
 	StyledInputSubmit,
 	StyledInputSelect,
+	Input,
 	MenuItem,
 	NavbarLink,
+	DropdownMenu,
 };

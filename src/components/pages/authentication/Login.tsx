@@ -7,7 +7,8 @@ import {Link, useNavigate} from "react-router-dom";
 import {
 	StyledInputText,
 	StyledInputSubmit,
-} from "@/components/UI/atoms/StyledInputs";
+	Input,
+} from "@/components/UI/atoms/";
 
 export const Login = () => {
 	const navigate = useNavigate();
