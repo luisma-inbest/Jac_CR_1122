@@ -6,7 +6,7 @@ import styles from "./LeadFunnel.module.css";
 export const LeadFunnel = () => {
 	return (
 		<div className={styles.funnelTab}>
-			<p className="p3 secondary ">1er Contacto</p>
+			<p className="p3 secondary bold">1er Contacto</p>
 			<CardFunnel />
 		</div>
 	);

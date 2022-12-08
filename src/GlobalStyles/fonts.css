@@ -133,3 +133,6 @@ p {
 	color: var(--link);
 	cursor: pointer;
 }
+.link:hover {
+	text-decoration: underline;
+}

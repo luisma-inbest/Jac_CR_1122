@@ -13,6 +13,7 @@ import {MenuItem} from "./menuItem";
 import {Path} from "./path";
 import {LeadRow} from "./leadRow";
 import {CardFunnel} from "./cardFunnel";
+import {Button} from "./button";
 
 export {
 	StyledInputText,
@@ -27,4 +28,5 @@ export {
 	Path,
 	LeadRow,
 	CardFunnel,
+	Button,
 };
