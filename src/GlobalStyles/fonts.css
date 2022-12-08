@@ -4,6 +4,18 @@
 	font-weight: normal;
 	font-style: normal;
 }
+@font-face {
+	font-family: "Monserrat";
+	src: url("./../assets/font/Montserrat-SemiBold.ttf") format("opentype");
+	font-weight: 600;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Monserrat";
+	src: url("./../assets/font/Montserrat-Bold.ttf") format("opentype");
+	font-weight: 800;
+	font-style: normal;
+}
 
 :root {
 	/*Font Sizes*/
@@ -36,7 +48,7 @@ p,
 .p2,
 .p3,
 .p4 {
-	color: var(--text);
+	color: var(--main-text);
 }
 h1,
 h2,
@@ -93,11 +105,11 @@ p {
 .p6 {
 	font-size: var(--p6);
 }
-.bold {
-	font-weight: bold;
+.semi-bold {
+	font-weight: 600;
 }
-.bolder {
-	font-weight: 900;
+.bold {
+	font-weight: 800;
 }
 .text-center {
 	text-align: center;
@@ -105,9 +117,19 @@ p {
 .white {
 	color: var(--white);
 }
-.blue2 {
-	color: var(--blue2);
+.black {
+	color: var(--black);
+}
+.main-color {
+	color: var(--main-text);
 }
 .highlight {
-	color: var(--tittle);
+	color: var(--highlight-text);
+}
+.secondary {
+	color: var(--secondary-text);
+}
+.link {
+	color: var(--link);
+	cursor: pointer;
 }

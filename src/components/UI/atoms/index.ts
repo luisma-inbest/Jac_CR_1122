@@ -10,6 +10,8 @@ import {NavbarLink} from "./StyledLink";
 import {Input} from "./input";
 import {DropdownMenu} from "./dropdownMenu";
 import {MenuItem} from "./menuItem";
+import {Path} from "./path";
+import {LeadRow} from "./leadRow";
 
 export {
 	StyledInputText,
@@ -21,4 +23,6 @@ export {
 	MenuItem,
 	NavbarLink,
 	DropdownMenu,
+	Path,
+	LeadRow,
 };

@@ -2,21 +2,21 @@ export const submenuSupport = [
 	{
 		pos: 2.1,
 		text: "Dashboard",
-		route: "/agent/support",
+		route: "/support",
 	},
 	{
 		pos: 2.2,
 		text: "Campañas",
-		route: "/agent/support/campains",
+		route: "/support/campains",
 	},
 	{
 		pos: 2.3,
 		text: "Clientes",
-		route: "/agent/support/clients",
+		route: "/support/clients",
 	},
 	{
 		pos: 2.4,
 		text: "Servicios",
-		route: "/agent/support/services",
+		route: "/support/services",
 	},
 ];

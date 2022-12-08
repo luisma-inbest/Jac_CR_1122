@@ -1,0 +1,28 @@
+/*nav*/
+.navContainer {
+	display: flex;
+	justify-content: center;
+	/* align-items: center; */
+}
+
+/* main  */
+main {
+	min-height: calc(100vh - 9rem);
+	width: 100%;
+}
+
+/**/
+@media (max-width: 48em) {
+	.mobilePadding {
+		padding: 0 2rem;
+	}
+}
+
+/*
+$grid-breakpoints: (
+  xs: 0,
+  sm: 48em,
+  md: 62em,
+  lg:75em,
+);
+*/

@@ -14,7 +14,9 @@ export const Login = () => {
 	const navigate = useNavigate();
 	const {User, SetUser} = useContext(UserContext) as UserContextType;
 	const [role, setRole] = useState("admin");
-	const logoColor = getComputedStyle(document.body).getPropertyValue("--blue2");
+	const logoColor = getComputedStyle(document.body).getPropertyValue(
+		"--main-color"
+	);
 
 	const handleChange = (e: any) => {
 		setRole(e.target.value);
@@ -27,18 +29,18 @@ export const Login = () => {
 			case "admin":
 				SetUser({
 					id: 1,
-					name: "Jhon",
+					name: "Jorge Administrador",
 					permissions: ["admin"],
 				});
 				navigate("/admin");
 				break;
-			case "seller":
+			case "sells":
 				SetUser({
 					id: 1,
-					name: "Jhon",
-					permissions: [""],
+					name: "Jorge Vendedor",
+					permissions: ["sells"],
 				});
-				navigate("/seller");
+				navigate("/sells");
 				break;
 		}
 	};
@@ -57,9 +59,9 @@ export const Login = () => {
 							<LogoFull color={logoColor} size="70%" />
 						</div>
 						<form className={styles.form} onSubmit={handleSubmit}>
-							<label className="p2 text-bold">Usuario</label>
+							<label className="p2 semi-bold">Usuario</label>
 							<StyledInputText name="name" customType="gray" />
-							<label className="p2 text-bold">Contraseña</label>
+							<label className="p2 semi-bold">Contraseña</label>
 							<StyledInputText name="name" customType="gray" />
 							<div className={`${styles.checkbox}`}>
 								<input type="checkbox" id="cbox2" value="second_checkbox" />{" "}
@@ -74,9 +76,9 @@ export const Login = () => {
 						<div className={styles.customSelect}>
 							<select onChange={handleChange}>
 								<option value="admin">Administrador</option>
+								<option value="sells">Ventas</option>
 								<option value="seller">Web</option>
 								<option value="seller">Marketing</option>
-								<option value="seller">Ventas</option>
 								<option value="seller">Servicio</option>
 								<option value="seller">Sucursales</option>
 								<option value="seller">RH</option>

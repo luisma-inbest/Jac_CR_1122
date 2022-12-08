@@ -89,7 +89,7 @@ export const MenuItem = (props: Props) => {
 				<div className={`${styles.iconContainer}`}>
 					{iconSelector(props.icon)}
 				</div>
-				<p className={`p2 bold blue2 no-margin`}>{props.text}</p>
+				<p className={`p2 bold main-color no-margin`}>{props.text}</p>
 			</div>
 			<div className={`${styles.menuRight} ${styles.iconContainer}`}>
 				{props.submenu ? (

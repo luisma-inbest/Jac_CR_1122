@@ -21,8 +21,8 @@
 }
 
 .selected {
-	background-color: var(--blue2);
-	transition: all 0.3s linear;
+	background-color: var(--main-color);
+	/* transition: all 0.3s linear; */
 }
 .selected p {
 	color: var(--white);
@@ -55,11 +55,19 @@
 
 .rotate {
 	transform: rotate(90deg);
-	transition: all 0.5s ease-out;
+	/* transition: all 0.5s ease-out; */
 }
 .normal {
 	transform: rotate(0deg);
-	transition: all 0.5s ease-out;
+	/* transition: all 0.5s ease-out; */
+}
+@media (min-width: 75em) {
+	.rotate {
+		transition: all 0.5s ease-out;
+	}
+	.normal {
+		transition: all 0.5s ease-out;
+	}
 }
 
 .active {

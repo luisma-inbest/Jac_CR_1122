@@ -1,0 +1,16 @@
+.tableRow td {
+	width: 33.3%;
+}
+
+.nameColumn {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 1rem;
+}
+
+.leadColor {
+	height: 100%;
+	width: 1rem;
+	background-color: var(--warm-lead);
+}

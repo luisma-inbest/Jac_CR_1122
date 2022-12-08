@@ -3,7 +3,7 @@ import styles from "./Main.module.css";
 import {NavBar, Header} from "@/components/UI/organisms";
 import {CardReview} from "@/components/UI/molecules";
 import {Outlet} from "react-router-dom";
-import {Agent} from "@/components/pages";
+import {Path} from "@/components/UI/atoms";
 
 export const Main = () => {
 	const [menu, setMenu] = useState(false);
@@ -25,8 +25,9 @@ export const Main = () => {
 
 				<NavBar state={menu} navHandler={navHandler} />
 				<main className="row">
-					<div className={`col-sm-12`}>
+					<div className={`col-xs-12 ${styles.mobilePadding}`}>
 						{/* Aqui Va el contenido*/}
+						<Path />
 						<Outlet />
 					</div>
 					{/* */}

@@ -6,11 +6,11 @@
 	--black: #000;
 	--white: #fff;
 
-	--blue1: #2c74bb;
-	--blue2: #062236;
-	--gray1: #eeeeee;
+	--highlight: #2c74bb;
+	--main-color: #062236;
 	--gray2: #d9d9d9;
 	--gray3: #5a5a5a;
+	--selectedTab: #4a4e5c;
 	--green: #04cc00;
 	--red: #d63944;
 
@@ -23,12 +23,16 @@
 	--tracing: #e08a08;
 	--messages: #dcf8c8;
 
-	--text: #777;
+	--main-text: #141a26;
+	--secondary-text: #747474;
+	--highlight-text: #9d9ea0;
+	--link: #0069d1;
 
 	--br-1: 0.5rem;
 	--br-2: 1rem;
 	--br-3: 2rem;
 }
+
 *,
 *:before,
 *:after {
@@ -39,8 +43,7 @@
 	border: 0;
 	margin: 0;
 }
-html,
-html * {
+html {
 	font-size: 10px;
 	font-family: "Monserrat";
 }
@@ -52,7 +55,7 @@ body {
 	border: 0;
 	margin: 0;
 	font-weight: normal;
-	line-height: 1.4rem;
+	line-height: 2rem;
 	background-color: var(--background);
 }
 
@@ -61,7 +64,11 @@ body {
 }
 
 .content-side {
-	padding: 3rem 0 3rem 2rem;
+	padding: 1rem 2rem;
+}
+
+.padding-side {
+	padding: 0 2rem;
 }
 
 .navbar-side {

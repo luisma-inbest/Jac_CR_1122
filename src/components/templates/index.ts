@@ -1,3 +1,4 @@
-import {Main} from "./Main";
+import {Main} from "./main";
+import {Tabs} from "./tabs";
 
-export {Main};
+export {Main, Tabs};

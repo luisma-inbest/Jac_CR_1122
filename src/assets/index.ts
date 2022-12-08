@@ -2,6 +2,7 @@ import logoHorizontal from "./img/logoHorizontalx2.png";
 import user from "./img/user.png";
 import {Logo} from "./img/Logo";
 import {LogoFull} from "./img/LogoFull";
+import carExample from "./img/j7.jpg";
 
 import {IconMenu} from "./icons/IconMenu";
 import {IconNotification} from "./icons/IconNotification";
@@ -20,12 +21,16 @@ import {IconProduct} from "./icons/IconProduct";
 import {IconLocation} from "./icons/IconLocation";
 import {IconUser} from "./icons/IconUser";
 import {IconArrow} from "./icons/IconArrow";
+import {IconPhone} from "./icons/IconPhone";
+import {IconMail} from "./icons/IconMail";
+import {IconUnfold} from "./icons/IconUnfold";
 
 export {
 	Logo,
 	LogoFull,
 	logoHorizontal,
 	user,
+	carExample,
 	IconNotification,
 	IconMenu,
 	IconList,
@@ -41,4 +46,7 @@ export {
 	IconLocation,
 	IconUser,
 	IconArrow,
+	IconPhone,
+	IconMail,
+	IconUnfold,
 };

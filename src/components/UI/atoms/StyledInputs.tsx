@@ -7,7 +7,7 @@ export const StyledInputText = styled.input.attrs<PropsTxt>({
 	type: "text",
 })`
 	background-color: ${(props: PropSubmit) =>
-		props.customType === "gray" ? "var(--gray1)" : "var(--white)"};
+		props.customType === "gray" ? "var(--background)" : "var(--white)"};
 	border: none;
 	font-size: var(--p);
 	border-radius: var(--br-1);
@@ -15,7 +15,7 @@ export const StyledInputText = styled.input.attrs<PropsTxt>({
 	padding: 1em 0.5em;
 	margin-bottom: 1.9rem;
 	&:focus {
-		outline: 3px solid var(--blue1);
+		outline: 3px solid var(--highlight);
 	}
 `;
 
@@ -27,12 +27,12 @@ export const StyledInputSubmit = styled.input.attrs<PropSubmit>({
 	type: "submit",
 })`
 	background-color: ${(props: PropSubmit) =>
-		props.customType === "primary" ? "var(--blue1)" : "var(--white)"};
+		props.customType === "primary" ? "var(--highlight)" : "var(--white)"};
 	color: ${(props: PropSubmit) =>
 		props.customType === "primary" ? "var(--white)" : "var(--red)"};
 
 	font-size: var(--p2);
-	font-weight: bold;
+	font-weight: 600;
 	border: none;
 	border-radius: 0.5rem;
 	height: 4rem;
