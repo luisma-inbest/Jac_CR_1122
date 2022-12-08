@@ -71,6 +71,13 @@
 	/* full - header - marginURL - tabHeader - marginTabHeader */
 	/* position: relative; */
 	overflow: hidden;
+	/* overflow-x: scroll; add if you want tables to have scroll */
+}
+
+.tabBodyFilled {
+	padding: 2rem;
+	background-color: var(--white);
+	border-radius: var(--br-2);
 }
 
 .tabContent {

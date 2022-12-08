@@ -14,7 +14,7 @@ main {
 /**/
 @media (max-width: 48em) {
 	.mobilePadding {
-		padding: 0 2rem;
+		padding: 0 1rem;
 	}
 }
 

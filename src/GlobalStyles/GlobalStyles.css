@@ -12,15 +12,15 @@
 	--gray3: #5a5a5a;
 	--selectedTab: #4a4e5c;
 	--green: #04cc00;
-	--red: #d63944;
 
 	--background: #eeeeee;
 	--color-main: #0008cc;
 	--color-secondary: #0008cc;
 
-	--warm-lead: #eed347;
 	--cold-lead: #8dbdec;
-	--tracing: #e08a08;
+	--tracing-lead: #e08a08;
+	--hot-lead: #d63944;
+	--warm-lead: #eed347;
 	--messages: #dcf8c8;
 
 	--main-text: #141a26;

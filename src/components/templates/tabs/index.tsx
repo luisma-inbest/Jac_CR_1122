@@ -1,6 +1,8 @@
 import React, {useState, useRef, useEffect} from "react";
 import styles from "./Tabs.module.css";
 
+interface Props {}
+
 export const Tabs = (props: any) => {
 	const viewport_width = document.documentElement.clientWidth;
 	const [tabs, setTabs] = useState<any[]>(props.tabs);
@@ -77,7 +79,12 @@ export const Tabs = (props: any) => {
 				></div>
 				{/* /Indicator */}
 				{/* Tabs Body */}
-				<div id="tabBody" className={`${styles.tabBody}`}>
+				<div
+					id="tabBody"
+					className={`${styles.tabBody} ${
+						props.filled ? styles.tabBodyFilled : ""
+					}`}
+				>
 					{tabs.map((tab, index) => {
 						return (
 							<div
@@ -86,7 +93,7 @@ export const Tabs = (props: any) => {
 									activeTab == index ? styles.active : ""
 								}`}
 							>
-								{props.components[index]()}
+								{props.components[index]}
 							</div>
 						);
 					})}

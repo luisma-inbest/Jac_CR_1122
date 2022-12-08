@@ -1,0 +1,24 @@
+.card {
+	width: 100%;
+	min-height: 2rem;
+	height: auto;
+	padding: 2rem;
+	border-radius: 1rem;
+	/* border: 1px solid var(--gray2); */
+	background-color: rgba(228, 228, 228, 0.1);
+	box-shadow: 0 4px 10px 0 rgba(114, 114, 114, 0.1);
+
+	cursor: pointer;
+}
+
+.cardContainer {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.iconContainer {
+	height: 1.5rem;
+	width: 1.5rem;
+}

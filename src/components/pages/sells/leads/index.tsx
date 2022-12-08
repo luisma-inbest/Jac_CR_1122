@@ -1,8 +1,7 @@
 import React, {useState} from "react";
 import styles from "./Sells.module.css";
 import {StyledInputText} from "@/components/UI/atoms";
-import {LeadsTable} from "@/components/UI/molecules";
-import {LeadData} from "@/components/UI/organisms";
+import {LeadData, LeadsTable} from "@/components/UI/molecules";
 import {Tabs} from "@/components/templates";
 import {Link} from "react-router-dom";
 
@@ -17,8 +16,12 @@ export const Leads = () => {
 		);
 	};
 
-	const PageTabs = ["Subasta", "1er Contacto", "Seguimiento", "Cierre"];
-	const TabsComponents = [LeadsTable, liga, liga, liga];
+	const PageTabs = ["Subasta", "Contacto", "Seguimiento", "Cierre"];
+	const TabOne = <LeadsTable type={3} />;
+	const TabTwo = <LeadsTable type={0} />;
+	const TabThree = <LeadsTable type={1} />;
+	const TabFour = <LeadsTable type={2} />;
+	const TabsComponents = [TabOne, TabTwo, TabThree, TabFour];
 
 	return (
 		<div className={`contentVerticalPadding ${styles.mainContainer}`}>
