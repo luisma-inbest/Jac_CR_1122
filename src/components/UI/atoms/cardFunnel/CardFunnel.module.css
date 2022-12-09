@@ -10,7 +10,6 @@
 
 	transition: all 0.5s ease-out;
 	overflow: hidden;
-	cursor: pointer;
 }
 
 .fullCard {
@@ -31,4 +30,13 @@
 }
 .rotate {
 	transform: rotate(90deg);
+}
+
+.left {
+	height: 2rem;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 1rem;
+	cursor: pointer;
 }

@@ -24,6 +24,9 @@ import {IconArrow} from "./icons/IconArrow";
 import {IconPhone} from "./icons/IconPhone";
 import {IconMail} from "./icons/IconMail";
 import {IconUnfold} from "./icons/IconUnfold";
+import {IconFeedback} from "./icons/IconFeedback";
+import {IconWhatsapp} from "./icons/IconWhatsapp";
+import {IconCheck} from "./icons/IconCheck";
 
 export {
 	Logo,
@@ -49,4 +52,7 @@ export {
 	IconPhone,
 	IconMail,
 	IconUnfold,
+	IconFeedback,
+	IconWhatsapp,
+	IconCheck,
 };

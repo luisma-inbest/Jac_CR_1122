@@ -2,24 +2,40 @@ import React, {useState} from "react";
 import {IconArrow} from "@/assets";
 
 import styles from "./CardFunnel.module.css";
-import {Button} from "@/components/UI/atoms";
 
-export const CardFunnel = () => {
+import {
+	iconSelector,
+	textSelector,
+	buttonHandler,
+	buttonTextHandler,
+	dropHandler,
+} from "./functions";
+
+interface Props {
+	type: string;
+	drop: boolean;
+}
+
+export const CardFunnel = (props: Props) => {
 	const [fullContainer, setFullContainer] = useState(false);
-
 	function cardHandler() {
-		console.log("cardHandler");
-		setFullContainer(!fullContainer);
+		if (props.drop) {
+			setFullContainer(!fullContainer);
+		}
 	}
-
-	const sendWhats = () => {
-		console.log("button activated..");
-	};
 
 	return (
 		<div className={`${styles.card} ${fullContainer ? styles.fullCard : ""}`}>
 			<div className={`mb-3 ${styles.cardContainer}`}>
-				<p className="p4 no-margin bold">Enviar Whatsapp</p>
+				<div className={styles.left} onClick={() => cardHandler()}>
+					<span
+						className={`${styles.iconContainer} `}
+						onClick={() => cardHandler()}
+					>
+						{iconSelector(props.type)}
+					</span>
+					<p className="p4 no-margin bold">{textSelector(props.type)}</p>
+				</div>
 				<span
 					className={`${styles.iconContainer} ${
 						fullContainer ? styles.rotate : ""
@@ -30,8 +46,7 @@ export const CardFunnel = () => {
 				</span>
 			</div>
 			<div className={styles.cardContainer}>
-				<p className="p3 link no-margin">Omitir</p>
-				<Button text="Enviar Mensaje" func={sendWhats} />
+				{dropHandler(props.drop, props.type)}
 			</div>
 		</div>
 	);
