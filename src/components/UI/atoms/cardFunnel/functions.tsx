@@ -40,7 +40,11 @@ export const dropHandler = (drop: boolean, type: string) => {
 		return (
 			<>
 				<p className="p3 link no-margin">Omitir</p>
-				<Button text={buttonTextHandler(type)} func={buttonHandler} />
+				<Button
+					text={buttonTextHandler(type)}
+					func={buttonHandler}
+					full={false}
+				/>
 			</>
 		);
 	}

@@ -10,7 +10,7 @@ export const SellsDashboard = () => {
 		<div className={`contentVerticalPadding ${styles.mainContainer}`}>
 			<div className="row">
 				<div className={`col-xs-12 col-md-6 ${styles.userData}`}>
-					<h1>Aquí van las gráficas t</h1>
+					<h1>Aquí van las gráficas </h1>
 
 					<Link to="/sells/leads">
 						<h2>Leads</h2>

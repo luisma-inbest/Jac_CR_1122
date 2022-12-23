@@ -1,19 +1,19 @@
 import React, {useState} from "react";
+import {Link} from "react-router-dom";
 import styles from "./Sells.module.css";
-import {StyledInputText} from "@/components/UI/atoms";
+import {StyledInputText, Button} from "@/components/UI/atoms";
 import {LeadData, LeadsTable} from "@/components/UI/molecules";
 import {Tabs} from "@/components/templates";
-import {Link} from "react-router-dom";
+import {CreateLead} from "@/components/pages";
 
 export const Leads = () => {
-	const liga = () => {
-		return (
-			<div>
-				<Link to="/sells/leads/1">
-					<h2>Liga</h2>
-				</Link>
-			</div>
-		);
+	const [leadView, setLeadView] = useState(false);
+
+	const windowHandler = () => {
+		if (!leadView) {
+			window.scrollTo({top: 0, left: 0, behavior: "smooth"});
+		}
+		setLeadView(!leadView);
 	};
 
 	const PageTabs = ["Subasta", "Contacto", "Seguimiento", "Cierre"];
@@ -33,8 +33,17 @@ export const Leads = () => {
 						one={LeadData}
 						full={true}
 					/>
+					<div className={styles.buttonContainer}>
+						<Button
+							text="Agregar nuevo lead"
+							func={windowHandler}
+							full={true}
+						/>
+					</div>
 				</div>
 			</div>
+
+			{leadView ? <CreateLead func={windowHandler} /> : <></>}
 		</div>
 	);
 };
