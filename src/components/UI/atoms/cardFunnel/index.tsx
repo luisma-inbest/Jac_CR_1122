@@ -13,15 +13,12 @@ import {
 
 interface Props {
 	type: string;
-	drop: boolean;
 }
 
 export const CardFunnel = (props: Props) => {
 	const [fullContainer, setFullContainer] = useState(false);
 	function cardHandler() {
-		if (props.drop) {
-			setFullContainer(!fullContainer);
-		}
+		setFullContainer(!fullContainer);
 	}
 
 	return (
@@ -45,9 +42,7 @@ export const CardFunnel = (props: Props) => {
 					<IconArrow size="100%" color="#000" />
 				</span>
 			</div>
-			<div className={styles.cardContainer}>
-				{dropHandler(props.drop, props.type)}
-			</div>
+			<div className={styles.cardContainer}>{dropHandler(props.type)}</div>
 		</div>
 	);
 };

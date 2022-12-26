@@ -19,6 +19,9 @@ $grid-breakpoints: (
 
 /*margins*/
 /*top*/
+.mt-0 {
+	margin-top: 0;
+}
 .mt-1 {
 	margin-top: var(--m1);
 }
@@ -35,6 +38,9 @@ $grid-breakpoints: (
 	margin-top: var(--m5);
 }
 /*right*/
+.mr-0 {
+	margin-right: 0;
+}
 .mr-1 {
 	margin-right: var(--m1);
 }
@@ -51,6 +57,9 @@ $grid-breakpoints: (
 	margin-right: var(--m5);
 }
 /*bottom*/
+.mb-0 {
+	margin-bottom: 0;
+}
 .mb-1 {
 	margin-bottom: var(--m1);
 }
@@ -67,6 +76,9 @@ $grid-breakpoints: (
 	margin-bottom: var(--m5);
 }
 /*left*/
+.ml-0 {
+	margin-left: 0;
+}
 .ml-1 {
 	margin-left: var(--m1);
 }

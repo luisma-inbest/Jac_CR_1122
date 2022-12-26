@@ -5,9 +5,9 @@ export function textSelector(type: string) {
 	switch (type) {
 		case "whats":
 			return "Enviar Whatsapp";
-		case "phone":
-			return "Feedback";
 		case "feedback":
+			return "Feedback";
+		case "phone":
 			return "Llamada Telefónica";
 		case "check":
 			return "Confirmación de datos";
@@ -32,24 +32,48 @@ export const buttonTextHandler = (type: string) => {
 			return "Enviar Mensaje";
 		case "phone":
 			return "Lllamar ahora";
+		case "check":
+			return "Confirmar datos";
+		case "feedback":
+			return "Futura Compra";
 	}
 };
 
-export const dropHandler = (drop: boolean, type: string) => {
-	if (drop) {
-		return (
-			<>
-				<p className="p3 link no-margin">Omitir</p>
-				<Button
-					text={buttonTextHandler(type)}
-					func={buttonHandler}
-					full={false}
-				/>
-			</>
-		);
+export const dropHandler = (type: string) => {
+	return (
+		<>
+			<p className="p3 link no-margin">Omitir</p>
+			<Button
+				text={buttonTextHandler(type)}
+				func={buttonHandler(type)}
+				full={false}
+			/>
+		</>
+	);
+};
+
+export const buttonHandler = (type: string) => {
+	switch (type) {
+		case "whats":
+			return whatsFunction;
+		case "phone":
+			return phoneFunction;
+		case "check":
+			return checkFunction;
+		case "feedback":
+			return feedbackFunction;
 	}
 };
 
-export const buttonHandler = () => {
-	console.log("button activated..");
+export const whatsFunction = () => {
+	console.log("whats");
+};
+export const phoneFunction = () => {
+	window.open("tel:900300400");
+};
+export const checkFunction = () => {
+	console.log("check");
+};
+export const feedbackFunction = () => {
+	console.log("feedback");
 };
