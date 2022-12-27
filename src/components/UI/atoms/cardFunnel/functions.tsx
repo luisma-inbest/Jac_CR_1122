@@ -19,7 +19,7 @@ export function iconSelector(type: string) {
 		case "whats":
 			return <IconWhatsapp size="100%" color="#000" />;
 		case "phone":
-			return <IconPhone size="100%" color="#000" />;
+			return <IconPhone size="100%" color="#000" rotate="0" />;
 		case "feedback":
 			return <IconFeedback size="100%" color="#000" />;
 		case "check":
@@ -27,7 +27,7 @@ export function iconSelector(type: string) {
 	}
 }
 
-export const buttonTextHandler = (type: string) => {
+export const buttonTextHandler = (type: string): string => {
 	switch (type) {
 		case "whats":
 			return "Enviar Mensaje";
@@ -37,6 +37,8 @@ export const buttonTextHandler = (type: string) => {
 			return "Confirmar datos";
 		case "feedback":
 			return "Futura Compra";
+		default:
+			return "Error";
 	}
 };
 
@@ -74,7 +76,6 @@ export const phoneFunction = () => {
 };
 export const checkFunction = () => {
 	console.log("check");
-	document.getElementById("root")!.appendChild(RegisterActivity());
 };
 export const feedbackFunction = () => {
 	console.log("feedback");

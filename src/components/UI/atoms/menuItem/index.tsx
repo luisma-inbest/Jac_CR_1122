@@ -17,9 +17,9 @@ interface Props {
 	text: string;
 	route: string;
 	state: string;
+	dropped: boolean;
 	func: any;
 	submenu: boolean;
-	dropped: boolean;
 }
 
 export const MenuItem = (props: Props) => {

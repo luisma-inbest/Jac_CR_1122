@@ -9,16 +9,16 @@ import {
 	SellsDashboard,
 	Leads,
 	LeadDashboard,
-} from "@/Components/pages";
-import {Main} from "@/components/templates";
+} from "./../components/pages";
+import {Main} from "./../components/templates";
 import {ProtectedRoute} from "./ProtectedRoute";
 
 import UserContext, {
 	UserContextType,
 	UserProvider,
 	UserType,
-} from "@/context/UserContext";
-import {AgentRoutes, SellsRoutes} from "@/models/routes";
+} from "./../context/UserContext";
+import {AgentRoutes, SellsRoutes} from "./../models/routes";
 
 export const Routing = () => {
 	const {User, SetUser} = useContext(UserContext) as UserContextType;

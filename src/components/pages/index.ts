@@ -1,8 +1,8 @@
-import {Home} from "@/components/pages/home";
-import {Login} from "@/components/pages/authentication/Login";
-import {Register} from "@/components/pages/authentication/Register";
-import {Admin} from "./admin/main";
-import {SellsDashboard, Leads, LeadDashboard, CreateLead} from "./sells";
+import {Home} from "./home";
+import {Login} from "./authentication/Login";
+import {Register} from "./authentication/Register";
+import {Admin} from "./admin";
+import {SellsDashboard, Leads, LeadDashboard, CreateLead} from "./sells/";
 
 export {
 	Home,

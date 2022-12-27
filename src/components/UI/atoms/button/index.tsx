@@ -4,7 +4,7 @@ import styles from "./Button.module.css";
 interface Props {
 	text: string;
 	func: any;
-	full: string;
+	full: boolean;
 }
 
 export const Button = (props: Props) => {

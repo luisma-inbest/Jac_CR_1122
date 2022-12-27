@@ -1,9 +1,8 @@
 import React, {useState} from "react";
-import styles from "./Sells.module.css";
-import {StyledInputText} from "@/components/UI/atoms";
-import {LeadData} from "@/components/UI/organisms";
-import {Tabs} from "@/components/templates";
 import {Link} from "react-router-dom";
+import {StyledInputText} from "@/components/UI/atoms";
+import {Tabs} from "@/components/templates";
+import styles from "./Sells.module.css";
 
 export const SellsDashboard = () => {
 	return (

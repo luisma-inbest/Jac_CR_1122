@@ -1,14 +1,14 @@
 import React, {useContext, useState} from "react";
-import styles from "./Login.module.css";
-import {Logo, LogoFull} from "@/assets";
-import UserContext, {UserContextType} from "@/context/UserContext";
 import {Link, useNavigate} from "react-router-dom";
-
+import {Logo, LogoFull} from "@/assets";
 import {
 	StyledInputText,
 	StyledInputSubmit,
 	Input,
 } from "@/components/UI/atoms/";
+import UserContext, {UserContextType} from "@/context/UserContext";
+
+import styles from "./Login.module.css";
 
 export const Login = () => {
 	const navigate = useNavigate();

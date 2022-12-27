@@ -3,8 +3,8 @@ import {Link} from "react-router-dom";
 import styles from "./Sells.module.css";
 import {StyledInputText, Button} from "@/components/UI/atoms";
 import {LeadData, LeadsTable} from "@/components/UI/molecules";
-import {Tabs} from "@/components/templates";
 import {CreateLead} from "@/components/pages";
+import {Tabs} from "@/components/templates";
 
 export const Leads = () => {
 	const [leadView, setLeadView] = useState(false);

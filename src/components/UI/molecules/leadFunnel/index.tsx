@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {CardFunnel} from "@/components/UI/atoms";
-import {RegisterActivity} from "@/components/UI/molecules";
+import {RegisterActivity} from "components/UI/molecules";
 import styles from "./LeadFunnel.module.css";
 
 interface Props {

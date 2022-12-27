@@ -42,7 +42,7 @@ export const CardFunnel = (props: Props) => {
 					}`}
 					onClick={() => cardHandler()}
 				>
-					<IconArrow size="100%" color="#000" />
+					<IconArrow size="100%" color="#000" rotate="0" />
 				</span>
 			</div>
 			<div className={styles.cardContainer}>
