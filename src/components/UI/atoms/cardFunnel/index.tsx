@@ -13,7 +13,10 @@ import {
 
 interface Props {
 	type: string;
+	func?: () => void;
 }
+
+//TODO: para la pop up voy a necesitar un estado global
 
 export const CardFunnel = (props: Props) => {
 	const [fullContainer, setFullContainer] = useState(false);
@@ -42,7 +45,9 @@ export const CardFunnel = (props: Props) => {
 					<IconArrow size="100%" color="#000" />
 				</span>
 			</div>
-			<div className={styles.cardContainer}>{dropHandler(props.type)}</div>
+			<div className={styles.cardContainer}>
+				{dropHandler(props.type, props.func)}
+			</div>
 		</div>
 	);
 };

@@ -1,5 +1,6 @@
 import {IconWhatsapp, IconPhone, IconCheck, IconFeedback} from "@/assets";
 import {Button} from "@/components/UI/atoms";
+import {RegisterActivity} from "@/components/UI/molecules";
 
 export function textSelector(type: string) {
 	switch (type) {
@@ -39,20 +40,20 @@ export const buttonTextHandler = (type: string) => {
 	}
 };
 
-export const dropHandler = (type: string) => {
+export const dropHandler = (type: string, func?: any) => {
 	return (
 		<>
-			<p className="p3 link no-margin">Omitir</p>
+			<p className="p3 link no-margin">Registrar</p>
 			<Button
 				text={buttonTextHandler(type)}
-				func={buttonHandler(type)}
+				func={buttonHandler(type, func)}
 				full={false}
 			/>
 		</>
 	);
 };
 
-export const buttonHandler = (type: string) => {
+export const buttonHandler = (type: string, func?: any) => {
 	switch (type) {
 		case "whats":
 			return whatsFunction;
@@ -73,6 +74,7 @@ export const phoneFunction = () => {
 };
 export const checkFunction = () => {
 	console.log("check");
+	document.getElementById("root")!.appendChild(RegisterActivity());
 };
 export const feedbackFunction = () => {
 	console.log("feedback");
