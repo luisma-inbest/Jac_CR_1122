@@ -1,12 +1,14 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import styles from "./Sells.module.css";
 import {StyledInputText} from "@/components/UI/atoms";
 import {LeadData, LeadChat, LeadFunnel} from "@/components/UI/molecules";
 import {Tabs} from "@/components/templates";
 import {RegisterActivity} from "@/components/UI/molecules";
+import {CurrentLeadProvider} from "@/context/CurrentLeadContext";
 
 export const LeadDashboard = () => {
 	const [leadView, setLeadView] = useState(false);
+	const [lead, seadLead] = useState(null);
 
 	const windowHandler = () => {
 		if (!leadView) {
@@ -23,7 +25,7 @@ export const LeadDashboard = () => {
 	const TabsComponents = [TabOne, TabTwo, TabThree, TabFour];
 
 	return (
-		<>
+		<CurrentLeadProvider>
 			<div className={`contentVerticalPadding ${styles.mainContainer}`}>
 				<div className="row">
 					<div className={`col-xs-12 col-md-6 ${styles.userData}`}>
@@ -40,6 +42,6 @@ export const LeadDashboard = () => {
 				</div>
 			</div>
 			{leadView ? <RegisterActivity func={windowHandler} /> : <></>}
-		</>
+		</CurrentLeadProvider>
 	);
 };
