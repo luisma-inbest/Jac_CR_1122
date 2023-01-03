@@ -5,6 +5,7 @@ import {
 	StyledInputSubmit,
 	StyledInputSelect,
 } from "./StyledInputs";
+import {StyledTextArea} from "./StyledTextArea";
 
 import {NavbarLink} from "./StyledLink";
 import {Input} from "./input";
@@ -21,6 +22,7 @@ export {
 	StyledInputDate,
 	StyledInputSubmit,
 	StyledInputSelect,
+	StyledTextArea,
 	Input,
 	MenuItem,
 	NavbarLink,

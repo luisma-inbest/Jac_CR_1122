@@ -24,7 +24,6 @@ export const LeadDashboard = () => {
 
 	return (
 		<>
-			<button onClick={windowHandler}>Click Me!</button>
 			<div className={`contentVerticalPadding ${styles.mainContainer}`}>
 				<div className="row">
 					<div className={`col-xs-12 col-md-6 ${styles.userData}`}>

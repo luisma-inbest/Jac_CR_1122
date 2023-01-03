@@ -28,7 +28,7 @@ export const LeadData = () => {
 					<span className={`${styles.leadIcon}`}>
 						<IconMail color={colorSecondary} size="100%" rotate="0" />
 					</span>
-					<p className="p3">jorge.salgadoSRCinbest.cloud</p>
+					<p className="p3">jorge.salgado@inbest.cloud</p>
 				</span>
 			</div>
 

@@ -30,6 +30,10 @@
 	overflow-y: scroll;
 }
 
+.form {
+	width: 85%;
+}
+
 .iconContainer {
 	height: 2rem;
 	width: 2rem;
