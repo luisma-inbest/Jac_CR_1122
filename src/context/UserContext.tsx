@@ -2,7 +2,7 @@ import React, {createContext, useState, ReactNode, type Dispatch} from "react";
 import {ContextChilds} from "@/models/contextChilds";
 
 // type of user
-type UserType = {
+export type UserType = {
 	id: number;
 	name: string;
 	permissions: string[];
