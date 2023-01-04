@@ -1,7 +1,7 @@
 import React, {useState, useContext} from "react";
 import styles from "./Sells.module.css";
 import {StyledInputText} from "@/components/UI/atoms";
-import {LeadData, LeadChat, LeadFunnel} from "@/components/UI/molecules";
+import {LeadData, LeadChat, LeadFunnel, LeadHistory} from "@/components/UI/molecules";
 import {Tabs} from "@/components/templates";
 import {RegisterActivity} from "@/components/UI/molecules";
 import {CurrentLeadProvider} from "@/context/CurrentLeadContext";
@@ -21,7 +21,7 @@ export const LeadDashboard = () => {
 	const TabOne = <LeadData />;
 	const TabTwo = <LeadFunnel func={windowHandler} />;
 	const TabThree = <LeadChat />;
-	const TabFour = <LeadData />;
+	const TabFour = <LeadHistory func={windowHandler}/>;
 	const TabsComponents = [TabOne, TabTwo, TabThree, TabFour];
 
 	return (

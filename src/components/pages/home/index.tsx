@@ -10,7 +10,7 @@ export const Home = () => {
 
 	return (
 		<div>
-			<h1>Jac </h1>
+			<h1>Jac CRM </h1>
 		</div>
 	);
 };
