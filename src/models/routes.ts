@@ -14,6 +14,10 @@ export const SellsRoutes = {
 	FutureLeads: "future-leads",
 	FrozenLeads: "frozen-leads",
 };
+export const ProductRoutes = {
+	main: "",
+	Details: "details/:id",
+};
 
 ///
 

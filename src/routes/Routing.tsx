@@ -9,6 +9,8 @@ import {
 	SellsDashboard,
 	Leads,
 	LeadDashboard,
+	ProductDashboard,
+	ProductDetails,
 } from "./../components/pages";
 import {Main} from "./../components/templates";
 import {ProtectedRoute} from "./ProtectedRoute";
@@ -18,7 +20,7 @@ import UserContext, {
 	UserProvider,
 	UserType,
 } from "./../context/UserContext";
-import {AgentRoutes, SellsRoutes} from "./../models/routes";
+import {AgentRoutes, SellsRoutes, ProductRoutes} from "./../models/routes";
 
 export const Routing = () => {
 	const {User, SetUser} = useContext(UserContext) as UserContextType;
@@ -62,6 +64,24 @@ export const Routing = () => {
 					<Route path={SellsRoutes.SingleLead} element={<LeadDashboard />} />
 					<Route path={SellsRoutes.FutureLeads} element={<SellsDashboard />} />
 					<Route path={SellsRoutes.FrozenLeads} element={<SellsDashboard />} />
+				</Route>
+			</Route>
+
+			{/* product urls */}
+			<Route
+				element={
+					<ProtectedRoute
+						isAllowed={
+							!!User &&
+							(User.permissions.includes("product") ||
+								User.permissions.includes("admin"))
+						}
+					/>
+				}
+			>
+				<Route path="product" element={<Main />}>
+					<Route path={ProductRoutes.main} element={<ProductDashboard />} />
+					<Route path={ProductRoutes.Details} element={<ProductDetails />} />
 				</Route>
 			</Route>
 
