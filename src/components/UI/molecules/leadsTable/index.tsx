@@ -32,7 +32,7 @@ export const LeadsTable = (props: Props) => {
 					<th className={`p4 highlight `}>
 						Fecha
 						<span className={`${styles.iconContainer}`}>
-							<IconUnfold size="100%" color={highlight} />
+							<IconUnfold size="100%" color={highlight} rotate="0" />
 						</span>
 					</th>
 				</tr>

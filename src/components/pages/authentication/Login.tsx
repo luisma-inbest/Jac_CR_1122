@@ -1,14 +1,14 @@
 import React, {useContext, useState} from "react";
-import styles from "./Login.module.css";
-import {Logo, LogoFull} from "@/assets";
-import UserContext, {UserContextType} from "@/context/UserContext";
 import {Link, useNavigate} from "react-router-dom";
-
+import {Logo, LogoFull} from "@/assets";
 import {
 	StyledInputText,
 	StyledInputSubmit,
 	Input,
 } from "@/components/UI/atoms/";
+import UserContext, {UserContextType} from "@/context/UserContext";
+
+import styles from "./Login.module.css";
 
 export const Login = () => {
 	const navigate = useNavigate();
@@ -41,6 +41,14 @@ export const Login = () => {
 					permissions: ["sells"],
 				});
 				navigate("/sells");
+				break;
+			case "product":
+				SetUser({
+					id: 1,
+					name: "Jorge Producto",
+					permissions: ["product"],
+				});
+				navigate("/product");
 				break;
 		}
 	};
@@ -77,12 +85,12 @@ export const Login = () => {
 							<select onChange={handleChange}>
 								<option value="admin">Administrador</option>
 								<option value="sells">Ventas</option>
-								<option value="seller">Web</option>
-								<option value="seller">Marketing</option>
-								<option value="seller">Servicio</option>
-								<option value="seller">Sucursales</option>
-								<option value="seller">RH</option>
-								<option value="seller">Producto</option>
+								<option value="product">Producto</option>
+								<option value="null">Web</option>
+								<option value="null">Marketing</option>
+								<option value="null">Servicio</option>
+								<option value="null">Sucursales</option>
+								<option value="null">RH</option>
 							</select>
 						</div>
 					</div>

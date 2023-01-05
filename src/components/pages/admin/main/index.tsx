@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Agent.module.css";
-import {StyledInputText} from "@/components/UI/atoms";
+import {StyledInputText} from "components/UI/atoms";
 
 export const Admin = () => {
 	return (

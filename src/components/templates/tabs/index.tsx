@@ -13,7 +13,7 @@ export const Tabs = (props: any) => {
 		console.log("toggleTab" + tab);
 		setActiveTab(tab);
 		if (props.full) {
-			prueba!.current!.style.left = `calc(25% * ${tab})`;
+			prueba!.current!.style.left = `calc(25% * ${tab} )`;
 		} else {
 			if (viewport_width > 993) {
 				console.log("3");
@@ -42,7 +42,7 @@ export const Tabs = (props: any) => {
 						if (index == 0) {
 							return (
 								<p
-									className={`p3 ${
+									className={`p4 ${
 										props.full ? styles.tabOptionFull : styles.tabOption
 									} ${props.full ? "" : styles.firstTab} ${
 										activeTab == index ? styles.active : ""
@@ -56,7 +56,7 @@ export const Tabs = (props: any) => {
 						} else {
 							return (
 								<p
-									className={`p3 ${
+									className={`p4 ${
 										props.full ? styles.tabOptionFull : styles.tabOption
 									} ${activeTab == index ? styles.active : ""}`}
 									key={index}

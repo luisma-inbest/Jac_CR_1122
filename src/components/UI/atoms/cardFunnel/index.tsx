@@ -13,15 +13,15 @@ import {
 
 interface Props {
 	type: string;
-	drop: boolean;
+	func?: () => void;
 }
+
+//TODO: para la pop up voy a necesitar un estado global
 
 export const CardFunnel = (props: Props) => {
 	const [fullContainer, setFullContainer] = useState(false);
 	function cardHandler() {
-		if (props.drop) {
-			setFullContainer(!fullContainer);
-		}
+		setFullContainer(!fullContainer);
 	}
 
 	return (
@@ -42,11 +42,11 @@ export const CardFunnel = (props: Props) => {
 					}`}
 					onClick={() => cardHandler()}
 				>
-					<IconArrow size="100%" color="#000" />
+					<IconArrow size="100%" color="#000" rotate="0" />
 				</span>
 			</div>
 			<div className={styles.cardContainer}>
-				{dropHandler(props.drop, props.type)}
+				{dropHandler(props.type, props.func)}
 			</div>
 		</div>
 	);

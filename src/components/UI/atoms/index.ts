@@ -5,6 +5,7 @@ import {
 	StyledInputSubmit,
 	StyledInputSelect,
 } from "./StyledInputs";
+import {StyledTextArea} from "./StyledTextArea";
 
 import {NavbarLink} from "./StyledLink";
 import {Input} from "./input";
@@ -15,12 +16,15 @@ import {LeadRow} from "./leadRow";
 import {CardFunnel} from "./cardFunnel";
 import {Button} from "./button";
 
+import {CardProduct} from "./cardProduct";
+
 export {
 	StyledInputText,
 	StyledInputRadio,
 	StyledInputDate,
 	StyledInputSubmit,
 	StyledInputSelect,
+	StyledTextArea,
 	Input,
 	MenuItem,
 	NavbarLink,
@@ -29,4 +33,5 @@ export {
 	LeadRow,
 	CardFunnel,
 	Button,
+	CardProduct,
 };

@@ -111,7 +111,8 @@ export const StyledInputSelect = styled.select.attrs({
 	font-size: var(--p3);
 
   /* Personalize */
-  width: auto;
+  width: 100%;
+	min-width: 30rem;
 	height: 3rem;
   padding: 0.3em 0.7em;
 	padding-right: 2.5em;
@@ -121,6 +122,7 @@ export const StyledInputSelect = styled.select.attrs({
       no-repeat right 0.8em center / 1em,
     var(--white);
   color: var(--text);
+	font-size: var(--p);
   border-radius: var(--br-2);
   /*box-shadow: 0 0 0.em 0 rgba(0, 0, 0, 0.2);*/
   cursor: pointer;
@@ -131,7 +133,7 @@ export const StyledInputSelect = styled.select.attrs({
     color: inherit;
     background-color: var(--white);
 		font-family: Arial;
-		font-size: var(--p3);
+		font-size: var(--p);
   }
 
   /* Remove focus outline */

@@ -12,6 +12,7 @@
 	--gray3: #5a5a5a;
 	--selectedTab: #4a4e5c;
 	--green: #04cc00;
+	--red: #cc000c;
 
 	--background: #eeeeee;
 	--color-main: #0008cc;
@@ -55,7 +56,7 @@ body {
 	border: 0;
 	margin: 0;
 	font-weight: normal;
-	line-height: 2rem;
+	line-height: 3rem;
 	background-color: var(--background);
 }
 

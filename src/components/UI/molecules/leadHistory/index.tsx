@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import {Button, CardFunnel} from "@/components/UI/atoms";
-import styles from "./LeadFunnel.module.css";
+import styles from "./LeadHistory.module.css";
 
 interface Props {
 	func: () => void;
 }
 
-export const LeadFunnel = (props: Props) => {
+export const LeadHistory = (props: Props) => {
 	return (
 		<div className={styles.funnelTab}>
 			<p className="p3 secondary bold">1er Contacto</p>

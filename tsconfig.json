@@ -4,9 +4,17 @@
 		"useDefineForClassFields": true,
 		"lib": ["DOM", "DOM.Iterable", "ESNext"],
 		"types": ["node"],
-		"baseUrl": "src",
+		"baseUrl": "./src",
 		"paths": {
-			"@/*": ["./src/*"]
+			"@/*": ["./*"],
+			"@/components/*": ["./components/*"],
+			"@/components/pages/*": ["./components/pages/*"],
+			"@/components/templates/*": ["./components/templates/*"],
+			"@/components/UI/*": ["./components/UI/*"],
+			"@/assets/*": ["./assets/*"],
+			"@/context/*": ["./context/*"],
+			"@/routes/*": ["./routes/*"],
+			"@/models/*": ["./models/*"]
 		},
 		"allowJs": false,
 		"skipLibCheck": true,

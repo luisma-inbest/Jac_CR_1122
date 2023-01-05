@@ -1,9 +1,8 @@
 import React, {useState} from "react";
-import styles from "./Main.module.css";
-import {NavBar, Header} from "@/components/UI/organisms";
-import {CardReview} from "@/components/UI/molecules";
 import {Outlet} from "react-router-dom";
+import {NavBar, Header} from "@/components/UI/organisms";
 import {Path} from "@/components/UI/atoms";
+import styles from "./Main.module.css";
 
 export const Main = () => {
 	const [menu, setMenu] = useState(false);

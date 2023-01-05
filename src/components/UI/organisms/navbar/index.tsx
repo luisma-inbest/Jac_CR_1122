@@ -1,7 +1,7 @@
 import React, {useState, useContext} from "react";
 import styles from "./NavBar.module.css";
-import {logoVertical, user} from "@/assets";
-import {Menu} from "@/models/nav/menu.ts";
+import {user} from "@/assets";
+import {Menu} from "@/models/nav/menu";
 import {DropdownMenu, MenuItem} from "@/components/UI/atoms";
 import {LogoFull, IconNotification, IconCross} from "@/assets";
 import UserContext, {UserContextType} from "@/context/UserContext";
@@ -49,8 +49,8 @@ export const NavBar = (props: Props) => {
 								<div className={`${styles.navUser} mt-4`}>
 									<img src={user} alt="" className={`${styles.userPhoto} `} />
 									<div className={styles.userInfo}>
-										<h5 className="semi-bold white">{User.name}</h5>
-										<p className="p3 white">correo@hotmail.com</p>
+										<h5 className="semi-bold white">{User?.name}</h5>
+										<p className="p3 white">correoSRChotmail.com</p>
 									</div>
 								</div>
 							</li>
@@ -76,6 +76,9 @@ export const NavBar = (props: Props) => {
 							text="Configuración"
 							route="./settings"
 							icon="settings"
+							dropped={false}
+							func={() => console.log("simple function")}
+							submenu={false}
 						/>
 					</li>
 				</ul>

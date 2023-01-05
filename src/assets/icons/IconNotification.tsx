@@ -2,7 +2,7 @@ import React from "react";
 
 interface Props {
 	color: string;
-	size: number;
+	size: string;
 }
 
 export const IconNotification = (props: Props) => {
