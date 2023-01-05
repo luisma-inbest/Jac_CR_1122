@@ -18,6 +18,8 @@ import {CardHistory} from "./cardHistory";
 import {CardChat} from "./cardChat";
 import {Button} from "./button";
 
+import {CardProduct} from "./cardProduct";
+
 export {
 	StyledInputText,
 	StyledInputRadio,
@@ -35,4 +37,5 @@ export {
 	CardHistory,
 	CardChat,
 	Button,
+	CardProduct,
 };
