@@ -1,4 +1,4 @@
-import {Button, CardHistory} from "@/components/UI/atoms";
+import {CardHistory} from "@/components/UI/atoms";
 import styles from "./LeadHistory.module.css";
 
 const getLeadContactHistory = () => {

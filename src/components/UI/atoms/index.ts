@@ -15,6 +15,7 @@ import {Path} from "./path";
 import {LeadRow} from "./leadRow";
 import {CardFunnel} from "./cardFunnel";
 import {CardHistory} from "./cardHistory";
+import {CardChat} from "./cardChat";
 import {Button} from "./button";
 
 export {
@@ -32,5 +33,6 @@ export {
 	LeadRow,
 	CardFunnel,
 	CardHistory,
+	CardChat,
 	Button,
 };
