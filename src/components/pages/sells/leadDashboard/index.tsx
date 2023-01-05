@@ -21,7 +21,7 @@ export const LeadDashboard = () => {
 	const TabOne = <LeadData />;
 	const TabTwo = <LeadFunnel func={windowHandler} />;
 	const TabThree = <LeadChat />;
-	const TabFour = <LeadHistory func={windowHandler}/>;
+	const TabFour = <LeadHistory />;
 	const TabsComponents = [TabOne, TabTwo, TabThree, TabFour];
 
 	return (

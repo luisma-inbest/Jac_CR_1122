@@ -14,6 +14,7 @@ import {MenuItem} from "./menuItem";
 import {Path} from "./path";
 import {LeadRow} from "./leadRow";
 import {CardFunnel} from "./cardFunnel";
+import {CardHistory} from "./cardHistory";
 import {Button} from "./button";
 
 import {CardProduct} from "./cardProduct";
@@ -32,6 +33,7 @@ export {
 	Path,
 	LeadRow,
 	CardFunnel,
+	CardHistory,
 	Button,
 	CardProduct,
 };

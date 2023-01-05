@@ -1,25 +1,36 @@
-import React, {useState} from "react";
-import {Button, CardFunnel} from "@/components/UI/atoms";
+import {Button, CardHistory} from "@/components/UI/atoms";
 import styles from "./LeadHistory.module.css";
 
-interface Props {
-	func: () => void;
+const getLeadContactHistory = () => {
+    return [{
+        type: 'whats',
+        contactDate: new Date(),
+        status: 'Fallido',
+        comments: 'Lorem ipsum dolor sit amet',
+    }, {
+        type: 'phone',
+        status: '???',
+        nextContactDate: new Date(),
+    }];
 }
 
-export const LeadHistory = (props: Props) => {
+export const LeadHistory = () => {
+    const leadContactHistory = getLeadContactHistory();
+
 	return (
-		<div className={styles.funnelTab}>
+		<div className={styles.tab}>
 			<p className="p3 secondary bold">1er Contacto</p>
-			<CardFunnel type="whats" />
-			<CardFunnel type="phone" />
-			<CardFunnel type="feedback" />
-
-			<p className="p3 secondary bold mt-3">Confirmación Datos</p>
-			<CardFunnel type="check" />
-
-			<div className="mt-4">
-				<Button text="Registrar Actividad" func={props.func} full={true} />
-			</div>
+            {
+                leadContactHistory.map(leadContact => {
+                    return <CardHistory
+                        type = { leadContact.type }
+                        contactDate = { leadContact.contactDate }
+                        status = { leadContact.status }
+                        comments = { leadContact.comments }
+                        nextContactDate = { leadContact.nextContactDate }
+                    />
+                })
+            }
 		</div>
 	);
 };

@@ -1,0 +1,29 @@
+.card {
+    background-color: #d9d9d9;
+    padding: 5px 10px;
+    margin: 5px 10px 5px 30px;
+    border-radius: 5px;
+    font-family: Monserrat;
+    font-size: 13px;
+    color: #747474;
+}
+
+.title {
+    font-weight: 600;
+}
+
+.status {
+    color: #d63944;
+    text-align: right;
+}
+
+.comments p {
+    background-color: white;
+    padding: 5px 9px 5px 10px;
+    margin: 5px 6px 5px 10px;
+    border-radius: 5px;
+    font-size: 15px;
+}
+.contactDate {
+    text-align: right;
+}
