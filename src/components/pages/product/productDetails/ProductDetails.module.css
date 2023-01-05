@@ -1,0 +1,11 @@
+.imageContainer {
+	height: auto;
+	width: 100%;
+}
+.productImage {
+	height: auto;
+	width: 100%;
+	/* aspect-ratio: 1 / 1; */
+	/* object-fit: contain; */
+	/* object-position: 0 0; */
+}

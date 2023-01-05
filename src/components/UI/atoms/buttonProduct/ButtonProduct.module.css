@@ -1,28 +1,21 @@
 .card {
-	height: 12rem;
+	height: 7rem;
 	width: 100%;
 	max-width: 50rem;
-	padding: 1rem;
+	padding: 2rem 1rem;
 	background-color: var(--white);
 	border-radius: var(--br-1);
+	margin-bottom: 2rem;
 
 	display: flex;
 	flex-direction: row;
-	gap: 2rem;
+	justify-content: space-between;
 }
 
-.imageContainer {
+.iconContainer {
 	height: 100%;
 	width: auto;
 	aspect-ratio: 1 / 1;
-
-	box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
-}
-.cardImage {
-	height: 100%;
-	width: 100%;
-	aspect-ratio: 1 / 1;
-	object-fit: contain;
 }
 
 .cardContent {

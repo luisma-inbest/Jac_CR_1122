@@ -6,29 +6,34 @@
 	--black: #000;
 	--white: #fff;
 
-	--highlight: #2c74bb;
-	--main-color: #062236;
+	--highlight: #2c74bb; /*cambio 4a4e5c*/
+	--main-color: #141a26;
+	--gray: #eee;
 	--gray2: #d9d9d9;
 	--gray3: #5a5a5a;
 	--selectedTab: #4a4e5c;
 	--green: #04cc00;
-	--red: #cc000c;
+	--red: #d63944;
 
 	--background: #eeeeee;
 	--color-main: #0008cc;
 	--color-secondary: #0008cc;
 
+	/*Lead Colors*/
 	--cold-lead: #8dbdec;
-	--tracing-lead: #e08a08;
-	--hot-lead: #d63944;
 	--warm-lead: #eed347;
+	--hot-lead: #d63944;
+	--tracing-lead: #e08a08;
 	--messages: #dcf8c8;
 
+	/*Text Colors*/
 	--main-text: #141a26;
+	/* --subtext: #5a5a5a; */
 	--secondary-text: #747474;
 	--highlight-text: #9d9ea0;
 	--link: #0069d1;
 
+	/* Border Radious */
 	--br-1: 0.5rem;
 	--br-2: 1rem;
 	--br-3: 2rem;
@@ -56,7 +61,7 @@ body {
 	border: 0;
 	margin: 0;
 	font-weight: normal;
-	line-height: 3rem;
+	line-height: 2.5rem;
 	background-color: var(--background);
 }
 

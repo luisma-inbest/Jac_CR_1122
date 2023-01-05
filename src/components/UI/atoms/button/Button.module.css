@@ -6,8 +6,9 @@
 	justify-content: center;
 	align-items: center;
 	padding: 1rem 2rem;
+	margin-bottom: 1rem;
 	border-radius: 6.3rem;
-	background-color: var(--selectedTab);
+	background-color: var(--highlight);
 	font-weight: 600;
 	color: var(--white);
 	cursor: pointer;
@@ -20,8 +21,9 @@
 	justify-content: center;
 	align-items: center;
 	padding: 1rem 2rem;
+	margin-bottom: 1rem;
 	border-radius: 6.3rem;
-	background-color: var(--selectedTab);
+	background-color: var(--highlight);
 	font-weight: 600;
 	color: var(--white);
 	cursor: pointer;

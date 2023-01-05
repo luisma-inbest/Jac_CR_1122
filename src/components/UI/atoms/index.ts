@@ -19,6 +19,7 @@ import {CardChat} from "./cardChat";
 import {Button} from "./button";
 
 import {CardProduct} from "./cardProduct";
+import {ButtonProduct} from "./buttonProduct";
 
 export {
 	StyledInputText,
@@ -38,4 +39,5 @@ export {
 	CardChat,
 	Button,
 	CardProduct,
+	ButtonProduct,
 };
