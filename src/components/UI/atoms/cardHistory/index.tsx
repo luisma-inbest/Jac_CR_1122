@@ -19,14 +19,24 @@ const getTitleText = (type: string): string | void => {
     }
 };
 
+const getFormattedDate = (date: Date): string => {
+    const options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    };
+
+    return date.toLocaleDateString("es-MX", options);
+};
+
 const getContactDate = (contactDate?: Date) => {
     if (!contactDate) {
         return <></>;
     }
 
-    const dateString = contactDate.toString();
+    const dateString = getFormattedDate(contactDate);
 
-    return <span>{dateString}</span>;
+    return <span className={`col-xs-6 ${styles.contactDate}`}>{dateString}</span>;
 };
 
 const getNextContactDate = (nextContactDate?: Date) => {
@@ -34,9 +44,9 @@ const getNextContactDate = (nextContactDate?: Date) => {
         return <></>;
     }
 
-    const dateString = nextContactDate.toString();
+    const dateString = getFormattedDate(nextContactDate);
 
-    return <span>{dateString}</span>;
+    return <span>Próximo contacto {dateString}</span>;
 };
 
 const getComments = (comments?: string) => {
@@ -51,18 +61,21 @@ const getComments = (comments?: string) => {
 };
 
 export const CardHistory = (props: Props) => {
-    const title = getTitleText(props.type) as string;
+    const titleText = getTitleText(props.type) as string;
     const contactDate = getContactDate(props.contactDate);
     const nextContactDate = getNextContactDate(props.nextContactDate);
     const comments = getComments(props.comments);
 
 	return (
 		<div className={styles.card}>
-			<span>{title}</span>
-            {contactDate}
-            <div>
-                <span>Estado</span>
-                <span className={styles.status}>{props.status}</span>
+            <div className="row">
+                <span className={`col-xs-6 ${styles.title}`}>{titleText}</span>
+                {contactDate}
+            </div>
+
+            <div className="row">
+                <span className="col-xs-6">Estado</span>
+                <span className={`col-xs-6 ${styles.status}`}>{props.status}</span>
             </div>
             {nextContactDate}
             {comments}

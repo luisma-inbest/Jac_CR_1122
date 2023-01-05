@@ -9,7 +9,7 @@ const getLeadContactHistory = () => {
         comments: 'Lorem ipsum dolor sit amet',
     }, {
         type: 'phone',
-        status: '?',
+        status: '???',
         nextContactDate: new Date(),
     }];
 }
