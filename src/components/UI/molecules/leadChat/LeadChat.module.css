@@ -1,4 +1,4 @@
-.logo{
+.logo {
     width: 30px;
     height: 29px;
     flex-grow: 0;
@@ -13,4 +13,7 @@
     text-align: center;
     color: #ffff;
  
+}
+.header {
+    margin: 15px 20px;
 }

@@ -1,4 +1,5 @@
 import {IconArrow} from "@/assets";
+import {DateFormat} from "@/components/UI/atoms";
 
 import styles from "./CardHistory.module.css";
 
@@ -19,27 +20,21 @@ const getTitleText = (type: string): string | void => {
 	}
 };
 
-const getFormattedDate = (date: Date): string => {
-	const options: Intl.DateTimeFormatOptions = {
-		year: "numeric",
-		month: "2-digit",
-		day: "2-digit",
-	};
-
-	return date.toLocaleDateString("es-MX", options);
-};
-
 const getContactDate = (contactDate: Date) => {
-	const dateString = getFormattedDate(contactDate);
-	return <span className={`col-xs-6 ${styles.contactDate}`}>{dateString}</span>;
+	return <DateFormat
+		date = {contactDate}
+	/>;
 };
 
 const getNextContactDate = (nextContactDate?: Date) => {
 	if (!nextContactDate) {
 		return <></>;
 	}
-	const dateString = getFormattedDate(nextContactDate);
-	return <span>Próximo contacto {dateString}</span>;
+
+	return <DateFormat
+		prefixText="Próximo contacto"
+		date = {nextContactDate!}
+	/>;
 };
 
 const getComments = (comments?: string) => {
@@ -65,7 +60,9 @@ export const CardHistory = (props: Props) => {
 		<div className={styles.card}>
 			<div className="row">
 				<span className={`col-xs-6 ${styles.title}`}>{titleText}</span>
-				{contactDate}
+				<div className={`col-xs-6 ${styles.contactDate}`}>
+					{contactDate}
+				</div>
 			</div>
 
 			<div className="row">
