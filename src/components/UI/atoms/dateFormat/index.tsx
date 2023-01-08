@@ -25,5 +25,5 @@ export const DateFormat = (props: Props) => {
     const dateString = getFormattedDate(props.date);
     const text = concatenatePrefix(dateString, props.prefixText);
 
-	return <span>{text}</span>;
+	return <span>{dateString}</span>;
 };

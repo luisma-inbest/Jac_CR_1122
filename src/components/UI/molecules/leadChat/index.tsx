@@ -19,13 +19,13 @@ export const LeadChat = () => {
 	return (
 		<div>
 			<div className={`row ${styles.header}`}>
-				<div className="col-xs-2">
+				<div className={`col-xs-2 ${styles.circle}`}>
 					<span className={styles.logo}>{leadContactChat.clientInitials}</span>
 				</div>
 				<div className="col-xs-10">
 					<div className="row">
-						<div className="col-xs">
-							<span className="bold black">{leadContactChat.clientName}</span>
+						<div className={`col-xs ${styles.client}`}>
+							<span className= "bold black">{leadContactChat.clientName}</span>
 						</div>
 					</div>
 					<div className="row">
@@ -39,8 +39,9 @@ export const LeadChat = () => {
 				</div>
 			</div>
 			<div className="row">
-				Hoy
-
+				<div className={`col-xs ${styles.cuadrado}`}>
+					<span>Hoy</span>
+				</div>
 			</div>
 			<div className="row">
 				Mensaje
