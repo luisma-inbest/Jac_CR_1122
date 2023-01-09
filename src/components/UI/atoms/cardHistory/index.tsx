@@ -1,5 +1,5 @@
 import {IconArrow} from "@/assets";
-import {DateFormat} from "@/components/UI/atoms";
+import {DateFormat, DateFormatType} from "@/components/UI/atoms";
 
 import styles from "./CardHistory.module.css";
 
@@ -22,6 +22,7 @@ const getTitleText = (type: string): string | void => {
 
 const getContactDate = (contactDate: Date) => {
 	return <DateFormat
+		formatType={DateFormatType.DATE_AND_TIME}
 		date = {contactDate}
 	/>;
 };
@@ -32,6 +33,7 @@ const getNextContactDate = (nextContactDate?: Date) => {
 	}
 
 	return <DateFormat
+		formatType={DateFormatType.DATE_ONLY}
 		prefixText="Próximo contacto"
 		date = {nextContactDate!}
 	/>;
