@@ -1,0 +1,8 @@
+.cardChat {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    border-radius: 5px;
+    background-color: #7bcefd; 
+}
+

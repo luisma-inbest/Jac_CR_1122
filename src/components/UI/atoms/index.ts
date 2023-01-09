@@ -17,6 +17,7 @@ import {CardFunnel} from "./cardFunnel";
 import {CardHistory} from "./cardHistory";
 import {CardChat} from "./cardChat";
 import {Button} from "./button";
+import {DateFormat, DateFormatType} from "./dateFormat";
 
 import {CardProduct} from "./cardProduct";
 import {ButtonProduct} from "./buttonProduct";
@@ -38,6 +39,8 @@ export {
 	CardHistory,
 	CardChat,
 	Button,
+	DateFormat,
+	DateFormatType,
 	CardProduct,
 	ButtonProduct,
 };

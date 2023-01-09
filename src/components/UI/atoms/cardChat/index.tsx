@@ -1,33 +1,36 @@
-import {IconArrow} from "@/assets";
-
+import { IconArrow } from "@/assets";
+import {DateFormat, DateFormatType} from "@/components/UI/atoms";
 import styles from "./CardChat.module.css";
 
 interface Props {
-	type: string;
-    comments?: string;
-};
-
-const getComments = (comments?: string) => {
-    if (!comments) {
-        return <></>;
-    }
-
-    return <div className={styles.comments}>
-        <span>Comentarios</span>
-        <p>{comments}</p>
-    </div>;
+    message: string;
+    sentDate: Date;
 };
 
 export const CardChat = (props: Props) => {
-    const comments = getComments(props.comments);
-
-	return (
-		<div className={styles.card}>
-            <div className="row">
-                <span className="col-xs-6">Estado</span>
-                
+    return (
+        <div className="row center-xs">
+            <div className="col-xs-9">
+                <div className={`box ${styles.cardChat}`}>
+                    <div className="row start-xs">
+                        <div className="col-xs">
+                            <div className="box">
+                                {props.message}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row end-xs">
+                        <div className="col-xs">
+                            <div className="box">
+                                <DateFormat
+                                    formatType={DateFormatType.TIME_ONLY}
+                                    date = {props.sentDate}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            {comments}
-		</div>
-	);
+        </div>
+    );
 };

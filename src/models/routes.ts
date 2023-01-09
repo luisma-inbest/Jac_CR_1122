@@ -5,6 +5,7 @@ export const PublicRoutes = {
 export const AdminRoutes = {
 	ADMIN: "admin",
 	REGISTER: "register",
+	USERS: "users",
 };
 
 export const SellsRoutes = {

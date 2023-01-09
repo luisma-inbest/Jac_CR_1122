@@ -11,6 +11,7 @@ import {
 	LeadDashboard,
 	ProductDashboard,
 	ProductDetails,
+	Users,
 } from "./../components/pages";
 import {Main} from "./../components/templates";
 import {ProtectedRoute} from "./ProtectedRoute";
@@ -42,7 +43,8 @@ export const Routing = () => {
 			>
 				<Route path="admin" element={<Main />}>
 					<Route path="" element={<Admin />} />
-					<Route path="/admin/properties" element={<Register />} />
+					<Route path="/admin/register" element={<Register />} />
+					<Route path="/admin/users" element={<Users />} />
 				</Route>
 			</Route>
 
