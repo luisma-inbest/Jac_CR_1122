@@ -32,3 +32,14 @@
 	flex-direction: column;
 	justify-content: center;
 }
+
+.cardContent h5 {
+	font-size: 18px;
+	font-weight: 600;
+	color: var(--main-color);
+}
+
+.cardContent p {
+	font-size: 16px;
+	color: var(--gray3);
+}

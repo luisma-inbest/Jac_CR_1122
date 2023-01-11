@@ -9,6 +9,7 @@ import {UserRow} from "./userRow";
 import {AgencyRow} from "./agencyRow";
 import {SalesInfoCard} from "./salesInfoCard";
 import {PieChartLabel} from "./pieChartLabel";
+import {StackedBarChartLabel} from "./stackedBarChartLabel";
 
 export {
 	LeadsTable,
@@ -19,6 +20,7 @@ export {
 	LeadHistory,
 	SalesInfoCard,
 	PieChartLabel,
+	StackedBarChartLabel,
 	LeadRow,
 	UserRow,
 	AgencyRow,
