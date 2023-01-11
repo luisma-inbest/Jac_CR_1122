@@ -1,4 +1,4 @@
-import {SellsDashboard} from "./mainSells";
+import {SellsDashboard} from "./sellsDashboard";
 import {Leads} from "./leads/";
 import {LeadDashboard} from "./leadDashboard";
 import {CreateLead} from "./createLead";
