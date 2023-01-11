@@ -1,0 +1,18 @@
+.mainContainer {
+	min-height: calc(100vh - 7rem - 3rem - 3rem - 3rem);
+}
+
+.cardContainer {
+	padding: 1rem;
+}
+
+.card {
+	background-color: var(--white);
+	border-radius: var(--br-2);
+	height: 100%;
+}
+
+@media (max-width: 63em) {
+	.userData {
+	}
+}
