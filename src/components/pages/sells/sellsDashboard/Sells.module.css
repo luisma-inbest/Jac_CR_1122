@@ -7,6 +7,24 @@
 		"card1 card1 card2"
 		"card3 card3 card2";
 }
+@media (max-width: 63em) {
+	.mainContainer {
+		grid-template-columns: repeat(1, 1fr);
+		grid-template-rows: repeat(1, 1fr);
+		grid-template-areas:
+			"card1"
+			"card2"
+			"card3";
+	}
+}
+/*
+$grid-breakpoints: (
+  xs: 0,
+  sm: 48em,
+  md: 62em,
+  lg:75em,
+);
+*/
 
 .card1 {
 	grid-area: card1;
@@ -38,4 +56,28 @@
 .chart1 {
 	width: 40rem;
 	height: 40rem;
+}
+
+.box {
+	margin-bottom: 2rem;
+	border-bottom: 2px solid var(--gray2);
+}
+
+.customColumn {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 25rem;
+}
+.iconContainer {
+	height: 2rem;
+	width: 2rem;
+}
+
+.title {
+	height: auto;
+	margin-bottom: 1rem;
+
+	display: flex;
+	align-items: center;
 }
