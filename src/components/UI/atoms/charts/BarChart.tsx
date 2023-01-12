@@ -33,7 +33,7 @@ export const BarChart = (props: Props) => {
 		],
 	});
 
-	const options: chartjs.ChartOptions = {
+	const options: any = {
 		maintainAspectRatio: false,
 		indexAxis: axis,
 		interaction: {
