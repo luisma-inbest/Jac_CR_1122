@@ -2,6 +2,7 @@ import React, {useContext, useState} from "react";
 
 import {Chart, Bar} from "react-chartjs-2";
 import {Chart as ChartJS, registerables} from "chart.js";
+import * as chartjs from "chart.js";
 ChartJS.register(...registerables);
 
 import {UserData} from "./Data";
@@ -32,7 +33,7 @@ export const BarChart = (props: Props) => {
 		],
 	});
 
-	const options = {
+	const options: chartjs.ChartOptions = {
 		maintainAspectRatio: false,
 		indexAxis: axis,
 		interaction: {
@@ -74,9 +75,5 @@ export const BarChart = (props: Props) => {
 		},
 	};
 
-	return (
-		<div>
-			<Bar data={chartData} options={options} />
-		</div>
-	);
+	return <Bar data={chartData} options={options} />;
 };

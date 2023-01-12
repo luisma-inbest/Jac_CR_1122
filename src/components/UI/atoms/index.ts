@@ -22,7 +22,7 @@ import {DateFormat, DateFormatType} from "./dateFormat";
 import {CardProduct} from "./cardProduct";
 import {ButtonProduct} from "./buttonProduct";
 
-import {PieChart} from "./charts/PieChart";
+import {PieChart} from "./charts/BarChart";
 import {BarChart} from "./charts/BarChart";
 
 export {
