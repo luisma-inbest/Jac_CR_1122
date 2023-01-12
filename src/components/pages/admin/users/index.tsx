@@ -3,6 +3,7 @@ import { Tabs } from "@/components/templates";
 import { UsersTable } from "@/components/UI/organisms/usersTable";
 import { UserRowProps } from "@/components/UI/molecules/userRow";
 
+
 const getUsersMock = () => {
 	const user: UserRowProps = {
 		name: 'Nombre del colaborador',

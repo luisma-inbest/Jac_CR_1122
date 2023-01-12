@@ -1,5 +1,5 @@
 import React from "react";
-
+import styles from "./UserRow.module.css"
 export interface UserRowProps {
     name: string;
     position: string;
@@ -11,19 +11,21 @@ export interface UserRowProps {
 
 export const UserRow: React.FunctionComponent<UserRowProps> = (props) => {
     return <tr>
-        <td>
-            <span className="row">{props.name}</span>
-            <span className="row">{props.position}</span>
+        <td className={styles.center}>
+            <span className="p3 semi-bold no-margin">{props.name}</span>
+            <br />
+            <span className="p4 secondary no-margin">{props.position}</span>
         </td>
-        <td>
-            <span className="row">{props.area}</span>
-            <span className="row">{props.manager}</span>
+        <td className={styles.center}>
+            <span className="p3 semi-bold no-margin">{props.area}</span>
+            <br />
+            <span className="p4 secondary no-margin">{props.manager}</span>
         </td>
-        <td>
-            <span className="row">{props.email}</span>
+        <td className={styles.center}>
+            <span className="p4 secondary no-margin">{props.email}</span>
         </td>
-        <td>
-            <span className="row">{props.role}</span>
+        <td className={styles.center}>
+            <span className="p4 secondary no-margin">{props.role}</span>
         </td>
     </tr>;
 };

@@ -2,6 +2,7 @@ import React from "react";
 
 import { UserRow } from "@/components/UI/molecules";
 import { UserRowProps } from "@/components/UI/molecules/userRow";
+import styles from "./UsersTable.module.css";
 
 interface UsersTableProps {
     users: UserRowProps[];
@@ -17,25 +18,27 @@ export const UsersTable: React.FunctionComponent<UsersTableProps> = (props) => {
         role={user.role}
     />);
 
-    return <table>
+    return <table className= {styles.table}>
         <thead>
             <tr>
-                <th>
-                    Nombre y Puesto
+                <th className={`p4 highlight ${styles.center}`}>
+                 Nombre y Puesto
                 </th>
-                <th>
+                <th className={`p4 highlight ${styles.center}`}>
                     Área y Gerente
                 </th>
-                <th>
+                <th className={`p4 highlight ${styles.center}`}>
                     Correo
                 </th>
-                <th>
+                <th className={`p4 highlight ${styles.center}`}>
                     Rol de Usuario
                 </th>
             </tr>
         </thead>
-        <tbody>
+        <tbody className= {styles.tableRow}>
+            
             {userRowElements}
+            
         </tbody>
     </table>;
 };
