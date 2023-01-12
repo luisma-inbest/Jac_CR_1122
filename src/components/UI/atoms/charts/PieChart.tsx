@@ -47,7 +47,7 @@ export const PieChart = () => {
 	});
 	return (
 		<>
-			<Chart type="pie" data={chartData} />
+			<Chart type="doughnut" data={chartData} />
 		</>
 	);
 };

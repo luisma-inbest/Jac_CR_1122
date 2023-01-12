@@ -6,7 +6,12 @@ ChartJS.register(...registerables);
 
 import {UserData} from "./Data";
 
-export const BarChart = () => {
+interface Props {
+	axis: string;
+}
+
+export const BarChart = (props: Props) => {
+	const axis = props.axis;
 	const [chartData, setChartData] = useState({
 		labels: UserData.map((data) => data.year),
 		datasets: [
@@ -22,17 +27,18 @@ export const BarChart = () => {
 				],
 				borderColor: "white",
 				borderWidth: 2,
+				borderRadius: 5,
 			},
 		],
 	});
 
 	const options = {
 		maintainAspectRatio: false,
-		indexAxis: "y",
+		indexAxis: axis,
 		interaction: {
 			mode: "index",
 			intersect: false,
-			axis: "x",
+			axis: axis,
 		},
 		plugins: {
 			tooltip: {

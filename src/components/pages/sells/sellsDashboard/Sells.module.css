@@ -1,15 +1,33 @@
 .mainContainer {
 	min-height: calc(100vh - 7rem - 3rem - 3rem - 3rem);
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	grid-template-areas:
+		"card1 card1 card2"
+		"card3 card3 card2";
+}
+
+.card1 {
+	grid-area: card1;
+}
+.card2 {
+	grid-area: card2;
+}
+.card3 {
+	grid-area: card3;
 }
 
 .cardContainer {
 	padding: 1rem;
+	max-width: 100%;
 }
 
 .card {
 	background-color: var(--white);
 	border-radius: var(--br-2);
 	height: 100%;
+	max-width: 100%;
 }
 
 @media (max-width: 63em) {
