@@ -9,8 +9,11 @@ export const SellsDashboard = () => {
 		<div className={`contentVerticalPadding ${styles.mainContainer}`}>
 			{/* col */}
 			<div className={` ${styles.cardContainer} ${styles.card1}`}>
-				<div className={`globalPadding ${styles.card}`}>
-					<PieChart />
+				<div className={`globalPadding ${styles.card} `}>
+					<h1>Leads</h1>
+					<div className={`${styles.chart1}`}>
+						<PieChart />
+					</div>
 				</div>
 			</div>
 
@@ -19,7 +22,7 @@ export const SellsDashboard = () => {
 				className={` ${styles.cardContainer} ${styles.sideBar} ${styles.card2}`}
 			>
 				<div className={`globalPadding ${styles.card}`}>
-					<h1>Aquí van las gráficas </h1>
+					<h1>vehiculos </h1>
 					{/* <Bar data={chartData} /> */}
 					<BarChart axis="y" />
 				</div>
@@ -28,7 +31,7 @@ export const SellsDashboard = () => {
 			{/* col */}
 			<div className={` ${styles.cardContainer} ${styles.card3}`}>
 				<div className={`globalPadding ${styles.card}`}>
-					<h1>Aquí van las gráficas </h1>
+					<h1>ventas </h1>
 					<BarChart axis="x" />
 				</div>
 			</div>

@@ -24,7 +24,7 @@ ChartJS.register(
 	ArcElement
 );
 
-import {UserData} from "./Data";
+import {UserData} from "./DataPie";
 
 export const PieChart = () => {
 	const [chartData, setChartData] = useState({
