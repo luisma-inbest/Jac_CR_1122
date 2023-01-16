@@ -3,7 +3,13 @@ import {Login} from "./authentication/Login";
 import {Register} from "./authentication/Register";
 import {Admin} from "./admin";
 import {Users} from "./admin";
-import {SellsDashboard, Leads, LeadDashboard, CreateLead} from "./sells/";
+import {
+	SellsDashboard,
+	Leads,
+	LeadDashboard,
+	CreateLead,
+	SellerProfile,
+} from "./sells/";
 import {ProductDashboard, ProductDetails} from "./product";
 
 export {
@@ -15,6 +21,7 @@ export {
 	LeadDashboard,
 	Leads,
 	CreateLead,
+	SellerProfile,
 	ProductDashboard,
 	ProductDetails,
 	Users,

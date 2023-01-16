@@ -9,6 +9,7 @@ import {
 	SellsDashboard,
 	Leads,
 	LeadDashboard,
+	SellerProfile,
 	ProductDashboard,
 	ProductDetails,
 	Users,
@@ -66,6 +67,7 @@ export const Routing = () => {
 					<Route path={SellsRoutes.SingleLead} element={<LeadDashboard />} />
 					<Route path={SellsRoutes.FutureLeads} element={<SellsDashboard />} />
 					<Route path={SellsRoutes.FrozenLeads} element={<SellsDashboard />} />
+					<Route path={SellsRoutes.SellerProfile} element={<SellerProfile />} />
 				</Route>
 			</Route>
 
