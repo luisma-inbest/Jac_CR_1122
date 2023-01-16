@@ -69,7 +69,11 @@ export const SellsDashboard = () => {
 						<h1>vehiculos </h1>
 					</div>
 					{/* <Bar data={chartData} /> */}
-					<BarChart axis="y" />
+					<div className="row">
+						<div className="col-xs-12">
+							<BarChart axis="y" />
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -82,7 +86,11 @@ export const SellsDashboard = () => {
 						</div>
 						<h1>ventas </h1>
 					</div>
-					<BarChart axis="x" />
+					<div className="row">
+						<div className="col-xs-12">
+							<BarChart axis="x" />
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
