@@ -24,6 +24,12 @@ export const Login = () => {
 
 	const handleSubmit = (event: React.FormEvent<EventTarget>) => {
 		event.preventDefault();
+		dummy();
+	};
+
+	function loginAWS() {}
+
+	function dummy() {
 		console.log("iniciando sesión con el rol de:" + role);
 		switch (role) {
 			case "admin":
@@ -51,7 +57,7 @@ export const Login = () => {
 				navigate("/product");
 				break;
 		}
-	};
+	}
 
 	return (
 		<div className={`${styles.background}`}>
@@ -67,7 +73,7 @@ export const Login = () => {
 							<LogoFull color={logoColor} size="70%" />
 						</div>
 						<form className={styles.form} onSubmit={handleSubmit}>
-							<label className="p2 semi-bold">Usuario</label>
+							<label className="p2 semi-bold">Correo</label>
 							<StyledInputText name="name" customType="gray" />
 							<label className="p2 semi-bold">Contraseña</label>
 							<StyledInputText name="name" customType="gray" />
