@@ -24,9 +24,10 @@ export const LeadHistory = () => {
 	return (
 		<div className={styles.tab}>
 			<p className="p3 secondary bold">1er Contacto</p>
-			{leadContactHistory.map((leadContact) => {
+			{leadContactHistory.map((leadContact, index) => {
 				return (
 					<CardHistory
+						key={index}
 						type={leadContact.type}
 						contactDate={leadContact.contactDate}
 						status={leadContact.status}

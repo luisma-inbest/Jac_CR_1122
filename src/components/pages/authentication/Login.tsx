@@ -5,10 +5,12 @@ import {
 	StyledInputText,
 	StyledInputSubmit,
 	Input,
+	Button,
 } from "@/components/UI/atoms/";
 import UserContext, {UserContextType} from "@/context/UserContext";
 
 import styles from "./Login.module.css";
+import {getSession, logIn} from "./AuthFuncs";
 
 export const Login = () => {
 	const navigate = useNavigate();
@@ -25,9 +27,17 @@ export const Login = () => {
 	const handleSubmit = (event: React.FormEvent<EventTarget>) => {
 		event.preventDefault();
 		dummy();
+		// loginAWS();
 	};
 
-	function loginAWS() {}
+	function loginAWS() {
+		console.log("cognito login...");
+		logIn();
+	}
+	function verifySession() {
+		console.log("verificando sesión...");
+		getSession();
+	}
 
 	function dummy() {
 		console.log("iniciando sesión con el rol de:" + role);
@@ -98,6 +108,12 @@ export const Login = () => {
 								<option value="null">Sucursales</option>
 								<option value="null">RH</option>
 							</select>
+							<Button
+								text="verificar sesión"
+								func={verifySession}
+								full={false}
+							/>
+							<Button text="verificar sesión" func={loginAWS} full={false} />
 						</div>
 					</div>
 				</div>

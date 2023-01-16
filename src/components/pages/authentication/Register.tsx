@@ -1,21 +1,33 @@
 import React, {useContext} from "react";
-import {Link} from "react-router-dom";
 
 import {Logo, LogoFull} from "@/assets";
 import {StyledInputText, StyledInputSubmit} from "@/components/UI/atoms";
 
 import styles from "./Login.module.css";
-import UserPool from "./UserPool";
+
+import {generatePassword, signUp} from "./AuthFuncs";
 
 export const Register = () => {
 	const logoColor = getComputedStyle(document.body).getPropertyValue(
 		"--main-color"
 	);
+	console.log(generatePassword());
 
-	const handleSubmit = (event: React.FormEvent<EventTarget>) => {
+	const handleSubmit = async (event: React.FormEvent<EventTarget>) => {
 		event.preventDefault();
 		console.log("Creando usuario...");
-		// UserPool.signUp();
+		try {
+			await signUp();
+		} catch (error: any) {
+			let code = error.code;
+			switch (code) {
+				case "UsernameExistsException":
+					console.log("El usuario ya existe");
+					break;
+				default:
+					console.log("Error al crear el usuario");
+			}
+		}
 	};
 
 	return (
