@@ -1,6 +1,6 @@
 import {Home} from "./home";
-import {Login} from "./authentication/Login";
-import {Register} from "./authentication/Register";
+import {Login} from "./authentication";
+import {Register} from "./admin/register";
 import {Admin} from "./admin";
 import {Users} from "./admin";
 import {SellsDashboard, Leads, LeadDashboard, CreateLead} from "./sells/";

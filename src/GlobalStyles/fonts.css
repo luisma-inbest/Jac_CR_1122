@@ -57,9 +57,9 @@ h4,
 h5,
 h6 {
 	margin: 0.5rem 0 1rem 0;
-	margin-bottom: var(--margin-tittle);
 	border: 0;
 	font-weight: normal;
+	line-height: 3rem;
 }
 p,
 .p1,

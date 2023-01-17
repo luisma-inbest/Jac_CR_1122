@@ -83,15 +83,15 @@ export const StyledInputRadio = styled.input.attrs({
 export const StyledInputDate = styled.input.attrs({
 	type: "date",
 })`
-	max-width: 15rem;
 	height: 3rem;
 	text-align: center;
 	border: none;
-	background-color: var(--white);
+	background-color: var(--background);
 	padding: 0.3em 0.5em;
 	border-radius: var(--br-2);
 
-	font-size: var(--p3);
+	font-size: var(--p);
+	text-align: left;
 	color: var(--text);
 	cursor: pointer;
 

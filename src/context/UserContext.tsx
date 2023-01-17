@@ -12,23 +12,22 @@ export type UserType = {
 export type UserContextType = {
 	User: UserType;
 	SetUser: (value: UserType) => void;
+	test: () => void;
 };
 
 //export const UserContext = createContext<userContextInterface | null>(null);
 
 const UserContext = createContext({});
 
-const INITIAL_USER: UserType = {
-	id: 0,
-	name: "string",
-	permissions: [""],
-};
-
 export const UserProvider = ({children}: ContextChilds) => {
 	const [User, SetUser] = useState<UserType>(null);
 
+	function test() {
+		console.log("test desde el userprovider");
+	}
+
 	return (
-		<UserContext.Provider value={{User, SetUser}}>
+		<UserContext.Provider value={{User, SetUser, test}}>
 			{children}
 		</UserContext.Provider>
 	);

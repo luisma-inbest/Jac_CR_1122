@@ -10,7 +10,14 @@ import {
 import UserContext, {UserContextType} from "@/context/UserContext";
 
 import styles from "./Login.module.css";
-import {getParams, getSession, logIn, logOut} from "./AuthFuncs";
+import {
+	changePassword,
+	getParams,
+	getSession,
+	logIn,
+	logOut,
+	updateAtributes,
+} from "./AuthFuncs";
 
 export const Login = () => {
 	const navigate = useNavigate();
@@ -118,6 +125,12 @@ export const Login = () => {
 							<Button text="Iniciar sesión" func={loginAWS} full={false} />
 							<Button text="cerrar sesión " func={logOut} full={false} />
 							<Button text="params" func={getParams} full={false} />
+							<Button
+								text="change password"
+								func={changePassword}
+								full={false}
+							/>
+							<Button text="update" func={updateAtributes} full={false} />
 						</div>
 					</div>
 				</div>

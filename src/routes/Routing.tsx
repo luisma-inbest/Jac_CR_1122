@@ -31,7 +31,6 @@ export const Routing = () => {
 			{/* public urls */}
 			<Route path="/" element={<Home />} />
 			<Route path="/login" element={<Login />} />
-			<Route path="/register" element={<Register />} />
 
 			{/* admin urls */}
 			<Route

@@ -12,6 +12,7 @@ let dataFirstName = {Name: "name", Value: "Jorge"};
 let dataLastName = {Name: "family_name", Value: "Salgado"};
 let dataGender = {Name: "gender", Value: "male"};
 let dataNickname = {Name: "nickname", Value: "Jorge Salgado"};
+let newdataNickname = {Name: "nickname", Value: "JorgeNew"};
 let dataPhone = {Name: "phone_number", Value: "+523314095823"};
 let dataPersonalEmail = {
 	Name: "custom:personal_email",
@@ -23,6 +24,15 @@ let attributeList = [
 	new CognitoUserAttribute(dataLastName),
 	new CognitoUserAttribute(dataGender),
 	new CognitoUserAttribute(dataNickname),
+	new CognitoUserAttribute(dataPhone),
+	new CognitoUserAttribute(dataPersonalEmail),
+];
+let newattributeList = [
+	new CognitoUserAttribute(dataEmail),
+	new CognitoUserAttribute(dataFirstName),
+	new CognitoUserAttribute(dataLastName),
+	new CognitoUserAttribute(dataGender),
+	new CognitoUserAttribute(newdataNickname),
 	new CognitoUserAttribute(dataPhone),
 	new CognitoUserAttribute(dataPersonalEmail),
 ];
@@ -92,22 +102,73 @@ export function logOut() {
 	if (user) {
 		user.signOut();
 	}
+	console.log("logout");
 }
-// ------------------------------------------------------------------------------------------
 
-export function getParams() {
-	const user = UserPool.getCurrentUser();
-	if (user) {
-		user.getUserAttributes((err, result) => {
+// ------------------------------------------------------------------------------------------
+export function changePassword() {
+	let newPassword = "GML@Inbest456#";
+
+	getParams().then(({user}: any) => {
+		user.changePassword(password, newPassword, (err: any, result: any) => {
 			if (err) {
 				console.log(err);
 				return;
 			}
-			console.log("getParams:", result);
+			console.log("changePassword:", result);
 		});
-	}
+	});
 }
 
+// ------------------------------------------------------------------------------------------
+export function updateAtributes() {
+	getParams().then(({user}: any) => {
+		user.updateAttributes(newattributeList, (err: any, results: any) => {
+			if (err) {
+				console.log(err);
+				return;
+			}
+			console.log("updateAtributes:", results);
+		});
+	});
+}
+
+// ------------------------------------------------------------------------------------------
+
+export function getParams() {
+	return new Promise((resolve, reject) => {
+		const user = UserPool.getCurrentUser();
+		if (user) {
+			user.getSession(async (err: any, session: any) => {
+				if (err) {
+					reject(err);
+					return;
+				}
+				//
+				const attributes = await new Promise((resolve, reject) => {
+					user.getUserAttributes((err: any, attributes: any) => {
+						if (err) {
+							reject(err);
+							return;
+						}
+						const results: any = {};
+						for (let attribute of attributes) {
+							const {Name, Value} = attribute;
+							results[Name] = Value;
+						}
+						console.log(results);
+						resolve(results);
+					});
+				});
+				//
+				// console.log("getSession:", session);
+				resolve({user, ...session, ...(attributes as object)});
+			});
+		} else {
+			reject("No current user.");
+		}
+	});
+}
 // ------------------------------------------------------------------------------------------
 export function generatePassword() {
 	var length = 8,
