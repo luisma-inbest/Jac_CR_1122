@@ -81,3 +81,11 @@ $grid-breakpoints: (
 	display: flex;
 	align-items: center;
 }
+
+.paragraph {
+	color: var(--secondary-text);
+}
+
+.boxSeparator {
+	border-bottom: 1px solid var(--gray2);
+}

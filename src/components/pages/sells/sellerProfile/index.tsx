@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
-import {BarChart, PieChart, StyledInputText} from "@/components/UI/atoms";
-import {Tabs} from "@/components/templates";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { BarChart, PieChart, StyledInputText } from "@/components/UI/atoms";
+import { SalesInfoCard } from "@/components/UI/molecules";
+import { Tabs } from "@/components/templates";
 import styles from "./Sells.module.css";
-import {IconSells} from "@/assets";
+import { IconSells } from "@/assets";
 
 export const SellerProfile = () => {
 	return (
@@ -16,42 +17,68 @@ export const SellerProfile = () => {
 							<IconSells size="100%" color="black" />
 						</div>
 						<h1>
-							<h1>Aquí van las otras graficas</h1>
+							Ventas
 						</h1>
 					</div>
 					<div className="row">
-						<div className={`col-xs-12 col-md-6`}>
+						<div className="col">
+							<div className="box">
+								<p className={styles.paragraph}>
+									Lorem ipsum dolor sit amet consectetur. Volutpat integer dictum curabitur elementum. Orci senectus posuere id sed vulputate ipsum molestie sit adipiscing. Facilisis arcu et quis odio sit.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div className="row">
+						<div className="col-xs-12 col-md-6">
 							<div className={`${styles.chart1}`}>
 								<PieChart />
 							</div>
 						</div>
 
-						<div className={`col-xs-12 col-md-6 row`}>
-							<div className={`col-xs-12 col-md-6 ${styles.customColumn}`}>
-								<div className={styles.box}>
-									<p className="p2 bold secondary text-center">
-										Cantidad de Ventas
-									</p>
-									<h1 className="text-center">756</h1>
-								</div>
-								<div className={styles.box}>
-									<p className="p2 bold secondary text-center">Leads</p>
-									<h1 className="text-center">2,924</h1>
-								</div>
-							</div>
-							<div className={`col-xs-12 col-md-6 ${styles.customColumn}`}>
-								<div className={styles.box}>
-									<p className="p2 bold secondary text-center">
-										Cantidad de Ventas
-									</p>
-									<h1 className="text-center">756</h1>
-								</div>
-
-								<div className={styles.box}>
-									<p className="p2 bold secondary text-center">
-										Tiempo de primer contacto
-									</p>
-									<h1 className="text-center">12 mins</h1>
+						<div className="col-xs-12 col-md-6">
+							<div className="box">
+								<div className="row">
+									<div className="col-xs-12 col-md-6">
+										<div className={`box ${styles.boxSeparator}`}>
+											<SalesInfoCard
+												title="Cantidad de ventas"
+												amount="12"
+												percentage="+2.5%"
+												dateRange="Rango de fecha"
+											/>
+										</div>
+									</div>
+									<div className="col-xs-12 col-md-6">
+										<div className={`box ${styles.boxSeparator}`}>
+											<SalesInfoCard
+												title="Total en Ventas"
+												amount="$27632"
+												percentage="+2.5%"
+												dateRange="Rango de fecha"
+											/>
+										</div>
+									</div>
+									<div className="col-xs-12 col-md-6">
+										<div className="box">
+											<SalesInfoCard
+												title="Mis Leads"
+												amount="16"
+												percentage="+2.5%"
+												dateRange="Rango de fecha"
+											/>
+										</div>
+									</div>
+									<div className="col-xs-12 col-md-6">
+										<div className="box">
+											<SalesInfoCard
+												title="Tiempo de primer contacto"
+												amount="12 min"
+												percentage="+2.5%"
+												dateRange="Rango de fecha"
+											/>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -68,7 +95,7 @@ export const SellerProfile = () => {
 						<div className={styles.iconContainer}>
 							<IconSells size="100%" color="black" />
 						</div>
-						<h1>vehiculos </h1>
+						<h1>Modelos</h1>
 					</div>
 					{/* <Bar data={chartData} /> */}
 					<div className="row">
@@ -86,7 +113,16 @@ export const SellerProfile = () => {
 						<div className={styles.iconContainer}>
 							<IconSells size="100%" color="black" />
 						</div>
-						<h1>ventas </h1>
+						<h1>Lorem ipsum dolor</h1>
+					</div>
+					<div className="row">
+						<div className="col">
+							<div className="box">
+								<p className={styles.paragraph}>
+									Lorem ipsum dolor sit amet consectetur. Volutpat integer dictum curabitur elementum. Orci senectus posuere id sed vulputate ipsum molestie sit adipiscing. Facilisis arcu et quis odio sit.
+								</p>
+							</div>
+						</div>
 					</div>
 					<div className="row">
 						<div className="col-xs-12">
