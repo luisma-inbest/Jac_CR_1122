@@ -10,7 +10,7 @@ import {
 import UserContext, {UserContextType} from "@/context/UserContext";
 
 import styles from "./Login.module.css";
-import {getSession, logIn} from "./AuthFuncs";
+import {getParams, getSession, logIn, logOut} from "./AuthFuncs";
 
 export const Login = () => {
 	const navigate = useNavigate();
@@ -31,8 +31,10 @@ export const Login = () => {
 	};
 
 	function loginAWS() {
+		let email = "jorge.admin@gml.com";
+		let password = "GML@Inbest123#";
 		console.log("cognito login...");
-		logIn();
+		logIn(email, password);
 	}
 	function verifySession() {
 		console.log("verificando sesión...");
@@ -113,7 +115,9 @@ export const Login = () => {
 								func={verifySession}
 								full={false}
 							/>
-							<Button text="verificar sesión" func={loginAWS} full={false} />
+							<Button text="Iniciar sesión" func={loginAWS} full={false} />
+							<Button text="cerrar sesión " func={logOut} full={false} />
+							<Button text="params" func={getParams} full={false} />
 						</div>
 					</div>
 				</div>

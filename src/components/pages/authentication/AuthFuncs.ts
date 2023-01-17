@@ -39,7 +39,7 @@ export function signUp() {
 	});
 }
 // ------------------------------------------------------------------------------------------
-export function logIn() {
+export function logIn(email: string, password: string) {
 	const user = new CognitoUser({
 		Username: email,
 		Pool: UserPool,
@@ -87,7 +87,26 @@ export function getSession() {
 }
 
 // ------------------------------------------------------------------------------------------
-export function logOut() {}
+export function logOut() {
+	const user = UserPool.getCurrentUser();
+	if (user) {
+		user.signOut();
+	}
+}
+// ------------------------------------------------------------------------------------------
+
+export function getParams() {
+	const user = UserPool.getCurrentUser();
+	if (user) {
+		user.getUserAttributes((err, result) => {
+			if (err) {
+				console.log(err);
+				return;
+			}
+			console.log("getParams:", result);
+		});
+	}
+}
 
 // ------------------------------------------------------------------------------------------
 export function generatePassword() {
