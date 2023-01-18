@@ -26,9 +26,17 @@ ChartJS.register(
 
 import {UserData} from "./DataPie";
 
-export const PieChart = () => {
+interface PieChartProps {
+	hideLabels?: boolean;
+}
+
+export const PieChart: React.FunctionComponent<PieChartProps> = (props) => {
+	const labels = props.hideLabels
+		? []
+		: UserData.map((data) => data.year);
+
 	const [chartData, setChartData] = useState({
-		labels: UserData.map((data) => data.year),
+		labels: labels,
 		datasets: [
 			{
 				label: "Users Gained",

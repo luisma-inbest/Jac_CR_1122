@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BarChart, PieChart, StyledInputText } from "@/components/UI/atoms";
-import { SalesInfoCard } from "@/components/UI/molecules";
+import { PieChartLabel, SalesInfoCard } from "@/components/UI/molecules";
 import { Tabs } from "@/components/templates";
 import styles from "./Sells.module.css";
 import { IconSells } from "@/assets";
@@ -31,8 +31,8 @@ export const SellerProfile = () => {
 					</div>
 					<div className="row">
 						<div className="col-xs-12 col-md-6">
-							<div className={`${styles.chart1}`}>
-								<PieChart />
+							<div className="box">
+								<PieChartLabel />
 							</div>
 						</div>
 

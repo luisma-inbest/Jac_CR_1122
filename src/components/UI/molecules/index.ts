@@ -5,5 +5,6 @@ import {LeadFunnel} from "./leadFunnel";
 import {LeadHistory} from "./leadHistory";
 import {RegisterActivity} from "./registerActivity";
 import {SalesInfoCard} from "./salesInfoCard";
+import {PieChartLabel} from "./pieChartLabel";
 
-export {LeadsTable, LeadChat, LeadData, LeadFunnel, RegisterActivity,LeadHistory, SalesInfoCard};
+export {LeadsTable, LeadChat, LeadData, LeadFunnel, RegisterActivity,LeadHistory, SalesInfoCard, PieChartLabel};
