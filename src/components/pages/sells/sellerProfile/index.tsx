@@ -5,8 +5,19 @@ import { PieChartLabel, SalesInfoCard } from "@/components/UI/molecules";
 import { Tabs } from "@/components/templates";
 import styles from "./Sells.module.css";
 import { IconSells } from "@/assets";
+import { PieChartLabelProps } from "@/components/UI/molecules/pieChartLabel";
 
 export const SellerProfile = () => {
+	const salesData: PieChartLabelProps = {
+		labels: [
+			'Primer Contacto',
+			'Datos Confirmados',
+			'Seguimiento',
+			'En Venta',
+		],
+		amounts: [14, 25, 30, 12],
+	};
+
 	return (
 		<div className={`contentVerticalPadding ${styles.mainContainer}`}>
 			{/* col */}
@@ -32,7 +43,10 @@ export const SellerProfile = () => {
 					<div className="row">
 						<div className="col-xs-12 col-md-6">
 							<div className="box">
-								<PieChartLabel />
+								<PieChartLabel
+									labels={salesData.labels}
+									amounts={salesData.amounts}
+								/>
 							</div>
 						</div>
 
