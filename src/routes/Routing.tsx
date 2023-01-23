@@ -13,6 +13,7 @@ import {
 	ProductDashboard,
 	ProductDetails,
 	Users,
+	SellerDashboard
 } from "./../components/pages";
 import {Main} from "./../components/templates";
 import {ProtectedRoute} from "./ProtectedRoute";
@@ -23,6 +24,7 @@ import UserContext, {
 	UserType,
 } from "./../context/UserContext";
 import {AgentRoutes, SellsRoutes, ProductRoutes} from "./../models/routes";
+
 
 export const Routing = () => {
 	const {User, SetUser} = useContext(UserContext) as UserContextType;
@@ -68,6 +70,7 @@ export const Routing = () => {
 					<Route path={SellsRoutes.FutureLeads} element={<SellsDashboard />} />
 					<Route path={SellsRoutes.FrozenLeads} element={<SellsDashboard />} />
 					<Route path={SellsRoutes.SellerProfile} element={<SellerProfile />} />
+					<Route path={SellsRoutes.SellsDashboard} element={<SellerDashboard />} />
 				</Route>
 			</Route>
 

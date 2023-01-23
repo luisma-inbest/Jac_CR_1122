@@ -15,6 +15,7 @@ export const SellsRoutes = {
 	FutureLeads: "future-leads",
 	FrozenLeads: "frozen-leads",
 	SellerProfile: "seller-profile",
+	SellsDashboard: "sells-dashboard",
 };
 export const ProductRoutes = {
 	main: "",
