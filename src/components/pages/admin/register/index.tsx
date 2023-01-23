@@ -10,7 +10,7 @@ import {
 
 import styles from "./Register.module.css";
 
-import {generatePassword, signUp} from "../../authentication/AuthFuncs";
+import {generatePassword, signUp} from "@pages/authentication/AuthFuncs";
 
 import UserContext, {UserContextType} from "@/context/UserContext";
 

@@ -37,6 +37,14 @@ let newattributeList = [
 	new CognitoUserAttribute(dataPersonalEmail),
 ];
 
+export function signUp() {
+	return new Promise((resolve, reject) => {
+		if (user) {
+			user.signOut();
+		}
+		console.log("logout");
+	}}
+
 // ------------------------------------------------------------------------------------------
 export function logIn(email: string, password: string) {
 	const user = new CognitoUser({
