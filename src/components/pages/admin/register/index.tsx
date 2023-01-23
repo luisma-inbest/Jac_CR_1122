@@ -75,6 +75,15 @@ export const Register = () => {
 					<label className="p2 semi-bold">Agencia </label>
 					<StyledInputText name="name" customType="gray" />
 
+					<div className={styles.customSelect}>
+						<select>
+							<option value="admin">-- Rol del Usuario --</option>
+							<option value="admin">Corporativo</option>
+							<option value="sells">Vendedor</option>
+							<option value="sells">Gerente </option>
+						</select>
+					</div>
+
 					<StyledInputSubmit
 						customType="primary"
 						type="submit"

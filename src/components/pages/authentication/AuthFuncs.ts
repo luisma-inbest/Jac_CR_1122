@@ -37,17 +37,6 @@ let newattributeList = [
 	new CognitoUserAttribute(dataPersonalEmail),
 ];
 
-export function signUp() {
-	return new Promise((resolve, reject) => {
-		UserPool.signUp(email, password, attributeList, [], (err, data) => {
-			if (err) {
-				reject(err);
-				return;
-			}
-			resolve(data);
-		});
-	});
-}
 // ------------------------------------------------------------------------------------------
 export function logIn(email: string, password: string) {
 	const user = new CognitoUser({
@@ -169,15 +158,3 @@ export function getParams() {
 		}
 	});
 }
-// ------------------------------------------------------------------------------------------
-export function generatePassword() {
-	var length = 8,
-		charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-		retVal = "";
-	for (var i = 0, n = charset.length; i < length; ++i) {
-		retVal += charset.charAt(Math.floor(Math.random() * n));
-	}
-	return retVal;
-}
-
-// ------------------------------------------------------------------------------------------
