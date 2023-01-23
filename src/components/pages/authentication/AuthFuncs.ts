@@ -39,12 +39,15 @@ let newattributeList = [
 
 export function signUp() {
 	return new Promise((resolve, reject) => {
-		if (user) {
-			user.signOut();
-		}
-		console.log("logout");
-	}}
-
+		UserPool.signUp(email, password, attributeList, [], (err, data) => {
+			if (err) {
+				reject(err);
+				return;
+			}
+			resolve(data);
+		});
+	});
+}
 // ------------------------------------------------------------------------------------------
 export function logIn(email: string, password: string) {
 	const user = new CognitoUser({
@@ -166,3 +169,6 @@ export function getParams() {
 		}
 	});
 }
+// ------------------------------------------------------------------------------------------
+
+// ------------------------------------------------------------------------------------------

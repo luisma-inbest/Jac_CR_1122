@@ -10,7 +10,7 @@ import {
 
 import styles from "./Register.module.css";
 
-import {generatePassword, signUp} from "@pages/authentication/AuthFuncs";
+import {signUp} from "@/components/pages/authentication/AuthFuncs";
 
 import UserContext, {UserContextType} from "@/context/UserContext";
 
@@ -20,7 +20,6 @@ export const Register = () => {
 	const logoColor = getComputedStyle(document.body).getPropertyValue(
 		"--main-color"
 	);
-	console.log(generatePassword());
 
 	const handleSubmit: any = async (event: React.FormEvent<EventTarget>) => {
 		event.preventDefault();
