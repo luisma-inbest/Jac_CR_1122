@@ -8,11 +8,12 @@ export const StyledInputText = styled.input.attrs<PropsTxt>({
 })`
 	background-color: ${(props: PropSubmit) =>
 		props.customType === "gray" ? "var(--background)" : "var(--white)"};
+	color: var(--text);
 	border: none;
 	font-size: var(--p);
 	border-radius: var(--br-1);
-	height: 3rem;
-	padding: 1em 0.5em;
+	min-height: 3rem;
+	padding: 1rem 0.5rem;
 	margin-bottom: 1.9rem;
 	&:focus {
 		outline: 3px solid var(--highlight);
@@ -83,17 +84,17 @@ export const StyledInputRadio = styled.input.attrs({
 export const StyledInputDate = styled.input.attrs({
 	type: "date",
 })`
-	height: 3rem;
+	min-height: 3rem;
 	text-align: center;
 	border: none;
 	background-color: var(--background);
-	padding: 0.3em 0.5em;
-	border-radius: var(--br-2);
-
+	padding: 1rem 0.5rem;
+	border-radius: var(--br-1);
 	font-size: var(--p);
 	text-align: left;
 	color: var(--text);
 	cursor: pointer;
+	margin-bottom: 1.9rem;
 
 	&:focus {
 		outline: 3px solid #3fa9f5;
