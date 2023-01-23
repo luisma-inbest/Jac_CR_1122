@@ -4,5 +4,6 @@ import {LeadChat} from "./leadChat";
 import {LeadFunnel} from "./leadFunnel";
 import {LeadHistory} from "./leadHistory";
 import {RegisterActivity} from "./registerActivity";
+import {UserRow} from "./userRow";
 
-export {LeadsTable, LeadChat, LeadData, LeadFunnel, RegisterActivity,LeadHistory};
+export {LeadsTable, LeadChat, LeadData, LeadFunnel, RegisterActivity, LeadHistory, UserRow};
