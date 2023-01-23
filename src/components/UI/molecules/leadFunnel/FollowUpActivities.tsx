@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, CardFunnel, Input } from "@/components/UI/atoms";
 import styles from "./LeadFunnel.module.css";
 import { IconCheck, IconWhatsapp } from "@/assets";
@@ -9,7 +9,7 @@ import { LeadAPI } from "@/apis";
 import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
 import CurrentLeadContext, {
 	CurrentLeadContextType,
-} from "@/context/CurrentLeadContext";
+} from "@/context/currentLeadContext/CurrentLeadContext";
 
 const goTo = (url: string) => () => {
 	window.open(url, "_blank");
@@ -17,7 +17,6 @@ const goTo = (url: string) => () => {
 
 interface AuctionProps {
 	leadData: LeadDataType;
-	activityHandler: (activity: string) => void;
 	nextPhaseLead: () => void;
 }
 
@@ -25,6 +24,9 @@ export const FollowUpActivities = (props: AuctionProps) => {
 	const { CurrentLead } = useContext(
 		CurrentLeadContext
 	) as CurrentLeadContextType;
+	const { Alerts, SetAlerts, createAlert } = useContext(
+		AlertsContext
+	) as AlertsContextType;
 
 	const cotizaciones = [
 		{
@@ -58,9 +60,10 @@ export const FollowUpActivities = (props: AuctionProps) => {
 
 	const [editRFC, setEditRFC] = useState(false);
 	const [rfc, setRFC] = useState(props.leadData.rfc);
-	const { Alerts, SetAlerts, createAlert } = useContext(
-		AlertsContext
-	) as AlertsContextType;
+	const [dataSheet, setDataSheet] = useState(false);
+	const [dataSheetInput, setDataSheetInput] = useState(false);
+	const [galery, setGalery] = useState(false);
+	const [galeryInput, setGaleryInput] = useState(false);
 
 	const editRFCFunc = useMutation({
 		mutationFn: () =>
@@ -79,6 +82,68 @@ export const FollowUpActivities = (props: AuctionProps) => {
 		},
 	});
 
+	function addActivitie() {
+		let promises = [];
+		if (!dataSheet && dataSheetInput) {
+			console.log("en este caso si debería de guardar actividiad ficha");
+			promises.push({
+				activityType: "envio-de-fichas-tecnicas",
+				activityText: "ficha técnica",
+			});
+		}
+		if (!galery && galeryInput) {
+			console.log(
+				"en este caso si debería de guardar actividiad galeria"
+			);
+			promises.push({
+				activityType: "muestra-galeria",
+				activityText: "galería de imagenes",
+			});
+		}
+		// console.log("promises", promises);
+		promises.forEach((promise) => {
+			LeadAPI.addActivity({
+				LeadId: CurrentLead.id,
+				leadActivityType: promise.activityType,
+				title: `Se envió la ${promise.activityText}`,
+				comments: "",
+				status: "1",
+				date: new Date(),
+			})
+				.then((response) => {
+					console.log(response);
+					createAlert(
+						"success",
+						"Exito",
+						"Se actualizó la información"
+					);
+				})
+				.catch((error) => {
+					createAlert(
+						"error",
+						"Error",
+						"Hubo un error al actualizar"
+					);
+				});
+		});
+	}
+
+	useEffect(() => {
+		console.log(CurrentLead.LeadActivities);
+		CurrentLead.LeadActivities.forEach((activity) => {
+			if (activity.LeadActivityType.slug === "envio-de-fichas-tecnicas") {
+				console.log("hay ficha");
+				setDataSheet(true);
+				setDataSheetInput(true);
+			}
+			if (activity.LeadActivityType.slug === "muestra-galeria") {
+				console.log("hay galeria");
+				setGalery(true);
+				setGaleryInput(true);
+			}
+		});
+	}, []);
+
 	return (
 		<>
 			<CardFunnel
@@ -91,14 +156,41 @@ export const FollowUpActivities = (props: AuctionProps) => {
 								Envío de fichas técnicas
 							</p>
 							{/* <input type="checkbox" name="scales" checked={true} /> */}
-							<input type="checkbox" name="scales" />
+							<input
+								type="checkbox"
+								name="scales"
+								checked={dataSheetInput}
+								disabled={dataSheet}
+								onChange={() => {
+									setDataSheetInput(!dataSheetInput);
+								}}
+							/>
 						</div>
 						<div>
 							<p className="p4 bold secondary">
 								Muestra de Galería
 							</p>
 							{/* <input type="checkbox" name="scales" checked={true} /> */}
-							<input type="checkbox" name="scales" />
+							<input
+								type="checkbox"
+								name="scales"
+								checked={galeryInput}
+								disabled={galery}
+								onChange={() => {
+									setGaleryInput(!galeryInput);
+								}}
+							/>
+						</div>
+						<div>
+							{dataSheet && galery ? (
+								<></>
+							) : (
+								<Button
+									text="Actualizar"
+									full={true}
+									func={addActivitie}
+								/>
+							)}
 						</div>
 					</div>
 				}

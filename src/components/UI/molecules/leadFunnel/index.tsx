@@ -15,26 +15,36 @@ import { AuctionActivities } from "./AuctionActivities";
 import { Activities, BasicBody } from "./Activities";
 import { FirstContactActivities } from "./FirstContactActivities";
 import { FollowUpActivities } from "./FollowUpActivities";
-import { ClosingSellsActivities } from "./ClosingSellActivities";
+import { ClosingSellsActivities } from "./closingActivities/ClosingSellActivities";
 import { LeadDataType } from "@/models";
 import { HostessActivities } from "./HostessActivities";
 import UserContext, { UserContextType } from "@/context/UserContext";
+import LeadWindowContext, { LeadWindowContextType } from "@/context/LeadWindow";
+import { RegisterActivity } from "../registerActivity";
+import { RuleOutActivity } from "../ruleOutActivity";
+import CurrentLeadContext, {
+	CurrentLeadContextType,
+} from "@/context/currentLeadContext/CurrentLeadContext";
 
 interface Props {
-	activityHandler: () => void;
-	leadPhase: string;
-	leadData: LeadDataType;
 	refresher: (val: boolean) => void;
 	refresh: boolean;
 }
 export const LeadFunnel = (props: Props) => {
+	//TODO: aun quedan por eliminar el paso de props
 	const { User } = useContext(UserContext) as UserContextType;
 	const { Alerts, SetAlerts, createAlert } = useContext(
 		AlertsContext
 	) as AlertsContextType;
+	const { ShowLeadWindow, SetShowLeadWindow, SetLeadWindow } = useContext(
+		LeadWindowContext
+	) as LeadWindowContextType;
+	const { CurrentLead, DispatchCurrentLead } = useContext(
+		CurrentLeadContext
+	) as CurrentLeadContextType;
 
 	function nextPhaseLead() {
-		LeadAPI.nextPhase(props.leadData.id)
+		LeadAPI.nextPhase(CurrentLead.id)
 			.then((res) => {
 				createAlert(
 					"success",
@@ -52,29 +62,6 @@ export const LeadFunnel = (props: Props) => {
 			});
 	}
 
-	function ruleOutLead(phase: string) {
-		let data = {
-			newPhase: phase,
-		};
-		console.log(data);
-		LeadAPI.ruleOut(props.leadData.id, data)
-			.then((res) => {
-				createAlert(
-					"success",
-					"Lead descartado",
-					"El estatus del lead ha cambiado"
-				);
-				props.refresher(!props.refresh);
-			})
-			.catch((err) => {
-				createAlert(
-					"error",
-					"Error al descartar lead",
-					"Hubo un error"
-				);
-			});
-	}
-
 	const titles: any = {
 		subasta: "",
 		"1er-contacto": "Confirmación Datos",
@@ -82,49 +69,40 @@ export const LeadFunnel = (props: Props) => {
 		"en-cierre": "Cierre de Venta",
 	};
 	const phases: any = {
-		all: (
-			<Activities
-				leadData={props.leadData}
-				activityHandler={props.activityHandler}
-			/>
-		),
+		all: <Activities leadData={CurrentLead} />,
 		subasta: (
 			<AuctionActivities
-				leadData={props.leadData}
+				leadData={CurrentLead}
 				nextPhaseLead={nextPhaseLead}
 			/>
 		),
 		"1er-contacto": (
 			<FirstContactActivities
-				leadData={props.leadData}
+				leadData={CurrentLead}
 				nextPhaseLead={nextPhaseLead}
 			/>
 		),
 		seguimiento: (
 			<FollowUpActivities
-				leadData={props.leadData}
-				activityHandler={props.activityHandler}
+				leadData={CurrentLead}
 				nextPhaseLead={nextPhaseLead}
 			/>
 		),
-		"en-cierre": (
-			<ClosingSellsActivities
-				leadData={props.leadData}
-				activityHandler={props.activityHandler}
-			/>
-		),
+		"en-cierre": <ClosingSellsActivities leadData={CurrentLead} />,
 	};
 
 	return (
 		<div className={styles.funnelTab}>
-			<p className="p3 secondary bold">{titles[props.leadPhase] || ""}</p>
-			{phases[props.leadPhase]}
+			<p className="p3 secondary bold">
+				{titles[CurrentLead.leadPhase.slug] || ""}
+			</p>
+			{phases[CurrentLead.leadPhase.slug]}
 
 			{User?.permissions[1] === "manager" ||
 			User?.permissions[1] === "coordinator" ||
 			User?.permissions[1] === "bdc" ||
 			User?.permissions[1] === "hostess" ? (
-				<HostessActivities leadData={props.leadData} />
+				<HostessActivities leadData={CurrentLead} />
 			) : (
 				<></>
 			)}
@@ -138,7 +116,12 @@ export const LeadFunnel = (props: Props) => {
 				cardContent={
 					<BasicBody
 						buttonText="Crear Actividad"
-						buttonFunc={() => props.activityHandler()}
+						buttonFunc={() => {
+							SetLeadWindow(
+								"Registrar Nueva Actividad",
+								<RegisterActivity></RegisterActivity>
+							);
+						}}
 						alternativeText=""
 						alternativeFunc={() => {
 							return;
@@ -153,9 +136,19 @@ export const LeadFunnel = (props: Props) => {
 				cardContent={
 					<BasicBody
 						buttonText="Congelar"
-						buttonFunc={() => ruleOutLead("congelado")}
+						buttonFunc={() =>
+							SetLeadWindow(
+								"Congelar Lead",
+								<RuleOutActivity ruleOutType="freeze"></RuleOutActivity>
+							)
+						}
 						alternativeText="Futura Compra"
-						alternativeFunc={() => ruleOutLead("futura-venta")}
+						alternativeFunc={() =>
+							SetLeadWindow(
+								"Lead Futura Compra",
+								<RuleOutActivity ruleOutType="future-sell"></RuleOutActivity>
+							)
+						}
 					/>
 				}
 			/>

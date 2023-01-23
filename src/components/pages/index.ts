@@ -15,6 +15,7 @@ import {
 	CreateLead,
 	SellerProfile,
 	Agenda,
+	SearchLeads,
 } from "./sells/";
 import {
 	ProductDashboard,
@@ -45,4 +46,5 @@ export {
 	CreateProduct,
 	Users,
 	MyProfile,
+	SearchLeads,
 };

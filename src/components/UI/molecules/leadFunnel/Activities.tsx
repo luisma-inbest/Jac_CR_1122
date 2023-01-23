@@ -6,21 +6,20 @@ import { LeadDataType } from "@/models";
 
 interface AuctionProps {
 	leadData: LeadDataType;
-	activityHandler: (activity: string) => void;
 }
 
 export const Activities = (props: AuctionProps) => {
 	const whatsFunction = (phone: string) => {
 		window.open(`https://api.whatsapp.com/send?phone=${phone}`);
-		props.activityHandler("whatsapp");
+		//TODO: conect with LeadWIndowContext
 	};
 	const phoneFunction = (phone: string) => {
 		window.open(`tel:${phone}}`);
-		props.activityHandler("phone");
+		//TODO: conect with LeadWIndowContext
 	};
 	const emailFunction = (email: string) => {
 		window.open(`mailto:${email}`);
-		props.activityHandler("email");
+		//TODO: conect with LeadWIndowContext
 	};
 	const checkFunction = () => {
 		console.log("check");

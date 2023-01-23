@@ -29,7 +29,6 @@ export const SellsRoutes = {
 	Leads: "leads",
 	SingleLead: "leads/:leadId",
 	SellerProfile: "seller-profile",
-	FutureLeads: "future-leads",
-	FrozenLeads: "frozen-leads",
+	Search: "leads/search",
 	Agenda: "agenda",
 };

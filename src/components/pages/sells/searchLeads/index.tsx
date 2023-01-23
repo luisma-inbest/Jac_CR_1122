@@ -1,53 +1,30 @@
 import React, { useContext, useEffect, useState } from "react";
-import styles from "./LeadsTable.module.css";
+import { UsersTable } from "@/components/UI/organisms/";
+import { Button, Loader } from "@/components/UI/atoms";
+import { useQuery } from "react-query";
+import { LeadAPI, UserAPI } from "@/apis";
+import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
+import styles from "./SearchLeads.module.css";
 import { IconUnfold } from "@/assets";
 import { LeadRow } from "@/components/UI/molecules";
-import { LeadAPI } from "@/apis";
-import { useQuery } from "react-query";
-import { Loader } from "../../atoms";
-import UserContext, { UserContextType } from "@/context/UserContext";
+import { useSearchParams } from "react-router-dom";
 
-//COmponent Props
-interface Props {
-	type: number;
-	refresh?: boolean;
-}
+export const SearchLeads = () => {
+	const [params, setParams] = useSearchParams();
 
-// Phases Arrays for the table and query
-const statusArray = ["subasta", "1er-contacto", "seguimiento", "en-cierre"];
-const arraySelector = [
-	"subastaLeads",
-	"firstContactLeads",
-	"followUpLeads",
-	"closingLeads",
-];
-
-//Main Component
-export const LeadsTable = (props: Props) => {
-	//Comopnent Variables
-	const { User } = useContext(UserContext) as UserContextType;
 	const highlight = getComputedStyle(
 		document.documentElement
 	).getPropertyValue("--highlight-text");
+
 	const [page, setPage] = useState<number>(1);
 	const [maxPage, setMaxPage] = useState<number>(1);
-	const UserId = getUserId();
+	const [phase, setPhase] = useState<string>("");
 
-	//Component Functions
-	//This function gives the userId Value given the role
-	function getUserId() {
-		if (props.type == 0) return "";
-		if (
-			User!.permissions[1] == "coordinator" ||
-			User!.permissions[1] == "bdc" ||
-			User!.permissions[1] == "adviser-digital" ||
-			User!.permissions[1] == "adviser-floor" ||
-			User!.permissions[1] == "adviser-hybrid"
-		) {
-			return String(User!.id);
-		}
-		return "";
-	}
+	useEffect(() => {
+		console.log("corre useEffect");
+		setPhase(params.get("leadPhase") as string);
+	}, [params]);
+
 	//This Function generates the nickname for the lead
 	function generateLeadNickname(firstName: string, lastName: string) {
 		return firstName.split(" ")[0] + " " + lastName.split(" ")[0];
@@ -57,31 +34,17 @@ export const LeadsTable = (props: Props) => {
 		return userToVerify == null ? "-" : userToVerify.nickname;
 	}
 
-	const {
-		isLoading,
-		data: leads,
-		isError,
-		error,
-	} = useQuery({
-		queryKey: [
-			`leads-${User!.AgencyId}-${statusArray[props.type]}`,
-			[page, props.refresh],
-		],
-		queryFn: () =>
-			LeadAPI.getAll(
-				statusArray[props.type],
-				User!.AgencyId,
-				UserId,
-				page
-			),
+	// futura-venta
+
+	const { isLoading, data, isError, error } = useQuery({
+		queryKey: [`leads-search`, [page, phase]],
+		queryFn: () => LeadAPI.search(phase, "14", "", page),
 		onSuccess: (data) => {
 			setMaxPage(data.pages);
-			console.log(data);
 		},
 		staleTime: 5 * (60 * 1000), // 5 mins
 		cacheTime: 10 * (60 * 1000), // 10 mins
 	});
-
 	if (isLoading) {
 		return (
 			<div className="row">
@@ -91,6 +54,17 @@ export const LeadsTable = (props: Props) => {
 			</div>
 		);
 	}
+	if (isError) {
+		return (
+			<div className="row">
+				<div className={`col-xs-12 loaderContainer`}>
+					<h2>Hubo un Error</h2>
+				</div>
+			</div>
+		);
+	}
+
+	// console.log(data);
 
 	return (
 		<div className="row">
@@ -99,9 +73,9 @@ export const LeadsTable = (props: Props) => {
 					<thead>
 						<tr className={styles.tableHeader}>
 							<th className="p4 highlight">Contacto</th>
-							<th className="p4 highlight">Ult. Contacto</th>
-							<th className="p4 highlight">Estado</th>
 							<th className="p4 highlight">Asesor</th>
+							<th className="p4 highlight">Estado</th>
+							<th className="p4 highlight">Ult. Contacto</th>
 							<th className={`p4 highlight `}>
 								Fecha
 								<span className={`${styles.iconContainer}`}>
@@ -115,7 +89,7 @@ export const LeadsTable = (props: Props) => {
 						</tr>
 					</thead>
 					<tbody>
-						{leads.data.map((lead: any) => {
+						{data.data.map((lead: any) => {
 							return (
 								<LeadRow
 									key={lead.id || ""}
@@ -129,7 +103,7 @@ export const LeadsTable = (props: Props) => {
 									user={getUser(lead.User) || ""}
 									model={lead.model || ""}
 									status=""
-									color={props.type || 0}
+									color={0}
 									createdAt={lead.createdAt || ""}
 									updatedAt={lead.updatedAt || ""}
 								/>

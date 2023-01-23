@@ -41,9 +41,13 @@ export const CardHistory = (props: Props) => {
 			</div>
 
 			<div className="row">
-				<span className="col-xs-6">Estado: {props.status}</span>
-				<span className={`col-xs-6 ${styles.status}`}>
-					{props.status}
+				<span className="col-xs-6">Estado:</span>
+				<span
+					className={`col-xs-6 ${
+						props.status ? styles.statusTrue : styles.statusFalse
+					}`}
+				>
+					{props.status ? "Exitoso" : "Fallido"}
 				</span>
 			</div>
 			{comments}

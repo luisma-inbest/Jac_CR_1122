@@ -14,37 +14,19 @@ import { LeadAPI } from "@/apis";
 import { useMutation, useQuery } from "react-query";
 import { LeadDataType } from "@/models";
 import { initial } from "../createLead/reducer";
+import { FlotatingWindow } from "@/components/UI/molecules/FLotatingWIndow";
 import UserContext, { UserContextType } from "@/context/UserContext";
 import CurrentLeadContext, {
 	CurrentLeadProvider,
 	CurrentLeadContextType,
-} from "@/context/CurrentLeadContext";
+} from "@/context/currentLeadContext/CurrentLeadContext";
+
 import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
 
-let initialData: LeadDataType = {
-	id: -1,
-	leadName: "",
-	leadEmails: [""],
-	leadPhones: [""],
-	leadPhase: {
-		id: -1,
-		description: "",
-		slug: "",
-		createdAt: "",
-		updatedAt: "",
-	},
-	LeadInterests: [],
-	LeadActivities: [],
-	LeadOrigin: "",
-	createdAt: new Date(),
-	updatedAt: new Date(),
-	UserId: -1,
-};
+import LeadWindowContext, { LeadWindowContextType } from "@/context/LeadWindow";
 
 export const Body = () => {
 	let { leadId } = useParams();
-	const [leadView, setLeadView] = useState(false);
-	const [leadData, setLeadData] = useState<LeadDataType>(initialData);
 	const [refresh, setRefresh] = useState(false);
 	const [runEffect, setRunEffect] = useState(false);
 	const { User } = useContext(UserContext) as UserContextType;
@@ -52,15 +34,20 @@ export const Body = () => {
 		AlertsContext
 	) as AlertsContextType;
 
-	const { CurrentLead } = useContext(
+	const {
+		ShowLeadWindow,
+		SetShowLeadWindow,
+		FLotatingWindowContent,
+		SetFLotatingWindowContent,
+	} = useContext(LeadWindowContext) as LeadWindowContextType;
+
+	const { CurrentLead, DispatchCurrentLead } = useContext(
 		CurrentLeadContext
 	) as CurrentLeadContextType;
 
-	console.log("\n\n\n Esto es una prueba:", CurrentLead, " \n\n\n");
-
 	function verifyLead() {
 		return (
-			leadData.leadPhase.slug === "subasta" &&
+			CurrentLead.leadPhase.slug === "subasta" &&
 			(User?.permissions.includes("coordinator") ||
 				User?.permissions.includes("bdc") ||
 				User?.permissions.includes("adviser-digital") ||
@@ -86,7 +73,7 @@ export const Body = () => {
 					"Exito",
 					"El lead se ha asignado correctamente"
 				);
-				LeadAPI.nextPhase(leadData.id)
+				LeadAPI.nextPhase(CurrentLead.id)
 					.then((res) => {
 						createAlert(
 							"success",
@@ -113,7 +100,7 @@ export const Body = () => {
 			});
 	}
 	useEffect(() => {
-		console.log("useEffect", leadData.leadPhase.slug);
+		// console.log("useEffect", CurrentLead.leadPhase.slug);
 		if (verifyLead()) {
 			console.log("es subasta");
 			updateLead();
@@ -121,32 +108,38 @@ export const Body = () => {
 	}, [runEffect]);
 
 	const { isLoading, data, isError, error } = useQuery({
-		queryKey: [`lead-${leadId}`, [refresh, leadData]],
+		queryKey: [`lead-${leadId}`, [refresh]],
 		queryFn: () => LeadAPI.getLead(String(leadId)),
 		onSuccess: (data) => {
 			console.log("exito", data);
-			setLeadData({
-				id: data.id,
-				leadName: data.firstAndLastName,
-				leadEmails: data.LeadEmails || [""],
-				leadPhones: data.LeadPhones || [""],
-				LeadActivities: data.LeadActivities,
-				leadPhase: data.LeadPhase,
-				LeadInterests: data.LeadInterests,
-				LeadOrigin: data.LeadOrigin,
-				createdAt: data.createdAt,
-				updatedAt: data.updatedAt,
-				UserId: data.UserId,
-				rfc: data.rfc,
+			DispatchCurrentLead({
+				type: "all",
+				value: {
+					id: data.id,
+					leadName: data.firstAndLastName,
+					leadEmails: data.LeadEmails || [""],
+					leadPhones: data.LeadPhones || [""],
+					LeadActivities: data.LeadActivities,
+					leadPhase: data.LeadPhase,
+					LeadInterests: data.LeadInterests,
+					LeadOrigin: data.LeadOrigin,
+					createdAt: data.createdAt,
+					updatedAt: data.updatedAt,
+					UserId: data.UserId,
+					rfc: data.rfc,
+					buyType: data.SaleType.description,
+					Sales: data.Sales,
+				},
 			});
+
 			setRunEffect(true);
-			console.log("actividades", data.LeadActivities);
+			// console.log("actividades", data.LeadActivities);
 		},
 		onError: (error) => {
 			console.log("error", error);
 		},
-		// staleTime: 10 * (60 * 1000), // 10 mins
-		// cacheTime: 15 * (60 * 1000), // 15 mins
+		staleTime: 15 * (60 * 1000), // 15 mins
+		cacheTime: 20 * (60 * 1000), // 20 mins
 	});
 	if (isLoading) {
 		return (
@@ -167,27 +160,15 @@ export const Body = () => {
 		);
 	}
 
-	const windowHandler = () => {
-		if (!leadView) {
-			window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-		}
-		setLeadView(!leadView);
-	};
-
 	// const PageTabs = ["Datos", "Funnel", "Chat", "Historial"];
 	const PageTabs = ["Datos", "Funnel", "Chat", "Historial"];
-	const TabOne = <LeadData lead={leadData} />;
+	const TabOne = <LeadData />;
 	const TabTwo = (
-		<LeadFunnel
-			activityHandler={windowHandler}
-			leadPhase={leadData.leadPhase.slug}
-			leadData={leadData}
-			refresher={setRefresh}
-			refresh={refresh}
-		/>
+		//TODO: eliminar refresher
+		<LeadFunnel refresher={setRefresh} refresh={refresh} />
 	);
 	const TabThree = <LeadChat />;
-	const TabFour = <LeadHistory activities={leadData.LeadActivities} />;
+	const TabFour = <LeadHistory />;
 	const TabsComponents = [TabOne, TabTwo, TabThree, TabFour];
 
 	return (
@@ -195,7 +176,7 @@ export const Body = () => {
 			<div className={`contentVerticalPadding ${styles.mainContainer}`}>
 				<div className="row">
 					<div className={`col-xs-12 col-md-6 ${styles.userData}`}>
-						<LeadData lead={leadData} />
+						<LeadData />
 					</div>
 					<div className={`col-xs-12  col-md-6 `}>
 						<Tabs
@@ -207,11 +188,7 @@ export const Body = () => {
 					</div>
 				</div>
 			</div>
-			{leadView ? (
-				<RegisterActivity func={windowHandler} LeadId={leadData.id} />
-			) : (
-				<></>
-			)}
+			{ShowLeadWindow ? <FlotatingWindow /> : <></>}
 		</>
 	);
 };

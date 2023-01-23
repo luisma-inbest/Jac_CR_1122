@@ -59,6 +59,7 @@ export const CreateLead = (props: Props) => {
 		setPage(page - 1);
 	}
 
+	//TODO: delete the function
 	function borrar() {
 		let url: any =
 			"https://0roolpkdy5.execute-api.us-east-1.amazonaws.com/lead/";
@@ -92,6 +93,7 @@ export const CreateLead = (props: Props) => {
 
 		console.log("sumbmiting form...", fields);
 
+		//TODO: verify the mutation is not comented
 		addLeadMutation.mutate();
 		// borrar();
 
@@ -256,6 +258,7 @@ const Second = (props: SecondProps) => {
 	const { Alerts, SetAlerts, createAlert } = useContext(
 		AlertsContext
 	) as AlertsContextType;
+	const [colors, setColors] = useState([]);
 
 	const {
 		isLoading,
@@ -284,20 +287,42 @@ const Second = (props: SecondProps) => {
 				<StyledSelect
 					customType="secondary"
 					defaultValue=""
-					onChange={(e) =>
+					onChange={(e) => {
 						props.dispatch({
 							type: "productId",
+							value: products[e.target.value].id,
+						});
+						setColors(products[e.target.value].ProductColors);
+					}}
+				>
+					<option value="" disabled>
+						-- Producto --
+					</option>
+					{products?.map((product: any, index: any) => {
+						return (
+							<option key={product.id} value={index}>
+								{product.name} {product.version}
+							</option>
+						);
+					})}
+				</StyledSelect>
+				<StyledSelect
+					customType="secondary"
+					defaultValue=""
+					onChange={(e) =>
+						props.dispatch({
+							type: "colorId",
 							value: e.target.value,
 						})
 					}
 				>
 					<option value="" disabled>
-						-- Producto --
+						-- Color --
 					</option>
-					{products?.map((product: any) => {
+					{colors?.map((color: any) => {
 						return (
-							<option key={product.id} value={product.id}>
-								{product.name} {product.version}
+							<option key={color.id} value={color.id}>
+								{color.name}
 							</option>
 						);
 					})}
@@ -306,12 +331,18 @@ const Second = (props: SecondProps) => {
 				<StyledSelect
 					customType="secondary"
 					defaultValue=""
-					onChange={(e) =>
+					onChange={(e) => {
 						props.dispatch({
 							type: "buyType",
 							value: e.target.value,
-						})
-					}
+						});
+						e.target.value === "retail"
+							? props.dispatch({
+									type: "units",
+									value: 1,
+							  })
+							: "true";
+					}}
 				>
 					<option value="" disabled>
 						-- Tipo de Compra --

@@ -8,7 +8,7 @@ import {
 	Loader,
 } from "@/components/UI/atoms";
 import { DropdownMenu } from "@/components/UI/molecules";
-import { LogoFull, IconNotification, IconCross } from "@/assets";
+import { LogoFull, IconNotification, IconCross, IconCalendar } from "@/assets";
 import UserContext, { UserContextType } from "@/context/UserContext";
 import { logOut } from "@/auth/AuthFuncs";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -39,7 +39,7 @@ export const NavbarHeader = (props: Props) => {
 					<IconCross size="70%" color="#fff" />
 				</div>
 				<LogoFull color="#fff" size="70%" />
-				<IconNotification color="#fff" size="70%" />
+				<IconCalendar color="#fff" size="70%" />
 			</div>
 			<div
 				className={`${styles.navUser} mt-4`}

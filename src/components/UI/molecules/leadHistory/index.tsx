@@ -1,17 +1,22 @@
 import { CardHistory } from "@/components/UI/atoms";
 import { LeadActivityType } from "@/models";
 import styles from "./LeadHistory.module.css";
+import CurrentLeadContext, {
+	CurrentLeadContextType,
+} from "@/context/currentLeadContext/CurrentLeadContext";
+import { useContext } from "react";
 
-interface Props {
-	activities: LeadActivityType[];
-}
+interface Props {}
 
 export const LeadHistory = (props: Props) => {
+	const { CurrentLead, DispatchCurrentLead } = useContext(
+		CurrentLeadContext
+	) as CurrentLeadContextType;
 	return (
 		<div className={styles.tab}>
 			{/* <p className="p3 secondary bold">1er Contacto</p> */}
-			{props.activities.map((leadContact, index) => {
-				console.log(leadContact.date);
+			{CurrentLead.LeadActivities.map((leadContact, index) => {
+				// console.log(leadContact.date);
 				return (
 					<CardHistory
 						key={index}

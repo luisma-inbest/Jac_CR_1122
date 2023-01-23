@@ -23,7 +23,7 @@ export default defineConfig({
 			manifest: {
 				name: "JAC CRM",
 				short_name: "CRM",
-				description: "PWA CRM JAC",
+				description: "CRM interno para JAC",
 				theme_color: "#ffffff",
 				icons: [
 					{
