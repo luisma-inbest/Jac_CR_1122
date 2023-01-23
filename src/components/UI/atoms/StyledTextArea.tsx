@@ -7,7 +7,7 @@ export const StyledTextArea = styled.textarea`
 	border-bottom: 1px solid var(--gray2);
 	font-size: var(--p2);
 	background-color: var(--white);
-	border-radius: 0.5rem;
+	border-radius: var(--br-1);
 	padding: 0.3em 0.5em;
 	margin-bottom: 1.9rem;
 	color: #000;

@@ -4,6 +4,7 @@ import {
 	CognitoUser,
 	AuthenticationDetails,
 } from "amazon-cognito-identity-js";
+import {InterfaceUser} from "@/models";
 
 let email = "jorge.admin@gml.com";
 let password = "GML@Inbest123#";
@@ -37,7 +38,7 @@ let newattributeList = [
 	new CognitoUserAttribute(dataPersonalEmail),
 ];
 
-export function signUp() {
+export function signUp(user: InterfaceUser) {
 	return new Promise((resolve, reject) => {
 		UserPool.signUp(email, password, attributeList, [], (err, data) => {
 			if (err) {
