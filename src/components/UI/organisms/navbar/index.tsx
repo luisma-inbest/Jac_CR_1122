@@ -5,6 +5,8 @@ import {Menu} from "@/models/nav/menu";
 import {DropdownMenu, MenuItem} from "@/components/UI/atoms";
 import {LogoFull, IconNotification, IconCross} from "@/assets";
 import UserContext, {UserContextType} from "@/context/UserContext";
+import {logOut} from "@/components/pages/authentication/AuthFuncs";
+import {Navigate, useNavigate} from "react-router-dom";
 
 interface Props {
 	state: boolean;
@@ -13,6 +15,7 @@ interface Props {
 
 export const NavBar = (props: Props) => {
 	const {User, SetUser} = useContext(UserContext) as UserContextType;
+	const navigate = useNavigate();
 
 	const data = Menu[0];
 	var count = 0;
@@ -21,6 +24,12 @@ export const NavBar = (props: Props) => {
 		if (e.target.id === "out") {
 			props.navHandler();
 		}
+	}
+
+	function handleLogOut() {
+		logOut();
+		SetUser(null);
+		navigate("/login");
 	}
 
 	return (
@@ -70,17 +79,30 @@ export const NavBar = (props: Props) => {
 							})}
 						</ul>
 					</li>
-					<li>
-						<MenuItem
-							state="unactive"
-							text="Configuración"
-							route="./settings"
-							icon="settings"
-							dropped={false}
-							func={() => console.log("simple function")}
-							submenu={false}
-						/>
-					</li>
+					<ul>
+						<li>
+							<MenuItem
+								state="unactive"
+								text="Configuración"
+								route="./settings"
+								icon="settings"
+								dropped={false}
+								func={() => console.log("simple function")}
+								submenu={false}
+							/>
+						</li>
+						<li>
+							<MenuItem
+								state="unactive"
+								text="Cerrar Sesión"
+								route="./settings"
+								icon="settings"
+								dropped={false}
+								func={() => handleLogOut()}
+								submenu={false}
+							/>
+						</li>
+					</ul>
 				</ul>
 			</nav>
 		</div>

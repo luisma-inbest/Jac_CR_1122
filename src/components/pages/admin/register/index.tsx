@@ -51,13 +51,15 @@ export const Register = () => {
 			agency,
 			role,
 		};
+		console.log(user);
 
 		event.preventDefault();
 		try {
 			await signUp(user);
-			console.log("Usuario creado");
+			console.log("Usuario creado exitosamente :)");
 		} catch (error: any) {
 			let code = error.code;
+			console.log(error);
 			switch (code) {
 				case "UsernameExistsException":
 					console.log("El usuario ya existe");
@@ -96,8 +98,11 @@ export const Register = () => {
 						onChange={(value) => setBirthDate(value.target.value)}
 					/>
 
-					<StyledSelect onChange={(value) => console.log(value.target.value)}>
-						<option value="" disabled selected>
+					<StyledSelect
+						defaultValue=""
+						onChange={(e) => console.log(e.target.value)}
+					>
+						<option value="" disabled>
 							-- Género --
 						</option>
 						<option value="admin">Masculino</option>
@@ -138,8 +143,11 @@ export const Register = () => {
 
 					<Input placeholder="Agencia" value={agency} setValue={setAgency} />
 
-					<StyledSelect onChange={(value) => console.log(value.target.value)}>
-						<option value="" disabled selected>
+					<StyledSelect
+						defaultValue=""
+						onChange={(e) => setRole(e.target.value)}
+					>
+						<option value="" disabled>
 							-- Rol del Usuario --
 						</option>
 						<option value="admin">Corporativo</option>
