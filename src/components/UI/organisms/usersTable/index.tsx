@@ -1,11 +1,14 @@
-import React from "react";
+import React, {useContext} from "react";
 
 import { UserRow } from "@/components/UI/molecules";
 import { UserRowProps } from "@/components/UI/molecules/userRow";
 import styles from "./UsersTable.module.css";
+import { Button } from "@/components/UI/atoms";
+
 
 interface UsersTableProps {
     users: UserRowProps[];
+    text: string;
 }
 
 export const UsersTable: React.FunctionComponent<UsersTableProps> = (props) => {
@@ -21,16 +24,16 @@ export const UsersTable: React.FunctionComponent<UsersTableProps> = (props) => {
     return <table className= {styles.table}>
         <thead>
             <tr>
-                <th className={`p4 highlight ${styles.center}`}>
+                <th className={`p4 highlight text-center`}>
                  Nombre y Puesto
                 </th>
-                <th className={`p4 highlight ${styles.center}`}>
+                <th className={`p4 highlight text-center`}>
                     Área y Gerente
                 </th>
-                <th className={`p4 highlight ${styles.center}`}>
+                <th className={`p4 highlight text-center`}>
                     Correo
                 </th>
-                <th className={`p4 highlight ${styles.center}`}>
+                <th className={`p4 highlight text-center`}>
                     Rol de Usuario
                 </th>
             </tr>
@@ -40,5 +43,8 @@ export const UsersTable: React.FunctionComponent<UsersTableProps> = (props) => {
             {userRowElements}
             
         </tbody>
+        <div className={styles.fullButton}>
+        < Button text="test" full={false} func={()=>console.log(":)")}/>  
+        </div>
     </table>;
 };
