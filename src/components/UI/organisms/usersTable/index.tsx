@@ -43,8 +43,8 @@ export const UsersTable: React.FunctionComponent<UsersTableProps> = (props) => {
             {userRowElements}
             
         </tbody>
-        <div>
-        <Button text="test" full={false} func={()=>console.log(":)")}/>  
+        <div className={styles.fullButton}>
+        < Button text="test" full={false} func={()=>console.log(":)")}/>  
         </div>
     </table>;
 };
