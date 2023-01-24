@@ -23,6 +23,8 @@ export const Login = () => {
 	const navigate = useNavigate();
 	const {User, SetUser} = useContext(UserContext) as UserContextType;
 	const [role, setRole] = useState("admin");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 	const logoColor = getComputedStyle(document.body).getPropertyValue(
 		"--main-color"
 	);
@@ -33,15 +35,18 @@ export const Login = () => {
 
 	const handleSubmit = (event: React.FormEvent<EventTarget>) => {
 		event.preventDefault();
-		dummy();
-		// loginAWS();
+		//dummy();
+		loginAWS();
 	};
 
-	function loginAWS() {
-		let email = "jorge.admin@gml.com";
-		let password = "GML@Inbest123#";
+	async function loginAWS() {
 		console.log("cognito login...");
-		logIn(email, password);
+		try {
+			await logIn(email, password);
+			navigate("/");
+		} catch (error) {
+			console.log(error);
+		}
 	}
 	function verifySession() {
 		console.log("verificando sesión...");
@@ -92,10 +97,13 @@ export const Login = () => {
 							<LogoFull color={logoColor} size="70%" />
 						</div>
 						<form className={styles.form} onSubmit={handleSubmit}>
-							<label className="p2 semi-bold">Correo</label>
-							<StyledInputText name="name" customType="gray" />
-							<label className="p2 semi-bold">Contraseña</label>
-							<StyledInputText name="name" customType="gray" />
+							<Input placeholder="Correo" value={email} setValue={setEmail} />
+							<Input
+								placeholder="Contraseña"
+								value={password}
+								setValue={setPassword}
+							/>
+
 							<div className={`${styles.checkbox}`}>
 								<input type="checkbox" id="cbox2" value="second_checkbox" />{" "}
 								<label>Mantener inicio de sesión abierto</label>
@@ -106,32 +114,12 @@ export const Login = () => {
 								value="Iniciar Sesión"
 							/>
 						</form>
-						<div className={styles.customSelect}>
-							<select onChange={handleChange}>
-								<option value="admin">Administrador</option>
-								<option value="sells">Ventas</option>
-								<option value="product">Producto</option>
-								<option value="null">Web</option>
-								<option value="null">Marketing</option>
-								<option value="null">Servicio</option>
-								<option value="null">Sucursales</option>
-								<option value="null">RH</option>
-							</select>
-							<Button
-								text="verificar sesión"
-								func={verifySession}
-								full={false}
-							/>
-							<Button text="Iniciar sesión" func={loginAWS} full={false} />
-							<Button text="cerrar sesión " func={logOut} full={false} />
-							<Button text="params" func={getParams} full={false} />
-							<Button
-								text="change password"
-								func={changePassword}
-								full={false}
-							/>
-							<Button text="update" func={updateAtributes} full={false} />
-						</div>
+						<Button text="verificar sesión" func={verifySession} full={false} />
+						<Button text="Iniciar sesión" func={loginAWS} full={false} />
+						<Button text="cerrar sesión " func={logOut} full={false} />
+						<Button text="params" func={getParams} full={false} />
+						<Button text="change password" func={changePassword} full={false} />
+						<Button text="update" func={updateAtributes} full={false} />
 					</div>
 				</div>
 			</div>

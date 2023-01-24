@@ -6,43 +6,54 @@ import {
 } from "amazon-cognito-identity-js";
 import {InterfaceUser} from "@/models";
 
-let email = "jorge.admin@gml.com";
-let password = "GML@Inbest123#";
-
-let Names = [];
+// let email = "jorge.admin@gml.com";
+// let password = "GML@Inbest123#";
 
 export function signUp(user: InterfaceUser) {
 	let dataEmail = {Name: "email", Value: user.email};
+	let dataBirthDate = {Name: "birthdate", Value: user.birthDate};
 	let dataFirstName = {Name: "name", Value: user.firstName};
 	let dataLastName = {Name: "family_name", Value: user.lastName};
-	let dataBirthDate = {Name: "birthdate", Value: user.birthDate};
 	let dataNickname = {Name: "nickname", Value: user.nickname};
 	let dataGender = {Name: "gender", Value: user.gender};
+	let dataPhone = {Name: "phone_number", Value: user.phoneNumber};
 	let dataPersonalEmail = {
 		Name: "custom:personal_email",
 		Value: user.personalEmail,
 	};
-	let dataPhone = {Name: "phone_number", Value: user.phoneNumber};
 	let dataState = {Name: "custom:state", Value: user.state};
+	let dataAgency = {Name: "custom:agency", Value: user.agency};
+	let dataRole = {Name: "custom:role", Value: user.role};
 
 	let attributeList = [
-		new CognitoUserAttribute(dataEmail),
+		// new CognitoUserAttribute(dataEmail),
 		new CognitoUserAttribute(dataFirstName),
 		new CognitoUserAttribute(dataLastName),
 		new CognitoUserAttribute(dataGender),
 		new CognitoUserAttribute(dataNickname),
 		new CognitoUserAttribute(dataPhone),
 		new CognitoUserAttribute(dataPersonalEmail),
+		new CognitoUserAttribute(dataBirthDate),
+		new CognitoUserAttribute(dataState),
+		new CognitoUserAttribute(dataAgency),
+		new CognitoUserAttribute(dataRole),
+		new CognitoUserAttribute(dataEmail),
 	];
 
 	return new Promise((resolve, reject) => {
-		UserPool.signUp(email, password, attributeList, [], (err, data) => {
-			if (err) {
-				reject(err);
-				return;
+		UserPool.signUp(
+			user.email,
+			user.password,
+			attributeList,
+			[],
+			(err, data) => {
+				if (err) {
+					reject(err);
+					return;
+				}
+				resolve(data);
 			}
-			resolve(data);
-		});
+		);
 	});
 }
 // ------------------------------------------------------------------------------------------
@@ -153,7 +164,7 @@ export function getParams() {
 							const {Name, Value} = attribute;
 							results[Name] = Value;
 						}
-						console.log(results);
+						//console.log(results);
 						resolve(results);
 					});
 				});
