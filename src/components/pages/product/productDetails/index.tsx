@@ -17,10 +17,12 @@ export const ProductDetails = () => {
 			<div className={`${styles.imageContainer}  col-xs-12 col-md-6`}>
 				<Button text="Showroom" func={() => console.log("true")} full={true} />
 				<Button text="Ver landing" func={() => console.log("true")} full={true} />
-				<ButtonProduct />
-				<ButtonProduct />
-				<ButtonProduct />
-				<ButtonProduct />
+				<ButtonProduct title="One Page." subTitle="Lorem ipsum dolor"/>
+				<ButtonProduct title="Precios." subTitle="Lorem ipsum dolor"/>
+				<ButtonProduct title="Ficha Técnica." subTitle="Lorem ipsum dolor"/>
+				<ButtonProduct title="Información." subTitle="Lorem ipsum dolor" />
+				<ButtonProduct title="Catálogo" subTitle="Lorem ipsum dolor" />
+				<ButtonProduct title="Showroom" subTitle="Lorem ipsum dolor" />
 			</div>
 		</div>
 	);
