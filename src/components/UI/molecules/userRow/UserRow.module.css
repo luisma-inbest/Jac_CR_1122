@@ -1,1 +1,8 @@
+.row {
+	border-bottom: 0.1rem solid var(--selectedTab);
+	margin-bottom: 2rem;
+}
 
+.row td {
+	padding-top: 2rem;
+}
