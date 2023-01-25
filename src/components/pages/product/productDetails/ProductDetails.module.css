@@ -1,11 +1,16 @@
 .imageContainer {
 	height: auto;
 	width: 100%;
+	
 }
 .productImage {
 	height: auto;
 	width: 100%;
+	border-radius: var(--br-2);
 	/* aspect-ratio: 1 / 1; */
 	/* object-fit: contain; */
 	/* object-position: 0 0; */
+}
+.spacing {
+margin-top: 50px;
 }
