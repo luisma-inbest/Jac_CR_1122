@@ -95,10 +95,12 @@ export const Register = () => {
 
 					<label className="p2 semi-bold">Fecha de Nacimiento </label>
 					<StyledInputDate
+						customType="secondary"
 						onChange={(value) => setBirthDate(value.target.value)}
 					/>
 
 					<StyledSelect
+						customType="secondary"
 						defaultValue=""
 						onChange={(e) => console.log(e.target.value)}
 					>
@@ -144,6 +146,7 @@ export const Register = () => {
 					<Input placeholder="Agencia" value={agency} setValue={setAgency} />
 
 					<StyledSelect
+						customType="secondary"
 						defaultValue=""
 						onChange={(e) => setRole(e.target.value)}
 					>

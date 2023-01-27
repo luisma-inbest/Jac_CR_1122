@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Tabs} from "@/components/templates";
 import {UsersTable} from "@/components/UI/organisms/usersTable";
-import {Button} from "@/components/UI/atoms";
+import {Button, Loader} from "@/components/UI/atoms";
 import {useNavigate} from "react-router-dom";
+
+import styles from "./Users.module.css";
 
 export interface UserRowProps {
 	name: string;
@@ -13,30 +15,51 @@ export interface UserRowProps {
 	role: string;
 }
 
-const getUsersMock = () => {
-	const user1: UserRowProps = {
-		name: "Nombre del colaborador",
-		position: "Puesto del colaborador",
-		area: "Nombre del área",
-		manager: "Nombre del gerente",
-		email: "nombreusuario@oag.com",
-		role: "Administrador Maestro",
-	};
-	const user2: UserRowProps = {
-		name: "Nombre del colaborador",
-		position: "Puesto del colaborador",
-		area: "Nombre del área",
-		manager: "Nombre del gerente",
-		email: "nombreusuario@oag.mx",
-		role: "Administrador Maestro",
-	};
-
-	return [user1, user2];
-};
-
 export const Users = () => {
-	const users = getUsersMock();
+	const [users, setUsers] = useState<UserRowProps[]>([]);
 	const navigate = useNavigate();
+	const [loading, setLoading] = useState(true);
+
+	function cleanData(data: any) {
+		let usersTemp: UserRowProps[] = [];
+		data.map((element) => {
+			//console.log(element.Attributes);
+			element.Attributes.map((attr) => {
+				if (attr.Name === "nickname") {
+					let userTemp: UserRowProps = {
+						name: attr.Value,
+						position: "Puesto del colaborador",
+						area: "Nombre del área",
+						manager: "Nombre del gerente",
+						email: "nombreusuario@jac.mx",
+						role: "Administrador Maestro",
+					};
+					usersTemp.push(userTemp);
+				}
+			});
+		});
+		setUsers(usersTemp);
+	}
+
+	useEffect(() => {
+		fetch("http://localhost:9000/cognito")
+			.then((response) => response.json())
+			.then((data) => {
+				// console.log(data.data.Users);
+				cleanData(data.data.Users);
+				setLoading(false);
+			});
+	}, []);
+
+	if (loading) {
+		return (
+			<div className="row">
+				<div className={`col-xs-12 ${styles.loaderContainer}`}>
+					<Loader />
+				</div>
+			</div>
+		);
+	}
 
 	return (
 		<div className="row">
