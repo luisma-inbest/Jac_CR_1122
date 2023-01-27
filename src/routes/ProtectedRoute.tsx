@@ -11,17 +11,18 @@ export const ProtectedRoute = ({
 	redirectTo = "/login",
 }: any) => {
 	if (!isAllowed) {
-		validateSesion(redirectTo);
+		// validateSesion(redirectTo);
+		console.log("no autorizado...");
+		return <Navigate to={redirectTo} />;
 	}
 
 	return children ? children : <Outlet />;
 };
 
 function validateSesion(redirectTo: string) {
-	getSession()
+	getParams()
 		.then((data) => {
 			console.log(data);
-			console.log(getParams());
 		})
 		.catch((err) => {
 			console.log("user not logged");

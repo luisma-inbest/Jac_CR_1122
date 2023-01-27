@@ -54,7 +54,8 @@ export const Routing = () => {
 						isAllowed={
 							!!User &&
 							(User.permissions.includes("sells") ||
-								User.permissions.includes("admin"))
+								User.permissions.includes("admin") ||
+								User.permissions.includes("manager"))
 						}
 					/>
 				}

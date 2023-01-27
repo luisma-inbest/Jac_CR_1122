@@ -26,6 +26,8 @@ import {ButtonProduct} from "./buttonProduct";
 import {PieChart} from "./charts/PieChart";
 import {BarChart} from "./charts/BarChart";
 
+import {Loader} from "./loader";
+
 export {
 	StyledInputText,
 	StyledInputRadio,
@@ -50,4 +52,5 @@ export {
 	ButtonProduct,
 	PieChart,
 	BarChart,
+	Loader,
 };
