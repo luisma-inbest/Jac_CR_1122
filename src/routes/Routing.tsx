@@ -55,7 +55,13 @@ export const Routing = () => {
 							!!User &&
 							(User.permissions.includes("sells") ||
 								User.permissions.includes("admin") ||
-								User.permissions.includes("manager"))
+								User.permissions.includes("manager") ||
+								User.permissions.includes("coordinator") ||
+								User.permissions.includes("bdc") ||
+								User.permissions.includes("adviser-digital") ||
+								User.permissions.includes("adviser-floor") ||
+								User.permissions.includes("adviser-hybrid") ||
+								User.permissions.includes("hostess"))
 						}
 					/>
 				}

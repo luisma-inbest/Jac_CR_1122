@@ -156,6 +156,12 @@ export const Register = () => {
 						<option value="admin">Corporativo</option>
 						<option value="sells">Vendedor</option>
 						<option value="manager">Gerente </option>
+						<option value="coordinator">Cordinador </option>
+						<option value="bdc">BDC </option>
+						<option value="adviser-digital">Asesor Digital </option>
+						<option value="adviser-floor">Asesor Piso </option>
+						<option value="adviser-hybrid">Asesor Híbrido </option>
+						<option value="hostess">Hostess </option>
 					</StyledSelect>
 
 					<StyledInputSubmit
