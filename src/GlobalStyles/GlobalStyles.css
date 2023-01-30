@@ -6,8 +6,8 @@
 	--black: #000;
 	--white: #fff;
 
-	--highlight: #2c74bb; /*cambio 4a4e5c*/
-	--main-color: #141a26;
+	--highlight: #4a4e5c; /*cambio 2c74bb*/
+	--main-color: var(--black); /*cambio 141a26*/
 	--gray: #eee;
 	--gray2: #d9d9d9;
 	--gray3: #5a5a5a;
