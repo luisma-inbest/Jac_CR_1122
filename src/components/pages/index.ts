@@ -5,6 +5,7 @@ import {Admin} from "./admin";
 import {Users} from "./admin";
 import {
 	SellsDashboard,
+	SellerDashboard,
 	Leads,
 	LeadDashboard,
 	CreateLead,
@@ -18,6 +19,7 @@ export {
 	Register,
 	Admin,
 	SellsDashboard,
+	SellerDashboard,
 	LeadDashboard,
 	Leads,
 	CreateLead,
