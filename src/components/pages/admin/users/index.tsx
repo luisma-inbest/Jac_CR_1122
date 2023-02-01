@@ -22,9 +22,12 @@ export const Users = () => {
 
 	function cleanData(data: any) {
 		let usersTemp: UserRowProps[] = [];
-		data.map((element) => {
+
+		//TODO: eliminar los any
+		data.map((element: any) => {
 			//console.log(element.Attributes);
-			element.Attributes.map((attr) => {
+			//TODO: eliminar los any
+			element.Attributes.map((attr: any) => {
 				if (attr.Name === "nickname") {
 					let userTemp: UserRowProps = {
 						name: attr.Value,

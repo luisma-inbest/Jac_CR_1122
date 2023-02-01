@@ -57,20 +57,22 @@ export const CreateLead = (props: Props) => {
 	);
 };
 
+//TODO: desacoplar componentes
 interface FirstProps {
 	func: () => void;
 	pageHandler: () => void;
 }
 const First = (props: FirstProps) => {
+	const [val, setVal] = useState("");
 	return (
 		<>
 			<form action="" onSubmit={(e) => e.preventDefault()}>
-				<Input placeholder="Perfil" />
-				<Input placeholder="Nombre" />
-				<Input placeholder="Apellidos" />
-				<Input placeholder="Número Celular" />
-				<Input placeholder="Telefono Fijo" />
-				<Input placeholder="Correo Electronico" />
+				<Input placeholder="Nombre" value={val} setValue={setVal} />
+				<Input placeholder="Perfil" value={val} setValue={setVal} />
+				<Input placeholder="Apellidos" value={val} setValue={setVal} />
+				<Input placeholder="Número Celular" value={val} setValue={setVal} />
+				<Input placeholder="Telefono Fijo" value={val} setValue={setVal} />
+				<Input placeholder="Correo Electronico" value={val} setValue={setVal} />
 				<StyledInputSubmit
 					value="siguiente"
 					customType="primary"
@@ -90,12 +92,13 @@ interface SecondProps {
 	submit: (e: any) => void;
 }
 const Second = (props: SecondProps) => {
+	const [val, setVal] = useState("");
 	return (
 		<>
 			<form onSubmit={props.submit}>
-				<Input placeholder="Tipo de Compra" />
-				<Input placeholder="Tipo de Referencia" />
-				<Input placeholder="Unidades" />
+				<Input placeholder="Tipo de Compra" value={val} setValue={setVal} />
+				<Input placeholder="Tipo de Referencia" value={val} setValue={setVal} />
+				<Input placeholder="Unidades" value={val} setValue={setVal} />
 				<StyledInputSubmit value="Crear" customType="primary" />
 			</form>
 			<span className="buttonContainer">

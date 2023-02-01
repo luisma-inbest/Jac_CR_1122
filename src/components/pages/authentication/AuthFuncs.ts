@@ -116,6 +116,7 @@ export function logOut() {
 // ------------------------------------------------------------------------------------------
 export function changePassword() {
 	let newPassword = "GML@Inbest456#";
+	let password = "";
 
 	getParams().then(({user}: any) => {
 		user.changePassword(password, newPassword, (err: any, result: any) => {
@@ -129,17 +130,17 @@ export function changePassword() {
 }
 
 // ------------------------------------------------------------------------------------------
-export function updateAtributes() {
-	getParams().then(({user}: any) => {
-		user.updateAttributes(newattributeList, (err: any, results: any) => {
-			if (err) {
-				console.log(err);
-				return;
-			}
-			console.log("updateAtributes:", results);
-		});
-	});
-}
+// export function updateAtributes() {
+// 	getParams().then(({user}: any) => {
+// 		user.updateAttributes(newAttributeList, (err: any, results: any) => {
+// 			if (err) {
+// 				console.log(err);
+// 				return;
+// 			}
+// 			console.log("updateAtributes:", results);
+// 		});
+// 	});
+// }
 
 // ------------------------------------------------------------------------------------------
 

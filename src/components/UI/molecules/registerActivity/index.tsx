@@ -15,6 +15,7 @@ interface Props {
 }
 
 export const RegisterActivity = (props: Props) => {
+	const [val, setVal] = useState("");
 	const red = getComputedStyle(document.documentElement).getPropertyValue(
 		"--red"
 	);
@@ -36,7 +37,7 @@ export const RegisterActivity = (props: Props) => {
 					action=""
 					onSubmit={(e) => e.preventDefault()}
 				>
-					<Input placeholder="Titulo" />
+					<Input placeholder="Titulo" value={val} setValue={setVal} />
 					<StyledTextArea placeholder="Comentarios"></StyledTextArea>
 					<StyledInputSelect>
 						<option value="value2" selected disabled>

@@ -16,7 +16,6 @@ import {
 	getSession,
 	logIn,
 	logOut,
-	updateAtributes,
 } from "./AuthFuncs";
 
 export const Login = () => {
@@ -119,7 +118,7 @@ export const Login = () => {
 						<Button text="cerrar sesión " func={logOut} full={false} />
 						<Button text="params" func={getParams} full={false} />
 						<Button text="change password" func={changePassword} full={false} />
-						<Button text="update" func={updateAtributes} full={false} />
+						{/* <Button text="update" func={updateAtributes} full={false} /> */}
 					</div>
 				</div>
 			</div>
