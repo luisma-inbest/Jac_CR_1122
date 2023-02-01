@@ -9,7 +9,7 @@ import {
 	LeadDashboard,
 	CreateLead,
 } from "./sells/";
-import {ProductDashboard, ProductDetails} from "./product";
+import {ProductDashboard, ProductDetails, ProductOnePager} from "./product";
 
 export {
 	Home,
@@ -22,5 +22,6 @@ export {
 	CreateLead,
 	ProductDashboard,
 	ProductDetails,
+	ProductOnePager,
 	Users,
 };

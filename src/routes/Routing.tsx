@@ -11,6 +11,7 @@ import {
 	LeadDashboard,
 	ProductDashboard,
 	ProductDetails,
+	ProductOnePager,
 	Users,
 } from "./../components/pages";
 import {Main} from "./../components/templates";
@@ -90,6 +91,7 @@ export const Routing = () => {
 				<Route path="product" element={<Main />}>
 					<Route path={ProductRoutes.main} element={<ProductDashboard />} />
 					<Route path={ProductRoutes.Details} element={<ProductDetails />} />
+					<Route path={ProductRoutes.OnePager} element={<ProductOnePager />} />
 				</Route>
 			</Route>
 
