@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BarChart, ComparativeBarChart } from "@/components/UI/atoms";
-import { PieChartLabel, SalesInfoCard } from "@/components/UI/molecules";
+import { PieChartLabel, SalesInfoCard, StackedBarChartLabel } from "@/components/UI/molecules";
 import { Tabs } from "@/components/templates";
 import styles from "./Sells.module.css";
 import { IconSells } from "@/assets";
@@ -116,11 +116,42 @@ export const SellerProfile = () => {
 					{
 						getTitleElement('Modelos')
 					}
-					{/* <Bar data={chartData} /> */}
+					{ }
 					<div className="row">
 						<div className="col-xs-12">
 							<div className="box">
-								<BarChart axis="y" />
+								<StackedBarChartLabel
+									title="Eléctricos"
+									data={[25, 35, 40, 100]}
+								/>
+							</div>
+						</div>
+						<div className="col-xs-12">
+							<div className="box">
+								<StackedBarChartLabel
+									title="Comerciales"
+									data={[25, 50, 75, 100]}
+								/>
+							</div>
+						</div>
+						<div className="col-xs-12">
+							<div className="box">
+								<StackedBarChartLabel
+									title="SUV’s"
+									data={[25, 50, 55, 100]}
+								/>
+							</div>
+						</div>
+					</div>
+					<div className="row">
+						<div className="col-xs-12">
+							<div className="box">
+								Titulo
+							</div>
+						</div>
+						<div className="col-xs-12">
+							<div className="box">
+								Card
 							</div>
 						</div>
 					</div>
