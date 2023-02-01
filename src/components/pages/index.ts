@@ -9,6 +9,7 @@ import {
 	LeadDashboard,
 	CreateLead,
 	SellerProfile,
+	SellerDashboard,
 } from "./sells/";
 import {ProductDashboard, ProductDetails} from "./product";
 
@@ -18,6 +19,7 @@ export {
 	Register,
 	Admin,
 	SellsDashboard,
+	SellerDashboard,
 	LeadDashboard,
 	Leads,
 	CreateLead,
