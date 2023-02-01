@@ -1,3 +1,5 @@
+import styles from "./StackedBarChartLabel.module.css";
+
 interface LabelProps {
     amount: number;
 }
@@ -7,17 +9,17 @@ export const Label: React.FunctionComponent<LabelProps> = (props) => {
         <div className="row">
             <div className="col-xs-12">
                 <div className="box">
-                    <span>Modelo</span>
+                    <span className={styles.model}>Modelo</span>
                 </div>
             </div>
             <div className="col-xs-6">
                 <div className="box">
-                    <span>{props.amount}</span>
+                    <span className={styles.amount}>{props.amount}</span>
                 </div>
             </div>
             <div className="col-xs-6">
                 <div className="box">
-                    <span>10%</span>
+                    <span className={styles.percentage}>10%</span>
                 </div>
             </div>
         </div>

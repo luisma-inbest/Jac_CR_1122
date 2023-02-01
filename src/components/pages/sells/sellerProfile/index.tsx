@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { BarChart, ComparativeBarChart } from "@/components/UI/atoms";
+import { BarChart, CardProduct, ComparativeBarChart } from "@/components/UI/atoms";
 import { PieChartLabel, SalesInfoCard, StackedBarChartLabel } from "@/components/UI/molecules";
 import { Tabs } from "@/components/templates";
 import styles from "./Sells.module.css";
@@ -143,17 +143,23 @@ export const SellerProfile = () => {
 							</div>
 						</div>
 					</div>
-					<div className="row">
+					<div className={`row ${styles.carListContainer}`}>
 						<div className="col-xs-12">
 							<div className="box">
-								Titulo
+								<h3 className={styles.subTitle}>Orci senectus posuere id</h3>
 							</div>
 						</div>
-						<div className="col-xs-12">
-							<div className="box">
-								Card
-							</div>
-						</div>
+						{
+							Array.from(Array(4)).map(() => {
+								return (
+									<div className="col-xs-12">
+										<div className="box">
+											<CardProduct />
+										</div>
+									</div>
+								);
+							})
+						}
 					</div>
 				</div>
 			</div>

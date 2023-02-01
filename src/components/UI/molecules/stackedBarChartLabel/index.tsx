@@ -1,5 +1,6 @@
 import { StackedBarChart } from "@/components/UI/atoms";
 import { Label } from "./label";
+import styles from "./StackedBarChartLabel.module.css";
 
 interface StackedBarChartLabelProps {
     title: string;
@@ -11,7 +12,7 @@ export const StackedBarChartLabel: React.FunctionComponent<StackedBarChartLabelP
         <div className="row">
             <div className="col-xs-12">
                 <div className="box">
-                    <h3>{props.title}</h3>
+                    <h3 className={styles.title}>{props.title}</h3>
                 </div>
             </div>
             {

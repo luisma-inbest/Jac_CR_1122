@@ -97,3 +97,7 @@ $grid-breakpoints: (
 .boxSeparator {
 	border-bottom: 1px solid var(--gray2);
 }
+
+.carListContainer {
+	margin-top: 28px;
+}
