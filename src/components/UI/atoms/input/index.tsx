@@ -3,18 +3,19 @@ import styles from "./Input.module.css";
 
 interface Props {
 	placeholder: string;
+	value: string;
+	setValue: (value: string) => void;
 }
 
 export const Input = (props: Props) => {
-	const [value, setValue] = useState("");
 	return (
 		<div className={styles.inputContain}>
 			<input
 				className={styles.input}
 				type="text"
 				id="fname"
-				value={value}
-				onChange={(e) => setValue(e.target.value)}
+				value={props.value}
+				onChange={(e) => props.setValue(e.target.value)}
 				name="fname"
 				autoComplete="off"
 			/>

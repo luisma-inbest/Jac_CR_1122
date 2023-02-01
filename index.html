@@ -16,5 +16,12 @@
 			}
 		</script>
 		<!-- https://github.com/aws/aws-amplify/issues/678 fix end-->
+		<script>
+			if ("serviceWorker" in navigator) {
+				window.addEventListener("load", () => {
+					navigator.serviceWorker.register("/sw.js", {scope: "/"});
+				});
+			}
+		</script>
 	</body>
 </html>

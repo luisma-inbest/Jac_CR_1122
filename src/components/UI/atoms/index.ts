@@ -6,6 +6,7 @@ import {
 	StyledInputSelect,
 } from "./StyledInputs";
 import {StyledTextArea} from "./StyledTextArea";
+import {StyledSelect} from "./StyledSelect";
 
 import {NavbarLink} from "./StyledLink";
 import {Input} from "./input";
@@ -25,6 +26,8 @@ import {ButtonProduct} from "./buttonProduct";
 import {PieChart} from "./charts/PieChart";
 import {BarChart} from "./charts/BarChart";
 
+import {Loader} from "./loader";
+
 export {
 	StyledInputText,
 	StyledInputRadio,
@@ -32,6 +35,7 @@ export {
 	StyledInputSubmit,
 	StyledInputSelect,
 	StyledTextArea,
+	StyledSelect,
 	Input,
 	MenuItem,
 	NavbarLink,
@@ -48,4 +52,5 @@ export {
 	ButtonProduct,
 	PieChart,
 	BarChart,
+	Loader,
 };

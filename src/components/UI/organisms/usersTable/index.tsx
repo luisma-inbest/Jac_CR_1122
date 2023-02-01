@@ -1,44 +1,39 @@
-import React from "react";
+import React, {useContext} from "react";
 
-import { UserRow } from "@/components/UI/molecules";
-import { UserRowProps } from "@/components/UI/molecules/userRow";
+import {UserRow} from "@/components/UI/molecules";
+import {UserRowProps} from "@/components/UI/molecules/userRow";
 import styles from "./UsersTable.module.css";
 
 interface UsersTableProps {
-    users: UserRowProps[];
+	users: UserRowProps[];
 }
 
-export const UsersTable: React.FunctionComponent<UsersTableProps> = (props) => {
-    const userRowElements = props.users.map(user => <UserRow
-        name={user.name}
-        position={user.position}
-        area={user.area}
-        manager={user.manager}
-        email={user.email}
-        role={user.role}
-    />);
-
-    return <table className= {styles.table}>
-        <thead>
-            <tr>
-                <th className={`p4 highlight ${styles.center}`}>
-                 Nombre y Puesto
-                </th>
-                <th className={`p4 highlight ${styles.center}`}>
-                    Área y Gerente
-                </th>
-                <th className={`p4 highlight ${styles.center}`}>
-                    Correo
-                </th>
-                <th className={`p4 highlight ${styles.center}`}>
-                    Rol de Usuario
-                </th>
-            </tr>
-        </thead>
-        <tbody className= {styles.tableRow}>
-            
-            {userRowElements}
-            
-        </tbody>
-    </table>;
+export const UsersTable = (props: UsersTableProps) => {
+	return (
+		<table className={styles.table}>
+			<thead>
+				<tr>
+					<th className={`p4 highlight text-left`}>Nombre y Puesto</th>
+					<th className={`p4 highlight text-left`}>Área y Gerente</th>
+					<th className={`p4 highlight text-left`}>Correo</th>
+					<th className={`p4 highlight text-left`}>Rol de Usuario</th>
+				</tr>
+			</thead>
+			<tbody className={styles.tableRow}>
+				{/* Starts map with users */}
+				{props.users.map((user, index) => (
+					<UserRow
+						key={index}
+						name={user.name}
+						position={user.position}
+						area={user.area}
+						manager={user.manager}
+						email={user.email}
+						role={user.role}
+					/>
+				))}
+				{/* Ends map with users */}
+			</tbody>
+		</table>
+	);
 };

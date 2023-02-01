@@ -6,29 +6,30 @@ export interface PropsTxt {
 export const StyledInputText = styled.input.attrs<PropsTxt>({
 	type: "text",
 })`
-	background-color: ${(props: PropSubmit) =>
+	background-color: ${(props: PropType) =>
 		props.customType === "gray" ? "var(--background)" : "var(--white)"};
+	color: var(--text);
 	border: none;
 	font-size: var(--p);
 	border-radius: var(--br-1);
-	height: 3rem;
-	padding: 1em 0.5em;
+	min-height: 3rem;
+	padding: 1rem 0.5rem;
 	margin-bottom: 1.9rem;
 	&:focus {
 		outline: 3px solid var(--highlight);
 	}
 `;
 
-export interface PropSubmit {
+interface PropType {
 	customType: string;
 }
 
-export const StyledInputSubmit = styled.input.attrs<PropSubmit>({
+export const StyledInputSubmit = styled.input.attrs<PropType>({
 	type: "submit",
 })`
-	background-color: ${(props: PropSubmit) =>
+	background-color: ${(props: PropType) =>
 		props.customType === "primary" ? "var(--highlight)" : "var(--white)"};
-	color: ${(props: PropSubmit) =>
+	color: ${(props: PropType) =>
 		props.customType === "primary" ? "var(--white)" : "var(--red)"};
 
 	font-size: var(--p2);
@@ -80,20 +81,23 @@ export const StyledInputRadio = styled.input.attrs({
 	}
 `;
 
-export const StyledInputDate = styled.input.attrs({
+export const StyledInputDate = styled.input.attrs<PropType>({
 	type: "date",
 })`
-	height: 3rem;
+	min-height: 3rem;
 	text-align: center;
 	border: none;
-	background-color: var(--background);
-	padding: 0.3em 0.5em;
-	border-radius: var(--br-2);
-
+	background-color: ${(props: PropType) =>
+		props.customType === "primary" ? "var(--background)" : "var(--white)"};
+	padding: 1rem 0.5rem;
+	border-radius: var(--br-1);
+	border-bottom: ${(props: PropType) =>
+		props.customType === "primary" ? "none" : "1px solid var(--gray2)"};
 	font-size: var(--p);
 	text-align: left;
 	color: var(--text);
 	cursor: pointer;
+	margin-bottom: 1.9rem;
 
 	&:focus {
 		outline: 3px solid #3fa9f5;

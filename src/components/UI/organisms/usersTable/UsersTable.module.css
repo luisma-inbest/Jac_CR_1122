@@ -1,9 +1,7 @@
 .table {
-    position: relative;
+	position: relative;
 	width: 100%;
-    padding: 30px;
-}
-
-.center {
-    text-align: center;
+	padding: 30px;
+	border-collapse: collapse;
+	border-spacing: 0 1em;
 }
