@@ -1,27 +1,19 @@
 import React, {useEffect, useState} from "react";
 import {Tabs} from "@/components/templates";
-import {UsersTable} from "@/components/UI/organisms/";
 import {Button, Loader} from "@/components/UI/atoms";
 import {useNavigate} from "react-router-dom";
+import {AgenciesTable} from "@/components/UI/organisms";
 
-import styles from "./Users.module.css";
+import styles from "./Agencies.module.css";
+import {AgencyRowProps} from "@/models";
 
-export interface UserRowProps {
-	name: string;
-	position: string;
-	area: string;
-	manager: string;
-	email: string;
-	role: string;
-}
-
-export const Users = () => {
-	const [users, setUsers] = useState<UserRowProps[]>([]);
+export const Agencies = () => {
+	const [users, setUsers] = useState<AgencyRowProps[]>([]);
 	const navigate = useNavigate();
 	const [loading, setLoading] = useState(true);
 
 	function cleanData(data: any) {
-		let usersTemp: UserRowProps[] = [];
+		let usersTemp: AgencyRowProps[] = [];
 
 		//TODO: eliminar los any
 		data.map((element: any) => {
@@ -29,13 +21,12 @@ export const Users = () => {
 			//TODO: eliminar los any
 			element.Attributes.map((attr: any) => {
 				if (attr.Name === "nickname") {
-					let userTemp: UserRowProps = {
+					let userTemp: AgencyRowProps = {
 						name: attr.Value,
-						position: "Puesto del colaborador",
-						area: "Nombre del área",
+						state: "Estado",
 						manager: "Nombre del gerente",
+						phone: "1234567890",
 						email: "nombreusuario@jac.mx",
-						role: "Administrador Maestro",
 					};
 					usersTemp.push(userTemp);
 				}
@@ -67,13 +58,13 @@ export const Users = () => {
 	return (
 		<div className="row">
 			<div className={`col-xs-12 ${styles.tableContainer}`}>
-				<UsersTable users={users} />
+				<AgenciesTable agencies={users} />
 			</div>
 			<div className="col-xs-12 mt-5">
 				<Button
-					text="Registrar nuevo usuario"
+					text="Registrar nueva agencia"
 					full={true}
-					func={() => navigate("/admin/register")}
+					func={() => navigate("/admin/agencies/create")}
 				/>
 			</div>
 		</div>

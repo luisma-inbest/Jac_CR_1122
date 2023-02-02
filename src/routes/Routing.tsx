@@ -12,6 +12,9 @@ import {
 	ProductDashboard,
 	ProductDetails,
 	Users,
+	Agencies,
+	Agency,
+	CreateAgency,
 } from "./../components/pages";
 import {Main} from "./../components/templates";
 import {ProtectedRoute} from "./ProtectedRoute";
@@ -21,7 +24,12 @@ import UserContext, {
 	UserProvider,
 	UserType,
 } from "./../context/UserContext";
-import {AgentRoutes, SellsRoutes, ProductRoutes} from "./../models/routes";
+import {
+	AgentRoutes,
+	SellsRoutes,
+	ProductRoutes,
+	AdminRoutes,
+} from "./../models";
 
 export const Routing = () => {
 	const {User, SetUser} = useContext(UserContext) as UserContextType;
@@ -41,9 +49,12 @@ export const Routing = () => {
 				}
 			>
 				<Route path="admin" element={<Main />}>
-					<Route path="" element={<Admin />} />
-					<Route path="/admin/register" element={<Register />} />
-					<Route path="/admin/users" element={<Users />} />
+					<Route path={AdminRoutes.ADMIN} element={<Admin />} />
+					<Route path={AdminRoutes.REGISTER} element={<Register />} />
+					<Route path={AdminRoutes.USERS} element={<Users />} />
+					<Route path={AdminRoutes.AGENCIES} element={<Agencies />} />
+					<Route path={AdminRoutes.AGENCY} element={<Agency />} />
+					<Route path={AdminRoutes.AGENCY_CREATE} element={<CreateAgency />} />
 				</Route>
 			</Route>
 

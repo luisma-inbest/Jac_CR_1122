@@ -1,13 +1,6 @@
 import React from "react";
 import styles from "./UserRow.module.css";
-export interface UserRowProps {
-	name: string;
-	position: string;
-	area: string;
-	manager: string;
-	email: string;
-	role: string;
-}
+import {UserRowProps} from "@/models";
 
 export const UserRow: React.FunctionComponent<UserRowProps> = (props) => {
 	return (

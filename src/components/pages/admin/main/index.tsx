@@ -10,6 +10,8 @@ export const Admin = () => {
 				<div className="col-xs-12">
 					<h1 className="semi-bold">Admin</h1>
 					<Link to="/admin/users">ir a usuarios</Link>
+					<br />
+					<Link to="/admin/agencies">ir a agencias</Link>
 					<hr />
 				</div>
 			</div>

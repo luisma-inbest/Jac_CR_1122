@@ -3,9 +3,12 @@ export const PublicRoutes = {
 };
 
 export const AdminRoutes = {
-	ADMIN: "admin",
+	ADMIN: "",
 	REGISTER: "register",
 	USERS: "users",
+	AGENCIES: "agencies",
+	AGENCY: "agencies/:id",
+	AGENCY_CREATE: "agencies/create",
 };
 
 export const SellsRoutes = {

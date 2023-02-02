@@ -5,4 +5,5 @@
 
 .row td {
 	padding-top: 2rem;
+	min-width: 20rem;
 }

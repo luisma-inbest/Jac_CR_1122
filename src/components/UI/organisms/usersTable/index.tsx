@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 
-import {UserRow} from "@/components/UI/molecules";
-import {UserRowProps} from "@/components/UI/molecules/userRow";
+import {UserRow} from "@/components/UI/atoms";
+import {UserRowProps} from "@/models";
 import styles from "./UsersTable.module.css";
 
 interface UsersTableProps {
