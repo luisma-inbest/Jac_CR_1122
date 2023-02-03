@@ -5,6 +5,7 @@ import styles from "./AgencyRow.module.css";
 
 export const AgencyRow: React.FunctionComponent<AgencyRowProps> = (props) => {
 	const navigate = useNavigate();
+
 	function goToAgencie() {
 		navigate(`1`);
 		// navigate(`${ props.id }`);
@@ -12,20 +13,27 @@ export const AgencyRow: React.FunctionComponent<AgencyRowProps> = (props) => {
 
 	return (
 		<tr className={styles.row} key={props.email} onClick={() => goToAgencie()}>
-			<td className={``}>
-				<span className="p3 secondary no-margin">Solana</span>
+			<td className={styles.firstColumn}>
+				<div
+					className={`${styles.agencyStatus} ${
+						props.active ? styles.active : styles.unactive
+					}`}
+				></div>
+				<div>
+					<p className="p3 semi-bold no-margin">{props.name}</p>
+				</div>
 			</td>
 			<td className={``}>
-				<span className="p4 secondary no-margin">Jalisco</span>
+				<p className="p4 secondary no-margin">{props.businessName}</p>
 			</td>
 			<td className={``}>
-				<span className="p4 secondary no-margin">LuisMa</span>
+				<p className="p4 secondary no-margin">{props.manager}</p>
 			</td>
 			<td className={``}>
-				<span className="p4 secondary no-margin">+523387563489</span>
+				<p className="p4 secondary no-margin">{props.phone}</p>
 			</td>
 			<td className={``}>
-				<span className="p4 secondary no-margin">sola@jac.mx</span>
+				<p className="p4 secondary no-margin">{props.email}</p>
 			</td>
 		</tr>
 	);

@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 
-import {UserRow} from "@/components/UI/atoms";
+import {UserRow} from "@/components/UI/molecules";
 import {UserRowProps} from "@/models";
 import styles from "./UsersTable.module.css";
 

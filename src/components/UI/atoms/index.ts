@@ -13,9 +13,7 @@ import {Input} from "./input";
 import {DropdownMenu} from "./dropdownMenu";
 import {MenuItem} from "./menuItem";
 import {Path} from "./path";
-import {LeadRow} from "./leadRow";
-import {UserRow} from "./userRow";
-import {AgencyRow} from "./agencyRow";
+
 import {CardFunnel} from "./cardFunnel";
 import {CardHistory} from "./cardHistory";
 import {CardChat} from "./cardChat";
@@ -43,9 +41,6 @@ export {
 	NavbarLink,
 	DropdownMenu,
 	Path,
-	LeadRow,
-	UserRow,
-	AgencyRow,
 	CardFunnel,
 	CardHistory,
 	CardChat,

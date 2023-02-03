@@ -8,39 +8,16 @@ import styles from "./Agencies.module.css";
 import {AgencyRowProps} from "@/models";
 
 export const Agencies = () => {
-	const [users, setUsers] = useState<AgencyRowProps[]>([]);
+	const [agencies, setAgencies] = useState<AgencyRowProps[]>([]);
 	const navigate = useNavigate();
 	const [loading, setLoading] = useState(true);
 
-	function cleanData(data: any) {
-		let usersTemp: AgencyRowProps[] = [];
-
-		//TODO: eliminar los any
-		data.map((element: any) => {
-			//console.log(element.Attributes);
-			//TODO: eliminar los any
-			element.Attributes.map((attr: any) => {
-				if (attr.Name === "nickname") {
-					let userTemp: AgencyRowProps = {
-						name: attr.Value,
-						state: "Estado",
-						manager: "Nombre del gerente",
-						phone: "1234567890",
-						email: "nombreusuario@jac.mx",
-					};
-					usersTemp.push(userTemp);
-				}
-			});
-		});
-		setUsers(usersTemp);
-	}
-
 	useEffect(() => {
-		fetch("http://localhost:9000/cognito")
+		fetch("http://localhost:3001/agency")
 			.then((response) => response.json())
 			.then((data) => {
-				// console.log(data.data.Users);
-				cleanData(data.data.Users);
+				console.log(data.agencies);
+				setAgencies(data.agencies);
 				setLoading(false);
 			});
 	}, []);
@@ -58,7 +35,7 @@ export const Agencies = () => {
 	return (
 		<div className="row">
 			<div className={`col-xs-12 ${styles.tableContainer}`}>
-				<AgenciesTable agencies={users} />
+				<AgenciesTable agencies={agencies} />
 			</div>
 			<div className="col-xs-12 mt-5">
 				<Button

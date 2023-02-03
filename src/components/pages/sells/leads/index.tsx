@@ -2,7 +2,8 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import styles from "./Sells.module.css";
 import {StyledInputText, Button} from "@/components/UI/atoms";
-import {LeadData, LeadsTable} from "@/components/UI/molecules";
+import {LeadsTable} from "@/components/UI/organisms";
+import {LeadData} from "@/components/UI/molecules";
 import {CreateLead} from "@/components/pages";
 import {Tabs} from "@/components/templates";
 

@@ -1,0 +1,38 @@
+.row {
+	border-bottom: 1px solid var(--gray2);
+	padding-bottom: 1rem;
+	margin-bottom: 1rem;
+}
+
+.row td {
+	display: flex;
+	align-items: end;
+	min-width: 17rem;
+	width: 20%;
+}
+
+.row td:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.firstColumn {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 1rem;
+}
+
+.agencyStatus {
+	height: 100%;
+	width: 7px;
+	background-color: var(--white);
+	border-radius: var(--br-2);
+}
+
+.active {
+	background-color: var(--cold-lead);
+}
+.unactive {
+	background-color: var(--tracing-lead);
+}

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import styles from "./LeadsTable.module.css";
 import {IconUnfold} from "@/assets";
-import {LeadRow} from "@/components/UI/atoms";
+import {LeadRow} from "@/components/UI/molecules";
 
 interface Props {
 	type?: number;

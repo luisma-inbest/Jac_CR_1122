@@ -4,4 +4,6 @@ export interface AgencyRowProps {
 	manager: string;
 	phone: string;
 	email: string;
+	active: boolean;
+	businessName: string;
 }
