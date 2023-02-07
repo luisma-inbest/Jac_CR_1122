@@ -23,6 +23,7 @@ export const SellsRoutes = {
 export const ProductRoutes = {
 	main: "",
 	Details: "details/:id",
+	OnePager: "details/:id/one-pager",
 };
 
 ///

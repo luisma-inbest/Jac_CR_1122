@@ -9,7 +9,7 @@ import {
 	SellerProfile,
 	SellerDashboard,
 } from "./sells/";
-import {ProductDashboard, ProductDetails} from "./product";
+import {ProductDashboard, ProductDetails, ProductOnePager} from "./product";
 
 export {
 	Home,
@@ -27,5 +27,6 @@ export {
 	SellerProfile,
 	ProductDashboard,
 	ProductDetails,
+	ProductOnePager,
 	Users,
 };

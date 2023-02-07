@@ -3,6 +3,7 @@ import user from "./img/user.png";
 import {Logo} from "./img/Logo";
 import {LogoFull} from "./img/LogoFull";
 import carExample from "./img/j7.jpg";
+import onePager from "./img/one-pager.png";
 
 import {IconMenu} from "./icons/IconMenu";
 import {IconNotification} from "./icons/IconNotification";
@@ -34,6 +35,7 @@ export {
 	logoHorizontal,
 	user,
 	carExample,
+	onePager,
 	IconNotification,
 	IconMenu,
 	IconList,
