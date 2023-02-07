@@ -3,11 +3,11 @@ import {Login} from "./authentication/Login";
 import {Register, Admin, Users, Agencies, Agency, CreateAgency} from "./admin";
 import {
 	SellsDashboard,
+	SellerDashboard,
 	Leads,
 	LeadDashboard,
 	CreateLead,
 	SellerProfile,
-	SellerDashboard,
 } from "./sells/";
 import {ProductDashboard, ProductDetails, ProductOnePager} from "./product";
 
