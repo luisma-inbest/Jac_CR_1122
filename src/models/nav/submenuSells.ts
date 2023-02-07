@@ -10,6 +10,11 @@ export const submenuSells = [
 		route: "/sells/leads",
 	},
 	{
+		pos: 1.22,
+		text: "Perfil Vendedor",
+		route: "/sells/seller-profile",
+	},
+	{
 		pos: 1.3,
 		text: "Subasta",
 		route: "/sells/sale",

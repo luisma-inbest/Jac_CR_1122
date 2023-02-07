@@ -1,0 +1,25 @@
+.card {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.title {
+	font-size: 16px;
+	color: var(--highlight-text);
+}
+
+.amount {
+	font-size: 34px;
+	font-weight: bold;
+	color: #082a44;
+}
+
+.percentage {
+	font-size: 16px;
+	color: #aabd5b;
+}
+
+.dateRange {
+	font-size: 14px;
+	color: #807d9b;
+}

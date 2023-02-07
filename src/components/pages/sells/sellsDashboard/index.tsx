@@ -4,8 +4,17 @@ import {BarChart, PieChart, StyledInputText} from "@/components/UI/atoms";
 import {Tabs} from "@/components/templates";
 import styles from "./Sells.module.css";
 import {IconSells} from "@/assets";
+import { UserData } from "@/components/UI/atoms/charts/DataPie";
 
 export const SellsDashboard = () => {
+	const chartColors = [
+		"rgba(75,192,192,1)",
+		"#ecf0f1",
+		"#50AF95",
+		"#f3ba2f",
+		"#2a71d0",
+	];
+
 	return (
 		<div className={`contentVerticalPadding ${styles.mainContainer}`}>
 			{/* col */}
@@ -20,7 +29,12 @@ export const SellsDashboard = () => {
 					<div className="row">
 						<div className={`col-xs-12 col-md-6`}>
 							<div className={`${styles.chart1}`}>
-								<PieChart />
+								<PieChart
+									title="Users Gained"
+									colors={chartColors}
+									labels={UserData.map((data) => data.year)}
+									data={UserData.map((data) => data.userGain)}
+								/>
 							</div>
 						</div>
 

@@ -24,22 +24,26 @@ ChartJS.register(
 	ArcElement
 );
 
-import {UserData} from "./DataPie";
+interface PieChartProps {
+	hideLabels?: boolean;
+	title: string;
+	colors: string[];
+	labels: string[];
+	data: number[];
+}
 
-export const PieChart = () => {
+export const PieChart: React.FunctionComponent<PieChartProps> = (props) => {
+	const labels = props.hideLabels
+		? []
+		: props.labels;
+
 	const [chartData, setChartData] = useState({
-		labels: UserData.map((data) => data.year),
+		labels: labels,
 		datasets: [
 			{
-				label: "Users Gained",
-				data: UserData.map((data) => data.userGain),
-				backgroundColor: [
-					"rgba(75,192,192,1)",
-					"#ecf0f1",
-					"#50AF95",
-					"#f3ba2f",
-					"#2a71d0",
-				],
+				label: props.title,
+				data: props.data,
+				backgroundColor: props.colors,
 				borderColor: "white",
 				borderWidth: 2,
 			},
