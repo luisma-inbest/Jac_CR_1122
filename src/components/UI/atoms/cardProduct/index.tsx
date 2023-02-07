@@ -10,8 +10,8 @@ export const CardProduct = () => {
 				<img src={carExample} alt="carro" className={`${styles.cardImage}`} />
 			</div>
 			<div className={` ${styles.cardContent}`}>
-				<h5 className="bold no-margin">Modelo</h5>
-				<p className="p2 no-margin">Lorem, ipsum dolor.</p>
+				<h5 className="bold no-margin">Nombre de Modelo</h5>
+				<p className="p2 no-margin">Lorem, ipsum dolor</p>
 			</div>
 		</div>
 	);

@@ -24,6 +24,8 @@ import {ButtonProduct} from "./buttonProduct";
 
 import {PieChart} from "./charts/PieChart";
 import {BarChart} from "./charts/BarChart";
+import {ComparativeBarChart} from "./charts/ComparativeBarChart";
+import {StackedBarChart} from "./charts/StackedBarChart";
 
 export {
 	StyledInputText,
@@ -48,4 +50,6 @@ export {
 	ButtonProduct,
 	PieChart,
 	BarChart,
+	ComparativeBarChart,
+	StackedBarChart,
 };

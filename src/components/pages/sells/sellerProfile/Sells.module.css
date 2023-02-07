@@ -64,23 +64,40 @@ $grid-breakpoints: (
 	justify-content: space-between;
 	height: 25rem;
 }
+
+.titleContainer {
+	display: flex;
+}
+
 .iconContainer {
-	height: 2rem;
-	width: 2rem;
+	height: 24px;
+	width: 24px;
 }
 
 .title {
-	height: auto;
-	margin-bottom: 1rem;
+	padding-left: 10px;
+	font-weight: bold;
+	font-size: 20px;
+}
 
-	display: flex;
-	align-items: center;
+.subTitle {
+	color: var(--secondary-text);
+	font-size: 16px;
+	font-weight: 600;
 }
 
 .paragraph {
 	color: var(--secondary-text);
 }
 
+.paragraphSeparator {
+	margin-bottom: 20px;
+}
+
 .boxSeparator {
 	border-bottom: 1px solid var(--gray2);
+}
+
+.carListContainer {
+	margin-top: 28px;
 }
