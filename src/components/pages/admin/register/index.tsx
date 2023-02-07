@@ -37,6 +37,7 @@ export const Register = () => {
 	);
 
 	const handleSubmit: any = async (event: React.FormEvent<EventTarget>) => {
+		event.preventDefault();
 		const user: InterfaceUser = {
 			email,
 			password,
@@ -53,7 +54,6 @@ export const Register = () => {
 		};
 		console.log(user);
 
-		event.preventDefault();
 		try {
 			await signUp(user);
 			console.log("Usuario creado exitosamente :)");
