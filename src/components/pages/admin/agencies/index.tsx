@@ -19,6 +19,10 @@ export const Agencies = () => {
 				console.log(data.agencies);
 				setAgencies(data.agencies);
 				setLoading(false);
+			})
+			.catch((err) => {
+				console.log(err);
+				setLoading(false);
 			});
 	}, []);
 

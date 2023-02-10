@@ -1,81 +1,19 @@
-import {
-	Input,
-	StyledInputDate,
-	StyledInputSubmit,
-	StyledSelect,
-} from "@/components/UI/atoms";
-import {Agency, AgencyRowProps} from "@/models";
-import React, {useState} from "react";
-
+import React, {useReducer, useState} from "react";
+import {AgencyAPI} from "@/apis/APIAgency";
+import {Input, StyledInputSubmit, StyledSelect} from "@/components/UI/atoms";
+import {Agency} from "@/models";
+import States from "@/utils/states";
+import {reducer, initial} from "./reducer";
 import styles from "./CreateAgency.module.css";
 
 export const CreateAgency = () => {
-	const [name, setName] = useState("");
-	const [businessName, setBusinessName] = useState("");
-	const [logo, setLogo] = useState("");
-	const [logoDark, setlogoDdark] = useState("");
-	const [url, setUrl] = useState("");
-	const [service, setService] = useState("");
-	const [street, setStreet] = useState("");
-	const [exterior, setExterior] = useState("");
-	const [interior, setInterior] = useState("");
-	const [state, setState] = useState("");
-	const [city, setCity] = useState("");
-	const [suburb, setSuburb] = useState("");
-	const [postalCode, setPostalCode] = useState("");
-	const [municipality, setMunicipality] = useState("");
-	const [deputation, setDeputation] = useState("");
-	const [agencySocialMedia, setAgencySocialMedia] = useState([
-		{name: "facebook", url: "facebook.com/test"},
-		{name: "youtube", url: "youtube.com/test"},
-	]);
-	const apiURl = "http://localhost:3001/agency";
+	const [fields, dispatch] = useReducer(reducer, initial);
 
 	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault();
-		console.log("Submit");
-		let newAgency: Agency = {
-			name: name,
-			businessName,
-			logo,
-			logoDark,
-			url,
-			service,
-			street,
-			exterior_number: exterior,
-			interior_number: interior,
-			transfer_code: state,
-			state,
-			city,
-			suburb,
-			postal_code: postalCode,
-			municipality,
-			deputation,
-			agencySocialMedia,
-			active: true,
-		};
-		let agency = {
-			agency: newAgency,
-		};
-
-		console.log("Agency: ", agency);
-
-		fetch(apiURl, {
-			method: "POST",
-			headers: {
-				"Content-type": "application/json",
-			},
-			body: JSON.stringify(agency),
-		})
-			.then((res) => res.json())
-			.then((res) => {
-				// Handle response
-				console.log("Response: ", res);
-			})
-			.catch((err) => {
-				// Handle error
-				console.log("Error message: ", err);
-			});
+		console.log(fields);
+		// console.log("Agency: ", agency);
+		// AgencyAPI.create(agency);
 	}
 
 	return (
@@ -84,6 +22,7 @@ export const CreateAgency = () => {
 				className={`col-xs-11 col-sm-7 col-md-6 row ${styles.main_component}`}
 			>
 				<h1>Registrar una Agencia</h1>
+
 				<form className={styles.form} onSubmit={handleSubmit}>
 					{/* Info General */}
 					<p className="p2 bold secondary mb-0 mt-3">Información personal</p>
@@ -91,68 +30,132 @@ export const CreateAgency = () => {
 
 					<Input
 						placeholder="Nombre Comercial"
-						value={name}
-						setValue={setName}
+						value={fields.name}
+						type="reducer"
+						dispatch={dispatch}
+						dispType="name"
 					/>
 
 					<Input
 						placeholder="Razón Social"
-						value={businessName}
-						setValue={setBusinessName}
+						value={fields.businessName}
+						type="reducer"
+						dispatch={dispatch}
+						dispType="businessName"
 					/>
 
-					<Input placeholder="Logo" value={logo} setValue={setLogo} />
+					<Input
+						placeholder="Código de Transferencia"
+						value={fields.transferCode}
+						type="reducer"
+						dispatch={dispatch}
+						dispType="transferCode"
+					/>
+
+					<Input
+						placeholder="Logo"
+						value={fields.logo}
+						type="reducer"
+						dispatch={dispatch}
+						dispType="logo"
+					/>
 					<Input
 						placeholder="Logo Dark"
-						value={logoDark}
-						setValue={setlogoDdark}
+						value={fields.logoDark}
+						type="reducer"
+						dispatch={dispatch}
+						dispType="logoDark"
 					/>
-					<Input placeholder="Url" value={url} setValue={setUrl} />
+					<Input
+						placeholder="Url"
+						value={fields.url}
+						type="reducer"
+						dispatch={dispatch}
+						dispType="url"
+					/>
 
 					<StyledSelect
 						customType="secondary"
 						defaultValue=""
-						onChange={(e) => setService(e.target.value)}
+						onChange={(e) =>
+							dispatch({type: "service", value: Boolean(e.target.value)})
+						}
 					>
 						<option value="" disabled>
 							-- Servicio --
 						</option>
-						<option value="true">Cuenta con Servicio</option>
-						<option value="false">No Cuenta con Servicio</option>
+						<option value={1}>Cuenta con Servicio</option>
+						<option value={0}>No Cuenta con Servicio</option>
 					</StyledSelect>
 
 					{/* Info General */}
 					<p className="p2 bold secondary mb-0 mt-3">Ubicación</p>
 					<hr className="hr mb-1" />
 
-					<Input placeholder="Calle" value={street} setValue={setStreet} />
+					<Input
+						placeholder="Calle"
+						value={fields.street}
+						type="reducer"
+						dispatch={dispatch}
+						dispType="street"
+					/>
 					<Input
 						placeholder="Nª Interior"
-						value={interior}
-						setValue={setInterior}
+						value={fields.interiorNumber}
+						type="reducer"
+						dispatch={dispatch}
+						dispType="interiorNumber"
 					/>
 					<Input
 						placeholder="Nª Exterior"
-						value={exterior}
-						setValue={setExterior}
+						value={fields.exteriorNumber}
+						type="reducer"
+						dispatch={dispatch}
+						dispType="exteriorNumber"
 					/>
 					<Input
 						placeholder="Código Postal"
-						value={postalCode}
-						setValue={setPostalCode}
+						value={fields.postalCode}
+						type="reducer"
+						dispatch={dispatch}
+						dispType="postalCode"
 					/>
-					<Input placeholder="Estado" value={state} setValue={setState} />
-					<Input placeholder="Ciudad" value={city} setValue={setCity} />
-					<Input placeholder="Colonia" value={suburb} setValue={setSuburb} />
+					<StyledSelect
+						customType="secondary"
+						defaultValue=""
+						onChange={(e) => dispatch({type: "state", value: e.target.value})}
+					>
+						<option value="" disabled>
+							-- Estado --
+						</option>
+						{States.map((e, index) => {
+							return (
+								<option key={index} value={e.sulg}>
+									{e.name}
+								</option>
+							);
+						})}
+					</StyledSelect>
+					<Input
+						placeholder="Ciudad/Delegación"
+						value={fields.city}
+						type="reducer"
+						dispatch={dispatch}
+						dispType="city"
+					/>
+					<Input
+						placeholder="Colonia"
+						value={fields.suburb}
+						type="reducer"
+						dispatch={dispatch}
+						dispType="suburb"
+					/>
 					<Input
 						placeholder="Municipio"
-						value={municipality}
-						setValue={setMunicipality}
-					/>
-					<Input
-						placeholder="Delegación"
-						value={deputation}
-						setValue={setDeputation}
+						value={fields.municipality}
+						type="reducer"
+						dispatch={dispatch}
+						dispType="municipality"
 					/>
 
 					<StyledInputSubmit

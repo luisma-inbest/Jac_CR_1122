@@ -10,7 +10,6 @@ import {StyledSelect} from "./StyledSelect";
 
 import {NavbarLink} from "./StyledLink";
 import {Input} from "./input";
-import {DropdownMenu} from "./dropdownMenu";
 import {MenuItem} from "./menuItem";
 import {Path} from "./path";
 
@@ -41,7 +40,6 @@ export {
 	Input,
 	MenuItem,
 	NavbarLink,
-	DropdownMenu,
 	Path,
 	CardFunnel,
 	CardHistory,

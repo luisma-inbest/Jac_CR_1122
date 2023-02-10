@@ -4,20 +4,20 @@ export interface Agency {
 	logo: string;
 	logoDark: string;
 	url: string;
-	service: string;
+	service: boolean;
 	street: string;
-	exterior_number: string;
-	interior_number: string;
+	exteriorNumber: string;
+	interiorNumber: string;
 	state: string;
-	transfer_code: string;
+	transferCode: string;
 	city: string;
 	suburb: string;
-	postal_code: string;
+	postalCode: string;
 	municipality: string;
 	deputation: string;
-	// manager: string;
-	// phone: string;
-	// email: string;
+	manager?: string;
+	phone?: string;
+	email?: string;
 	active: boolean;
 	agencySocialMedia: any;
 }

@@ -10,6 +10,7 @@ import {AgencyRow} from "./agencyRow";
 import {SalesInfoCard} from "./salesInfoCard";
 import {PieChartLabel} from "./pieChartLabel";
 import {StackedBarChartLabel} from "./stackedBarChartLabel";
+import {DropdownMenu} from "./dropdownMenu";
 
 export {
 	LeadsTable,
@@ -24,4 +25,5 @@ export {
 	LeadRow,
 	UserRow,
 	AgencyRow,
+	DropdownMenu,
 };

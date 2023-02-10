@@ -14,7 +14,8 @@
 			"@/assets/*": ["./assets/*"],
 			"@/context/*": ["./context/*"],
 			"@/routes/*": ["./routes/*"],
-			"@/models/*": ["./models/*"]
+			"@/models/*": ["./models/*"],
+			"@/utils/*": ["./utils/*"]
 		},
 		"allowJs": false,
 		"skipLibCheck": true,

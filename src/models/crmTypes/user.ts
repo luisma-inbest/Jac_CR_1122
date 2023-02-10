@@ -1,14 +1,14 @@
-export interface InterfaceUser {
+export interface User {
 	email: string;
 	password: string;
-	firstName: string;
-	lastName: string;
+	userEmails: any[];
+	userPhones: any[];
+	first_name: string;
+	last_name: string;
 	gender: string;
 	nickname: string;
-	phoneNumber: string;
-	personalEmail: string;
-	birthDate: string;
-	state: string;
-	agency: string;
-	role: string;
+	birth_date: string;
+	AgencyId: string;
+	userRole: string;
+	position: string;
 }

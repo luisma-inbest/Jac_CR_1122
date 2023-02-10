@@ -36,10 +36,7 @@ export const DropdownMenu = (props: Props) => {
 				submenu={props.submenu}
 				dropped={dropped}
 			/>
-			<div
-				className={`${styles.dropdownContent} ${dropped ? "show" : ""}`}
-				id={props.icon}
-			>
+			<div className={`${styles.dropdownContent} ${dropped ? "show" : ""}`}>
 				{props.subitems.map((item: any) => {
 					return (
 						<Link
