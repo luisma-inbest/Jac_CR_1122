@@ -16,7 +16,7 @@ import {signUp} from "@/components/pages/authentication/AuthFuncs";
 
 import UserContext, {UserContextType} from "@/context/UserContext";
 
-import {InterfaceUser} from "@/models";
+import {User} from "@/models";
 
 export const Register = () => {
 	const [email, setEmail] = useState("");
@@ -38,7 +38,7 @@ export const Register = () => {
 
 	const handleSubmit: any = async (event: React.FormEvent<EventTarget>) => {
 		event.preventDefault();
-		const user: InterfaceUser = {
+		const user: User = {
 			email,
 			password,
 			firstName,
@@ -46,11 +46,14 @@ export const Register = () => {
 			birthDate,
 			nickname,
 			gender,
-			personalEmail,
-			phoneNumber,
+			userEmails: [],
+			userPhones: [],
 			state,
-			agency,
-			role,
+			AgencyId: agency,
+			userRole: role,
+			position: "",
+			// personalEmail: "",
+			// phoneNumber: "",
 		};
 		console.log(user);
 
@@ -84,13 +87,15 @@ export const Register = () => {
 					<Input
 						placeholder="Nombre(s)"
 						value={firstName}
-						setValue={setFirstName}
+						type="state"
+						params={{setValue: setFirstName}}
 					/>
 
 					<Input
 						placeholder="Apellidos"
 						value={lastName}
-						setValue={setLastName}
+						type="state"
+						params={{setValue: setLastName}}
 					/>
 
 					<label className="p2 semi-bold">Fecha de Nacimiento </label>
@@ -114,7 +119,8 @@ export const Register = () => {
 					<Input
 						placeholder="Email personal"
 						value={personalEmail}
-						setValue={setPersonalEmail}
+						type="state"
+						params={{setValue: setPersonalEmail}}
 					/>
 
 					{/* Info Profesional */}
@@ -124,26 +130,44 @@ export const Register = () => {
 					<Input
 						placeholder="Nickname"
 						value={nickname}
-						setValue={setNickname}
+						type="state"
+						params={{setValue: setNickname}}
 					/>
 
-					<Input placeholder="Email" value={email} setValue={setEmail} />
+					<Input
+						placeholder="Email"
+						value={email}
+						type="state"
+						params={{setValue: setEmail}}
+					/>
 
 					<Input
 						placeholder="Contraseña"
 						value={password}
-						setValue={setPassword}
+						type="state"
+						params={{setValue: setPassword}}
 					/>
 
 					<Input
 						placeholder="Número celular"
 						value={phoneNumber}
-						setValue={setPhoneNumber}
+						type="state"
+						params={{setValue: setPhoneNumber}}
 					/>
 
-					<Input placeholder="Estado" value={state} setValue={setState} />
+					<Input
+						placeholder="Estado"
+						value={state}
+						type="state"
+						params={{setValue: setState}}
+					/>
 
-					<Input placeholder="Agencia" value={agency} setValue={setAgency} />
+					<Input
+						placeholder="Agencia"
+						value={agency}
+						type="state"
+						params={{setValue: setAgency}}
+					/>
 
 					<StyledSelect
 						customType="secondary"

@@ -37,7 +37,12 @@ export const RegisterActivity = (props: Props) => {
 					action=""
 					onSubmit={(e) => e.preventDefault()}
 				>
-					<Input placeholder="Titulo" value={val} setValue={setVal} />
+					<Input
+						placeholder="Titulo"
+						value={val}
+						type="state"
+						params={{setValue: setVal}}
+					/>
 					<StyledTextArea placeholder="Comentarios"></StyledTextArea>
 					<StyledInputSelect>
 						<option value="value2" selected disabled>

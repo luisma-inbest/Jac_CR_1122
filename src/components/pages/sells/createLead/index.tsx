@@ -67,12 +67,42 @@ const First = (props: FirstProps) => {
 	return (
 		<>
 			<form action="" onSubmit={(e) => e.preventDefault()}>
-				<Input placeholder="Nombre" value={val} setValue={setVal} />
-				<Input placeholder="Perfil" value={val} setValue={setVal} />
-				<Input placeholder="Apellidos" value={val} setValue={setVal} />
-				<Input placeholder="Número Celular" value={val} setValue={setVal} />
-				<Input placeholder="Telefono Fijo" value={val} setValue={setVal} />
-				<Input placeholder="Correo Electronico" value={val} setValue={setVal} />
+				<Input
+					placeholder="Nombre"
+					value={val}
+					type="state"
+					params={{setValue: setVal}}
+				/>
+				<Input
+					placeholder="Perfil"
+					value={val}
+					type="state"
+					params={{setValue: setVal}}
+				/>
+				<Input
+					placeholder="Apellidos"
+					value={val}
+					type="state"
+					params={{setValue: setVal}}
+				/>
+				<Input
+					placeholder="Número Celular"
+					value={val}
+					type="state"
+					params={{setValue: setVal}}
+				/>
+				<Input
+					placeholder="Telefono Fijo"
+					value={val}
+					type="state"
+					params={{setValue: setVal}}
+				/>
+				<Input
+					placeholder="Correo Electronico"
+					value={val}
+					type="state"
+					params={{setValue: setVal}}
+				/>
 				<StyledInputSubmit
 					value="siguiente"
 					customType="primary"
@@ -96,9 +126,24 @@ const Second = (props: SecondProps) => {
 	return (
 		<>
 			<form onSubmit={props.submit}>
-				<Input placeholder="Tipo de Compra" value={val} setValue={setVal} />
-				<Input placeholder="Tipo de Referencia" value={val} setValue={setVal} />
-				<Input placeholder="Unidades" value={val} setValue={setVal} />
+				<Input
+					placeholder="Tipo de Compra"
+					value={val}
+					type="state"
+					params={{setValue: setVal}}
+				/>
+				<Input
+					placeholder="Tipo de Referencia"
+					value={val}
+					type="state"
+					params={{setValue: setVal}}
+				/>
+				<Input
+					placeholder="Unidades"
+					value={val}
+					type="state"
+					params={{setValue: setVal}}
+				/>
 				<StyledInputSubmit value="Crear" customType="primary" />
 			</form>
 			<span className="buttonContainer">

@@ -1,23 +1,34 @@
 import React, {useState} from "react";
 import styles from "./Input.module.css";
 
-interface Props {
+type StateProps = {
+	setValue: (value: string) => void;
+};
+type ReducerProps = {
+	dispatch: any;
+	dispType: string;
+};
+
+type ConditionalProps =
+	| {type: "state"; params: StateProps}
+	| {type: "reducer"; params: ReducerProps};
+
+type Props = {
 	placeholder: string;
 	value: string;
-	setValue?: (value: string) => void;
-	type?: string;
-	dispatch?: any;
-	dispType?: string;
-}
+} & ConditionalProps;
 
 export const Input = (props: Props) => {
 	function handleChane(e: any) {
 		switch (props.type) {
 			case "reducer":
-				props.dispatch({type: props.dispType, value: e.target.value});
+				props.params.dispatch({
+					type: props.params.dispType,
+					value: e.target.value,
+				});
 				break;
 			default:
-				props.setValue!(e.target.value);
+				props.params.setValue!(e.target.value);
 				break;
 		}
 	}

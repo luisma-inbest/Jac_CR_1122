@@ -11,13 +11,14 @@ export const Admin = () => {
 		const user: User = {
 			email: "alex170396@gmail.com",
 			password: "12345",
-			first_name: "Test",
-			last_name: "superboss",
-			birth_date: "1996-03-17",
+			firstName: "Test",
+			lastName: "superboss",
+			birthDate: "1996-03-17",
 			nickname: "10alexm",
 			gender: "H",
 			userRole: "bdc",
 			AgencyId: "1",
+			state: "",
 			position: "TestPos",
 			userEmails: [
 				{email: "alex170396@gmail.com"},

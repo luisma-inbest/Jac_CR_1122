@@ -32,46 +32,40 @@ export const CreateAgency = () => {
 						placeholder="Nombre Comercial"
 						value={fields.name}
 						type="reducer"
-						dispatch={dispatch}
-						dispType="name"
+						params={{dispatch: dispatch, dispType: "name"}}
 					/>
 
 					<Input
 						placeholder="Razón Social"
 						value={fields.businessName}
 						type="reducer"
-						dispatch={dispatch}
-						dispType="businessName"
+						params={{dispatch: dispatch, dispType: "businessName"}}
 					/>
 
 					<Input
 						placeholder="Código de Transferencia"
 						value={fields.transferCode}
 						type="reducer"
-						dispatch={dispatch}
-						dispType="transferCode"
+						params={{dispatch: dispatch, dispType: "transferCode"}}
 					/>
 
 					<Input
 						placeholder="Logo"
 						value={fields.logo}
 						type="reducer"
-						dispatch={dispatch}
-						dispType="logo"
+						params={{dispatch: dispatch, dispType: "logo"}}
 					/>
 					<Input
 						placeholder="Logo Dark"
 						value={fields.logoDark}
 						type="reducer"
-						dispatch={dispatch}
-						dispType="logoDark"
+						params={{dispatch: dispatch, dispType: "logoDark"}}
 					/>
 					<Input
 						placeholder="Url"
 						value={fields.url}
 						type="reducer"
-						dispatch={dispatch}
-						dispType="url"
+						params={{dispatch: dispatch, dispType: "url"}}
 					/>
 
 					<StyledSelect
@@ -96,29 +90,25 @@ export const CreateAgency = () => {
 						placeholder="Calle"
 						value={fields.street}
 						type="reducer"
-						dispatch={dispatch}
-						dispType="street"
+						params={{dispatch: dispatch, dispType: "street"}}
 					/>
 					<Input
 						placeholder="Nª Interior"
 						value={fields.interiorNumber}
 						type="reducer"
-						dispatch={dispatch}
-						dispType="interiorNumber"
+						params={{dispatch: dispatch, dispType: "interiorNumber"}}
 					/>
 					<Input
 						placeholder="Nª Exterior"
 						value={fields.exteriorNumber}
 						type="reducer"
-						dispatch={dispatch}
-						dispType="exteriorNumber"
+						params={{dispatch: dispatch, dispType: "exteriorNumber"}}
 					/>
 					<Input
 						placeholder="Código Postal"
 						value={fields.postalCode}
 						type="reducer"
-						dispatch={dispatch}
-						dispType="postalCode"
+						params={{dispatch: dispatch, dispType: "postalCode"}}
 					/>
 					<StyledSelect
 						customType="secondary"
@@ -140,22 +130,19 @@ export const CreateAgency = () => {
 						placeholder="Ciudad/Delegación"
 						value={fields.city}
 						type="reducer"
-						dispatch={dispatch}
-						dispType="city"
+						params={{dispatch: dispatch, dispType: "city"}}
 					/>
 					<Input
 						placeholder="Colonia"
 						value={fields.suburb}
 						type="reducer"
-						dispatch={dispatch}
-						dispType="suburb"
+						params={{dispatch: dispatch, dispType: "suburb"}}
 					/>
 					<Input
 						placeholder="Municipio"
 						value={fields.municipality}
 						type="reducer"
-						dispatch={dispatch}
-						dispType="municipality"
+						params={{dispatch: dispatch, dispType: "municipality"}}
 					/>
 
 					<StyledInputSubmit

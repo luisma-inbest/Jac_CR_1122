@@ -3,12 +3,13 @@ export interface User {
 	password: string;
 	userEmails: any[];
 	userPhones: any[];
-	first_name: string;
-	last_name: string;
+	firstName: string;
+	lastName: string;
 	gender: string;
 	nickname: string;
-	birth_date: string;
+	birthDate: string;
 	AgencyId: string;
 	userRole: string;
 	position: string;
+	state: string;
 }

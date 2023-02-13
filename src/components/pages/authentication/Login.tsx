@@ -96,11 +96,17 @@ export const Login = () => {
 							<LogoFull color={logoColor} size="70%" />
 						</div>
 						<form className={styles.form} onSubmit={handleSubmit}>
-							<Input placeholder="Correo" value={email} setValue={setEmail} />
+							<Input
+								placeholder="Correo"
+								value={email}
+								type="state"
+								params={{setValue: setEmail}}
+							/>
 							<Input
 								placeholder="Contraseña"
 								value={password}
-								setValue={setPassword}
+								type="state"
+								params={{setValue: setPassword}}
 							/>
 
 							<div className={`${styles.checkbox}`}>

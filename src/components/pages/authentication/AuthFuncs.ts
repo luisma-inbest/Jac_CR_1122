@@ -4,26 +4,26 @@ import {
 	CognitoUser,
 	AuthenticationDetails,
 } from "amazon-cognito-identity-js";
-import {InterfaceUser} from "@/models";
+import {User} from "@/models";
 
 // let email = "jorge.admin@gml.com";
 // let password = "GML@Inbest123#";
 
-export function signUp(user: InterfaceUser) {
+export function signUp(user: User) {
 	let dataEmail = {Name: "email", Value: user.email};
 	let dataBirthDate = {Name: "birthdate", Value: user.birthDate};
 	let dataFirstName = {Name: "name", Value: user.firstName};
 	let dataLastName = {Name: "family_name", Value: user.lastName};
 	let dataNickname = {Name: "nickname", Value: user.nickname};
 	let dataGender = {Name: "gender", Value: user.gender};
-	let dataPhone = {Name: "phone_number", Value: user.phoneNumber};
-	let dataPersonalEmail = {
-		Name: "custom:personal_email",
-		Value: user.personalEmail,
-	};
+	// let dataPhone = {Name: "phone_number", Value: user.phoneNumber};
+	// let dataPersonalEmail = {
+	// 	Name: "custom:personal_email",
+	// 	Value: user.personalEmail,
+	// };
 	let dataState = {Name: "custom:state", Value: user.state};
-	let dataAgency = {Name: "custom:agency", Value: user.agency};
-	let dataRole = {Name: "custom:role", Value: user.role};
+	let dataAgency = {Name: "custom:agency", Value: user.AgencyId};
+	let dataRole = {Name: "custom:role", Value: user.userRole};
 
 	let attributeList = [
 		// new CognitoUserAttribute(dataEmail),
@@ -31,8 +31,8 @@ export function signUp(user: InterfaceUser) {
 		new CognitoUserAttribute(dataLastName),
 		new CognitoUserAttribute(dataGender),
 		new CognitoUserAttribute(dataNickname),
-		new CognitoUserAttribute(dataPhone),
-		new CognitoUserAttribute(dataPersonalEmail),
+		// new CognitoUserAttribute(dataPhone),
+		// new CognitoUserAttribute(dataPersonalEmail),
 		new CognitoUserAttribute(dataBirthDate),
 		new CognitoUserAttribute(dataState),
 		new CognitoUserAttribute(dataAgency),
