@@ -2,7 +2,7 @@ import React, {useState, useContext} from "react";
 import styles from "./NavBar.module.css";
 import {user} from "@/assets";
 import {Menu} from "@/models/nav/menu";
-import {MenuItem} from "@/components/UI/atoms";
+import {MenuItem, Dropdown} from "@/components/UI/atoms";
 import {DropdownMenu} from "@/components/UI/molecules";
 import {LogoFull, IconNotification, IconCross} from "@/assets";
 import UserContext, {UserContextType} from "@/context/UserContext";
@@ -13,6 +13,13 @@ interface Props {
 	state: boolean;
 	navHandler: () => void;
 }
+
+const distributors = [
+  { name: 'Guadalajara Jalisco' },
+  { name: 'Chihuahua, Chihuahua' },
+  { name: 'CDMX, México' },
+  { name: 'Monterrey, Nuevo León' },
+];
 
 export const NavBar = (props: Props) => {
 	const {User, SetUser} = useContext(UserContext) as UserContextType;
@@ -63,6 +70,9 @@ export const NavBar = (props: Props) => {
 										<p className="p3 white">correoSRChotmail.com</p>
 									</div>
 								</div>
+							</li>
+							<li>
+								<Dropdown title="Distribuidor" distributors={distributors} />
 							</li>
 							{data.map((item: any) => {
 								return (
