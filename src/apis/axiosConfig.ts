@@ -1,5 +1,6 @@
 import axios from "axios";
-const API_ROUTE = "http://localhost:3001";
+import {Backend, Domain} from "@/constants";
+const API_ROUTE = String(Backend);
 
 const api = axios.create({
 	withCredentials: false,

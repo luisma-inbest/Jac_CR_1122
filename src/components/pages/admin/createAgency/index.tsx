@@ -11,9 +11,7 @@ export const CreateAgency = () => {
 
 	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault();
-		console.log(fields);
-		// console.log("Agency: ", agency);
-		// AgencyAPI.create(agency);
+		AgencyAPI.create(fields);
 	}
 
 	return (
@@ -51,21 +49,21 @@ export const CreateAgency = () => {
 
 					<Input
 						placeholder="Logo"
-						value={fields.logo}
+						value={fields.logo!}
 						type="reducer"
 						params={{dispatch: dispatch, dispType: "logo"}}
 					/>
 					<Input
 						placeholder="Logo Dark"
-						value={fields.logoDark}
+						value={fields.logoDark!}
 						type="reducer"
 						params={{dispatch: dispatch, dispType: "logoDark"}}
 					/>
 					<Input
 						placeholder="Url"
-						value={fields.url}
+						value={fields.urlSite!}
 						type="reducer"
-						params={{dispatch: dispatch, dispType: "url"}}
+						params={{dispatch: dispatch, dispType: "urlSite"}}
 					/>
 
 					<StyledSelect
@@ -94,7 +92,7 @@ export const CreateAgency = () => {
 					/>
 					<Input
 						placeholder="Nª Interior"
-						value={fields.interiorNumber}
+						value={fields.interiorNumber!}
 						type="reducer"
 						params={{dispatch: dispatch, dispType: "interiorNumber"}}
 					/>

@@ -12,7 +12,7 @@ import {
 
 import styles from "./Register.module.css";
 
-import {signUp} from "@/components/pages/authentication/AuthFuncs";
+import {signUp} from "@/auth/AuthFuncs";
 
 import UserContext, {UserContextType} from "@/context/UserContext";
 

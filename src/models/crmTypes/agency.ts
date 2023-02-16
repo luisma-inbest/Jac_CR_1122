@@ -1,13 +1,19 @@
 export interface Agency {
 	name: string;
 	businessName: string;
-	logo: string;
-	logoDark: string;
-	url: string;
+
+	logo?: string;
+	logoDark?: string;
+	urlSite?: string;
+
+	url360View?: string;
+	urlGoogleMaps?: string;
+
 	service: boolean;
+
 	street: string;
 	exteriorNumber: string;
-	interiorNumber: string;
+	interiorNumber?: string;
 	state: string;
 	transferCode: string;
 	city: string;

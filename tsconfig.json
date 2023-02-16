@@ -15,7 +15,9 @@
 			"@/context/*": ["./context/*"],
 			"@/routes/*": ["./routes/*"],
 			"@/models/*": ["./models/*"],
-			"@/utils/*": ["./utils/*"]
+			"@/utils/*": ["./utils/*"],
+			"@/constants/*": ["./constants/*"],
+			"@/auth/*": ["./auth/*"]
 		},
 		"allowJs": false,
 		"skipLibCheck": true,

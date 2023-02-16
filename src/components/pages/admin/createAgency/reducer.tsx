@@ -5,7 +5,7 @@ type Action =
 	| {type: "businessName"; value: string}
 	| {type: "logo"; value: string}
 	| {type: "logoDark"; value: string}
-	| {type: "url"; value: string}
+	| {type: "urlSite"; value: string}
 	| {type: "street"; value: string}
 	| {type: "exteriorNumber"; value: string}
 	| {type: "interiorNumber"; value: string}
@@ -25,7 +25,7 @@ const initial: Agency = {
 	businessName: "",
 	logo: "",
 	logoDark: "",
-	url: "",
+	urlSite: "",
 	service: true,
 	street: "",
 	exteriorNumber: "",
@@ -51,8 +51,8 @@ function reducer(state: Agency, action: Action): Agency {
 			return {...state, logo: action.value};
 		case "logoDark":
 			return {...state, logoDark: action.value};
-		case "url":
-			return {...state, url: action.value};
+		case "urlSite":
+			return {...state, urlSite: action.value};
 		case "service":
 			return {...state, service: action.value};
 		case "street":

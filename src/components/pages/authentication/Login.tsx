@@ -16,7 +16,7 @@ import {
 	getSession,
 	logIn,
 	logOut,
-} from "./AuthFuncs";
+} from "@/auth/AuthFuncs";
 
 export const Login = () => {
 	const navigate = useNavigate();

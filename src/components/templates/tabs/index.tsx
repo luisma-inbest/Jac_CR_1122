@@ -10,7 +10,7 @@ export const Tabs = (props: any) => {
 	const prueba = useRef<HTMLDivElement>(null);
 
 	function toggleTab(tab: number) {
-		console.log("toggleTab" + tab);
+		// console.log("toggleTab" + tab);
 		setActiveTab(tab);
 		if (props.full) {
 			prueba!.current!.style.left = `calc(25% * ${tab} )`;

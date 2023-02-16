@@ -1,32 +1,24 @@
-import {
-	getParams,
-	getSession,
-} from "@/components/pages/authentication/AuthFuncs";
-import React from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Navigate, Outlet} from "react-router-dom";
+import {getParams, getSession} from "@/auth/AuthFuncs";
+import {Domain} from "@/constants";
+
+import {user} from "@/assets";
+import {handleMainPage} from "@/models/routes&permissions";
+import {Link, useNavigate} from "react-router-dom";
+import UserContext, {UserContextType} from "@/context/UserContext";
 
 export const ProtectedRoute = ({
 	children,
 	isAllowed,
-	redirectTo = "/login",
+	redirectTo = "/",
 }: any) => {
 	if (!isAllowed) {
-		// validateSesion(redirectTo);
-		console.log("no autorizado...");
-		return <Navigate to={redirectTo} />;
+		// validateSesion(redirectTo)
+		let path = window.location.pathname;
+
+		return <Navigate to={redirectTo} state={{path: path}} />;
 	}
 
 	return children ? children : <Outlet />;
 };
-
-function validateSesion(redirectTo: string) {
-	getParams()
-		.then((data) => {
-			console.log(data);
-		})
-		.catch((err) => {
-			console.log("user not logged");
-			console.log(err);
-			return <Navigate to={redirectTo} />;
-		});
-}

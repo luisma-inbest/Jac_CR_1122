@@ -3,6 +3,7 @@ import {Agency} from "@/models";
 
 export const AgencyAPI = {
 	create: async function (agency: Agency) {
+		console.log("create agency", agency);
 		try {
 			const response = await api.request({
 				url: `/agency/`,
@@ -16,5 +17,8 @@ export const AgencyAPI = {
 				console.log(error.response.data);
 			}
 		}
+	},
+	get: async function () {
+		console.log("get agency");
 	},
 };

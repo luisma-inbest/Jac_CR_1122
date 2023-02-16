@@ -6,7 +6,7 @@ import {MenuItem} from "@/components/UI/atoms";
 import {DropdownMenu} from "@/components/UI/molecules";
 import {LogoFull, IconNotification, IconCross} from "@/assets";
 import UserContext, {UserContextType} from "@/context/UserContext";
-import {logOut} from "@/components/pages/authentication/AuthFuncs";
+import {logOut} from "@/auth/AuthFuncs";
 import {Navigate, useNavigate} from "react-router-dom";
 
 interface Props {
