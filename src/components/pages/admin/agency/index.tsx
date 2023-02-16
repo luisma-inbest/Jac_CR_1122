@@ -16,10 +16,12 @@ import {
 	AgencySocial,
 	AgencyUsers,
 } from "@/components/UI/organisms";
+import {Domain} from "@/constants";
 
 export const Agency = () => {
 	const [leadView, setLeadView] = useState(false);
 	const [lead, seadLead] = useState(null);
+	// let agencyId = window.location.pathname.replace("/admin/agencies/", "");
 
 	const PageTabs = ["General", "Ubicación", "Colaboradores", "Redes"];
 	const TabOne = <AgencyGeneral />;

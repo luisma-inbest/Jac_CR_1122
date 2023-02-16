@@ -8,17 +8,25 @@ import {
 	Button,
 	StyledSelect,
 	Input,
+	Loader,
 } from "@/components/UI/atoms";
+import {AgencyAPI} from "@/apis/APIAgency";
 
 import styles from "./Register.module.css";
 
 import {signUp} from "@/auth/AuthFuncs";
+import States from "@/utils/states";
 
 import UserContext, {UserContextType} from "@/context/UserContext";
 
 import {User} from "@/models";
+import {useQuery} from "react-query";
 
-export const Register = () => {
+interface Props {
+	agency?: string;
+}
+
+export const Register = (props: Props) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [firstName, setFirstName] = useState("");
@@ -35,6 +43,12 @@ export const Register = () => {
 	const logoColor = getComputedStyle(document.body).getPropertyValue(
 		"--main-color"
 	);
+	const {isLoading, data, isError, error} = useQuery({
+		queryKey: ["agencies"],
+		queryFn: AgencyAPI.getAll,
+		staleTime: 5 * (60 * 1000), // 5 mins
+		cacheTime: 10 * (60 * 1000), // 10 mins
+	});
 
 	const handleSubmit: any = async (event: React.FormEvent<EventTarget>) => {
 		event.preventDefault();
@@ -72,6 +86,16 @@ export const Register = () => {
 			}
 		}
 	};
+
+	if (isLoading) {
+		return (
+			<div className="row">
+				<div className={`col-xs-12 ${styles.loaderContainer}`}>
+					<Loader />
+				</div>
+			</div>
+		);
+	}
 
 	return (
 		<div className={`row ${styles.formContainer}`}>
@@ -155,19 +179,39 @@ export const Register = () => {
 						params={{setValue: setPhoneNumber}}
 					/>
 
-					<Input
-						placeholder="Estado"
-						value={state}
-						type="state"
-						params={{setValue: setState}}
-					/>
+					<StyledSelect
+						customType="secondary"
+						defaultValue=""
+						onChange={(e) => setState(e.target.value)}
+					>
+						<option value="" disabled>
+							*-- Estado --
+						</option>
+						{data.map((e: any, index: any) => {
+							return (
+								<option key={index} value={e.sulg}>
+									{e.name}
+								</option>
+							);
+						})}
+					</StyledSelect>
 
-					<Input
-						placeholder="Agencia"
-						value={agency}
-						type="state"
-						params={{setValue: setAgency}}
-					/>
+					<StyledSelect
+						customType="secondary"
+						defaultValue=""
+						onChange={(e) => setAgency(e.target.value)}
+					>
+						<option value="" disabled>
+							*-- Agencia --
+						</option>
+						{States.map((e, index) => {
+							return (
+								<option key={index} value={e.sulg}>
+									{e.name}
+								</option>
+							);
+						})}
+					</StyledSelect>
 
 					<StyledSelect
 						customType="secondary"

@@ -31,8 +31,8 @@
 }
 
 .active {
-	background-color: var(--cold-lead);
+	background-color: var(--active-agency);
 }
 .unactive {
-	background-color: var(--tracing-lead);
+	background-color: var(--unactive-agency);
 }

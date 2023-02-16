@@ -27,21 +27,21 @@ export const CreateAgency = () => {
 					<hr className="hr mb-1" />
 
 					<Input
-						placeholder="Nombre Comercial"
+						placeholder="*Nombre Comercial"
 						value={fields.name}
 						type="reducer"
 						params={{dispatch: dispatch, dispType: "name"}}
 					/>
 
 					<Input
-						placeholder="Razón Social"
+						placeholder="*Razón Social"
 						value={fields.businessName}
 						type="reducer"
 						params={{dispatch: dispatch, dispType: "businessName"}}
 					/>
 
 					<Input
-						placeholder="Código de Transferencia"
+						placeholder="*Código de Transferencia"
 						value={fields.transferCode}
 						type="reducer"
 						params={{dispatch: dispatch, dispType: "transferCode"}}
@@ -74,7 +74,7 @@ export const CreateAgency = () => {
 						}
 					>
 						<option value="" disabled>
-							-- Servicio --
+							*-- Servicio --
 						</option>
 						<option value={1}>Cuenta con Servicio</option>
 						<option value={0}>No Cuenta con Servicio</option>
@@ -85,7 +85,7 @@ export const CreateAgency = () => {
 					<hr className="hr mb-1" />
 
 					<Input
-						placeholder="Calle"
+						placeholder="*Calle"
 						value={fields.street}
 						type="reducer"
 						params={{dispatch: dispatch, dispType: "street"}}
@@ -97,13 +97,13 @@ export const CreateAgency = () => {
 						params={{dispatch: dispatch, dispType: "interiorNumber"}}
 					/>
 					<Input
-						placeholder="Nª Exterior"
+						placeholder="*Nª Exterior"
 						value={fields.exteriorNumber}
 						type="reducer"
 						params={{dispatch: dispatch, dispType: "exteriorNumber"}}
 					/>
 					<Input
-						placeholder="Código Postal"
+						placeholder="*Código Postal"
 						value={fields.postalCode}
 						type="reducer"
 						params={{dispatch: dispatch, dispType: "postalCode"}}
@@ -114,7 +114,7 @@ export const CreateAgency = () => {
 						onChange={(e) => dispatch({type: "state", value: e.target.value})}
 					>
 						<option value="" disabled>
-							-- Estado --
+							*-- Estado --
 						</option>
 						{States.map((e, index) => {
 							return (
@@ -125,19 +125,19 @@ export const CreateAgency = () => {
 						})}
 					</StyledSelect>
 					<Input
-						placeholder="Ciudad/Delegación"
+						placeholder="*Ciudad/Delegación"
 						value={fields.city}
 						type="reducer"
 						params={{dispatch: dispatch, dispType: "city"}}
 					/>
 					<Input
-						placeholder="Colonia"
+						placeholder="*Colonia"
 						value={fields.suburb}
 						type="reducer"
 						params={{dispatch: dispatch, dispType: "suburb"}}
 					/>
 					<Input
-						placeholder="Municipio"
+						placeholder="*Municipio"
 						value={fields.municipality}
 						type="reducer"
 						params={{dispatch: dispatch, dispType: "municipality"}}
