@@ -16,12 +16,12 @@ export const Home = () => {
 		let mainPage = handleMainPage(role).replace("/", "");
 		if (location.state != null) {
 			path = location?.state.path;
-			console.log("trae path", path);
+			// console.log("trae path", path);
 			let arr = path.split("/"); //la posicion 0 esta vacia
-			console.log(arr);
+			// console.log(arr);
 			console.log(mainPage);
 			if (arr[1] == mainPage) {
-				console.log("tiene acceso..");
+				// console.log("tiene acceso..");
 				mainPage = path;
 			}
 		}

@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import {useQuery} from "react-query";
 import {Tabs} from "@/components/templates";
 import {Button, Loader} from "@/components/UI/atoms";
 import {useNavigate} from "react-router-dom";
@@ -6,27 +7,19 @@ import {AgenciesTable} from "@/components/UI/organisms";
 
 import styles from "./Agencies.module.css";
 import {AgencyRowProps} from "@/models";
+import {AgencyAPI} from "@/apis/APIAgency";
 
 export const Agencies = () => {
 	const [agencies, setAgencies] = useState<AgencyRowProps[]>([]);
 	const navigate = useNavigate();
-	const [loading, setLoading] = useState(true);
+	const {isLoading, data, isError, error} = useQuery({
+		queryKey: ["agencies"],
+		queryFn: AgencyAPI.getAll,
+		staleTime: 5 * (60 * 1000), // 5 mins
+		cacheTime: 10 * (60 * 1000), // 10 mins
+	});
 
-	useEffect(() => {
-		fetch("http://localhost:3001/agency")
-			.then((response) => response.json())
-			.then((data) => {
-				console.log(data.agencies);
-				setAgencies(data.agencies);
-				setLoading(false);
-			})
-			.catch((err) => {
-				console.log(err);
-				setLoading(false);
-			});
-	}, []);
-
-	if (loading) {
+	if (isLoading) {
 		return (
 			<div className="row">
 				<div className={`col-xs-12 ${styles.loaderContainer}`}>
@@ -39,7 +32,7 @@ export const Agencies = () => {
 	return (
 		<div className="row">
 			<div className={`col-xs-12 ${styles.tableContainer}`}>
-				<AgenciesTable agencies={agencies} />
+				<AgenciesTable agencies={data} />
 			</div>
 			<div className="col-xs-12 mt-5">
 				<Button

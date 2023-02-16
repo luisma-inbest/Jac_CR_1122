@@ -18,7 +18,20 @@ export const AgencyAPI = {
 			}
 		}
 	},
-	get: async function () {
-		console.log("get agency");
+	getAll: async function () {
+		console.log("get agencies");
+		try {
+			const response = await api.request({
+				url: `/agency/`,
+				method: "GET",
+			});
+			//el primer data es para acceder a la respuesta y en el segundo ya esta el arreglo
+			return response.data.data;
+		} catch (error: any) {
+			console.log("Hubo un error");
+			if (error.response) {
+				console.log(error.response.data);
+			}
+		}
 	},
 };

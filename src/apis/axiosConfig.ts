@@ -1,6 +1,6 @@
 import axios from "axios";
 import {Backend, Domain} from "@/constants";
-const API_ROUTE = String(Backend);
+const API_ROUTE = Backend;
 
 const api = axios.create({
 	withCredentials: false,
