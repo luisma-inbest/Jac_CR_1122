@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useReducer, useState} from "react";
 
 import {Logo, LogoFull} from "@/assets";
 import {
@@ -14,31 +14,19 @@ import {AgencyAPI} from "@/apis/APIAgency";
 
 import styles from "./Register.module.css";
 
-import {signUp} from "@/auth/AuthFuncs";
 import States from "@/utils/states";
-
-import UserContext, {UserContextType} from "@/context/UserContext";
+import {reducer, initial} from "./reducer";
 
 import {User} from "@/models";
 import {useQuery} from "react-query";
+import {UserAPI} from "@/apis";
 
 interface Props {
 	agency?: string;
 }
 
 export const Register = (props: Props) => {
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const [firstName, setFirstName] = useState("");
-	const [lastName, setLastName] = useState("");
-	const [birthDate, setBirthDate] = useState("");
-	const [nickname, setNickname] = useState("");
-	const [gender, setGender] = useState("");
-	const [personalEmail, setPersonalEmail] = useState("");
-	const [phoneNumber, setPhoneNumber] = useState("");
-	const [state, setState] = useState("");
-	const [agency, setAgency] = useState("");
-	const [role, setRole] = useState("");
+	const [fields, dispatch] = useReducer(reducer, initial);
 
 	const logoColor = getComputedStyle(document.body).getPropertyValue(
 		"--main-color"
@@ -52,39 +40,23 @@ export const Register = (props: Props) => {
 
 	const handleSubmit: any = async (event: React.FormEvent<EventTarget>) => {
 		event.preventDefault();
-		const user: User = {
-			email,
-			password,
-			firstName,
-			lastName,
-			birthDate,
-			nickname,
-			gender,
-			userEmails: [],
-			userPhones: [],
-			state,
-			AgencyId: agency,
-			userRole: role,
-			position: "",
-			// personalEmail: "",
-			// phoneNumber: "",
-		};
-		console.log(user);
+		UserAPI.create(fields);
+		console.log(fields);
 
-		try {
-			await signUp(user);
-			console.log("Usuario creado exitosamente :)");
-		} catch (error: any) {
-			let code = error.code;
-			console.log(error);
-			switch (code) {
-				case "UsernameExistsException":
-					console.log("El usuario ya existe");
-					break;
-				default:
-					console.log("Error al crear el usuario");
-			}
-		}
+		// try {
+		// 	await signUp(user);
+		// 	console.log("Usuario creado exitosamente :)");
+		// } catch (error: any) {
+		// 	let code = error.code;
+		// 	console.log(error);
+		// 	switch (code) {
+		// 		case "UsernameExistsException":
+		// 			console.log("El usuario ya existe");
+		// 			break;
+		// 		default:
+		// 			console.log("Error al crear el usuario");
+		// 	}
+		// }
 	};
 
 	if (isLoading) {
@@ -110,41 +82,45 @@ export const Register = (props: Props) => {
 
 					<Input
 						placeholder="Nombre(s)"
-						value={firstName}
-						type="state"
-						params={{setValue: setFirstName}}
+						value={fields.firstName}
+						type="reducer"
+						params={{dispatch: dispatch, dispType: "firstName"}}
 					/>
 
 					<Input
 						placeholder="Apellidos"
-						value={lastName}
-						type="state"
-						params={{setValue: setLastName}}
+						value={fields.lastName}
+						type="reducer"
+						params={{dispatch: dispatch, dispType: "lastName"}}
 					/>
 
 					<label className="p2 semi-bold">Fecha de Nacimiento </label>
 					<StyledInputDate
 						customType="secondary"
-						onChange={(value) => setBirthDate(value.target.value)}
+						onChange={(e) =>
+							dispatch({type: "birthDate", value: e.target.value})
+						}
 					/>
 
 					<StyledSelect
 						customType="secondary"
 						defaultValue=""
-						onChange={(e) => console.log(e.target.value)}
+						onChange={(e) =>
+							dispatch({type: "birthDate", value: e.target.value})
+						}
 					>
 						<option value="" disabled>
 							-- Género --
 						</option>
-						<option value="admin">Masculino</option>
-						<option value="sells">Femenino</option>
+						<option value="man">Masculino</option>
+						<option value="woman">Femenino</option>
 					</StyledSelect>
 
 					<Input
 						placeholder="Email personal"
-						value={personalEmail}
-						type="state"
-						params={{setValue: setPersonalEmail}}
+						value={fields.userEmails[0]}
+						type="reducer"
+						params={{dispatch: dispatch, dispType: "userEmails"}}
 					/>
 
 					{/* Info Profesional */}
@@ -153,41 +129,41 @@ export const Register = (props: Props) => {
 
 					<Input
 						placeholder="Nickname"
-						value={nickname}
-						type="state"
-						params={{setValue: setNickname}}
+						value={fields.nickname}
+						type="reducer"
+						params={{dispatch: dispatch, dispType: "nickname"}}
 					/>
 
 					<Input
 						placeholder="Email"
-						value={email}
-						type="state"
-						params={{setValue: setEmail}}
+						value={fields.email}
+						type="reducer"
+						params={{dispatch: dispatch, dispType: "email"}}
 					/>
 
 					<Input
 						placeholder="Contraseña"
-						value={password}
-						type="state"
-						params={{setValue: setPassword}}
+						value={fields.password}
+						type="reducer"
+						params={{dispatch: dispatch, dispType: "password"}}
 					/>
 
 					<Input
 						placeholder="Número celular"
-						value={phoneNumber}
-						type="state"
-						params={{setValue: setPhoneNumber}}
+						value={fields.userPhones[0]}
+						type="reducer"
+						params={{dispatch: dispatch, dispType: "userPhones"}}
 					/>
 
 					<StyledSelect
 						customType="secondary"
 						defaultValue=""
-						onChange={(e) => setState(e.target.value)}
+						onChange={(e) => dispatch({type: "state", value: e.target.value})}
 					>
 						<option value="" disabled>
 							*-- Estado --
 						</option>
-						{data.map((e: any, index: any) => {
+						{States.map((e: any, index: any) => {
 							return (
 								<option key={index} value={e.sulg}>
 									{e.name}
@@ -199,14 +175,16 @@ export const Register = (props: Props) => {
 					<StyledSelect
 						customType="secondary"
 						defaultValue=""
-						onChange={(e) => setAgency(e.target.value)}
+						onChange={(e) =>
+							dispatch({type: "AgencyId", value: e.target.value})
+						}
 					>
 						<option value="" disabled>
 							*-- Agencia --
 						</option>
-						{States.map((e, index) => {
+						{data.map((e: any, index: any) => {
 							return (
-								<option key={index} value={e.sulg}>
+								<option key={e.id} value={e.id}>
 									{e.name}
 								</option>
 							);
@@ -216,7 +194,9 @@ export const Register = (props: Props) => {
 					<StyledSelect
 						customType="secondary"
 						defaultValue=""
-						onChange={(e) => setRole(e.target.value)}
+						onChange={(e) =>
+							dispatch({type: "userRole", value: e.target.value})
+						}
 					>
 						<option value="" disabled>
 							-- Rol del Usuario --

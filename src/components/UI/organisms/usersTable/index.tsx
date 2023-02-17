@@ -24,7 +24,7 @@ export const UsersTable = (props: UsersTableProps) => {
 				{props.users.map((user, index) => (
 					<UserRow
 						key={index}
-						name={user.name}
+						nickname={user.nickname}
 						position={user.position}
 						area={user.area}
 						manager={user.manager}

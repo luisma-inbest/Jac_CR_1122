@@ -11,33 +11,36 @@ import {User} from "@/models";
 
 export function signUp(user: User) {
 	let dataEmail = {Name: "email", Value: user.email};
-	let dataBirthDate = {Name: "birthdate", Value: user.birthDate};
-	let dataFirstName = {Name: "name", Value: user.firstName};
-	let dataLastName = {Name: "family_name", Value: user.lastName};
 	let dataNickname = {Name: "nickname", Value: user.nickname};
-	let dataGender = {Name: "gender", Value: user.gender};
+	let dataRole = {Name: "custom:role", Value: user.userRole};
+	let id = {Name: "custom:id", Value: user.userId};
+	let dataAgency = {Name: "custom:agency", Value: user.AgencyId};
+
+	// let dataBirthDate = {Name: "birthdate", Value: user.birthDate};
+	// let dataFirstName = {Name: "name", Value: user.firstName};
+	// let dataLastName = {Name: "family_name", Value: user.lastName};
+	// let dataGender = {Name: "gender", Value: user.gender};
 	// let dataPhone = {Name: "phone_number", Value: user.phoneNumber};
 	// let dataPersonalEmail = {
 	// 	Name: "custom:personal_email",
 	// 	Value: user.personalEmail,
 	// };
-	let dataState = {Name: "custom:state", Value: user.state};
-	let dataAgency = {Name: "custom:agency", Value: user.AgencyId};
-	let dataRole = {Name: "custom:role", Value: user.userRole};
+	// let dataState = {Name: "custom:state", Value: user.state};
 
 	let attributeList = [
 		// new CognitoUserAttribute(dataEmail),
-		new CognitoUserAttribute(dataFirstName),
-		new CognitoUserAttribute(dataLastName),
-		new CognitoUserAttribute(dataGender),
 		new CognitoUserAttribute(dataNickname),
-		// new CognitoUserAttribute(dataPhone),
-		// new CognitoUserAttribute(dataPersonalEmail),
-		new CognitoUserAttribute(dataBirthDate),
-		new CognitoUserAttribute(dataState),
 		new CognitoUserAttribute(dataAgency),
 		new CognitoUserAttribute(dataRole),
 		new CognitoUserAttribute(dataEmail),
+
+		// new CognitoUserAttribute(dataFirstName),
+		// new CognitoUserAttribute(dataLastName),
+		// new CognitoUserAttribute(dataGender),
+		// new CognitoUserAttribute(dataPhone),
+		// new CognitoUserAttribute(dataPersonalEmail),
+		// new CognitoUserAttribute(dataBirthDate),
+		// new CognitoUserAttribute(dataState),
 	];
 
 	return new Promise((resolve, reject) => {

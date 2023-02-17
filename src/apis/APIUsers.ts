@@ -1,32 +1,41 @@
 import {api, API_ROUTE} from "./axiosConfig";
 import {User} from "@/models";
+import {signUp} from "@/auth/AuthFuncs";
+
+function validateCognitoUser(user: User) {
+	return new Promise((resolve, reject) => {
+		signUp(user)
+			.then((data) => {
+				console.log("Usuario creado exitosamente :)");
+				resolve(true);
+			})
+			.catch((error: any) => {
+				let code = error.code;
+				console.log(error);
+				switch (code) {
+					case "UsernameExistsException":
+						console.log("El usuario ya existe");
+						break;
+					default:
+						console.log("Error al crear el usuario");
+				}
+				resolve(false);
+			});
+	});
+}
 
 export const UserAPI = {
 	test: function (): void {
 		console.log("test");
 	},
-	// get: async function (id: string, cancel = false) {
-	// 	const response = await api.request({
-	// 		baseURL: "https://some-domain.com/api",
-	// 		url: `/products/:id`,
-	// 		method: "GET",
-	// 		// retrieving the signal value by using the property name
-	// 		signal: cancel
-	// 			? cancelApiObject[this.get.name].handleRequestCancellation().signal
-	// 			: undefined,
-	// 	});
-
-	// 	// returning the product returned by the API
-	// 	return response.data.product;
-	// },
-	getAll: async function (cancel = false) {
+	getAll: async function () {
 		try {
 			const response = await api.request({
 				url: "/user/",
 				method: "GET",
 			});
-			console.log(response.data);
-			return response.data;
+			// console.log("resp:", response.data);
+			return response.data.data;
 		} catch (error) {
 			console.log(error);
 		}
@@ -40,6 +49,11 @@ export const UserAPI = {
 				data: {user: user},
 			});
 			console.log(response);
+			const cognitoresponse = await validateCognitoUser(user);
+			if (!cognitoresponse) {
+				console.log("Error al crear el usuario en cognito");
+				//TODO: deberíamos borrar el usuario
+			}
 		} catch (error: any) {
 			console.log("Hubo un error");
 			if (error.response) {

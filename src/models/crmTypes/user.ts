@@ -1,8 +1,9 @@
 export interface User {
+	userId: string;
 	email: string;
 	password: string;
-	userEmails: any[];
-	userPhones: any[];
+	userEmails: string[];
+	userPhones: string[];
 	firstName: string;
 	lastName: string;
 	gender: string;

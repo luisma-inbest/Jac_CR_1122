@@ -1,5 +1,5 @@
 export interface UserRowProps {
-	name: string;
+	nickname: string;
 	position: string;
 	area: string;
 	manager: string;

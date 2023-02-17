@@ -6,7 +6,7 @@ export const UserRow: React.FunctionComponent<UserRowProps> = (props) => {
 	return (
 		<tr className={styles.row} key={props.email}>
 			<td className={``}>
-				<span className="p3 semi-bold no-margin">{props.name}</span>
+				<span className="p3 semi-bold no-margin">{props.nickname}</span>
 				<br />
 				<span className="p4 secondary no-margin">{props.position}</span>
 			</td>

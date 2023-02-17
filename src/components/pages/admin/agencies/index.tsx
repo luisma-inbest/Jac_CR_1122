@@ -7,10 +7,10 @@ import {AgenciesTable} from "@/components/UI/organisms";
 
 import styles from "./Agencies.module.css";
 import {AgencyRowProps} from "@/models";
-import {AgencyAPI} from "@/apis/APIAgency";
+import {AgencyAPI} from "@/apis";
 
 export const Agencies = () => {
-	const [agencies, setAgencies] = useState<AgencyRowProps[]>([]);
+	const [agencies, setAgencies] = useState([]);
 	const navigate = useNavigate();
 	const {isLoading, data, isError, error} = useQuery({
 		queryKey: ["agencies"],

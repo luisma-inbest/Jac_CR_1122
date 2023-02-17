@@ -1,4 +1,4 @@
 import {AgencyAPI} from "./APIAgency";
 import {UserAPI} from "./APIUsers";
 
-export {UserAPI};
+export {UserAPI, AgencyAPI};
