@@ -23,11 +23,22 @@ export const Agency = () => {
 	const [lead, seadLead] = useState(null);
 	// let agencyId = window.location.pathname.replace("/admin/agencies/", "");
 
+	const agencySocialMedia = [
+		{
+			name: "Facebook",
+			url: "http://facebook.com/@inbest-cloud",
+		},
+		{
+			name: "YouTube",
+			url: "http://youtube.com/@inbest-cloud",
+		},
+	];
+
 	const PageTabs = ["General", "Ubicación", "Colaboradores", "Redes"];
 	const TabOne = <AgencyGeneral />;
 	const TabTwo = <AgencyLocation />;
 	const TabThree = <AgencyUsers />;
-	const TabFour = <AgencySocial />;
+	const TabFour = <AgencySocial agencySocialMedia={agencySocialMedia} />;
 	const TabsComponents = [TabOne, TabTwo, TabThree, TabFour];
 
 	return (
