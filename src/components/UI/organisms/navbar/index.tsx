@@ -21,7 +21,7 @@ const distributors = [
   { name: 'Monterrey, Nuevo León' },
 ];
 
-export const NavBar = (props: Props) => {
+export const NavBar: React.FunctionComponent<Props> = (props) => {
 	const {User, SetUser} = useContext(UserContext) as UserContextType;
 	const navigate = useNavigate();
 
@@ -39,6 +39,10 @@ export const NavBar = (props: Props) => {
 		SetUser(null);
 		navigate("/login");
 	}
+
+	const handleDistributorSelection = (distributor: any) => {
+		// Redirect?
+	};
 
 	return (
 		<div
@@ -72,7 +76,7 @@ export const NavBar = (props: Props) => {
 								</div>
 							</li>
 							<li>
-								<Dropdown title="Distribuidor" distributors={distributors} />
+								<Dropdown title="Distribuidor" menuItems={distributors} onSelection={handleDistributorSelection} />
 							</li>
 							{data.map((item: any) => {
 								return (
