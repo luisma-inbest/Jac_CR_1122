@@ -1,0 +1,26 @@
+.table {
+	width: 100%;
+	font-size: 15px;
+}
+
+.table tr {
+	display: flex;
+	flex-direction: row;
+	border-bottom: 1px solid var(--gray2);
+	padding: 1rem;
+}
+
+.table th {
+	display: flex;
+	flex-direction: row;
+	font-size: 18px;
+}
+
+.table th:nth-child(1), .table td:nth-child(1) {
+	width: 30%;
+}
+
+
+.table th:nth-child(2), .table td:nth-child(2) {
+	width: 70%;
+}

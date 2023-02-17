@@ -59,36 +59,34 @@ const MenuItem = styled.div`
 	}
 `;
 
-interface Distributor {
+interface MenuItem {
 	name: string;
 }
 
 interface DropdownProps {
 	title: string;
-	distributors: Distributor[];
+	menuItems: MenuItem[];
+	onSelection: (value: MenuItem) => void;
 }
 
 export const Dropdown: React.FC<DropdownProps> = (props) => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const [selectedDistributor, setSelectedDistributor] = useState<Distributor>(
-		props.distributors[0]
+	const [selectedMenuItem, setSelectedMenuItem] = useState<MenuItem>(
+		props.menuItems[0]
 	);
 
 	const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-	const handleDistributorChange = (distributor: Distributor) => {
-		setSelectedDistributor(distributor);
+	const handleMenuItemChange = (menuItem: MenuItem) => {
+		setSelectedMenuItem(menuItem);
 		setIsMenuOpen(false);
-		// Redirect?
+		props.onSelection(menuItem);
 	};
 
-	const menuItems = props.distributors.map((distributor, index) => {
+	const menuItems = props.menuItems.map((menuItem) => {
 		return (
-			<MenuItem
-				key={index}
-				onClick={() => handleDistributorChange(distributor)}
-			>
-				{distributor.name}
+			<MenuItem onClick={() => handleMenuItemChange(menuItem)}>
+				{menuItem.name}
 			</MenuItem>
 		);
 	});
@@ -108,7 +106,7 @@ export const Dropdown: React.FC<DropdownProps> = (props) => {
 				<HeaderTitle>{props.title}</HeaderTitle>
 			</Header>
 			<Selector onClick={() => toggleMenu()}>
-				<SelectorInput>{selectedDistributor.name}</SelectorInput>
+				<SelectorInput>{selectedMenuItem.name}</SelectorInput>
 				<SelectorIcon>
 					<IconArrow
 						color="#4a4e5c"

@@ -1,13 +1,13 @@
-import React, {useState, useContext} from "react";
+import React, { useState, useContext } from "react";
 import styles from "./NavBar.module.css";
-import {user} from "@/assets";
-import {Menu} from "@/models/nav/menu";
-import {MenuItem, Dropdown} from "@/components/UI/atoms";
-import {DropdownMenu} from "@/components/UI/molecules";
-import {LogoFull, IconNotification, IconCross} from "@/assets";
-import UserContext, {UserContextType} from "@/context/UserContext";
-import {logOut} from "@/auth/AuthFuncs";
-import {Navigate, useNavigate} from "react-router-dom";
+import { user } from "@/assets";
+import { Menu } from "@/models/nav/menu";
+import { MenuItem, Dropdown } from "@/components/UI/atoms";
+import { DropdownMenu } from "@/components/UI/molecules";
+import { LogoFull, IconNotification, IconCross } from "@/assets";
+import UserContext, { UserContextType } from "@/context/UserContext";
+import { logOut } from "@/auth/AuthFuncs";
+import { Navigate, useNavigate } from "react-router-dom";
 
 interface Props {
 	state: boolean;
@@ -15,14 +15,14 @@ interface Props {
 }
 
 const distributors = [
-  { name: 'Guadalajara Jalisco' },
-  { name: 'Chihuahua, Chihuahua' },
-  { name: 'CDMX, México' },
-  { name: 'Monterrey, Nuevo León' },
+	{ name: "JAC CDMX, México" },
+	{ name: "JAC Guadalajara Jalisco" },
+	{ name: "JAC Chihuahua, Chihuahua" },
+	{ name: "JAC Monterrey, Nuevo León" },
 ];
 
-export const NavBar = (props: Props) => {
-	const {User, SetUser} = useContext(UserContext) as UserContextType;
+export const NavBar: React.FunctionComponent<Props> = (props) => {
+	const { User, SetUser } = useContext(UserContext) as UserContextType;
 	const navigate = useNavigate();
 
 	const data = Menu[0];
@@ -40,11 +40,17 @@ export const NavBar = (props: Props) => {
 		navigate("/login");
 	}
 
+	const handleDistributorSelection = (distributor: any) => {
+		// Redirect?
+	};
+
 	return (
 		<div
 			id="out"
 			className={`${
-				props.state ? styles.navContainerOpened : styles.navContainerClosed
+				props.state
+					? styles.navContainerOpened
+					: styles.navContainerClosed
 			}`}
 			onClick={(e) => handleStatus(e)}
 		>
@@ -52,7 +58,9 @@ export const NavBar = (props: Props) => {
 				<ul className={styles.mainMenu}>
 					<li>
 						<ul>
-							<li className={`mb-3 center-xs ${styles.navHeader}`}>
+							<li
+								className={`mb-3 center-xs ${styles.navHeader}`}
+							>
 								<div className={styles.navTop}>
 									<div
 										className={styles.crossIcon}
@@ -64,15 +72,27 @@ export const NavBar = (props: Props) => {
 									<IconNotification color="#fff" size="70%" />
 								</div>
 								<div className={`${styles.navUser} mt-4`}>
-									<img src={user} alt="" className={`${styles.userPhoto} `} />
+									<img
+										src={user}
+										alt=""
+										className={`${styles.userPhoto} `}
+									/>
 									<div className={styles.userInfo}>
-										<h5 className="semi-bold white">{User?.name}</h5>
-										<p className="p3 white">correoSRChotmail.com</p>
+										<h5 className="semi-bold white">
+											{User?.name}
+										</h5>
+										<p className="p3 white">
+											correoSRChotmail.com
+										</p>
 									</div>
 								</div>
 							</li>
 							<li>
-								<Dropdown title="Distribuidor" distributors={distributors} />
+								<Dropdown
+									title="Distribuidor"
+									menuItems={distributors}
+									onSelection={handleDistributorSelection}
+								/>
 							</li>
 							{data.map((item: any) => {
 								return (
