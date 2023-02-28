@@ -1,18 +1,23 @@
-import {AgencyRowProps} from "@/models/crmTypes";
+import { AgencyRowProps } from "@/models/crmTypes";
 import React from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./AgencyRow.module.css";
 
 export const AgencyRow: React.FunctionComponent<AgencyRowProps> = (props) => {
 	const navigate = useNavigate();
 
 	function goToAgencie() {
-		navigate(`1`);
-		// navigate(`${ props.id }`);
+		// navigate(`1`);
+		// navigate(`${props.slug}`, { state: { agencyId: props.id } });
+		navigate(`${props.id}`);
 	}
 
 	return (
-		<tr className={styles.row} key={props.email} onClick={() => goToAgencie()}>
+		<tr
+			className={styles.row}
+			key={props.email}
+			onClick={() => goToAgencie()}
+		>
 			<td className={styles.firstColumn}>
 				<div
 					className={`${styles.agencyStatus} ${

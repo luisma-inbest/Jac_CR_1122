@@ -3,6 +3,7 @@ import {Header} from "./header";
 import {LeadsTable} from "./leadsTable";
 import {UsersTable} from "./usersTable";
 import {AgenciesTable} from "./agenciesTable";
+import {ProductsTable} from "./productsTable";
 import {AgencyGeneral} from "./agencyGeneral";
 import {AgencyLocation} from "./agencyLocation";
 import {AgencyUsers} from "./agencyUsers";

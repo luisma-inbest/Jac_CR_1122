@@ -4,43 +4,21 @@ import {
 	CognitoUser,
 	AuthenticationDetails,
 } from "amazon-cognito-identity-js";
-import {User} from "@/models";
-
-// let email = "jorge.admin@gml.com";
-// let password = "GML@Inbest123#";
+import { User } from "@/models";
 
 export function signUp(user: User) {
-	let dataEmail = {Name: "email", Value: user.email};
-	let dataNickname = {Name: "nickname", Value: user.nickname};
-	let dataRole = {Name: "custom:role", Value: user.userRole};
-	let id = {Name: "custom:id", Value: user.userId};
-	let dataAgency = {Name: "custom:agency", Value: user.AgencyId};
-
-	// let dataBirthDate = {Name: "birthdate", Value: user.birthDate};
-	// let dataFirstName = {Name: "name", Value: user.firstName};
-	// let dataLastName = {Name: "family_name", Value: user.lastName};
-	// let dataGender = {Name: "gender", Value: user.gender};
-	// let dataPhone = {Name: "phone_number", Value: user.phoneNumber};
-	// let dataPersonalEmail = {
-	// 	Name: "custom:personal_email",
-	// 	Value: user.personalEmail,
-	// };
-	// let dataState = {Name: "custom:state", Value: user.state};
+	let dataEmail = { Name: "email", Value: user.email };
+	let dataNickname = { Name: "nickname", Value: user.nickname };
+	let dataRole = { Name: "custom:role", Value: user.userRole };
+	let dataID = { Name: "custom:id", Value: user.userId };
+	let AgencyId = { Name: "custom:agencyID", Value: user.AgencyId };
 
 	let attributeList = [
-		// new CognitoUserAttribute(dataEmail),
-		new CognitoUserAttribute(dataNickname),
-		new CognitoUserAttribute(dataAgency),
-		new CognitoUserAttribute(dataRole),
 		new CognitoUserAttribute(dataEmail),
-
-		// new CognitoUserAttribute(dataFirstName),
-		// new CognitoUserAttribute(dataLastName),
-		// new CognitoUserAttribute(dataGender),
-		// new CognitoUserAttribute(dataPhone),
-		// new CognitoUserAttribute(dataPersonalEmail),
-		// new CognitoUserAttribute(dataBirthDate),
-		// new CognitoUserAttribute(dataState),
+		new CognitoUserAttribute(dataNickname),
+		new CognitoUserAttribute(dataID),
+		new CognitoUserAttribute(dataRole),
+		new CognitoUserAttribute(AgencyId),
 	];
 
 	return new Promise((resolve, reject) => {
@@ -121,7 +99,7 @@ export function changePassword() {
 	let newPassword = "GML@Inbest456#";
 	let password = "";
 
-	getParams().then(({user}: any) => {
+	getParams().then(({ user }: any) => {
 		user.changePassword(password, newPassword, (err: any, result: any) => {
 			if (err) {
 				console.log(err);
@@ -165,16 +143,16 @@ export function getParams() {
 						}
 						const results: any = {};
 						for (let attribute of attributes) {
-							const {Name, Value} = attribute;
+							const { Name, Value } = attribute;
 							results[Name] = Value;
 						}
-						//console.log(results);
+						// console.log(results);
 						resolve(results);
 					});
 				});
 				//
 				// console.log("getSession:", session);
-				resolve({user, ...session, ...(attributes as object)});
+				resolve({ user, ...session, ...(attributes as object) });
 			});
 		} else {
 			reject("No current user.");

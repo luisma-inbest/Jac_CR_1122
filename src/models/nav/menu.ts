@@ -1,21 +1,11 @@
-import {submenuSells} from "./submenuSells";
-import {submenuSupport} from "./submenuSupport";
-import {submenuMarketing} from "./submenuMarketing";
-import {submenuProduct} from "./submenuProduct";
-import {submenuHR} from "./submenuHR";
+import { submenuSells } from "./submenuSells";
+import { submenuSupport } from "./submenuSupport";
+import { submenuMarketing } from "./submenuMarketing";
+import { submenuProduct } from "./submenuProduct";
+import { submenuHR } from "./submenuHR";
 
 export let Menu = [
 	[
-		{
-			submenu: false,
-			data: {
-				pos: 0,
-				text: "Mi Cuenta",
-				icon: "user",
-				route: "/agent",
-			},
-			subitems: [],
-		},
 		{
 			submenu: true,
 			data: {

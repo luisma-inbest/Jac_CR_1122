@@ -73,60 +73,13 @@ nav {
 	width: 100%;
 }
 
-.navHeader {
-	background-color: var(--main-color);
-	padding: 1rem 1rem 2rem 1rem;
-	border-bottom-left-radius: 2rem;
-	border-bottom-right-radius: 2rem;
-}
-.navTop {
-	height: 4rem;
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-}
-@media (max-width: 48em) {
-	.navTop {
-		height: 5rem;
-	}
-}
-.crossIcon {
-	height: 100%;
-}
-@media (max-width: 48em) {
-	.iconContainer {
-		height: 1rem;
-	}
-}
-.navUser {
-	display: flex;
-	align-items: center;
-	gap: 1rem;
-}
-.userPhoto {
-	width: 5rem;
-	height: 5rem;
-	border: 0.4rem solid #fff;
-	border-radius: 50%;
-}
-@media (max-width: 48em) {
-	.userPhoto {
-		width: 7rem;
-		height: 7rem;
-	}
-}
-.userInfo {
-	display: flex;
-	flex-direction: column;
-	gap: 0.3rem;
-}
-.userInfo * {
-	margin: 0 !important;
-	text-align: left;
-}
-
 nav ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
+}
+
+.agencieSelect {
+	width: 97%;
+	padding: 0 1.5rem;
 }

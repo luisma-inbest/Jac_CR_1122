@@ -1,32 +1,40 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import styles from "./NavBar.module.css";
 import { user } from "@/assets";
 import { Menu } from "@/models/nav/menu";
-import { MenuItem, Dropdown } from "@/components/UI/atoms";
+import {
+	MenuItem,
+	Dropdown,
+	StyledSelect,
+	Loader,
+	NavbarHeader,
+} from "@/components/UI/atoms";
 import { DropdownMenu } from "@/components/UI/molecules";
 import { LogoFull, IconNotification, IconCross } from "@/assets";
 import UserContext, { UserContextType } from "@/context/UserContext";
 import { logOut } from "@/auth/AuthFuncs";
 import { Navigate, useNavigate } from "react-router-dom";
+import { AgencyAPI } from "@/apis";
+import { useQuery } from "react-query";
 
 interface Props {
 	state: boolean;
 	navHandler: () => void;
 }
 
-const distributors = [
-	{ name: "JAC CDMX, México" },
-	{ name: "JAC Guadalajara Jalisco" },
-	{ name: "JAC Chihuahua, Chihuahua" },
-	{ name: "JAC Monterrey, Nuevo León" },
-];
-
 export const NavBar: React.FunctionComponent<Props> = (props) => {
 	const { User, SetUser } = useContext(UserContext) as UserContextType;
 	const navigate = useNavigate();
+	const [currentAgency, setCurrentAgency] = useState(User?.AgencyId!);
 
-	const data = Menu[0];
-	var count = 0;
+	const submenus = Menu[0];
+
+	const { isLoading, data, isError, error } = useQuery({
+		queryKey: ["agencies"],
+		queryFn: AgencyAPI.getAll,
+		staleTime: 5 * (60 * 2500), // 25 mins
+		cacheTime: 10 * (60 * 3000), // 30 mins
+	});
 
 	function handleStatus(e: any) {
 		if (e.target.id === "out") {
@@ -41,8 +49,16 @@ export const NavBar: React.FunctionComponent<Props> = (props) => {
 	}
 
 	const handleDistributorSelection = (distributor: any) => {
-		// Redirect?
+		setCurrentAgency(distributor.target.value);
+		SetUser({
+			...User!,
+			AgencyId: distributor.target.value,
+		});
 	};
+
+	if (isLoading) {
+		return <></>;
+	}
 
 	return (
 		<div
@@ -58,45 +74,30 @@ export const NavBar: React.FunctionComponent<Props> = (props) => {
 				<ul className={styles.mainMenu}>
 					<li>
 						<ul>
-							<li
-								className={`mb-3 center-xs ${styles.navHeader}`}
-							>
-								<div className={styles.navTop}>
-									<div
-										className={styles.crossIcon}
-										onClick={() => props.navHandler()}
-									>
-										<IconCross size="70%" color="#fff" />
-									</div>
-									<LogoFull color="#fff" size="70%" />
-									<IconNotification color="#fff" size="70%" />
-								</div>
-								<div className={`${styles.navUser} mt-4`}>
-									<img
-										src={user}
-										alt=""
-										className={`${styles.userPhoto} `}
-									/>
-									<div className={styles.userInfo}>
-										<h5 className="semi-bold white">
-											{User?.name}
-										</h5>
-										<p className="p3 white">
-											correoSRChotmail.com
-										</p>
-									</div>
-								</div>
+							<NavbarHeader navHandler={props.navHandler} />
+							<li className={styles.agencieSelect}>
+								<StyledSelect
+									customType="secondary"
+									value={currentAgency}
+									onChange={(e) =>
+										handleDistributorSelection(e)
+									}
+								>
+									<option value="" disabled>
+										Agencia
+									</option>
+									{data.map((e: any, index: any) => {
+										return (
+											<option key={e.id} value={e.id}>
+												{e.name}
+											</option>
+										);
+									})}
+								</StyledSelect>
 							</li>
-							<li>
-								<Dropdown
-									title="Distribuidor"
-									menuItems={distributors}
-									onSelection={handleDistributorSelection}
-								/>
-							</li>
-							{data.map((item: any) => {
+							{submenus.map((item: any, index) => {
 								return (
-									<li key={item.data.pos}>
+									<li key={index}>
 										<DropdownMenu
 											text={item.data.text}
 											route={item.data.route}

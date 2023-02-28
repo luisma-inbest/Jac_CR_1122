@@ -1,13 +1,38 @@
-import React, {useReducer, useState} from "react";
-import {AgencyAPI} from "@/apis/APIAgency";
-import {Input, StyledInputSubmit, StyledSelect} from "@/components/UI/atoms";
-import {Agency} from "@/models";
+import React, { useReducer, useState } from "react";
+import { AgencyAPI } from "@/apis/APIAgency";
+import {
+	Input,
+	InputFile,
+	StyledInputSubmit,
+	StyledSelect,
+} from "@/components/UI/atoms";
+import { Agency } from "@/models";
 import States from "@/utils/states";
-import {reducer, initial} from "./reducer";
+import { reducer, initial } from "./reducer";
 import styles from "./CreateAgency.module.css";
+import { getBase64 } from "@/utils";
 
 export const CreateAgency = () => {
 	const [fields, dispatch] = useReducer(reducer, initial);
+	const [logo, setLogo] = useState("");
+	const [logoText, setLogoText] = useState("Seleccione el logo");
+
+	async function handleFile(file: any) {
+		// console.log("File:", file)
+		setLogoText("Cargando...");
+		try {
+			let base64 = await getBase64(file);
+			setLogoText(file.name);
+			setLogo(base64);
+			dispatch({
+				type: "logo",
+				value: base64,
+			});
+		} catch (error) {
+			// console.log("Error:", error);
+			setLogoText("Error al cargar archivo");
+		}
+	}
 
 	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault();
@@ -23,54 +48,61 @@ export const CreateAgency = () => {
 
 				<form className={styles.form} onSubmit={handleSubmit}>
 					{/* Info General */}
-					<p className="p2 bold secondary mb-0 mt-3">Información personal</p>
+					<p className="p2 bold secondary mb-0 mt-3">
+						Información personal
+					</p>
 					<hr className="hr mb-1" />
 
 					<Input
 						placeholder="*Nombre Comercial"
 						value={fields.name}
 						type="reducer"
-						params={{dispatch: dispatch, dispType: "name"}}
+						params={{ dispatch: dispatch, dispType: "name" }}
 					/>
 
 					<Input
 						placeholder="*Razón Social"
 						value={fields.businessName}
 						type="reducer"
-						params={{dispatch: dispatch, dispType: "businessName"}}
+						params={{
+							dispatch: dispatch,
+							dispType: "businessName",
+						}}
 					/>
 
 					<Input
 						placeholder="*Código de Transferencia"
 						value={fields.transferCode}
 						type="reducer"
-						params={{dispatch: dispatch, dispType: "transferCode"}}
+						params={{
+							dispatch: dispatch,
+							dispType: "transferCode",
+						}}
 					/>
 
-					<Input
-						placeholder="Logo"
-						value={fields.logo!}
-						type="reducer"
-						params={{dispatch: dispatch, dispType: "logo"}}
-					/>
-					<Input
-						placeholder="Logo Dark"
-						value={fields.logoDark!}
-						type="reducer"
-						params={{dispatch: dispatch, dispType: "logoDark"}}
-					/>
 					<Input
 						placeholder="Url"
 						value={fields.urlSite!}
 						type="reducer"
-						params={{dispatch: dispatch, dispType: "urlSite"}}
+						params={{ dispatch: dispatch, dispType: "urlSite" }}
 					/>
+
+					<InputFile text={logoText} handleFile={handleFile} />
+					{/* <Input
+						placeholder="Logo Dark"
+						value={fields.logoDark!}
+						type="reducer"
+						params={{ dispatch: dispatch, dispType: "logoDark" }}
+					/> */}
 
 					<StyledSelect
 						customType="secondary"
 						defaultValue=""
 						onChange={(e) =>
-							dispatch({type: "service", value: Boolean(e.target.value)})
+							dispatch({
+								type: "service",
+								value: Boolean(e.target.value),
+							})
 						}
 					>
 						<option value="" disabled>
@@ -88,30 +120,38 @@ export const CreateAgency = () => {
 						placeholder="*Calle"
 						value={fields.street}
 						type="reducer"
-						params={{dispatch: dispatch, dispType: "street"}}
+						params={{ dispatch: dispatch, dispType: "street" }}
 					/>
 					<Input
 						placeholder="Nª Interior"
 						value={fields.interiorNumber!}
 						type="reducer"
-						params={{dispatch: dispatch, dispType: "interiorNumber"}}
+						params={{
+							dispatch: dispatch,
+							dispType: "interiorNumber",
+						}}
 					/>
 					<Input
 						placeholder="*Nª Exterior"
 						value={fields.exteriorNumber}
 						type="reducer"
-						params={{dispatch: dispatch, dispType: "exteriorNumber"}}
+						params={{
+							dispatch: dispatch,
+							dispType: "exteriorNumber",
+						}}
 					/>
 					<Input
 						placeholder="*Código Postal"
 						value={fields.postalCode}
 						type="reducer"
-						params={{dispatch: dispatch, dispType: "postalCode"}}
+						params={{ dispatch: dispatch, dispType: "postalCode" }}
 					/>
 					<StyledSelect
 						customType="secondary"
 						defaultValue=""
-						onChange={(e) => dispatch({type: "state", value: e.target.value})}
+						onChange={(e) =>
+							dispatch({ type: "state", value: e.target.value })
+						}
 					>
 						<option value="" disabled>
 							*-- Estado --
@@ -128,19 +168,22 @@ export const CreateAgency = () => {
 						placeholder="*Ciudad/Delegación"
 						value={fields.city}
 						type="reducer"
-						params={{dispatch: dispatch, dispType: "city"}}
+						params={{ dispatch: dispatch, dispType: "city" }}
 					/>
 					<Input
 						placeholder="*Colonia"
 						value={fields.suburb}
 						type="reducer"
-						params={{dispatch: dispatch, dispType: "suburb"}}
+						params={{ dispatch: dispatch, dispType: "suburb" }}
 					/>
 					<Input
 						placeholder="*Municipio"
 						value={fields.municipality}
 						type="reducer"
-						params={{dispatch: dispatch, dispType: "municipality"}}
+						params={{
+							dispatch: dispatch,
+							dispType: "municipality",
+						}}
 					/>
 
 					<StyledInputSubmit

@@ -7,6 +7,7 @@ import {RegisterActivity} from "./registerActivity";
 import {LeadRow} from "./leadRow";
 import {UserRow} from "./userRow";
 import {AgencyRow} from "./agencyRow";
+import {ProductRow} from "./productRow";
 import {SalesInfoCard} from "./salesInfoCard";
 import {PieChartLabel} from "./pieChartLabel";
 import {StackedBarChartLabel} from "./stackedBarChartLabel";
@@ -25,5 +26,6 @@ export {
 	LeadRow,
 	UserRow,
 	AgencyRow,
+	ProductRow,
 	DropdownMenu,
 };

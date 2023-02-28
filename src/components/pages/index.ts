@@ -1,6 +1,13 @@
-import {Home} from "./home";
-import {Login} from "./authentication/Login";
-import {Register, Admin, Users, Agencies, Agency, CreateAgency} from "./admin";
+import { Home } from "./home";
+import { Login } from "./authentication/Login";
+import {
+	Register,
+	Admin,
+	Users,
+	Agencies,
+	Agency,
+	CreateAgency,
+} from "./admin";
 import {
 	SellsDashboard,
 	SellerDashboard,
@@ -9,7 +16,12 @@ import {
 	CreateLead,
 	SellerProfile,
 } from "./sells/";
-import {ProductDashboard, ProductDetails, ProductOnePager} from "./product";
+import {
+	ProductDashboard,
+	ProductDetails,
+	ProductOnePager,
+	CreateProduct,
+} from "./product";
 
 export {
 	Home,
@@ -28,5 +40,6 @@ export {
 	ProductDashboard,
 	ProductDetails,
 	ProductOnePager,
+	CreateProduct,
 	Users,
 };

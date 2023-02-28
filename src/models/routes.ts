@@ -1,36 +1,32 @@
 export const PublicRoutes = {
-	LOGIN: "login",
+	Login: "login",
+	// Product
+};
+export const ProductRoutes = {
+	Product: "product",
+	Main: "",
+	Create: "create",
+	Details: "details/:id",
+	OnePager: "details/:id/one-pager",
 };
 
 export const AdminRoutes = {
-	ADMIN: "",
-	REGISTER: "register",
-	USERS: "users",
-	AGENCIES: "agencies",
-	AGENCY: "agencies/:id",
-	AGENCY_CREATE: "agencies/create",
+	Admin: "admin",
+	Main: "",
+	Register: "register",
+	Users: "users",
+	Agencies: "agencies",
+	Agency: "agencies/:id",
+	AgencyCreate: "agencies/create",
 };
 
 export const SellsRoutes = {
-	main: "",
+	Sells: "sells",
+	Main: "",
 	Leads: "leads",
 	SingleLead: "leads/:id",
 	FutureLeads: "future-leads",
 	FrozenLeads: "frozen-leads",
 	SellerProfile: "seller-profile",
 	SellsDashboard: "sells-dashboard",
-};
-export const ProductRoutes = {
-	main: "",
-	Details: "details/:id",
-	OnePager: "details/:id/one-pager",
-};
-
-///
-
-export const AgentRoutes = {
-	AGENT: "agent",
-	MENU1: "sells",
-	Menu2: "prospects",
-	Menu3: "agents",
 };

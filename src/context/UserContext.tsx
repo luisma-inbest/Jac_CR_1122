@@ -1,10 +1,17 @@
-import React, {createContext, useState, ReactNode, type Dispatch} from "react";
-import {ContextChilds} from "@/models/contextChilds";
+import React, {
+	createContext,
+	useState,
+	ReactNode,
+	type Dispatch,
+} from "react";
+import { ContextChilds } from "@/models/contextChilds";
 
 // type of user
 export type UserType = {
 	id: number;
 	name: string;
+	email: string;
+	AgencyId: string;
 	permissions: string[];
 } | null;
 // user methods
@@ -19,7 +26,7 @@ export type UserContextType = {
 
 const UserContext = createContext({});
 
-export const UserProvider = ({children}: ContextChilds) => {
+export const UserProvider = ({ children }: ContextChilds) => {
 	const [User, SetUser] = useState<UserType>(null);
 
 	function test() {
@@ -27,7 +34,7 @@ export const UserProvider = ({children}: ContextChilds) => {
 	}
 
 	return (
-		<UserContext.Provider value={{User, SetUser, test}}>
+		<UserContext.Provider value={{ User, SetUser, test }}>
 			{children}
 		</UserContext.Provider>
 	);

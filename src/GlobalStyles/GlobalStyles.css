@@ -104,6 +104,10 @@ hr {
 	margin: 0 !important;
 }
 
+.loaderContainer {
+	height: calc(100vh - 7rem - 3rem - 5rem - 3rem - 6rem);
+}
+
 /*
 $grid-breakpoints: (
   xs: 0,

@@ -1,14 +1,14 @@
-import React, {useState, useContext} from "react";
-import {Button, StyledInputText} from "@/components/UI/atoms";
+import React, { useState, useContext } from "react";
+import { Button, StyledInputText } from "@/components/UI/atoms";
 import {
 	LeadData,
 	LeadChat,
 	LeadFunnel,
 	LeadHistory,
 } from "@/components/UI/molecules";
-import {Tabs} from "@/components/templates";
-import {RegisterActivity} from "@/components/UI/molecules";
-import {CurrentLeadProvider} from "@/context/CurrentLeadContext";
+import { Tabs } from "@/components/templates";
+import { RegisterActivity } from "@/components/UI/molecules";
+import { CurrentLeadProvider } from "@/context/CurrentLeadContext";
 import styles from "./Agency.module.css";
 import {
 	AgencyGeneral,
@@ -16,11 +16,15 @@ import {
 	AgencySocial,
 	AgencyUsers,
 } from "@/components/UI/organisms";
-import {Domain} from "@/constants";
+import { Domain } from "@/constants";
+import { useLocation } from "react-router-dom";
 
 export const Agency = () => {
 	const [leadView, setLeadView] = useState(false);
 	const [lead, seadLead] = useState(null);
+	// const { state } = useLocation();
+	const agencyId = window.location.pathname.replace("/admin/agencies/", "");
+	console.log(agencyId);
 	// let agencyId = window.location.pathname.replace("/admin/agencies/", "");
 
 	const agencySocialMedia = [
@@ -37,7 +41,8 @@ export const Agency = () => {
 	const PageTabs = ["General", "Ubicación", "Colaboradores", "Redes"];
 	const TabOne = <AgencyGeneral />;
 	const TabTwo = <AgencyLocation />;
-	const TabThree = <AgencyUsers />;
+	// const TabThree = <AgencyUsers agencyId={state.agencyId} />;
+	const TabThree = <AgencyUsers agencyId={agencyId} />;
 	const TabFour = <AgencySocial agencySocialMedia={agencySocialMedia} />;
 	const TabsComponents = [TabOne, TabTwo, TabThree, TabFour];
 

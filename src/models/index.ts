@@ -1,7 +1,13 @@
-import {User, Agency, UserRowProps, AgencyRowProps} from "./crmTypes";
+import {
+	User,
+	Agency,
+	UserRowProps,
+	AgencyRowProps,
+	ProductRowProps,
+} from "./crmTypes";
 //
-import {AgentRoutes, SellsRoutes, ProductRoutes, AdminRoutes} from "./routes";
+import { SellsRoutes, ProductRoutes, AdminRoutes } from "./routes";
 
-export type {User, Agency, UserRowProps, AgencyRowProps};
+export type { User, Agency, UserRowProps, AgencyRowProps, ProductRowProps };
 
-export {AgentRoutes, SellsRoutes, ProductRoutes, AdminRoutes};
+export { SellsRoutes, ProductRoutes, AdminRoutes };

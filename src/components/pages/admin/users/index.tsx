@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from "react";
-import {Tabs} from "@/components/templates";
-import {UsersTable} from "@/components/UI/organisms/";
-import {Button, Loader} from "@/components/UI/atoms";
-import {useNavigate} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Tabs } from "@/components/templates";
+import { UsersTable } from "@/components/UI/organisms/";
+import { Button, Loader } from "@/components/UI/atoms";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./Users.module.css";
-import {useQuery} from "react-query";
-import {UserAPI} from "@/apis";
+import { useQuery } from "react-query";
+import { UserAPI } from "@/apis";
 
 export interface UserRowProps {
 	name: string;
@@ -20,7 +20,7 @@ export interface UserRowProps {
 export const Users = () => {
 	// const [users, setUsers] = useState<UserRowProps[]>([]);
 	const navigate = useNavigate();
-	const {isLoading, data, isError, error} = useQuery({
+	const { isLoading, data, isError, error } = useQuery({
 		queryKey: ["users"],
 		queryFn: UserAPI.getAll,
 		staleTime: 5 * (60 * 1000), // 5 mins
@@ -63,7 +63,7 @@ export const Users = () => {
 	if (isLoading) {
 		return (
 			<div className="row">
-				<div className={`col-xs-12 ${styles.loaderContainer}`}>
+				<div className={`col-xs-12 loaderContainer`}>
 					<Loader />
 				</div>
 			</div>

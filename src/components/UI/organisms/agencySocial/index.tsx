@@ -4,13 +4,15 @@ interface AgencySocialProps {
 	agencySocialMedia: {
 		name: string;
 		url: string;
-	}[]
+	}[];
 }
 
-export const AgencySocial: React.FunctionComponent<AgencySocialProps> = (props) => {
-	const tableRows = props.agencySocialMedia.map((socialMedia) => {
+export const AgencySocial: React.FunctionComponent<AgencySocialProps> = (
+	props
+) => {
+	const tableRows = props.agencySocialMedia.map((socialMedia, index) => {
 		return (
-			<tr>
+			<tr key={index}>
 				<td className="bold">{socialMedia.name}</td>
 				<td>{socialMedia.url}</td>
 			</tr>
@@ -34,9 +36,7 @@ export const AgencySocial: React.FunctionComponent<AgencySocialProps> = (props) 
 									<th className="p4 highlight">URL</th>
 								</tr>
 							</thead>
-							<tbody>
-								{tableRows}
-							</tbody>
+							<tbody>{tableRows}</tbody>
 						</table>
 					</div>
 				</div>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import {IconArrow, IconLocation} from "@/assets";
-import {useState} from "react";
+import { IconArrow, IconLocation } from "@/assets";
+import { useState } from "react";
 
 const Container = styled.div`
 	padding: 2rem;
@@ -83,9 +83,12 @@ export const Dropdown: React.FC<DropdownProps> = (props) => {
 		props.onSelection(menuItem);
 	};
 
-	const menuItems = props.menuItems.map((menuItem) => {
+	const menuItems = props.menuItems.map((menuItem, index) => {
 		return (
-			<MenuItem onClick={() => handleMenuItemChange(menuItem)}>
+			<MenuItem
+				key={index}
+				onClick={() => handleMenuItemChange(menuItem)}
+			>
 				{menuItem.name}
 			</MenuItem>
 		);

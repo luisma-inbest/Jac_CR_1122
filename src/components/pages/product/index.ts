@@ -1,5 +1,6 @@
-import {ProductDashboard} from "./productDashboard";
-import {ProductDetails} from "./productDetails";
-import {ProductOnePager} from "./productOnePager";
+import { ProductDashboard } from "./productDashboard";
+import { ProductDetails } from "./productDetails";
+import { ProductOnePager } from "./productOnePager";
+import { CreateProduct } from "./createProduct";
 
-export {ProductDashboard, ProductDetails, ProductOnePager};
+export { ProductDashboard, ProductDetails, ProductOnePager, CreateProduct };
