@@ -55,6 +55,7 @@ export const CreateAgency = () => {
 
 					<Input
 						placeholder="*Nombre Comercial"
+						inputType="text"
 						value={fields.name}
 						type="reducer"
 						params={{ dispatch: dispatch, dispType: "name" }}
@@ -62,6 +63,7 @@ export const CreateAgency = () => {
 
 					<Input
 						placeholder="*Razón Social"
+						inputType="text"
 						value={fields.businessName}
 						type="reducer"
 						params={{
@@ -72,6 +74,7 @@ export const CreateAgency = () => {
 
 					<Input
 						placeholder="*Código de Transferencia"
+						inputType="text"
 						value={fields.transferCode}
 						type="reducer"
 						params={{
@@ -82,6 +85,7 @@ export const CreateAgency = () => {
 
 					<Input
 						placeholder="Url"
+						inputType="text"
 						value={fields.urlSite!}
 						type="reducer"
 						params={{ dispatch: dispatch, dispType: "urlSite" }}
@@ -118,12 +122,14 @@ export const CreateAgency = () => {
 
 					<Input
 						placeholder="*Calle"
+						inputType="text"
 						value={fields.street}
 						type="reducer"
 						params={{ dispatch: dispatch, dispType: "street" }}
 					/>
 					<Input
 						placeholder="Nª Interior"
+						inputType="number"
 						value={fields.interiorNumber!}
 						type="reducer"
 						params={{
@@ -133,6 +139,7 @@ export const CreateAgency = () => {
 					/>
 					<Input
 						placeholder="*Nª Exterior"
+						inputType="number"
 						value={fields.exteriorNumber}
 						type="reducer"
 						params={{
@@ -142,6 +149,7 @@ export const CreateAgency = () => {
 					/>
 					<Input
 						placeholder="*Código Postal"
+						inputType="number"
 						value={fields.postalCode}
 						type="reducer"
 						params={{ dispatch: dispatch, dispType: "postalCode" }}
@@ -166,18 +174,21 @@ export const CreateAgency = () => {
 					</StyledSelect>
 					<Input
 						placeholder="*Ciudad/Delegación"
+						inputType="text"
 						value={fields.city}
 						type="reducer"
 						params={{ dispatch: dispatch, dispType: "city" }}
 					/>
 					<Input
 						placeholder="*Colonia"
+						inputType="text"
 						value={fields.suburb}
 						type="reducer"
 						params={{ dispatch: dispatch, dispType: "suburb" }}
 					/>
 					<Input
 						placeholder="*Municipio"
+						inputType="text"
 						value={fields.municipality}
 						type="reducer"
 						params={{

@@ -84,6 +84,7 @@ export const Register = (props: Props) => {
 
 					<Input
 						placeholder="Nombre(s)"
+						inputType="text"
 						value={fields.firstName}
 						type="reducer"
 						params={{ dispatch: dispatch, dispType: "firstName" }}
@@ -91,6 +92,7 @@ export const Register = (props: Props) => {
 
 					<Input
 						placeholder="Apellidos"
+						inputType="text"
 						value={fields.lastName}
 						type="reducer"
 						params={{ dispatch: dispatch, dispType: "lastName" }}
@@ -123,6 +125,7 @@ export const Register = (props: Props) => {
 
 					<Input
 						placeholder="Email personal"
+						inputType="text"
 						value={fields.userEmails[0]}
 						type="reducer"
 						params={{ dispatch: dispatch, dispType: "userEmails" }}
@@ -136,6 +139,7 @@ export const Register = (props: Props) => {
 
 					<Input
 						placeholder="Nickname"
+						inputType="text"
 						value={fields.nickname}
 						type="reducer"
 						params={{ dispatch: dispatch, dispType: "nickname" }}
@@ -143,6 +147,7 @@ export const Register = (props: Props) => {
 
 					<Input
 						placeholder="Email"
+						inputType="text"
 						value={fields.email}
 						type="reducer"
 						params={{ dispatch: dispatch, dispType: "email" }}
@@ -150,6 +155,7 @@ export const Register = (props: Props) => {
 
 					<Input
 						placeholder="Contraseña"
+						inputType="text"
 						value={fields.password}
 						type="reducer"
 						params={{ dispatch: dispatch, dispType: "password" }}
@@ -157,6 +163,7 @@ export const Register = (props: Props) => {
 
 					<Input
 						placeholder="Número celular"
+						inputType="text"
 						value={fields.userPhones[0]}
 						type="reducer"
 						params={{ dispatch: dispatch, dispType: "userPhones" }}

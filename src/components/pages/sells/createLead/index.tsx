@@ -1,12 +1,16 @@
-import React, {useState} from "react";
+import React, { useReducer, useState } from "react";
 import styles from "./CreateLead.module.css";
 import {
 	StyledInputText,
 	Button,
 	Input,
 	StyledInputSubmit,
+	ButtonFields,
+	StyledSelect,
 } from "@/components/UI/atoms";
-import {IconCross} from "@/assets";
+import { IconCross } from "@/assets";
+import { reducer, initial } from "./reducer";
+import { Lead } from "@/models";
 
 interface Props {
 	func: () => void;
@@ -17,6 +21,7 @@ export const CreateLead = (props: Props) => {
 	const red = getComputedStyle(document.documentElement).getPropertyValue(
 		"--red"
 	);
+	const [fields, dispatch] = useReducer(reducer, initial);
 
 	function nextPage() {
 		setPage(page + 1);
@@ -38,7 +43,12 @@ export const CreateLead = (props: Props) => {
 					<IconCross color={red} size="100%" />
 				</span>
 				{page == 1 ? (
-					<First func={props.func} pageHandler={nextPage} />
+					<First
+						func={props.func}
+						pageHandler={nextPage}
+						fields={fields}
+						dispatch={dispatch}
+					/>
 				) : (
 					<>
 						{page == 2 ? (
@@ -46,6 +56,8 @@ export const CreateLead = (props: Props) => {
 								func={props.func}
 								pageHandler={previousPage}
 								submit={formHandler}
+								fields={fields}
+								dispatch={dispatch}
 							/>
 						) : (
 							<span></span>
@@ -61,48 +73,80 @@ export const CreateLead = (props: Props) => {
 interface FirstProps {
 	func: () => void;
 	pageHandler: () => void;
+	fields: Lead;
+	dispatch: React.Dispatch<any>;
 }
 const First = (props: FirstProps) => {
 	const [val, setVal] = useState("");
+	const [phone, setPhone] = useState("");
+	const [email, setEmail] = useState("");
+	const [emails, setEmails] = useState<string[]>([]);
+	function handlePhones() {
+		props.dispatch({
+			type: "phones",
+			value: [...props.fields.phones, `+52${phone}`],
+		});
+		setPhone("");
+		console.log(props.fields);
+	}
+	function handleEmails() {
+		props.dispatch({
+			type: "emails",
+			value: [...props.fields.emails, `${email}`],
+		});
+		setEmail("");
+		console.log(props.fields);
+	}
 	return (
 		<>
 			<form action="" onSubmit={(e) => e.preventDefault()}>
 				<Input
-					placeholder="Nombre"
-					value={val}
-					type="state"
-					params={{setValue: setVal}}
-				/>
-				<Input
-					placeholder="Perfil"
-					value={val}
-					type="state"
-					params={{setValue: setVal}}
+					placeholder="Nombre(s)"
+					inputType="text"
+					value={props.fields.firstName}
+					type="reducer"
+					params={{ dispatch: props.dispatch, dispType: "firstName" }}
 				/>
 				<Input
 					placeholder="Apellidos"
-					value={val}
-					type="state"
-					params={{setValue: setVal}}
+					inputType="text"
+					value={props.fields.lastName}
+					type="reducer"
+					params={{ dispatch: props.dispatch, dispType: "lastName" }}
 				/>
 				<Input
-					placeholder="Número Celular"
-					value={val}
-					type="state"
-					params={{setValue: setVal}}
+					placeholder="Origen de Lead"
+					inputType="text"
+					value={props.fields.origin}
+					type="reducer"
+					params={{ dispatch: props.dispatch, dispType: "origin" }}
 				/>
 				<Input
-					placeholder="Telefono Fijo"
-					value={val}
+					placeholder="Números de contacto"
+					inputType="number"
+					value={phone}
 					type="state"
-					params={{setValue: setVal}}
+					params={{ setValue: setPhone }}
 				/>
+				<ButtonFields text="Agregar Número" func={handlePhones} />
+
+				{props.fields.phones.map((phone, index) => {
+					return <h5 key={index}>{phone}</h5>;
+				})}
+
 				<Input
-					placeholder="Correo Electronico"
-					value={val}
+					placeholder="Correos de contacto"
+					inputType="text"
+					value={email}
 					type="state"
-					params={{setValue: setVal}}
+					params={{ setValue: setEmail }}
 				/>
+				<ButtonFields text="Agregar Correo" func={handleEmails} />
+
+				{props.fields.emails.map((email, index) => {
+					return <h5 key={index}>{email}</h5>;
+				})}
+
 				<StyledInputSubmit
 					value="siguiente"
 					customType="primary"
@@ -120,29 +164,43 @@ interface SecondProps {
 	func: () => void;
 	pageHandler: () => void;
 	submit: (e: any) => void;
+	fields: Lead;
+	dispatch: React.Dispatch<any>;
 }
 const Second = (props: SecondProps) => {
 	const [val, setVal] = useState("");
 	return (
 		<>
 			<form onSubmit={props.submit}>
+				<StyledSelect
+					customType="secondary"
+					defaultValue=""
+					onChange={(e) =>
+						props.dispatch({
+							type: "productId",
+							value: e.target.value,
+						})
+					}
+				>
+					<option value="" disabled>
+						-- Producto --
+					</option>
+					<option value="man">Sei4 Pro</option>
+					<option value="woman">J 7</option>
+				</StyledSelect>
 				<Input
 					placeholder="Tipo de Compra"
+					inputType="text"
 					value={val}
 					type="state"
-					params={{setValue: setVal}}
-				/>
-				<Input
-					placeholder="Tipo de Referencia"
-					value={val}
-					type="state"
-					params={{setValue: setVal}}
+					params={{ setValue: setVal }}
 				/>
 				<Input
 					placeholder="Unidades"
+					inputType="text"
 					value={val}
 					type="state"
-					params={{setValue: setVal}}
+					params={{ setValue: setVal }}
 				/>
 				<StyledInputSubmit value="Crear" customType="primary" />
 			</form>

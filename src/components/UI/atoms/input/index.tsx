@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "./Input.module.css";
 
 type StateProps = {
@@ -10,12 +10,13 @@ type ReducerProps = {
 };
 
 type ConditionalProps =
-	| {type: "state"; params: StateProps}
-	| {type: "reducer"; params: ReducerProps};
+	| { type: "state"; params: StateProps }
+	| { type: "reducer"; params: ReducerProps };
 
 type Props = {
 	placeholder: string;
 	value: string;
+	inputType: string;
 } & ConditionalProps;
 
 export const Input = (props: Props) => {
@@ -37,7 +38,7 @@ export const Input = (props: Props) => {
 		<div className={styles.inputContain}>
 			<input
 				className={styles.input}
-				type="text"
+				type={props.inputType}
 				value={props.value}
 				onChange={(e) => handleChane(e)}
 				name="fname"

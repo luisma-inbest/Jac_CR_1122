@@ -28,6 +28,11 @@ nav {
 	/* transition: all 0.5s linear; */
 	overflow-y: scroll;
 }
+@media (max-height: 700px) {
+	nav {
+		height: calc(100vh - 5rem);
+	}
+}
 @media (min-width: 75em) {
 	nav {
 		transition: all 0.5s linear;
