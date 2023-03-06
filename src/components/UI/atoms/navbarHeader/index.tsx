@@ -23,6 +23,12 @@ interface Props {
 
 export const NavbarHeader = (props: Props) => {
 	const { User, SetUser } = useContext(UserContext) as UserContextType;
+	const navigate = useNavigate();
+
+	function handleProfile() {
+		navigate("/profile");
+	}
+
 	return (
 		<li className={`mb-3 center-xs ${styles.navHeader}`}>
 			<div className={styles.navTop}>
@@ -35,7 +41,10 @@ export const NavbarHeader = (props: Props) => {
 				<LogoFull color="#fff" size="70%" />
 				<IconNotification color="#fff" size="70%" />
 			</div>
-			<div className={`${styles.navUser} mt-4`}>
+			<div
+				className={`${styles.navUser} mt-4`}
+				onClick={() => handleProfile()}
+			>
 				<img src={user} alt="" className={`${styles.userPhoto} `} />
 				<div className={styles.userInfo}>
 					<h5 className="semi-bold white">{User?.name}</h5>

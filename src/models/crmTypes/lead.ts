@@ -4,9 +4,11 @@ export interface Lead {
 	lastName: string;
 	emails: string[];
 	phones: string[];
-	origin: string;
+	LeadOriginId: number;
 	productId: string;
+	leadPhaseId?: string;
 	agencyId: string;
+	UserId?: number;
 	buyType: string;
 	units: number;
 }

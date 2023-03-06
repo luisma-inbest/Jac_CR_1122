@@ -2,6 +2,9 @@ export const PublicRoutes = {
 	Login: "login",
 	// Product
 };
+export const SharedRoutes = {
+	Profile: "profile",
+};
 export const ProductRoutes = {
 	Product: "product",
 	Main: "",

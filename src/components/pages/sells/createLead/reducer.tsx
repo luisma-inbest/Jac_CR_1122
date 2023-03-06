@@ -5,7 +5,7 @@ type Action =
 	| { type: "lastName"; value: string }
 	| { type: "emails"; value: string[] }
 	| { type: "phones"; value: string[] }
-	| { type: "origin"; value: string }
+	| { type: "LeadOriginId"; value: number }
 	| { type: "productId"; value: string }
 	| { type: "agencyId"; value: string }
 	| { type: "buyType"; value: string }
@@ -16,11 +16,12 @@ const initial: Lead = {
 	lastName: "",
 	emails: [],
 	phones: [],
-	origin: "",
+	LeadOriginId: 0,
 	productId: "",
 	agencyId: "",
 	buyType: "",
 	units: 0,
+	UserId: 26,
 };
 
 function reducer(state: Lead, action: Action): Lead {
@@ -33,8 +34,8 @@ function reducer(state: Lead, action: Action): Lead {
 			return { ...state, emails: action.value };
 		case "phones":
 			return { ...state, phones: action.value };
-		case "origin":
-			return { ...state, origin: action.value };
+		case "LeadOriginId":
+			return { ...state, LeadOriginId: action.value };
 		case "productId":
 			return { ...state, productId: action.value };
 		case "agencyId":

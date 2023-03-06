@@ -28,6 +28,9 @@
 	align-items: center;
 	gap: 1rem;
 }
+.navUser:hover {
+	cursor: pointer;
+}
 .userPhoto {
 	width: 5rem;
 	height: 5rem;

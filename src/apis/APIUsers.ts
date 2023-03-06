@@ -25,8 +25,10 @@ function validateCognitoUser(user: User) {
 }
 
 export const UserAPI = {
-	test: function (): void {
-		console.log("test");
+	test: function () {
+		return new Promise((resolve, reject) => {
+			resolve(1);
+		});
 	},
 	getAll: async function () {
 		try {

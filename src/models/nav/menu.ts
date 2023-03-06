@@ -3,6 +3,7 @@ import { submenuSupport } from "./submenuSupport";
 import { submenuMarketing } from "./submenuMarketing";
 import { submenuProduct } from "./submenuProduct";
 import { submenuHR } from "./submenuHR";
+import { submenuAdmin } from "./subMenuAdmin";
 
 export let Menu = [
 	[
@@ -50,6 +51,15 @@ export let Menu = [
 				icon: "hr",
 			},
 			subitems: submenuHR,
+		},
+		{
+			submenu: true,
+			data: {
+				pos: 6,
+				text: "Corporativo",
+				icon: "hr",
+			},
+			subitems: submenuAdmin,
 		},
 	],
 ];

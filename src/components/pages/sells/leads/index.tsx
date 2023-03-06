@@ -12,14 +12,7 @@ import { LeadAPI } from "@/apis";
 export const Leads = () => {
 	const [leadView, setLeadView] = useState(false);
 
-	const { isLoading, data, isError, error } = useQuery({
-		queryKey: ["agencies"],
-		queryFn: LeadAPI.getAll,
-		staleTime: 5 * (60 * 1000), // 5 mins
-		cacheTime: 10 * (60 * 1000), // 10 mins
-	});
-
-	const PageTabs = ["Subasta", "Contacto", "Seguimiento", "Cierre"];
+	const PageTabs = ["Subasta", "1er Contacto", "Seguimiento", "Cierre"];
 	const TabOne = <LeadsTable type={3} />;
 	const TabTwo = <LeadsTable type={0} />;
 	const TabThree = <LeadsTable type={1} />;
@@ -32,16 +25,6 @@ export const Leads = () => {
 		}
 		setLeadView(!leadView);
 	};
-
-	if (isLoading) {
-		return (
-			<div className="row">
-				<div className={`col-xs-12 loaderContainer`}>
-					<Loader />
-				</div>
-			</div>
-		);
-	}
 
 	return (
 		<div className={`contentVerticalPadding ${styles.mainContainer}`}>

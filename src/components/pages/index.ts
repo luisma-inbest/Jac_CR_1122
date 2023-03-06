@@ -23,6 +23,8 @@ import {
 	CreateProduct,
 } from "./product";
 
+import { MyProfile } from "./shared";
+
 export {
 	Home,
 	Login,
@@ -42,4 +44,5 @@ export {
 	ProductOnePager,
 	CreateProduct,
 	Users,
+	MyProfile,
 };

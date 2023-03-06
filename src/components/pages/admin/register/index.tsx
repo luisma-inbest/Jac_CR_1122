@@ -9,6 +9,7 @@ import {
 	StyledSelect,
 	Input,
 	Loader,
+	ButtonFields,
 } from "@/components/UI/atoms";
 import { AgencyAPI } from "@/apis/APIAgency";
 
@@ -18,7 +19,7 @@ import States from "@/utils/states";
 import { reducer, initial } from "./reducer";
 
 import { User } from "@/models";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { UserAPI } from "@/apis";
 
 interface Props {
@@ -27,6 +28,8 @@ interface Props {
 
 export const Register = (props: Props) => {
 	const [fields, dispatch] = useReducer(reducer, initial);
+	const [phone, setPhone] = useState("");
+	const [email, setEmail] = useState("");
 
 	const logoColor = getComputedStyle(document.body).getPropertyValue(
 		"--main-color"
@@ -37,26 +40,34 @@ export const Register = (props: Props) => {
 		staleTime: 5 * (60 * 1000), // 5 mins
 		cacheTime: 10 * (60 * 1000), // 10 mins
 	});
+	const addUserMutation = useMutation({
+		mutationFn: () => UserAPI.create(fields),
+		onSuccess(data, variables, context) {
+			console.log("exito papito", data);
+		},
+	});
+
+	function handlePhones() {
+		dispatch({
+			type: "userPhones",
+			value: [...fields.userPhones, `+52${phone}`],
+		});
+		setPhone("");
+		console.log(fields);
+	}
+	function handleEmails() {
+		dispatch({
+			type: "userEmails",
+			value: [...fields.userEmails, email],
+		});
+		setEmail("");
+		console.log(fields);
+	}
 
 	const handleSubmit: any = async (event: React.FormEvent<EventTarget>) => {
 		event.preventDefault();
-		UserAPI.create(fields);
+		addUserMutation.mutate();
 		console.log(fields);
-
-		// try {
-		// 	await signUp(user);
-		// 	console.log("Usuario creado exitosamente :)");
-		// } catch (error: any) {
-		// 	let code = error.code;
-		// 	console.log(error);
-		// 	switch (code) {
-		// 		case "UsernameExistsException":
-		// 			console.log("El usuario ya existe");
-		// 			break;
-		// 		default:
-		// 			console.log("Error al crear el usuario");
-		// 	}
-		// }
 	};
 
 	if (isLoading) {
@@ -126,10 +137,17 @@ export const Register = (props: Props) => {
 					<Input
 						placeholder="Email personal"
 						inputType="text"
-						value={fields.userEmails[0]}
-						type="reducer"
-						params={{ dispatch: dispatch, dispType: "userEmails" }}
+						value={email}
+						type="state"
+						params={{ setValue: setEmail }}
 					/>
+					<ButtonFields text="Agregar Email" func={handleEmails} />
+
+					<div className="mb-5">
+						{fields.userEmails.map((email, index) => {
+							return <h5 key={index}>{email}</h5>;
+						})}
+					</div>
 
 					{/* Info Profesional */}
 					<p className="p2 bold secondary mb-0 mt-3">
@@ -164,10 +182,17 @@ export const Register = (props: Props) => {
 					<Input
 						placeholder="Número celular"
 						inputType="text"
-						value={fields.userPhones[0]}
-						type="reducer"
-						params={{ dispatch: dispatch, dispType: "userPhones" }}
+						value={phone}
+						type="state"
+						params={{ setValue: setPhone }}
 					/>
+					<ButtonFields text="Agregar Número" func={handlePhones} />
+
+					<div className="mb-5">
+						{fields.userPhones.map((phone, index) => {
+							return <h5 key={index}>{phone}</h5>;
+						})}
+					</div>
 
 					<StyledSelect
 						customType="secondary"

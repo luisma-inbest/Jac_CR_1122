@@ -11,6 +11,8 @@ import {
 import { IconCross } from "@/assets";
 import { reducer, initial } from "./reducer";
 import { Lead } from "@/models";
+import { useMutation } from "react-query";
+import { LeadAPI } from "@/apis";
 
 interface Props {
 	func: () => void;
@@ -23,6 +25,13 @@ export const CreateLead = (props: Props) => {
 	);
 	const [fields, dispatch] = useReducer(reducer, initial);
 
+	const addLeadMutation = useMutation({
+		mutationFn: () => LeadAPI.create(fields),
+		onSuccess(data, variables, context) {
+			console.log(data);
+		},
+	});
+
 	function nextPage() {
 		setPage(page + 1);
 	}
@@ -32,6 +41,7 @@ export const CreateLead = (props: Props) => {
 	function formHandler(e: any) {
 		e.preventDefault();
 		console.log("sumbmiting form...");
+		addLeadMutation.mutate();
 	}
 
 	return (
@@ -80,7 +90,6 @@ const First = (props: FirstProps) => {
 	const [val, setVal] = useState("");
 	const [phone, setPhone] = useState("");
 	const [email, setEmail] = useState("");
-	const [emails, setEmails] = useState<string[]>([]);
 	function handlePhones() {
 		props.dispatch({
 			type: "phones",
@@ -114,13 +123,23 @@ const First = (props: FirstProps) => {
 					type="reducer"
 					params={{ dispatch: props.dispatch, dispType: "lastName" }}
 				/>
-				<Input
-					placeholder="Origen de Lead"
-					inputType="text"
-					value={props.fields.origin}
-					type="reducer"
-					params={{ dispatch: props.dispatch, dispType: "origin" }}
-				/>
+				<StyledSelect
+					customType="secondary"
+					defaultValue=""
+					value={props.fields.LeadOriginId}
+					onChange={(e) =>
+						props.dispatch({
+							type: "LeadOriginId",
+							value: e.target.value,
+						})
+					}
+				>
+					<option value="" disabled>
+						-- Origen --
+					</option>
+					<option value={1}>Facebook</option>
+					<option value={2}>Piso</option>
+				</StyledSelect>
 				<Input
 					placeholder="Números de contacto"
 					inputType="number"
@@ -130,9 +149,11 @@ const First = (props: FirstProps) => {
 				/>
 				<ButtonFields text="Agregar Número" func={handlePhones} />
 
-				{props.fields.phones.map((phone, index) => {
-					return <h5 key={index}>{phone}</h5>;
-				})}
+				<div className="mb-5">
+					{props.fields.phones.map((phone, index) => {
+						return <h5 key={index}>{phone}</h5>;
+					})}
+				</div>
 
 				<Input
 					placeholder="Correos de contacto"
@@ -188,19 +209,30 @@ const Second = (props: SecondProps) => {
 					<option value="man">Sei4 Pro</option>
 					<option value="woman">J 7</option>
 				</StyledSelect>
-				<Input
-					placeholder="Tipo de Compra"
-					inputType="text"
-					value={val}
-					type="state"
-					params={{ setValue: setVal }}
-				/>
+
+				<StyledSelect
+					customType="secondary"
+					defaultValue=""
+					onChange={(e) =>
+						props.dispatch({
+							type: "buyType",
+							value: e.target.value,
+						})
+					}
+				>
+					<option value="" disabled>
+						-- Tipo de Compra --
+					</option>
+					<option value="man"> Debito </option>
+					<option value="woman">Crédito</option>
+				</StyledSelect>
+
 				<Input
 					placeholder="Unidades"
-					inputType="text"
-					value={val}
-					type="state"
-					params={{ setValue: setVal }}
+					inputType="number"
+					value={props.fields!.units.toString()}
+					type="reducer"
+					params={{ dispatch: props.dispatch, dispType: "units" }}
 				/>
 				<StyledInputSubmit value="Crear" customType="primary" />
 			</form>

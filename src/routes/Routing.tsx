@@ -8,6 +8,7 @@ import { SellsRouter } from "./SellsRouter";
 import { PublicRouter } from "./PublicRouter";
 import { AdminRouter } from "./AdminRouter";
 import { ProductRouter } from "./ProductRouter";
+import { SharedRouter } from "./SharedRouter";
 
 export const Routing = () => {
 	const { User, SetUser } = useContext(UserContext) as UserContextType;
@@ -16,6 +17,11 @@ export const Routing = () => {
 		<Routes>
 			{/* public urls */}
 			{PublicRouter}
+
+			{/* General urls */}
+			<Route element={<ProtectedRoute isAllowed={!!User} />}>
+				{SharedRouter}
+			</Route>
 
 			{/* admin urls */}
 			<Route

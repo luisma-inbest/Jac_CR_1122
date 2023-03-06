@@ -1,14 +1,14 @@
 import { api, API_ROUTE } from "./axiosConfig";
-import { Agency } from "@/models";
+import { Lead } from "@/models";
 
 export const LeadAPI = {
-	create: async function (agency: Agency) {
-		console.log("create agency", agency);
+	create: async function (lead: Lead) {
+		console.log("create Lead", lead);
 		try {
 			const response = await api.request({
 				url: `/lead/`,
 				method: "POST",
-				data: { data: agency },
+				data: { data: lead },
 			});
 			console.log(response);
 		} catch (error: any) {
@@ -19,7 +19,7 @@ export const LeadAPI = {
 		}
 	},
 	getAll: async function () {
-		console.log("get agencies");
+		console.log("get leads by agencie");
 		try {
 			const response = await api.request({
 				url: `/lead/`,
