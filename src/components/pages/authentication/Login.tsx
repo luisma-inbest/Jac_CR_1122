@@ -60,12 +60,14 @@ export const Login = () => {
 						<form className={styles.form} onSubmit={handleSubmit}>
 							<Input
 								placeholder="Correo"
+								inputType="email"
 								value={email}
 								type="state"
 								params={{ setValue: setEmail }}
 							/>
 							<Input
 								placeholder="Contraseña"
+								inputType="password"
 								value={password}
 								type="state"
 								params={{ setValue: setPassword }}

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "./RegisterActivity.module.css";
 import {
 	StyledInputText,
@@ -8,7 +8,7 @@ import {
 	StyledTextArea,
 	StyledInputSelect,
 } from "@/components/UI/atoms";
-import {IconCross} from "@/assets";
+import { IconCross } from "@/assets";
 
 interface Props {
 	func: () => void;
@@ -39,9 +39,10 @@ export const RegisterActivity = (props: Props) => {
 				>
 					<Input
 						placeholder="Titulo"
+						inputType="text"
 						value={val}
 						type="state"
-						params={{setValue: setVal}}
+						params={{ setValue: setVal }}
 					/>
 					<StyledTextArea placeholder="Comentarios"></StyledTextArea>
 					<StyledInputSelect>

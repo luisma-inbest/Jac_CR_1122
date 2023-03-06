@@ -17,7 +17,10 @@ export const AgencyLocation = () => {
 	const states = [{ name: "CDMX" }, { name: "Guadalajara" }];
 	const municipalities = [{ name: "Santa Fe" }, { name: "Coyoacán" }];
 	const neighborhoods = [{ name: "Roma" }, { name: "Condesa" }];
-	const delegations = [{ name: "Iztapalapa" }, { name: "Venustiano Carranza" }];
+	const delegations = [
+		{ name: "Iztapalapa" },
+		{ name: "Venustiano Carranza" },
+	];
 
 	const handleFormSubmit = () => {
 		// Call API.
@@ -35,6 +38,7 @@ export const AgencyLocation = () => {
 					<div className="box padding-side">
 						<Input
 							placeholder="Calle"
+							inputType="text"
 							value={street}
 							type="state"
 							params={{ setValue: setStret }}
@@ -45,6 +49,7 @@ export const AgencyLocation = () => {
 					<div className="box padding-side">
 						<Input
 							placeholder="Número interior"
+							inputType="number"
 							value={interiorNumber}
 							type="state"
 							params={{ setValue: setInteriorNumber }}
@@ -55,6 +60,7 @@ export const AgencyLocation = () => {
 					<div className="box padding-side">
 						<Input
 							placeholder="Número exterior"
+							inputType="number"
 							value={externalNumber}
 							type="state"
 							params={{ setValue: setNumberNumber }}
@@ -65,6 +71,7 @@ export const AgencyLocation = () => {
 					<div className="box padding-side">
 						<Input
 							placeholder="Código postal"
+							inputType="number"
 							value={postalCode}
 							type="state"
 							params={{ setValue: setPostalCode }}
@@ -111,6 +118,7 @@ export const AgencyLocation = () => {
 					<div className="box padding-side">
 						<Input
 							placeholder="Latitud"
+							inputType="string"
 							value={latitute}
 							type="state"
 							params={{ setValue: setLatitude }}
@@ -121,6 +129,7 @@ export const AgencyLocation = () => {
 					<div className="box padding-side">
 						<Input
 							placeholder="Longitud"
+							inputType="string"
 							value={longitude}
 							type="state"
 							params={{ setValue: setLongitude }}

@@ -38,6 +38,7 @@ export const AgencyGeneral = () => {
 					<div className="box padding-side">
 						<Input
 							placeholder="Nombre comercial (Marca)"
+							inputType="text"
 							value={commercialName}
 							type="state"
 							params={{ setValue: setCommercialName }}
@@ -48,6 +49,7 @@ export const AgencyGeneral = () => {
 					<div className="box padding-side">
 						<Input
 							placeholder="Razón social"
+							inputType="text"
 							value={businessName}
 							type="state"
 							params={{ setValue: setBusinessName }}
@@ -58,6 +60,7 @@ export const AgencyGeneral = () => {
 					<div className="box padding-side">
 						<Input
 							placeholder="Logo"
+							inputType="text"
 							value={logo}
 							type="state"
 							params={{ setValue: setLogo }}
@@ -68,6 +71,7 @@ export const AgencyGeneral = () => {
 					<div className="box padding-side">
 						<Input
 							placeholder="Logo Dark"
+							inputType="text"
 							value={logoDark}
 							type="state"
 							params={{ setValue: setLogoDark }}
@@ -78,6 +82,7 @@ export const AgencyGeneral = () => {
 					<div className="box padding-side">
 						<Input
 							placeholder="URL"
+							inputType="text"
 							value={url}
 							type="state"
 							params={{ setValue: setUrl }}
@@ -88,6 +93,7 @@ export const AgencyGeneral = () => {
 					<div className="box padding-side">
 						<Input
 							placeholder="Vista 360"
+							inputType="url"
 							value={view360}
 							type="state"
 							params={{ setValue: setView360 }}
@@ -98,6 +104,7 @@ export const AgencyGeneral = () => {
 					<div className="box padding-side">
 						<Input
 							placeholder="URL Google Maps"
+							inputType="text"
 							value={googleMapsUrl}
 							type="state"
 							params={{ setValue: setGoogleMapsUrl }}
@@ -108,6 +115,7 @@ export const AgencyGeneral = () => {
 					<div className="box padding-side">
 						<Input
 							placeholder="SICOP"
+							inputType="text"
 							value={sicop}
 							type="state"
 							params={{ setValue: setSicop }}
@@ -118,6 +126,7 @@ export const AgencyGeneral = () => {
 					<div className="box padding-side">
 						<Input
 							placeholder="Código de transferencia"
+							inputType="text"
 							value={transferCode}
 							type="state"
 							params={{ setValue: setTransferCode }}
@@ -136,6 +145,7 @@ export const AgencyGeneral = () => {
 					<div className="box padding-side">
 						<Input
 							placeholder="Nombre del contacto"
+							inputType="text"
 							value={contactName}
 							type="state"
 							params={{ setValue: setContactName }}
@@ -146,6 +156,7 @@ export const AgencyGeneral = () => {
 					<div className="box padding-side">
 						<Input
 							placeholder="Puesto"
+							inputType="text"
 							value={position}
 							type="state"
 							params={{ setValue: setPosition }}
@@ -156,6 +167,7 @@ export const AgencyGeneral = () => {
 					<div className="box padding-side">
 						<Input
 							placeholder="Correo"
+							inputType="email"
 							value={email}
 							type="state"
 							params={{ setValue: setEmail }}
@@ -166,6 +178,7 @@ export const AgencyGeneral = () => {
 					<div className="box padding-side">
 						<Input
 							placeholder="Teléfono"
+							inputType="number"
 							value={phoneNumber}
 							type="state"
 							params={{ setValue: setPhoneNumber }}
