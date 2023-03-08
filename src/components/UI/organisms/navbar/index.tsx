@@ -1,6 +1,5 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
 import styles from "./NavBar.module.css";
-import { user } from "@/assets";
 import { Menu } from "@/models/nav/menu";
 import {
 	MenuItem,
@@ -95,19 +94,39 @@ export const NavBar: React.FunctionComponent<Props> = (props) => {
 									})}
 								</StyledSelect>
 							</li>
+							<li>
+								<MenuItem
+									state="unactive"
+									text="Mi Perfil JAC"
+									route=""
+									icon=""
+									func={() => console.log("")}
+									submenu={false}
+									dropped={false}
+								/>
+							</li>
 							{submenus.map((item: any, index) => {
-								return (
-									<li key={index}>
-										<DropdownMenu
-											text={item.data.text}
-											route={item.data.route}
-											icon={item.data.icon}
-											submenu={item.submenu}
-											subitems={item.subitems}
-											funct={props.navHandler}
-										/>
-									</li>
-								);
+								let role = User!.permissions[0];
+
+								if (item.permissions.includes(role)) {
+									return (
+										<li key={index}>
+											<DropdownMenu
+												text={item.data.text}
+												route={item.data.route}
+												icon={item.data.icon}
+												submenu={item.submenu}
+												subitems={item.subitems}
+												funct={props.navHandler}
+											/>
+										</li>
+									);
+								} else {
+									console.log(
+										"no tiene permisos a:" + item.data.text
+									);
+									return;
+								}
 							})}
 						</ul>
 					</li>

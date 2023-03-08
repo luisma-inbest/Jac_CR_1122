@@ -33,6 +33,7 @@ import { ComparativeBarChart } from "./charts/ComparativeBarChart";
 import { StackedBarChart } from "./charts/StackedBarChart";
 
 import { Loader } from "./loader";
+import { Alert } from "./alert";
 
 export {
 	StyledInputText,
@@ -63,4 +64,5 @@ export {
 	Loader,
 	ComparativeBarChart,
 	StackedBarChart,
+	Alert,
 };

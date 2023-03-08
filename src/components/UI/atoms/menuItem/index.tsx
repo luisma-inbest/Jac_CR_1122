@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./MenuItem.module.css";
 import {
 	IconUser,
@@ -10,6 +10,7 @@ import {
 	IconSells,
 	IconSupport,
 	IconArrow,
+	IconOffice,
 } from "@/assets";
 
 interface Props {
@@ -66,7 +67,17 @@ export const MenuItem = (props: Props) => {
 				);
 			case "hr":
 				return (
-					<IconHR color={props.dropped ? whiteColor : colorIcon} size="100%" />
+					<IconHR
+						color={props.dropped ? whiteColor : colorIcon}
+						size="100%"
+					/>
+				);
+			case "office":
+				return (
+					<IconOffice
+						color={props.dropped ? whiteColor : colorIcon}
+						size="100%"
+					/>
 				);
 			case "settings":
 				return (

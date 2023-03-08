@@ -6,7 +6,7 @@ export const submenuProduct = [
 	},
 	{
 		pos: 4.2,
-		text: "Item 1",
-		route: "/product",
+		text: "Agregar",
+		route: "/product/create",
 	},
 ];

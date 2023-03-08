@@ -1,13 +1,13 @@
-import {IconWhatsapp, IconPhone, IconCheck, IconFeedback} from "@/assets";
-import {Button} from "@/components/UI/atoms";
-import {RegisterActivity} from "@/components/UI/molecules";
+import { IconWhatsapp, IconPhone, IconCheck, IconFeedback } from "@/assets";
+import { Button } from "@/components/UI/atoms";
+import { RegisterActivity } from "@/components/UI/molecules";
 
 export function textSelector(type: string) {
 	switch (type) {
 		case "whats":
 			return "Enviar Whatsapp";
 		case "feedback":
-			return "Feedback";
+			return "Comentarios";
 		case "phone":
 			return "Llamada Telefónica";
 		case "check":

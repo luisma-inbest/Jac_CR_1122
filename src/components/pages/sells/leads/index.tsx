@@ -13,10 +13,10 @@ export const Leads = () => {
 	const [leadView, setLeadView] = useState(false);
 
 	const PageTabs = ["Subasta", "1er Contacto", "Seguimiento", "Cierre"];
-	const TabOne = <LeadsTable type={3} />;
-	const TabTwo = <LeadsTable type={0} />;
-	const TabThree = <LeadsTable type={1} />;
-	const TabFour = <LeadsTable type={2} />;
+	const TabOne = <LeadsTable type={0} />;
+	const TabTwo = <LeadsTable type={1} />;
+	const TabThree = <LeadsTable type={2} />;
+	const TabFour = <LeadsTable type={3} />;
 	const TabsComponents = [TabOne, TabTwo, TabThree, TabFour];
 
 	const windowHandler = () => {

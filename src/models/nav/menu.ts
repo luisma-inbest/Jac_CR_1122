@@ -4,6 +4,7 @@ import { submenuMarketing } from "./submenuMarketing";
 import { submenuProduct } from "./submenuProduct";
 import { submenuHR } from "./submenuHR";
 import { submenuAdmin } from "./subMenuAdmin";
+import { permissions } from "@/utils";
 
 export let Menu = [
 	[
@@ -15,6 +16,7 @@ export let Menu = [
 				icon: "sells",
 			},
 			subitems: submenuSells,
+			permissions: ["admin", "sells"],
 		},
 		{
 			submenu: true,
@@ -24,6 +26,7 @@ export let Menu = [
 				icon: "support",
 			},
 			subitems: submenuSupport,
+			permissions: ["admin", "support"],
 		},
 		{
 			submenu: true,
@@ -33,6 +36,7 @@ export let Menu = [
 				icon: "marketing",
 			},
 			subitems: submenuMarketing,
+			permissions: ["admin", "marketing"],
 		},
 		{
 			submenu: true,
@@ -42,6 +46,7 @@ export let Menu = [
 				icon: "product",
 			},
 			subitems: submenuProduct,
+			permissions: ["admin", "product", "sells"],
 		},
 		{
 			submenu: true,
@@ -51,15 +56,17 @@ export let Menu = [
 				icon: "hr",
 			},
 			subitems: submenuHR,
+			permissions: ["admin", "hr"],
 		},
 		{
 			submenu: true,
 			data: {
 				pos: 6,
-				text: "Corporativo",
-				icon: "hr",
+				text: "JAC Store",
+				icon: "office",
 			},
 			subitems: submenuAdmin,
+			permissions: ["admin"],
 		},
 	],
 ];

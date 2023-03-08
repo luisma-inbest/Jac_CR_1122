@@ -140,3 +140,6 @@ export const CreateProduct = () => {
 		</div>
 	);
 };
+
+//TODO: cada version tiene su precio
+//TODO: en lugar de modelo poner Año

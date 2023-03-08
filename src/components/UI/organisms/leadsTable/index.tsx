@@ -1,83 +1,49 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./LeadsTable.module.css";
 import { IconUnfold } from "@/assets";
 import { LeadRow } from "@/components/UI/molecules";
 import { LeadAPI } from "@/apis";
 import { useQuery } from "react-query";
 import { Loader } from "../../atoms";
+import UserContext, { UserContextType } from "@/context/UserContext";
 
 interface Props {
-	type?: number;
+	type: number;
 }
 
-const leads = [
-	{
-		id: 1,
-		name: "Jorge Salgado",
-		model: "J7",
-		status: "Lllamada",
-		date: "10-01-2023",
-		color: 0,
-	},
-	{
-		id: 2,
-		name: "Jorge Salgado",
-		model: "J7",
-		status: "Lllamada",
-		date: "12-01-2023",
-		color: 3,
-	},
-	{
-		id: 3,
-		name: "Jorge Salgado",
-		model: "J7",
-		status: "Lllamada",
-		date: "17-01-2023",
-		color: 3,
-	},
-	{
-		id: 4,
-		name: "Jorge Salgado",
-		model: "J7",
-		status: "Lllamada",
-		date: "19-01-2023",
-		color: 3,
-	},
-	{
-		id: 5,
-		name: "Jorge Salgado",
-		model: "J7",
-		status: "Lllamada",
-		date: "22-01-2023",
-		color: 3,
-	},
-];
+const statusArray = ["subasta", "1er-contacto", "seguimiento", "en-cierre"];
 
 export const LeadsTable = (props: Props) => {
+	const { User } = useContext(UserContext) as UserContextType;
 	const highlight = getComputedStyle(
 		document.documentElement
 	).getPropertyValue("--highlight-text");
-	const [typeLeads, setTypeLeads] = useState<number[]>([3, 3, 3, 3]);
+
+	function generateLeadNickname(firstName: string, lastName: string) {
+		return firstName.split(" ")[0] + " " + lastName.split(" ")[0];
+	}
+
+	function getUser(userToVerify: any) {
+		if (userToVerify != null) {
+			return userToVerify.nickname;
+		}
+		return "-";
+	}
 
 	const { isLoading, data, isError, error } = useQuery({
-		queryKey: ["leads"],
-		queryFn: LeadAPI.getAll,
+		queryKey: [`leads-${User!.AgencyId}-${statusArray[props.type]}`],
+		queryFn: () => LeadAPI.getAll(statusArray[props.type], User!.AgencyId),
+		onSuccess: (data) => {
+			console.log(
+				"exito en:",
+				statusArray[props.type],
+				"estado:",
+				isLoading
+			);
+		},
 		// staleTime: 5 * (60 * 1000), // 5 mins
 		// cacheTime: 10 * (60 * 1000), // 10 mins
-		onSuccess: (leads) => {
-			console.log("success", leads);
-		},
 	});
-
-	useEffect(() => {
-		if (props.type == 1) {
-			setTypeLeads([1, 1, 1, 1]);
-		} else if (props.type == 2) {
-			setTypeLeads([2, 2, 2, 2]);
-		} else if (props.type == 0) {
-			setTypeLeads([0, 0, 0, 0]);
-		}
-	}, []);
 
 	if (isLoading) {
 		return (
@@ -90,39 +56,48 @@ export const LeadsTable = (props: Props) => {
 	}
 
 	return (
-		<table className={`${styles.table}`}>
-			<thead>
-				<tr className={styles.tableHeader}>
-					<th className="p4 highlight">Nombre</th>
-					<th className="p4 highlight">Estado</th>
-					<th className="p4 highlight">Ult. Contacto</th>
-					<th className={`p4 highlight `}>
-						Fecha
-						<span className={`${styles.iconContainer}`}>
-							<IconUnfold
-								size="100%"
-								color={highlight}
-								rotate="0"
-							/>
-						</span>
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				{data.map((lead: any) => {
-					return (
-						<LeadRow
-							key={lead.id}
-							id={lead.id}
-							name={lead.firstAndLastName}
-							model={lead.model}
-							status={lead.status}
-							date={lead.date || "10-01-2023"}
-							color={typeLeads[lead.color]}
-						/>
-					);
-				})}
-			</tbody>
-		</table>
+		<div className="row">
+			<div className={`col-xs-12 ${styles.tableContainer}`}>
+				<table className={`${styles.table}`}>
+					<thead>
+						<tr className={styles.tableHeader}>
+							<th className="p4 highlight">Nombre</th>
+							<th className="p4 highlight">Asesor</th>
+							<th className="p4 highlight">Estado</th>
+							<th className="p4 highlight">Ult. Contacto</th>
+							<th className={`p4 highlight `}>
+								Fecha
+								<span className={`${styles.iconContainer}`}>
+									<IconUnfold
+										size="100%"
+										color={highlight}
+										rotate="0"
+									/>
+								</span>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						{data.map((lead: any) => {
+							return (
+								<LeadRow
+									key={lead.id}
+									id={lead.id}
+									name={generateLeadNickname(
+										lead.firstName,
+										lead.lastName
+									)}
+									user={getUser(lead.User)}
+									model={lead.model}
+									status={lead.LeadActivities[0]}
+									date={lead.date || "10-01-2023"}
+									color={props.type}
+								/>
+							);
+						})}
+					</tbody>
+				</table>
+			</div>
+		</div>
 	);
 };

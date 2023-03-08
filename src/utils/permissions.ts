@@ -5,7 +5,10 @@ interface permissionstype {
 const shared = ["profile"];
 
 export const permissions: permissionstype = {
-	admin: ["admin", "product", "sells", ...shared],
+	admin: ["admin", "product", "sells", "support", "marketing", ...shared],
 	product: ["product", ...shared],
 	sells: ["sells", ...shared],
+	support: ["support", ...shared],
+	marketing: ["marketing", ...shared],
+	hr: ["hr", ...shared],
 };

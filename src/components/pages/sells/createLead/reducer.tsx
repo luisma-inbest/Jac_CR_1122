@@ -21,7 +21,6 @@ const initial: Lead = {
 	agencyId: "",
 	buyType: "",
 	units: 0,
-	UserId: 26,
 };
 
 function reducer(state: Lead, action: Action): Lead {

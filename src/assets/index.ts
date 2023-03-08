@@ -19,6 +19,7 @@ import { IconSupport } from "./icons/IconSupport";
 import { IconMarketing } from "./icons/IconMarketing";
 import { IconHR } from "./icons/IconHR";
 import { IconProduct } from "./icons/IconProduct";
+import { IconOffice } from "./icons/IconOffice";
 import { IconLocation } from "./icons/IconLocation";
 import { IconUser } from "./icons/IconUser";
 import { IconArrow } from "./icons/IconArrow";
@@ -49,6 +50,7 @@ export {
 	IconMarketing,
 	IconHR,
 	IconProduct,
+	IconOffice,
 	IconLocation,
 	IconUser,
 	IconArrow,

@@ -18,11 +18,27 @@ export const LeadAPI = {
 			}
 		}
 	},
-	getAll: async function () {
-		console.log("get leads by agencie");
+	getAll: async function (type: string, agency: string) {
 		try {
 			const response = await api.request({
-				url: `/lead/`,
+				url: `/lead/?AgencyId=${agency}&phase=${type}&page=1&limit=10`,
+				//url: `/lead/?AgencyId=14&phase=en-cierre&page=1&limit=10`,
+				method: "GET",
+			});
+			//el primer data es para acceder a la respuesta y en el segundo ya esta el arreglo
+			return response.data.data;
+		} catch (error: any) {
+			console.log("Hubo un error");
+			if (error.response) {
+				console.log(error.response.data);
+			}
+		}
+	},
+	getLead: async function (leadId: string) {
+		try {
+			const response = await api.request({
+				url: `/lead/${leadId}`,
+				//url: `/lead/?AgencyId=14&phase=en-cierre&page=1&limit=10`,
 				method: "GET",
 			});
 			//el primer data es para acceder a la respuesta y en el segundo ya esta el arreglo

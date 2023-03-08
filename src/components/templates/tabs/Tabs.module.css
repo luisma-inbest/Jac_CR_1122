@@ -1,6 +1,7 @@
 .tabs {
 	position: relative;
 	width: 100%;
+	overflow: hidden;
 }
 
 .tabHeader {
@@ -71,6 +72,7 @@
 	/* full - header - marginURL - tabHeader - marginTabHeader */
 	/* position: relative; */
 	overflow: hidden;
+	/* overflow-x: auto; */
 	/* overflow-x: scroll; add if you want tables to have scroll */
 }
 

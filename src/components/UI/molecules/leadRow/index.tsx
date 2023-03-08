@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./LeadRow.module.css";
 
 interface Props {
 	id: number;
 	name: string;
+	user?: string;
 	model: string;
 	color: number;
 	status: string;
@@ -13,7 +14,7 @@ interface Props {
 
 export const LeadRow = (props: Props) => {
 	const navigate = useNavigate();
-	const colors = [styles.leadCold, styles.leadTracing, styles.leadHot];
+	const colors = ["", styles.leadCold, styles.leadTracing, styles.leadHot];
 
 	/**/
 	const [days, setDays] = useState(0);
@@ -45,15 +46,19 @@ export const LeadRow = (props: Props) => {
 	/**/
 
 	return (
-		<tr className={styles.tableRow} onClick={() => navigate("1")}>
+		<tr className={styles.tableRow}>
 			<td className={styles.nameColumn}>
 				<div
 					className={`${styles.leadColor} ${colors[props.color]}`}
 				></div>
-				<div>
+				<Link to={`${props.id}`}>
 					<p className="p3 semi-bold no-margin">{props.name}</p>
 					<p className="p4 secondary no-margin">{props.model}</p>
-				</div>
+				</Link>
+			</td>
+
+			<td>
+				<p className="p4 secondary no-margin">{props.user}</p>
 			</td>
 			<td>
 				<p className="p4 secondary no-margin">{props.status}</p>
