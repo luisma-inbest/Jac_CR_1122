@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { Tabs } from "@/components/templates";
 import { Button, Loader } from "@/components/UI/atoms";
@@ -7,14 +7,39 @@ import { AgenciesTable } from "@/components/UI/organisms";
 
 import styles from "./Agencies.module.css";
 import { AgencyAPI } from "@/apis";
+import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
 
 export const Agencies = () => {
 	const navigate = useNavigate();
+	const { Alerts, SetAlerts } = useContext(
+		AlertsContext
+	) as AlertsContextType;
+	function createAlert(type: string, title: string, text: string) {
+		let newAlert: any = {
+			type: type,
+			title: "Titulo",
+			text: "textito",
+		};
+		SetAlerts([...Alerts, newAlert]);
+	}
+
 	const { isLoading, data, isError, error } = useQuery({
 		queryKey: ["agencies"],
 		queryFn: AgencyAPI.getAll,
 		staleTime: 5 * (60 * 1000), // 5 mins
 		cacheTime: 10 * (60 * 1000), // 10 mins
+		onSuccess: (data) => {
+			console.log(data);
+			createAlert("success", "Exito!", "agencias cargadas correctamente");
+		},
+		onError: (error) => {
+			console.log(error);
+			createAlert(
+				"error",
+				"Error!",
+				"No se pudieron cargar las agencias"
+			);
+		},
 	});
 
 	if (isLoading) {
@@ -22,6 +47,16 @@ export const Agencies = () => {
 			<div className="row">
 				<div className={`col-xs-12 loaderContainer`}>
 					<Loader />
+				</div>
+			</div>
+		);
+	}
+
+	if (isError) {
+		return (
+			<div className="row">
+				<div className={`col-xs-12 loaderContainer`}>
+					<h1>Hubo un error</h1>
 				</div>
 			</div>
 		);

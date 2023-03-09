@@ -94,17 +94,6 @@ export const NavBar: React.FunctionComponent<Props> = (props) => {
 									})}
 								</StyledSelect>
 							</li>
-							<li>
-								<MenuItem
-									state="unactive"
-									text="Mi Perfil JAC"
-									route=""
-									icon=""
-									func={() => console.log("")}
-									submenu={false}
-									dropped={false}
-								/>
-							</li>
 							{submenus.map((item: any, index) => {
 								let role = User!.permissions[0];
 

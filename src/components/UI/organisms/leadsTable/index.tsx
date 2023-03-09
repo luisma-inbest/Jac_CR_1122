@@ -33,14 +33,7 @@ export const LeadsTable = (props: Props) => {
 	const { isLoading, data, isError, error } = useQuery({
 		queryKey: [`leads-${User!.AgencyId}-${statusArray[props.type]}`],
 		queryFn: () => LeadAPI.getAll(statusArray[props.type], User!.AgencyId),
-		onSuccess: (data) => {
-			console.log(
-				"exito en:",
-				statusArray[props.type],
-				"estado:",
-				isLoading
-			);
-		},
+		onSuccess: (data) => {},
 		// staleTime: 5 * (60 * 1000), // 5 mins
 		// cacheTime: 10 * (60 * 1000), // 10 mins
 	});

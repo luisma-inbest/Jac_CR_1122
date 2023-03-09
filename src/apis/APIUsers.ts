@@ -31,16 +31,22 @@ export const UserAPI = {
 		});
 	},
 	getAll: async function () {
-		try {
-			const response = await api.request({
+		return api
+			.request({
 				url: "/user/",
 				method: "GET",
+			})
+			.then((response) => {
+				console.log("todo bien", response.data.data);
+				return response.data.data;
+			})
+			.catch((error: any) => {
+				console.log("Hubo un error");
+				if (error.response) {
+					console.log(error.response.data);
+				}
+				throw new Error(error);
 			});
-			// console.log("resp:", response.data);
-			return response.data.data;
-		} catch (error) {
-			console.log(error);
-		}
 	},
 	getAllByAgency: async function (agency: string) {
 		try {

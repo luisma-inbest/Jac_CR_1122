@@ -31,6 +31,11 @@ import { IconWhatsapp } from "./icons/IconWhatsapp";
 import { IconCheck } from "./icons/IconCheck";
 import { IconAdd } from "./icons/IconAdd";
 
+import { IconAlertError } from "./icons/Alert/IconError";
+import { IconAlertSuccess } from "./icons/Alert/IconSuccess";
+import { IconAlertWarning } from "./icons/Alert/IconWarning";
+import { IconAlertInfo } from "./icons/Alert/IconInfo";
+
 export {
 	Logo,
 	LogoFull,
@@ -61,4 +66,8 @@ export {
 	IconWhatsapp,
 	IconCheck,
 	IconAdd,
+	IconAlertError,
+	IconAlertSuccess,
+	IconAlertWarning,
+	IconAlertInfo,
 };
