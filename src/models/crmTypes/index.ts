@@ -4,6 +4,7 @@ import { UserRowProps } from "./userTable";
 import { AgencyRowProps } from "./agencyTable";
 import { ProductRowProps } from "./productTable";
 import { Lead } from "./lead";
+import { LeadDataType } from "./lead";
 
 export type {
 	User,
@@ -12,4 +13,5 @@ export type {
 	AgencyRowProps,
 	ProductRowProps,
 	Lead,
+	LeadDataType,
 };

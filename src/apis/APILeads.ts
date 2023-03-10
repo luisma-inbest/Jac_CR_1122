@@ -50,4 +50,21 @@ export const LeadAPI = {
 			}
 		}
 	},
+	nextPhase: async function (leadId: number) {
+		return api
+			.request({
+				url: `/lead/nextPhase/${leadId}`,
+				//url: `/lead/?AgencyId=14&phase=en-cierre&page=1&limit=10`,
+				method: "PATCH",
+			})
+			.then((response) => {
+				return response.data.data;
+			})
+			.catch((error: any) => {
+				if (error.response) {
+					console.log(error.response.data);
+				}
+				throw new Error(error);
+			});
+	},
 };

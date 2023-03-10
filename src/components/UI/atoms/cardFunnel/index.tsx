@@ -1,18 +1,16 @@
-import React, {useState} from "react";
-import {IconArrow} from "@/assets";
+import React, { useState } from "react";
+import { IconArrow } from "@/assets";
 
 import styles from "./CardFunnel.module.css";
 
-import {
-	iconSelector,
-	textSelector,
-	buttonHandler,
-	buttonTextHandler,
-	dropHandler,
-} from "./functions";
+import { Button } from "../button";
 
 interface Props {
-	type: string;
+	type: "whats" | "phone" | "email" | "feedback" | "reject" | "check";
+	mainText: string;
+	buttonText: string;
+	twoButtons: boolean;
+	icon: any;
 	func?: () => void;
 }
 
@@ -25,16 +23,18 @@ export const CardFunnel = (props: Props) => {
 	}
 
 	return (
-		<div className={`${styles.card} ${fullContainer ? styles.fullCard : ""}`}>
+		<div
+			className={`${styles.card} ${fullContainer ? styles.fullCard : ""}`}
+		>
 			<div className={`mb-3 ${styles.cardContainer}`}>
 				<div className={styles.left} onClick={() => cardHandler()}>
 					<span
 						className={`${styles.iconContainer} `}
 						onClick={() => cardHandler()}
 					>
-						{iconSelector(props.type)}
+						{props.icon}
 					</span>
-					<p className="p4 no-margin bold">{textSelector(props.type)}</p>
+					<p className="p4 no-margin bold">{props.mainText}</p>
 				</div>
 				<span
 					className={`${styles.iconContainer} ${
@@ -46,7 +46,12 @@ export const CardFunnel = (props: Props) => {
 				</span>
 			</div>
 			<div className={styles.cardContainer}>
-				{dropHandler(props.type, props.func)}
+				<p className="p3 link no-margin">Registrar</p>
+				<Button
+					text={props.buttonText}
+					func={props.func}
+					full={false}
+				/>
 			</div>
 		</div>
 	);

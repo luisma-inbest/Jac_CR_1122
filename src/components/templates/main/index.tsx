@@ -31,9 +31,10 @@ export const Main = () => {
 				<NavBar state={menu} navHandler={navHandler} />
 
 				<div ref={toast} className={styles.toast}>
-					{Alerts.map((alert: any) => {
+					{Alerts.map((alert: any, index) => {
 						return (
 							<Alert
+								key={index}
 								title={alert.title}
 								text={alert.text}
 								type={alert.type}

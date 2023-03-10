@@ -13,17 +13,46 @@ import { CurrentLeadProvider } from "@/context/CurrentLeadContext";
 import { useParams } from "react-router-dom";
 import { LeadAPI } from "@/apis";
 import { useQuery } from "react-query";
+import { LeadDataType } from "@/models";
+import { initial } from "../createLead/reducer";
+
+let initialData: LeadDataType = {
+	id: -1,
+	leadName: "",
+	leadEmails: [],
+	leadPhones: [],
+	leadPhase: {
+		id: -1,
+		description: "",
+		slug: "",
+		createdAt: "",
+		updatedAt: "",
+	},
+	LeadInterests: [],
+	LeadOrigin: "",
+	createdAt: new Date(),
+};
 
 export const LeadDashboard = () => {
 	let { leadId } = useParams();
 	const [leadView, setLeadView] = useState(false);
-	const [lead, seadLead] = useState(null);
+	const [leadData, setLeadData] = useState<LeadDataType>(initialData);
 
 	const { isLoading, data, isError, error } = useQuery({
 		queryKey: [`lead-${leadId}`],
 		queryFn: () => LeadAPI.getLead(String(leadId)),
 		onSuccess: (data) => {
 			console.log("exito", data);
+			setLeadData({
+				id: data.id,
+				leadName: data.firstAndLastName,
+				leadEmails: data.LeadEmails,
+				leadPhones: data.leadPhones,
+				leadPhase: data.LeadPhase,
+				LeadInterests: data.LeadInterests,
+				LeadOrigin: data.LeadOrigin,
+				createdAt: data.createdAt,
+			});
 		},
 		// staleTime: 5 * (60 * 1000), // 5 mins
 		// cacheTime: 10 * (60 * 1000), // 10 mins
@@ -37,8 +66,14 @@ export const LeadDashboard = () => {
 	};
 
 	const PageTabs = ["Datos", "Funnel", "Chat", "Historial"];
-	const TabOne = <LeadData />;
-	const TabTwo = <LeadFunnel func={windowHandler} />;
+	const TabOne = <LeadData lead={leadData} />;
+	const TabTwo = (
+		<LeadFunnel
+			func={windowHandler}
+			leadPhase={leadData.leadPhase.slug}
+			leadId={leadData.id}
+		/>
+	);
 	const TabThree = <LeadChat />;
 	const TabFour = <LeadHistory />;
 	const TabsComponents = [TabOne, TabTwo, TabThree, TabFour];
@@ -58,7 +93,7 @@ export const LeadDashboard = () => {
 			<div className={`contentVerticalPadding ${styles.mainContainer}`}>
 				<div className="row">
 					<div className={`col-xs-12 col-md-6 ${styles.userData}`}>
-						<LeadData />
+						<LeadData lead={leadData} />
 					</div>
 					<div className={`col-xs-12  col-md-6 `}>
 						<Tabs

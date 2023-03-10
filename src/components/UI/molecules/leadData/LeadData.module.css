@@ -9,8 +9,23 @@
 .leadTemperature {
 	padding: 0.5rem 1rem;
 	border-radius: var(--br-3);
+	color: var(--black);
+	border: 1px solid var(--highlight);
+}
+.leadCold {
 	color: var(--white);
 	background-color: var(--cold-lead);
+	border: none;
+}
+.leadWarm {
+	color: var(--white);
+	background-color: var(--tracing-lead);
+	border: none;
+}
+.leadHot {
+	color: var(--white);
+	background-color: var(--hot-lead);
+	border: none;
 }
 
 .leadInfo {

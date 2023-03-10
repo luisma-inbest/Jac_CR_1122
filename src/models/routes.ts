@@ -27,7 +27,7 @@ export const SellsRoutes = {
 	Sells: "sells",
 	Main: "",
 	Leads: "leads",
-	SingleLead: "leads/:id",
+	SingleLead: "leads/:leadId",
 	FutureLeads: "future-leads",
 	FrozenLeads: "frozen-leads",
 	SellerProfile: "seller-profile",

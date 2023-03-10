@@ -26,7 +26,6 @@ export const AgencyAPI = {
 				method: "GET",
 			})
 			.then((response) => {
-				console.log("todo bien", response.data.data);
 				return response.data.data;
 			})
 			.catch((error: any) => {
