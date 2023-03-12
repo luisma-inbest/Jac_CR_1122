@@ -61,6 +61,9 @@
 .green {
 	color: var(--green);
 }
+.orange {
+	color: var(--tracing-lead);
+}
 .red {
 	color: var(--red);
 }

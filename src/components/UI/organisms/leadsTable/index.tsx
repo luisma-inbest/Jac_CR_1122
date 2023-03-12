@@ -83,7 +83,7 @@ export const LeadsTable = (props: Props) => {
 									user={getUser(lead.User)}
 									model={lead.model}
 									status={lead.LeadActivities[0]}
-									date={lead.date || "10-01-2023"}
+									date={lead.date || "2023-03-10T10:07:00"}
 									color={props.type}
 								/>
 							);

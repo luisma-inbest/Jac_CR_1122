@@ -22,12 +22,8 @@ export const LeadRow = (props: Props) => {
 	const [minutes, setMinutes] = useState(0);
 	const [seconds, setSeconds] = useState(0);
 
-	const deadline = props.date.split("-");
-	const oldDate = new Date(
-		Number(deadline[2]),
-		Number(deadline[1]),
-		Number(deadline[0])
-	);
+	// const deadline = props.date.split("-");
+	const oldDate = Date.parse(props.date);
 
 	const getTime = () => {
 		const time = Date.now() - Number(oldDate);
@@ -44,6 +40,18 @@ export const LeadRow = (props: Props) => {
 		return () => clearInterval(interval);
 	}, []);
 	/**/
+
+	const pickColor = () => {
+		if (minutes <= 5) {
+			return styles.green;
+		} else if (minutes > 5 && minutes <= 10) {
+			return styles.orange;
+		} else if (minutes > 10) {
+			return styles.red;
+		} else {
+			return "";
+		}
+	};
 
 	return (
 		<tr className={styles.tableRow}>
@@ -64,11 +72,7 @@ export const LeadRow = (props: Props) => {
 				<p className="p4 secondary no-margin">{props.status}</p>
 			</td>
 			<td>
-				<p
-					className={`p4 secondary no-margin ${
-						days < 5 ? styles.green : styles.red
-					}`}
-				>
+				<p className={`p4 secondary no-margin ${pickColor()}`}>
 					{days} días - {hours}:{minutes}:{seconds}
 				</p>
 			</td>

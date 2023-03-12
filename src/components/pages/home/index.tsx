@@ -7,6 +7,7 @@ import { handleSession } from "@/auth";
 import { permissions } from "@/utils";
 
 export const Home = () => {
+	console.log("esta llegando a home");
 	const { User, SetUser } = useContext(UserContext) as UserContextType;
 	let navigate = useNavigate();
 	const location = useLocation();
