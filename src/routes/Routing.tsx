@@ -68,7 +68,7 @@ export const Routing = () => {
 			</Route>
 
 			{/* 404 */}
-			<Route path="/*" element={<h1>404</h1>} />
+			<Route path="/*" element={<h1>Error 404 desde React Router</h1>} />
 		</Routes>
 	);
 };

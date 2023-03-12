@@ -10,7 +10,8 @@ export const Home = () => {
 	console.log("esta llegando a home");
 	const { User, SetUser } = useContext(UserContext) as UserContextType;
 	let navigate = useNavigate();
-	const location = useLocation();
+	// const location = useLocation();
+	const location = null;
 	let path = "";
 
 	function decideRoute(role: string): string {
