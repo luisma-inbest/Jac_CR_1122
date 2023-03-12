@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 import { useEffect } from "react";
 
 /* custom imports */
@@ -14,9 +14,9 @@ function App() {
 	return (
 		<UserProvider>
 			<AlertsProvider>
-				<BrowserRouter>
+				<HashRouter>
 					<Routing />
-				</BrowserRouter>
+				</HashRouter>
 			</AlertsProvider>
 		</UserProvider>
 	);
