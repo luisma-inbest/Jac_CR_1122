@@ -7,11 +7,11 @@ export const submenuAdmin = [
 	{
 		pos: 6.2,
 		text: "Agencias",
-		route: "/admin/agencies",
+		route: "agencies",
 	},
 	{
 		pos: 6.3,
 		text: "Usuarios",
-		route: "/admin/users",
+		route: "users",
 	},
 ];

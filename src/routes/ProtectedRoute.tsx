@@ -17,6 +17,7 @@ export const ProtectedRoute = ({
 		// validateSesion(redirectTo)
 		let path = window.location.pathname;
 		console.log("no tuvo acceso a:", path);
+		// console.log(window.location.href);
 
 		return <Navigate to={redirectTo} state={{ path: path }} />;
 	}

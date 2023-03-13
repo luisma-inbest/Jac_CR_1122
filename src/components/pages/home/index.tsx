@@ -11,13 +11,12 @@ export const Home = () => {
 	let navigate = useNavigate();
 	const location = useLocation();
 	let path = "";
-	console.log("esta llegando a home con:", location);
 
 	function decideRoute(role: string): string {
 		let mainPage = handleMainPage(role).replace("/", "");
 		if (location.state != null) {
 			path = location?.state.path;
-			// console.log("trae path", path);
+			console.log("trae path", path);
 			let arr = path.split("/"); //la posicion 0 esta vacia
 			// console.log(arr);
 			// console.log(mainPage);
@@ -26,6 +25,7 @@ export const Home = () => {
 				mainPage = path;
 			}
 		}
+		console.log("mainPage", mainPage);
 		return mainPage;
 	}
 

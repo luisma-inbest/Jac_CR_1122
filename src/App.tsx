@@ -14,9 +14,9 @@ function App() {
 	return (
 		<UserProvider>
 			<AlertsProvider>
-				<HashRouter>
+				<BrowserRouter>
 					<Routing />
-				</HashRouter>
+				</BrowserRouter>
 			</AlertsProvider>
 		</UserProvider>
 	);

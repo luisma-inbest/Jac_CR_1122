@@ -9,6 +9,8 @@ import { PublicRouter } from "./PublicRouter";
 import { AdminRouter } from "./AdminRouter";
 import { ProductRouter } from "./ProductRouter";
 import { SharedRouter } from "./SharedRouter";
+import { AdminRoutes } from "@/models";
+import { Agencies, Agency, Users } from "@/components/pages";
 
 export const Routing = () => {
 	const { User, SetUser } = useContext(UserContext) as UserContextType;
@@ -17,6 +19,9 @@ export const Routing = () => {
 		<Routes>
 			{/* public urls */}
 			{PublicRouter}
+			<Route path={AdminRoutes.Users} element={<Users />} />
+			<Route path={AdminRoutes.Agencies} element={<Agencies />} />
+			<Route path={AdminRoutes.Agency} element={<Agency />} />
 
 			{/* General urls */}
 			<Route element={<ProtectedRoute isAllowed={!!User} />}>
