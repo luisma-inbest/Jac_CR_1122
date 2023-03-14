@@ -6,7 +6,7 @@ import styles from "./CardFunnel.module.css";
 import { Button } from "../button";
 
 interface Props {
-	type: "whats" | "phone" | "email" | "feedback" | "reject" | "check";
+	type: "clasic" | "ClasicWithText" | "checklist";
 	mainText: string;
 	buttonText: string;
 	twoButtons: boolean;
@@ -22,10 +22,62 @@ export const CardFunnel = (props: Props) => {
 		setFullContainer(!fullContainer);
 	}
 
+	function contentPicker(type: string) {
+		switch (type) {
+			case "clasic":
+				return (
+					<div className={styles.cardContainerClasic}>
+						<p className="p3 link no-margin">Registrar</p>
+						<Button
+							text={props.buttonText}
+							func={props.func}
+							full={false}
+						/>
+					</div>
+				);
+			case "ClasicWithText":
+				return (
+					<div className={styles.cardContainerClasic}>
+						<p className="p3 link no-margin">Registrar</p>
+						<Button
+							text={props.buttonText}
+							func={props.func}
+							full={false}
+						/>
+					</div>
+				);
+			case "checklist":
+				return (
+					<div className={styles.cardContainerChecklist}>
+						<div>
+							<p className="p4 bold secondary">
+								Envío de fichas técnicas
+							</p>
+							{/* <input type="checkbox" name="scales" checked={true} /> */}
+							<input type="checkbox" name="scales" />
+						</div>
+						<div>
+							<p className="p4 bold secondary">
+								Muestra de Galería
+							</p>
+							{/* <input type="checkbox" name="scales" checked={true} /> */}
+							<input type="checkbox" name="scales" />
+						</div>
+						<div>
+							<p className="p3 link no-margin">Omitir</p>
+						</div>
+					</div>
+				);
+			default:
+				return;
+		}
+	}
+
 	return (
 		<div
 			className={`${styles.card} ${fullContainer ? styles.fullCard : ""}`}
 		>
+			{/* header  */}
 			<div className={`mb-3 ${styles.cardContainer}`}>
 				<div className={styles.left} onClick={() => cardHandler()}>
 					<span
@@ -45,14 +97,8 @@ export const CardFunnel = (props: Props) => {
 					<IconArrow size="100%" color="#000" rotate="0" />
 				</span>
 			</div>
-			<div className={styles.cardContainer}>
-				<p className="p3 link no-margin">Registrar</p>
-				<Button
-					text={props.buttonText}
-					func={props.func}
-					full={false}
-				/>
-			</div>
+			{/* body  */}
+			{contentPicker(props.type)}
 		</div>
 	);
 };

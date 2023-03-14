@@ -5,7 +5,7 @@
 	grid-template-rows: repeat(2, 1fr);
 	grid-template-areas:
 		"card1 card1 card2"
-		"card3 card3 card2";
+		"card3 card4 card2";
 }
 @media (max-width: 63em) {
 	.mainContainer {
@@ -14,7 +14,8 @@
 		grid-template-areas:
 			"card1"
 			"card2"
-			"card3";
+			"card3"
+			"card4";
 	}
 }
 /*
@@ -34,6 +35,9 @@ $grid-breakpoints: (
 }
 .card3 {
 	grid-area: card3;
+}
+.card4 {
+	grid-area: card4;
 }
 
 .cardContainer {

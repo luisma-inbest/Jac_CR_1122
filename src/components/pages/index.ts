@@ -10,7 +10,6 @@ import {
 } from "./admin";
 import {
 	SellsDashboard,
-	SellerDashboard,
 	Leads,
 	LeadDashboard,
 	CreateLead,
@@ -34,7 +33,6 @@ export {
 	Agency,
 	CreateAgency,
 	SellsDashboard,
-	SellerDashboard,
 	LeadDashboard,
 	Leads,
 	CreateLead,

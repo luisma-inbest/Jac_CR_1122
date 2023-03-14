@@ -14,6 +14,7 @@ export const Home = () => {
 
 	function decideRoute(role: string): string {
 		let mainPage = handleMainPage(role).replace("/", "");
+
 		if (location.state != null) {
 			path = location?.state.path;
 			console.log("trae path", path);

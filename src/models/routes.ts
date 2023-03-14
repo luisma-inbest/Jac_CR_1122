@@ -28,8 +28,7 @@ export const SellsRoutes = {
 	Main: "",
 	Leads: "leads",
 	SingleLead: "leads/:leadId",
+	SellerProfile: "seller-profile",
 	FutureLeads: "future-leads",
 	FrozenLeads: "frozen-leads",
-	SellerProfile: "seller-profile",
-	SellsDashboard: "sells-dashboard",
 };

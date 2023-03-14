@@ -18,10 +18,10 @@ export const LeadAPI = {
 			}
 		}
 	},
-	getAll: async function (type: string, agency: string) {
+	getAll: async function (type: string, agency: string, page: number) {
 		try {
 			const response = await api.request({
-				url: `/lead/?AgencyId=${agency}&phase=${type}&page=1&limit=10`,
+				url: `/lead/?AgencyId=${agency}&phase=${type}&page=${page}&limit=10`,
 				//url: `/lead/?AgencyId=14&phase=en-cierre&page=1&limit=10`,
 				method: "GET",
 			});

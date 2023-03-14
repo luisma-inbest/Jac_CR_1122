@@ -17,7 +17,6 @@ import {
 	Agencies,
 	Agency,
 	CreateAgency,
-	SellerDashboard,
 	MyProfile,
 } from "./../components/pages";
 import { Main } from "./../components/templates";

@@ -43,8 +43,8 @@ export const submenuSells = [
 		route: "/sells",
 	},
 	{
-		pos: 1.22,
-		text: "Perfil Vendedor",
+		pos: 1.3,
+		text: "Mi Perfil JAC",
 		route: "/sells/seller-profile",
 	},
 ];

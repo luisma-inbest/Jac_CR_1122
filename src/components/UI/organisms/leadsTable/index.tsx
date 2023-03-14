@@ -18,6 +18,7 @@ export const LeadsTable = (props: Props) => {
 	const highlight = getComputedStyle(
 		document.documentElement
 	).getPropertyValue("--highlight-text");
+	const [page, setPage] = useState<number>(1);
 
 	function generateLeadNickname(firstName: string, lastName: string) {
 		return firstName.split(" ")[0] + " " + lastName.split(" ")[0];
@@ -31,8 +32,9 @@ export const LeadsTable = (props: Props) => {
 	}
 
 	const { isLoading, data, isError, error } = useQuery({
-		queryKey: [`leads-${User!.AgencyId}-${statusArray[props.type]}`],
-		queryFn: () => LeadAPI.getAll(statusArray[props.type], User!.AgencyId),
+		queryKey: [`leads-${User!.AgencyId}-${statusArray[props.type]}`, page],
+		queryFn: () =>
+			LeadAPI.getAll(statusArray[props.type], User!.AgencyId, page),
 		onSuccess: (data) => {},
 		// staleTime: 5 * (60 * 1000), // 5 mins
 		// cacheTime: 10 * (60 * 1000), // 10 mins
@@ -90,6 +92,16 @@ export const LeadsTable = (props: Props) => {
 						})}
 					</tbody>
 				</table>
+
+				{/* pagination */}
+				<div className={styles.paginationContainer}>
+					<div className={styles.pagination}>
+						<h5 onClick={() => setPage(page - 1)}> &#8678; </h5>
+						<h5> {page} </h5>
+						<h5 onClick={() => setPage(page + 1)}>&#8680;</h5>
+					</div>
+				</div>
+				{/* pagination */}
 			</div>
 		</div>
 	);

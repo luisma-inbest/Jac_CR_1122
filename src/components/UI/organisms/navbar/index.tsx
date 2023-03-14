@@ -81,6 +81,11 @@ export const NavBar: React.FunctionComponent<Props> = (props) => {
 									onChange={(e) =>
 										handleDistributorSelection(e)
 									}
+									disabled={
+										!["admin"].includes(
+											User!.permissions[0]
+										)
+									}
 								>
 									<option value="" disabled>
 										Agencia
@@ -120,7 +125,7 @@ export const NavBar: React.FunctionComponent<Props> = (props) => {
 						</ul>
 					</li>
 					<ul>
-						<li>
+						{/* <li>
 							<MenuItem
 								state="unactive"
 								text="Configuración"
@@ -130,7 +135,7 @@ export const NavBar: React.FunctionComponent<Props> = (props) => {
 								func={() => console.log("simple function")}
 								submenu={false}
 							/>
-						</li>
+						</li> */}
 						<li>
 							<MenuItem
 								state="unactive"

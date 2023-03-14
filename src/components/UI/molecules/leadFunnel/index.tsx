@@ -11,8 +11,8 @@ interface Props {
 	leadPhase: string;
 	leadId: number;
 }
-export const whatsFunction = () => {
-	console.log("whats");
+export const whatsFunction = (phone: number) => {
+	window.open(`https://api.whatsapp.com/send?phone=${phone}`);
 };
 export const phoneFunction = () => {
 	window.open("tel:900300400");
@@ -65,7 +65,7 @@ export const LeadFunnel = (props: Props) => {
 					<>
 						<p className="p3 secondary bold mt-3">Atender Lead</p>
 						<CardFunnel
-							type="check"
+							type="clasic"
 							mainText="Tomar"
 							buttonText="Tomar"
 							twoButtons={true}
@@ -81,7 +81,7 @@ export const LeadFunnel = (props: Props) => {
 							Confirmación Datos
 						</p>
 						<CardFunnel
-							type="check"
+							type="clasic"
 							mainText="Confirmación de datos"
 							buttonText="Confirmar datos"
 							twoButtons={true}
@@ -95,21 +95,21 @@ export const LeadFunnel = (props: Props) => {
 					<>
 						<p className="p3 secondary bold mt-3">Seguimiento</p>
 						<CardFunnel
-							type="check"
+							type="checklist"
 							mainText="Envió de Documentación"
 							buttonText="Enviar info"
 							twoButtons={true}
 							icon={<IconCheck size="100%" color="#000" />}
 						/>
 						<CardFunnel
-							type="check"
+							type="clasic"
 							mainText="Prueba de Manejo"
 							buttonText="Agendar Prueba"
 							twoButtons={true}
 							icon={<IconCheck size="100%" color="#000" />}
 						/>
 						<CardFunnel
-							type="check"
+							type="checklist"
 							mainText="Cotización"
 							buttonText="Cotizar"
 							twoButtons={true}
@@ -130,21 +130,21 @@ export const LeadFunnel = (props: Props) => {
 
 			<p className="p3 secondary bold">Contacto</p>
 			<CardFunnel
-				type="whats"
+				type="clasic"
 				mainText="Enviar Whatsapp"
 				buttonText="Enviar Mensaje"
 				twoButtons={true}
 				icon={<IconWhatsapp size="100%" color="#000" />}
 			/>
 			<CardFunnel
-				type="phone"
+				type="clasic"
 				mainText="Llamada Telefónica"
 				buttonText="Lllamar ahora"
 				twoButtons={true}
 				icon={<IconPhone size="100%" color="#000" rotate="0" />}
 			/>
 			<CardFunnel
-				type="email"
+				type="clasic"
 				mainText="Enviar Correo"
 				buttonText="Enviar Mensaje"
 				twoButtons={true}
@@ -153,7 +153,7 @@ export const LeadFunnel = (props: Props) => {
 
 			<p className="p3 secondary bold">Descartar</p>
 			<CardFunnel
-				type="feedback"
+				type="clasic"
 				mainText="Descarte"
 				buttonText="Futura Compra"
 				twoButtons={true}

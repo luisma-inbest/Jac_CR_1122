@@ -6,6 +6,10 @@
 	border-radius: var(--br-2);
 	min-height: calc(100vh - 7rem - 3rem - 5rem - 6rem);
 	/* full - header - marginURL - tabHeader - marginTabHeader */
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .table {
@@ -50,4 +54,16 @@
 .iconContainer {
 	width: 1.5rem;
 	height: 1.5rem;
+}
+
+.paginationContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.pagination {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 2rem;
 }
