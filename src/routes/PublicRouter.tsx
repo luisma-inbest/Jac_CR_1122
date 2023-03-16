@@ -17,7 +17,6 @@ import {
 	Agencies,
 	Agency,
 	CreateAgency,
-	SellerDashboard,
 } from "./../components/pages";
 import { Main } from "./../components/templates";
 import { ProtectedRoute } from "./ProtectedRoute";

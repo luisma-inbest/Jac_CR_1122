@@ -16,7 +16,16 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 				mainText="Tomar"
 				icon={<IconWhatsapp size="100%" color="#000" />}
 				cardContent={
-					<BasicBody buttonText="hi" func={() => console.log("")} />
+					<BasicBody
+						buttonText="tomar"
+						buttonFunc={() => {
+							return;
+						}}
+						alternativeText=""
+						alternativeFunc={() => {
+							return;
+						}}
+					/>
 				}
 			/>
 		</>
