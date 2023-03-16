@@ -19,7 +19,15 @@ export const Routing = () => {
 			{PublicRouter}
 
 			{/* General urls */}
-			<Route element={<ProtectedRoute isAllowed={!!User} />}>
+			<Route
+				element={
+					<ProtectedRoute
+						isAllowed={
+							!!User && User.permissions.includes("shared")
+						}
+					/>
+				}
+			>
 				{SharedRouter}
 			</Route>
 
@@ -60,7 +68,11 @@ export const Routing = () => {
 			<Route
 				element={
 					<ProtectedRoute
-						isAllowed={!!User && User.permissions.includes("admin")}
+						isAllowed={
+							!!User &&
+							(User.permissions.includes("admin") ||
+								User.permissions.includes("shared"))
+						}
 					/>
 				}
 			>

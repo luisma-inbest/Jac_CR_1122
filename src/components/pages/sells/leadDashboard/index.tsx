@@ -47,7 +47,7 @@ export const LeadDashboard = () => {
 				id: data.id,
 				leadName: data.firstAndLastName,
 				leadEmails: data.LeadEmails,
-				leadPhones: data.leadPhones,
+				leadPhones: data.LeadPhones,
 				leadPhase: data.LeadPhase,
 				LeadInterests: data.LeadInterests,
 				LeadOrigin: data.LeadOrigin,
@@ -69,9 +69,9 @@ export const LeadDashboard = () => {
 	const TabOne = <LeadData lead={leadData} />;
 	const TabTwo = (
 		<LeadFunnel
-			func={windowHandler}
+			activityHandler={windowHandler}
 			leadPhase={leadData.leadPhase.slug}
-			leadId={leadData.id}
+			leadData={leadData}
 		/>
 	);
 	const TabThree = <LeadChat />;

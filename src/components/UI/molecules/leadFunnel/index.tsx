@@ -1,172 +1,116 @@
 import React, { useContext, useState } from "react";
 import { Button, CardFunnel } from "@/components/UI/atoms";
 import styles from "./LeadFunnel.module.css";
-import { IconCheck, IconFeedback, IconPhone, IconWhatsapp } from "@/assets";
+import {
+	IconCheck,
+	IconFeedback,
+	IconMail,
+	IconPhone,
+	IconWhatsapp,
+} from "@/assets";
 import { useMutation } from "react-query";
 import { LeadAPI } from "@/apis";
 import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
+import { AuctionActivities } from "./AuctionActivities";
+import { Activities, BasicBody } from "./Activities";
+import { FirstContactActivities } from "./FirstContactActivities";
+import { FollowUpActivities } from "./FollowUpActivities";
+import { ClosingSellsActivities } from "./ClosingSellActivities";
+import { LeadDataType } from "@/models";
 
 interface Props {
-	func: () => void;
+	activityHandler: () => void;
 	leadPhase: string;
-	leadId: number;
+	leadData: LeadDataType;
 }
-export const whatsFunction = (phone: number) => {
-	window.open(`https://api.whatsapp.com/send?phone=${phone}`);
-};
-export const phoneFunction = () => {
-	window.open("tel:900300400");
-};
-export const checkFunction = () => {
-	console.log("check");
-};
-export const feedbackFunction = () => {
-	console.log("feedback");
-};
-
-// const leadPhaseMutation = useMutation({
-// 	mutationFn: () => LeadAPI.nextPhase(props.leadId),
-// 	onSuccess(data, variables, context) {
-// 		console.log("exito papito", data);
-// 	},
-// });
-
 export const LeadFunnel = (props: Props) => {
-	const nextPhase = async (leadId: number) => {
-		console.log("nextPhase");
-
-		LeadAPI.nextPhase(leadId)
-			.then((response) => {
-				console.log(response);
-				createAlert("success", "Exito", "Lead modificado");
-			})
-			.catch((error) => {
-				console.log("Hubo un error");
-				console.log(error);
-				createAlert("error", "Fallo", "Ha ocurrido un problema");
-			});
-	};
-	const { Alerts, SetAlerts } = useContext(
+	const { Alerts, SetAlerts, createAlert } = useContext(
 		AlertsContext
 	) as AlertsContextType;
-	function createAlert(type: string, title: string, text: string) {
-		let newAlert: any = {
-			type: type,
-			title: title,
-			text: text,
-		};
-		SetAlerts([...Alerts, newAlert]);
+
+	function nextPhaseLead() {
+		LeadAPI.nextPhase(props.leadData.id)
+			.then((res) => {
+				createAlert("success", "Fase actualizada", "El ha cambiado");
+			})
+			.catch((err) => {
+				createAlert(
+					"error",
+					"Error al actualizar fase",
+					"Hubo un error"
+				);
+			});
 	}
 
-	const selectTabsPhase = (phase: string) => {
-		switch (phase) {
-			case "subasta":
-				return (
-					<>
-						<p className="p3 secondary bold mt-3">Atender Lead</p>
-						<CardFunnel
-							type="clasic"
-							mainText="Tomar"
-							buttonText="Tomar"
-							twoButtons={true}
-							icon={<IconCheck size="100%" color="#000" />}
-							func={() => nextPhase(props.leadId)}
-						/>
-					</>
-				);
-			case "1er-contacto":
-				return (
-					<>
-						<p className="p3 secondary bold mt-3">
-							Confirmación Datos
-						</p>
-						<CardFunnel
-							type="clasic"
-							mainText="Confirmación de datos"
-							buttonText="Confirmar datos"
-							twoButtons={true}
-							icon={<IconCheck size="100%" color="#000" />}
-							func={() => nextPhase(props.leadId)}
-						/>
-					</>
-				);
-			case "seguimiento":
-				return (
-					<>
-						<p className="p3 secondary bold mt-3">Seguimiento</p>
-						<CardFunnel
-							type="checklist"
-							mainText="Envió de Documentación"
-							buttonText="Enviar info"
-							twoButtons={true}
-							icon={<IconCheck size="100%" color="#000" />}
-						/>
-						<CardFunnel
-							type="clasic"
-							mainText="Prueba de Manejo"
-							buttonText="Agendar Prueba"
-							twoButtons={true}
-							icon={<IconCheck size="100%" color="#000" />}
-						/>
-						<CardFunnel
-							type="checklist"
-							mainText="Cotización"
-							buttonText="Cotizar"
-							twoButtons={true}
-							icon={<IconCheck size="100%" color="#000" />}
-						/>
-					</>
-				);
-			case "en-cierre":
-				return <></>;
-			default:
-				return;
-		}
+	const titles: any = {
+		subasta: "Atender Lead",
+		"1er-contacto": "Confirmación Datos",
+		seguimiento: "Seguimiento",
+		"en-cierre": "Cierre de Venta",
+	};
+	const phases: any = {
+		all: (
+			<Activities
+				leadData={props.leadData}
+				activityHandler={props.activityHandler}
+			/>
+		),
+		subasta: (
+			<AuctionActivities
+				leadData={props.leadData}
+				nextPhaseLead={nextPhaseLead}
+			/>
+		),
+		"1er-contacto": (
+			<FirstContactActivities
+				leadData={props.leadData}
+				nextPhaseLead={nextPhaseLead}
+			/>
+		),
+		seguimiento: (
+			<FollowUpActivities
+				leadData={props.leadData}
+				activityHandler={props.activityHandler}
+				nextPhaseLead={nextPhaseLead}
+			/>
+		),
+		"en-cierre": <ClosingSellsActivities leadData={props.leadData} />,
 	};
 
 	return (
 		<div className={styles.funnelTab}>
-			{selectTabsPhase(props.leadPhase)}
-
+			<p className="p3 secondary bold">{titles[props.leadPhase] || ""}</p>
+			{phases[props.leadPhase]}
 			<p className="p3 secondary bold">Contacto</p>
+			{phases.all}
+			<p className="p3 secondary bold">Comentarios</p>
 			<CardFunnel
-				type="clasic"
-				mainText="Enviar Whatsapp"
-				buttonText="Enviar Mensaje"
-				twoButtons={true}
-				icon={<IconWhatsapp size="100%" color="#000" />}
+				mainText="Nueva Actividad"
+				icon={<IconFeedback size="100%" color="#000" />}
+				cardContent={
+					<BasicBody
+						buttonText="Crear Actividad"
+						buttonFunc={() => props.activityHandler()}
+						alternativeText=""
+						alternativeFunc={() => {
+							return;
+						}}
+					/>
+				}
 			/>
-			<CardFunnel
-				type="clasic"
-				mainText="Llamada Telefónica"
-				buttonText="Lllamar ahora"
-				twoButtons={true}
-				icon={<IconPhone size="100%" color="#000" rotate="0" />}
-			/>
-			<CardFunnel
-				type="clasic"
-				mainText="Enviar Correo"
-				buttonText="Enviar Mensaje"
-				twoButtons={true}
-				icon={<IconPhone size="100%" color="#000" rotate="0" />}
-			/>
-
 			<p className="p3 secondary bold">Descartar</p>
 			<CardFunnel
-				type="clasic"
 				mainText="Descarte"
-				buttonText="Futura Compra"
-				twoButtons={true}
 				icon={<IconFeedback size="100%" color="#000" />}
+				cardContent={
+					<BasicBody
+						buttonText="Congelar"
+						buttonFunc={() => console.log("")}
+						alternativeText="Futura Compra"
+						alternativeFunc={() => console.log("")}
+					/>
+				}
 			/>
-
-			<div className="mt-4">
-				<Button
-					text="Registrar Actividad"
-					func={props.func}
-					full={true}
-				/>
-			</div>
 		</div>
 	);
 };

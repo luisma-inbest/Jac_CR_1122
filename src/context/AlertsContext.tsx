@@ -21,7 +21,7 @@ interface Alert {
 export type AlertsContextType = {
 	Alerts: Alert[];
 	SetAlerts: (value: Alert[]) => void;
-	test: () => void;
+	createAlert: (type: string, title: string, tex: string) => void;
 };
 
 //export const UserContext = createContext<userContextInterface | null>(null);
@@ -31,12 +31,17 @@ const AlertsContext = createContext({});
 export const AlertsProvider = ({ children }: ContextChilds) => {
 	const [Alerts, SetAlerts] = useState<Alert[]>([]);
 
-	function test() {
-		console.log("crear una nueva alerta...");
+	function createAlert(type: string, title: string, text: string) {
+		let newAlert: any = {
+			type: type,
+			title: title,
+			text: text,
+		};
+		SetAlerts([...Alerts, newAlert]);
 	}
 
 	return (
-		<AlertsContext.Provider value={{ Alerts, SetAlerts, test }}>
+		<AlertsContext.Provider value={{ Alerts, SetAlerts, createAlert }}>
 			{children}
 		</AlertsContext.Provider>
 	);

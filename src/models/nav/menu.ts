@@ -8,17 +8,17 @@ import { permissions } from "@/utils";
 
 export let Menu = [
 	[
-		// {
-		// 	submenu: false,
-		// 	data: {
-		// 		pos: 0,
-		// 		text: "Mi Perfil JAC",
-		// 		icon: "user",
-		// 		route: "/profile",
-		// 	},
-		// 	subitems: [],
-		// 	permissions: ["admin", "sells"],
-		// },
+		{
+			submenu: false,
+			data: {
+				pos: 0,
+				text: "Mi Perfil JAC",
+				icon: "user",
+				route: "/sells/seller-profile",
+			},
+			subitems: [],
+			permissions: ["admin", "sells"],
+		},
 		{
 			submenu: true,
 			data: {
@@ -66,7 +66,17 @@ export let Menu = [
 				icon: "product",
 			},
 			subitems: submenuProduct,
-			permissions: ["admin", "product", "sells"],
+			permissions: [
+				"admin",
+				"product",
+				"manager",
+				"coordinator",
+				"bdc",
+				"adviser-digital",
+				"adviser-floor",
+				"adviser-hybrid",
+				"hostess",
+			],
 		},
 		{
 			submenu: true,

@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import styles from "./CreateLead.module.css";
 import {
 	StyledInputText,
@@ -11,8 +11,10 @@ import {
 import { IconCross } from "@/assets";
 import { reducer, initial } from "./reducer";
 import { Lead } from "@/models";
-import { useMutation } from "react-query";
-import { LeadAPI } from "@/apis";
+import { useMutation, useQuery } from "react-query";
+import { LeadAPI, LeadOriginAPI } from "@/apis";
+import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
+import UserContext, { UserContextType } from "@/context/UserContext";
 
 interface Props {
 	func: () => void;
@@ -20,15 +22,28 @@ interface Props {
 
 export const CreateLead = (props: Props) => {
 	const [page, setPage] = useState(1);
+	const { User, SetUser } = useContext(UserContext) as UserContextType;
 	const red = getComputedStyle(document.documentElement).getPropertyValue(
 		"--red"
 	);
 	const [fields, dispatch] = useReducer(reducer, initial);
+	const { Alerts, SetAlerts, createAlert } = useContext(
+		AlertsContext
+	) as AlertsContextType;
 
 	const addLeadMutation = useMutation({
 		mutationFn: () => LeadAPI.create(fields),
 		onSuccess(data, variables, context) {
 			console.log(data);
+			createAlert(
+				"success",
+				"Lead Creado",
+				"El lead se creo correctamente"
+			);
+		},
+		onError(error, variables, context) {
+			console.log(error);
+			createAlert("error", "Error", "Hubo un error al crear el lead");
 		},
 	});
 
@@ -40,9 +55,14 @@ export const CreateLead = (props: Props) => {
 	}
 	function formHandler(e: any) {
 		e.preventDefault();
-		console.log("sumbmiting form...");
+		console.log("sumbmiting form...", fields);
+
 		addLeadMutation.mutate();
 	}
+
+	useEffect(() => {
+		dispatch({ type: "AgencyId", value: Number(User!.AgencyId) });
+	}, []);
 
 	return (
 		<div id="back" className={`${styles.window}`}>
@@ -87,25 +107,51 @@ interface FirstProps {
 	dispatch: React.Dispatch<any>;
 }
 const First = (props: FirstProps) => {
+	const { Alerts, SetAlerts, createAlert } = useContext(
+		AlertsContext
+	) as AlertsContextType;
 	const [val, setVal] = useState("");
 	const [phone, setPhone] = useState("");
 	const [email, setEmail] = useState("");
+
+	const {
+		isLoading,
+		isError,
+		error,
+		data: leadOrigins,
+	} = useQuery({
+		queryKey: "leadOrigins",
+		queryFn: () => LeadOriginAPI.getOrigins(),
+		staleTime: 20 * (60 * 1000), // 20 mins
+		cacheTime: 25 * (60 * 1000), // 25 mins
+		onError: (error) => {
+			createAlert(
+				"error",
+				"Error de carga",
+				"No se encontraron origenes Lead"
+			);
+		},
+	});
+
 	function handlePhones() {
 		props.dispatch({
-			type: "phones",
-			value: [...props.fields.phones, `+52${phone}`],
+			type: "leadPhones",
+			value: [...props.fields.leadPhones, `${phone}`],
 		});
 		setPhone("");
 		console.log(props.fields);
 	}
 	function handleEmails() {
 		props.dispatch({
-			type: "emails",
-			value: [...props.fields.emails, `${email}`],
+			type: "leadEmails",
+			value: [...props.fields.leadEmails, `${email}`],
 		});
 		setEmail("");
 		console.log(props.fields);
 	}
+
+	if (isLoading) return <p>Loading...</p>;
+
 	return (
 		<>
 			<form action="" onSubmit={(e) => e.preventDefault()}>
@@ -125,7 +171,6 @@ const First = (props: FirstProps) => {
 				/>
 				<StyledSelect
 					customType="secondary"
-					defaultValue=""
 					value={props.fields.LeadOriginId}
 					onChange={(e) =>
 						props.dispatch({
@@ -134,11 +179,16 @@ const First = (props: FirstProps) => {
 						})
 					}
 				>
-					<option value="" disabled>
+					<option value={0} disabled>
 						-- Origen --
 					</option>
-					<option value={1}>Facebook</option>
-					<option value={2}>Piso</option>
+					{leadOrigins?.map((origin: any) => {
+						return (
+							<option key={origin.id} value={origin.id}>
+								{origin.description}
+							</option>
+						);
+					})}
 				</StyledSelect>
 				<Input
 					placeholder="Números de contacto"
@@ -150,7 +200,7 @@ const First = (props: FirstProps) => {
 				<ButtonFields text="Agregar Número" func={handlePhones} />
 
 				<div className="mb-5">
-					{props.fields.phones.map((phone, index) => {
+					{props.fields.leadPhones.map((phone, index) => {
 						return <h5 key={index}>{phone}</h5>;
 					})}
 				</div>
@@ -164,7 +214,7 @@ const First = (props: FirstProps) => {
 				/>
 				<ButtonFields text="Agregar Correo" func={handleEmails} />
 
-				{props.fields.emails.map((email, index) => {
+				{props.fields.leadEmails.map((email, index) => {
 					return <h5 key={index}>{email}</h5>;
 				})}
 

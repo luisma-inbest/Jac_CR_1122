@@ -42,11 +42,11 @@ export const submenuSells = [
 		text: "Dashboard Ventas",
 		route: "/sells",
 	},
-	{
-		pos: 1.3,
-		text: "Mi Perfil JAC",
-		route: "/sells/seller-profile",
-	},
+	// {
+	// 	pos: 1.3,
+	// 	text: "Mi Perfil JAC",
+	// 	route: "/sells/seller-profile",
+	// },
 ];
 
 // lising;

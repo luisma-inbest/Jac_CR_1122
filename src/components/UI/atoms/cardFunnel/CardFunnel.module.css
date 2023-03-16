@@ -23,18 +23,6 @@
 	align-items: center;
 	justify-content: space-between;
 }
-.cardContainerClasic {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
-}
-.cardContainerChecklist > div {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
-}
 
 .iconContainer {
 	height: 1.5rem;

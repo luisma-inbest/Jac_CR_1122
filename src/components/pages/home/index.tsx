@@ -46,7 +46,7 @@ export const Home = () => {
 			})
 			.catch((err) => {
 				console.log("No hay sesión activa");
-				console.clear();
+				// console.clear();
 				navigate("/login");
 			});
 	}, []);

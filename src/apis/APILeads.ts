@@ -3,20 +3,21 @@ import { Lead } from "@/models";
 
 export const LeadAPI = {
 	create: async function (lead: Lead) {
-		console.log("create Lead", lead);
-		try {
-			const response = await api.request({
+		return api
+			.request({
 				url: `/lead/`,
 				method: "POST",
 				data: { data: lead },
+			})
+			.then((response) => {
+				return response.data.data;
+			})
+			.catch((error: any) => {
+				if (error.response) {
+					console.log(error.response.data);
+				}
+				throw new Error(error);
 			});
-			console.log(response);
-		} catch (error: any) {
-			console.log("Hubo un error");
-			if (error.response) {
-				console.log(error.response.data);
-			}
-		}
 	},
 	getAll: async function (type: string, agency: string, page: number) {
 		try {

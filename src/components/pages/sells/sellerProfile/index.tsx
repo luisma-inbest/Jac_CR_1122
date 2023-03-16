@@ -14,6 +14,7 @@ import { Tabs } from "@/components/templates";
 import styles from "./SellerProfile.module.css";
 import { IconSells } from "@/assets";
 import { PieChartLabelProps } from "@/components/UI/molecules/pieChartLabel";
+import { AgendaPreview } from "@/components/UI/organisms";
 
 const getTitleElement = (titleText: string) => {
 	return (
@@ -55,7 +56,8 @@ export const SellerProfile = () => {
 				className={` ${styles.cardContainer} ${styles.sideBar} ${styles.card2}`}
 			>
 				<div className={`globalPadding ${styles.card}`}>
-					{getTitleElement("Modelos")}
+					{getTitleElement("Agenda")}
+					<AgendaPreview />
 				</div>
 			</div>
 

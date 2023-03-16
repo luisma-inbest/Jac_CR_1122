@@ -11,17 +11,9 @@ import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
 
 export const Agencies = () => {
 	const navigate = useNavigate();
-	const { Alerts, SetAlerts } = useContext(
+	const { Alerts, SetAlerts, createAlert } = useContext(
 		AlertsContext
 	) as AlertsContextType;
-	function createAlert(type: string, title: string, text: string) {
-		let newAlert: any = {
-			type: type,
-			title: "Titulo",
-			text: "textito",
-		};
-		SetAlerts([...Alerts, newAlert]);
-	}
 
 	const { isLoading, data, isError, error } = useQuery({
 		queryKey: ["agencies"],

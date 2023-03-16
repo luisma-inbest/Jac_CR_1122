@@ -12,6 +12,12 @@ interface Props {
 }
 
 const statusArray = ["subasta", "1er-contacto", "seguimiento", "en-cierre"];
+const arraySelector = [
+	"subastaLeads",
+	"firstContactLeads",
+	"followUpLeads",
+	"closingLeads",
+];
 
 export const LeadsTable = (props: Props) => {
 	const { User } = useContext(UserContext) as UserContextType;
@@ -31,7 +37,12 @@ export const LeadsTable = (props: Props) => {
 		return "-";
 	}
 
-	const { isLoading, data, isError, error } = useQuery({
+	const {
+		isLoading,
+		data: leads,
+		isError,
+		error,
+	} = useQuery({
 		queryKey: [`leads-${User!.AgencyId}-${statusArray[props.type]}`, page],
 		queryFn: () =>
 			LeadAPI.getAll(statusArray[props.type], User!.AgencyId, page),
@@ -73,7 +84,7 @@ export const LeadsTable = (props: Props) => {
 						</tr>
 					</thead>
 					<tbody>
-						{data.map((lead: any) => {
+						{leads.map((lead: any) => {
 							return (
 								<LeadRow
 									key={lead.id}
