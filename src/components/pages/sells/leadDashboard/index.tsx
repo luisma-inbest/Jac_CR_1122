@@ -53,10 +53,33 @@ export const LeadDashboard = () => {
 				LeadOrigin: data.LeadOrigin,
 				createdAt: data.createdAt,
 			});
+			console.log("actividades", data.LeadActivities);
 		},
+		onError: (error) => {
+			console.log("error", error);
+		},
+
 		// staleTime: 5 * (60 * 1000), // 5 mins
 		// cacheTime: 10 * (60 * 1000), // 10 mins
 	});
+	if (isLoading) {
+		return (
+			<div className="row">
+				<div className={`col-xs-12 loaderContainer`}>
+					<Loader />
+				</div>
+			</div>
+		);
+	}
+	if (isError) {
+		return (
+			<div className="row">
+				<div className={`col-xs-12 loaderContainer`}>
+					<Loader />
+				</div>
+			</div>
+		);
+	}
 
 	const windowHandler = () => {
 		if (!leadView) {
@@ -75,18 +98,8 @@ export const LeadDashboard = () => {
 		/>
 	);
 	const TabThree = <LeadChat />;
-	const TabFour = <LeadHistory />;
+	const TabFour = <LeadHistory activities={data.LeadActivities} />;
 	const TabsComponents = [TabOne, TabTwo, TabThree, TabFour];
-
-	if (isLoading) {
-		return (
-			<div className="row">
-				<div className={`col-xs-12 loaderContainer`}>
-					<Loader />
-				</div>
-			</div>
-		);
-	}
 
 	return (
 		<>
@@ -105,7 +118,11 @@ export const LeadDashboard = () => {
 					</div>
 				</div>
 			</div>
-			{leadView ? <RegisterActivity func={windowHandler} /> : <></>}
+			{leadView ? (
+				<RegisterActivity func={windowHandler} LeadId={leadData.id} />
+			) : (
+				<></>
+			)}
 		</>
 	);
 };

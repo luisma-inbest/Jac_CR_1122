@@ -146,7 +146,9 @@ export function getParams() {
 							const { Name, Value } = attribute;
 							results[Name] = Value;
 						}
-						// console.log(results);
+						results["custom:role"] =
+							results["custom:role"].split(",");
+						console.log(results);
 						resolve(results);
 					});
 				});

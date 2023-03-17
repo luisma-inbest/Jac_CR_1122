@@ -19,11 +19,12 @@ export const Home = () => {
 			path = location?.state.path;
 			console.log("trae path", path);
 			let arr = path.split("/"); //la posicion 0 esta vacia
-			// console.log(arr);
-			// console.log(mainPage);
+			arr = arr.filter((item) => item != "#");
+			console.log(arr);
+			console.log(mainPage);
 			if (permissions[role].includes(arr[1])) {
-				// console.log("tiene acceso..");
-				mainPage = path;
+				console.log("tiene acceso..");
+				mainPage = path.replace("/#", "");
 			}
 		}
 		console.log("mainPage", mainPage);
@@ -37,10 +38,10 @@ export const Home = () => {
 					id: data.id,
 					email: data.email,
 					name: data.name,
-					permissions: [data.role],
+					permissions: data.role,
 					AgencyId: data.AgencyId,
 				});
-				let newPath = decideRoute(data.role);
+				let newPath = decideRoute(data.role[1]);
 				// console.clear();
 				navigate(newPath);
 			})

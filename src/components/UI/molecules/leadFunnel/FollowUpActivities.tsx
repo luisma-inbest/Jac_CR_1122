@@ -9,25 +9,6 @@ const goTo = (url: string) => () => {
 	window.open(url, "_blank");
 };
 
-const cotizaciones = [
-	{
-		title: "Demo Cotización Credito",
-		function: goTo("https://www.google.com"),
-	},
-	{
-		title: "Cotización Contado",
-		function: goTo("https://www.google.com"),
-	},
-	{
-		title: "Solicitud Crédito",
-		function: goTo("https://www.google.com"),
-	},
-	{
-		title: "Apartado",
-		function: goTo("https://www.google.com"),
-	},
-];
-
 interface AuctionProps {
 	leadData: LeadDataType;
 	activityHandler: (activity: string) => void;
@@ -35,6 +16,30 @@ interface AuctionProps {
 }
 
 export const FollowUpActivities = (props: AuctionProps) => {
+	const cotizaciones = [
+		{
+			title: "Cotización Contado",
+			buttonText: "Cotizar",
+			function: goTo("https://www.google.com"),
+		},
+		{
+			title: "Demo Cotización Credito",
+			buttonText: "Cotizar",
+			function: goTo("https://www.google.com"),
+		},
+
+		{
+			title: "Solicitud Crédito",
+			buttonText: "Solicitar",
+			function: goTo("https://www.google.com"),
+		},
+		{
+			title: "Apartado",
+			buttonText: "Apartar",
+			function: props.nextPhaseLead,
+		},
+	];
+
 	return (
 		<>
 			<CardFunnel
@@ -56,9 +61,6 @@ export const FollowUpActivities = (props: AuctionProps) => {
 							{/* <input type="checkbox" name="scales" checked={true} /> */}
 							<input type="checkbox" name="scales" />
 						</div>
-						<div>
-							<p className="p3 link no-margin">Omitir</p>
-						</div>
 					</div>
 				}
 			/>
@@ -67,7 +69,7 @@ export const FollowUpActivities = (props: AuctionProps) => {
 				icon={<IconCheck size="100%" color="#000" />}
 				cardContent={
 					<BasicBody
-						buttonText="Agenddar"
+						buttonText="Agendar"
 						buttonFunc={() => console.log("")}
 						alternativeText="Historial"
 						alternativeFunc={() => console.log("")}
@@ -91,11 +93,9 @@ export const FollowUpActivities = (props: AuctionProps) => {
 											onClick={() => {
 												return;
 											}}
-										>
-											Omitir
-										</p>
+										></p>
 										<Button
-											text="Crear Cotización"
+											text={cotizacion.buttonText}
 											func={() => cotizacion.function()}
 											full={false}
 										/>

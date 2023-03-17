@@ -50,26 +50,25 @@ export const StyledInputRadio = styled.input.attrs({
 	background-color: #fff;
 	margin: 0;
 	appearance: none;
-	background-color: #fff;
 	margin: 0;
 	font: inherit;
 	color: currentColor;
-	width: 1.15em;
-	height: 1.15em;
+	width: 1.5em;
+	height: 1.5em;
 	border: 0.15em solid currentColor;
-	border-radius: 30%;
+	border-radius: 45%;
 	transform: translateY(-0.075em);
 	display: grid;
 	place-content: center;
 
 	&:before {
 		content: "";
-		width: 0.65em;
-		height: 0.65em;
+		width: 0.9em;
+		height: 0.9em;
 		border-radius: 50%;
 		transform: scale(0);
 		transition: 220ms transform ease-in-out;
-		box-shadow: inset 1em 1em var(--color-secondary);
+		box-shadow: inset 1em 1em #0069d1;
 	}
 
 	&:checked &:before {

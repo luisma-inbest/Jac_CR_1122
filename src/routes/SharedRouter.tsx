@@ -32,7 +32,7 @@ export const SharedRouter = (
 			<Route path="" element={<MyProfile />} />
 		</Route>
 
-		<Route path="product" element={<Main />}>
+		<Route path={ProductRoutes.Product} element={<Main />}>
 			<Route path={ProductRoutes.Main} element={<ProductDashboard />} />
 			<Route path={ProductRoutes.Details} element={<ProductDetails />} />
 			<Route

@@ -15,9 +15,14 @@ export const ProtectedRoute = ({
 }: any) => {
 	if (!isAllowed) {
 		// validateSesion(redirectTo)
-		let path = window.location.pathname;
-		console.log("no tuvo acceso a:", path);
-		// console.log(window.location.href);
+
+		// si se usa hashroutes no es posible utilizar pathname
+		// let path = window.location.pathname;
+		// console.log("pathname:", path);
+
+		let path = window.location.href.replace(Domain, "");
+		console.log("href:", window.location.href);
+		console.log("newPath: ", path);
 
 		return <Navigate to={redirectTo} state={{ path: path }} />;
 	}

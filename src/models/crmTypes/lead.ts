@@ -31,3 +31,11 @@ export type LeadDataType = {
 	LeadOrigin: string;
 	createdAt: Date;
 };
+
+export type LeadActivityType = {
+	date: Date;
+	comments: string;
+	status: string;
+	leadActivityType: string;
+	LeadId: number;
+};

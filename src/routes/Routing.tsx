@@ -68,11 +68,7 @@ export const Routing = () => {
 			<Route
 				element={
 					<ProtectedRoute
-						isAllowed={
-							!!User &&
-							(User.permissions.includes("admin") ||
-								User.permissions.includes("shared"))
-						}
+						isAllowed={!!User && User.permissions.includes("admin")}
 					/>
 				}
 			>

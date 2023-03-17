@@ -6,6 +6,7 @@ import {
 	ProductRowProps,
 	Lead,
 	LeadDataType,
+	LeadActivityType,
 } from "./crmTypes";
 //
 import { SellsRoutes, ProductRoutes, AdminRoutes } from "./routes";
@@ -18,6 +19,7 @@ export type {
 	ProductRowProps,
 	Lead,
 	LeadDataType,
+	LeadActivityType,
 };
 
 export { SellsRoutes, ProductRoutes, AdminRoutes };

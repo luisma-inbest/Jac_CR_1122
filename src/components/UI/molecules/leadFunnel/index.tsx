@@ -74,7 +74,12 @@ export const LeadFunnel = (props: Props) => {
 				nextPhaseLead={nextPhaseLead}
 			/>
 		),
-		"en-cierre": <ClosingSellsActivities leadData={props.leadData} />,
+		"en-cierre": (
+			<ClosingSellsActivities
+				leadData={props.leadData}
+				activityHandler={props.activityHandler}
+			/>
+		),
 	};
 
 	return (

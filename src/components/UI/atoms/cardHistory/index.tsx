@@ -1,5 +1,5 @@
-import {IconArrow} from "@/assets";
-import {DateFormat, DateFormatType} from "@/components/UI/atoms";
+import { IconArrow } from "@/assets";
+import { DateFormat, DateFormatType } from "@/components/UI/atoms";
 
 import styles from "./CardHistory.module.css";
 
@@ -21,10 +21,12 @@ const getTitleText = (type: string): string | void => {
 };
 
 const getContactDate = (contactDate: Date) => {
-	return <DateFormat
-		formatType={DateFormatType.DATE_AND_TIME}
-		date = {contactDate}
-	/>;
+	return (
+		<DateFormat
+			formatType={DateFormatType.DATE_AND_TIME}
+			date={contactDate}
+		/>
+	);
 };
 
 const getNextContactDate = (nextContactDate?: Date) => {
@@ -32,11 +34,13 @@ const getNextContactDate = (nextContactDate?: Date) => {
 		return <></>;
 	}
 
-	return <DateFormat
-		formatType={DateFormatType.DATE_ONLY}
-		prefixText="Próximo contacto"
-		date = {nextContactDate!}
-	/>;
+	return (
+		<DateFormat
+			formatType={DateFormatType.DATE_ONLY}
+			prefixText="Próximo contacto"
+			date={nextContactDate!}
+		/>
+	);
 };
 
 const getComments = (comments?: string) => {
@@ -63,13 +67,15 @@ export const CardHistory = (props: Props) => {
 			<div className="row">
 				<span className={`col-xs-6 ${styles.title}`}>{titleText}</span>
 				<div className={`col-xs-6 ${styles.contactDate}`}>
-					{contactDate}
+					<h5>{String(props.contactDate)}</h5>
 				</div>
 			</div>
 
 			<div className="row">
 				<span className="col-xs-6">Estado</span>
-				<span className={`col-xs-6 ${styles.status}`}>{props.status}</span>
+				<span className={`col-xs-6 ${styles.status}`}>
+					{props.status}
+				</span>
 			</div>
 			{nextContactDate}
 			{comments}

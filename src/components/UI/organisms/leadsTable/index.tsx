@@ -85,6 +85,7 @@ export const LeadsTable = (props: Props) => {
 					</thead>
 					<tbody>
 						{leads.map((lead: any) => {
+							console.log(lead.LeadActivities[0]);
 							return (
 								<LeadRow
 									key={lead.id}
@@ -95,7 +96,7 @@ export const LeadsTable = (props: Props) => {
 									)}
 									user={getUser(lead.User)}
 									model={lead.model}
-									status={lead.LeadActivities[0]}
+									status="pruebita"
 									date={lead.date || "2023-03-10T10:07:00"}
 									color={props.type}
 								/>

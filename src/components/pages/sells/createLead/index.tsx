@@ -61,7 +61,7 @@ export const CreateLead = (props: Props) => {
 	}
 
 	useEffect(() => {
-		dispatch({ type: "AgencyId", value: Number(User!.AgencyId) });
+		// dispatch({ type: "AgencyId", value: Number(User!.AgencyId) });
 	}, []);
 
 	return (
@@ -275,6 +275,7 @@ const Second = (props: SecondProps) => {
 					</option>
 					<option value="man"> Debito </option>
 					<option value="woman">Crédito</option>
+					<option value="woman">Leasing</option>
 				</StyledSelect>
 
 				<Input

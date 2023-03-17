@@ -1,4 +1,5 @@
-import {CardHistory} from "@/components/UI/atoms";
+import { CardHistory } from "@/components/UI/atoms";
+import { LeadActivityType } from "@/models";
 import styles from "./LeadHistory.module.css";
 
 const getLeadContactHistory = () => {
@@ -18,21 +19,26 @@ const getLeadContactHistory = () => {
 	];
 };
 
-export const LeadHistory = () => {
+interface Props {
+	activities: LeadActivityType[];
+}
+
+export const LeadHistory = (props: Props) => {
 	const leadContactHistory = getLeadContactHistory();
 
 	return (
 		<div className={styles.tab}>
 			<p className="p3 secondary bold">1er Contacto</p>
-			{leadContactHistory.map((leadContact, index) => {
+			{props.activities.map((leadContact, index) => {
+				console.log(leadContact.date);
 				return (
 					<CardHistory
 						key={index}
-						type={leadContact.type}
-						contactDate={leadContact.contactDate}
+						type={leadContact.leadActivityType}
+						contactDate={leadContact.date}
 						status={leadContact.status}
 						comments={leadContact.comments}
-						nextContactDate={leadContact.nextContactDate}
+						nextContactDate={new Date()}
 					/>
 				);
 			})}

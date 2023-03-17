@@ -83,7 +83,7 @@ export const NavBar: React.FunctionComponent<Props> = (props) => {
 									}
 									disabled={
 										!["admin"].includes(
-											User!.permissions[0]
+											User!.permissions[1]
 										)
 									}
 								>
@@ -100,7 +100,7 @@ export const NavBar: React.FunctionComponent<Props> = (props) => {
 								</StyledSelect>
 							</li>
 							{submenus.map((item: any, index) => {
-								let role = User!.permissions[0];
+								let role = User!.permissions[1];
 
 								if (item.permissions.includes(role)) {
 									return (
