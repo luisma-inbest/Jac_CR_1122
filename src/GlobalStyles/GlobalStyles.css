@@ -108,6 +108,13 @@ hr {
 	height: calc(100vh - 7rem - 3rem - 5rem - 3rem - 6rem);
 }
 
+.card {
+	background-color: var(--white);
+	border-radius: var(--br-2);
+	height: 100%;
+	max-width: 100%;
+}
+
 /*
 $grid-breakpoints: (
   xs: 0,

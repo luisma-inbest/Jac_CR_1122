@@ -1,26 +1,84 @@
-import React from "react";
+import { IconSells } from "@/assets";
+import { CreateAgendaEvent } from "@/components/pages/sells";
+import React, { useState } from "react";
+import { Button, EventCard } from "@/components/UI/atoms";
 import styles from "./AgendaPreview.module.css";
 
 export const AgendaPreview = () => {
+	const [activeTab, setActiveTab] = useState("today");
+	const [registerEvent, setRegisterEvent] = useState(false);
+
+	function handleRegisterEvent() {
+		setRegisterEvent(!registerEvent);
+	}
+
 	return (
-		<>
-			<div className="row">
-				<div className={`col-xs-12 ${styles.tabs}`}>
-					<p className={`p2 ${styles.tab} ${styles.active} `}>Hoy</p>
-					<p className={`p2 ${styles.tab} `}>Semana</p>
-					<p className={`p2 ${styles.tab} `}>Mes</p>
-				</div>
-			</div>
-			<div className={`row ${styles.agendaCard}`}>
-				<div className="col-xs-12">
-					<p className="p2 semi-bold main-color">titulo</p>
-					<div className={`${styles.content}`}>
-						<p className="p2 highlight semi-bold">Cliente</p>
-						<p className="p2 highlight ">Sucursal</p>
-						<p className="p2 highlight ">15/4/2023 - 01:30</p>
+		<div className={styles.parentContainer}>
+			<div className={`globalPadding card`}>
+				<div className={styles.headerContainer}>
+					<div className={`${styles.titleContainer}`}>
+						<div className={styles.iconContainer}>
+							<IconSells size="100%" color="black" />
+						</div>
+						<h2 className={styles.title}>Agenda</h2>
+					</div>
+					<div className={styles.buttons}>
+						<button className="btn btn-primary">Ver todo</button>
+						<button className="btn btn-primary">Ver todo</button>
 					</div>
 				</div>
+
+				<div className={`row ${styles.tabsContainer}`}>
+					<div className={`col-xs-12 ${styles.tabs}`}>
+						<p
+							onClick={() => setActiveTab("today")}
+							className={`p2 ${styles.tab} ${
+								activeTab === "today" ? styles.active : ""
+							} `}
+						>
+							Hoy
+						</p>
+						<p
+							onClick={() => setActiveTab("week")}
+							className={`p2 ${styles.tab} ${
+								activeTab === "week" ? styles.active : ""
+							}`}
+						>
+							Semana
+						</p>
+						<p
+							onClick={() => setActiveTab("month")}
+							className={`p2 ${styles.tab} ${
+								activeTab === "month" ? styles.active : ""
+							}`}
+						>
+							Mes
+						</p>
+					</div>
+				</div>
+
+				<div className={styles.events}>
+					<EventCard />
+					<EventCard />
+					<EventCard />
+					<EventCard />
+					<EventCard />
+					<EventCard />
+					<EventCard />
+					<EventCard />
+					<EventCard />
+					<EventCard />
+					<EventCard />
+				</div>
+
+				<Button text="Nuevo" full={true} func={handleRegisterEvent} />
 			</div>
-		</>
+
+			{registerEvent ? (
+				<CreateAgendaEvent func={handleRegisterEvent} />
+			) : (
+				<></>
+			)}
+		</div>
 	);
 };

@@ -2,6 +2,7 @@ import {
 	StyledInputText,
 	StyledInputRadio,
 	StyledInputDate,
+	StyledInputTime,
 	StyledInputSubmit,
 	StyledInputSelect,
 } from "./StyledInputs";
@@ -32,6 +33,8 @@ import { BarChart } from "./charts/BarChart";
 import { ComparativeBarChart } from "./charts/ComparativeBarChart";
 import { StackedBarChart } from "./charts/StackedBarChart";
 
+import { EventCard } from "./eventCard";
+
 import { Loader } from "./loader";
 import { Alert } from "./alert";
 
@@ -39,6 +42,7 @@ export {
 	StyledInputText,
 	StyledInputRadio,
 	StyledInputDate,
+	StyledInputTime,
 	StyledInputSubmit,
 	StyledInputSelect,
 	StyledTextArea,
@@ -63,6 +67,7 @@ export {
 	BarChart,
 	Loader,
 	ComparativeBarChart,
+	EventCard,
 	StackedBarChart,
 	Alert,
 };

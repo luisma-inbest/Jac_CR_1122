@@ -77,6 +77,22 @@ export const FollowUpActivities = (props: AuctionProps) => {
 				}
 			/>
 			<CardFunnel
+				mainText="RFC Cliente"
+				icon={<IconCheck size="100%" color="#000" />}
+				cardContent={
+					<BasicBody
+						buttonText="Modificar"
+						buttonFunc={() => {
+							return;
+						}}
+						alternativeText="RFC"
+						alternativeFunc={() => {
+							return;
+						}}
+					/>
+				}
+			/>
+			<CardFunnel
 				mainText="Cotización"
 				icon={<IconCheck size="100%" color="#000" />}
 				cardContent={

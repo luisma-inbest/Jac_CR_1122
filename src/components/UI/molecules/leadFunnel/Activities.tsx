@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, CardFunnel } from "@/components/UI/atoms";
 import styles from "./LeadFunnel.module.css";
-import { IconPhone, IconWhatsapp, IconMail } from "@/assets";
+import { IconPhone, IconWhatsapp, IconMail, IconCheck } from "@/assets";
 import { LeadDataType } from "@/models";
 
 interface AuctionProps {
@@ -145,6 +145,23 @@ export const Activities = (props: AuctionProps) => {
 							}
 						)}
 					</div>
+				}
+			/>
+
+			<CardFunnel
+				mainText="Crear Recordatorio"
+				icon={<IconCheck size="100%" color="#000" />}
+				cardContent={
+					<BasicBody
+						buttonText="Registrar"
+						buttonFunc={() => {
+							return;
+						}}
+						alternativeText=""
+						alternativeFunc={() => {
+							return;
+						}}
+					/>
 				}
 			/>
 		</>

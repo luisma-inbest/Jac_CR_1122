@@ -16,21 +16,6 @@ import { IconSells } from "@/assets";
 import { PieChartLabelProps } from "@/components/UI/molecules/pieChartLabel";
 import { AgendaPreview } from "@/components/UI/organisms";
 
-const getTitleElement = (titleText: string) => {
-	return (
-		<div className="row">
-			<div className="col">
-				<div className={`box ${styles.titleContainer}`}>
-					<div className={styles.iconContainer}>
-						<IconSells size="100%" color="black" />
-					</div>
-					<h2 className={styles.title}>{titleText}</h2>
-				</div>
-			</div>
-		</div>
-	);
-};
-
 export const SellerProfile = () => {
 	const salesData: PieChartLabelProps = {
 		labels: [
@@ -43,11 +28,11 @@ export const SellerProfile = () => {
 	};
 
 	return (
-		<div className={`contentVerticalPadding ${styles.mainContainer}`}>
+		<div className={`${styles.mainContainer}`}>
 			{/* col */}
 			<div className={` ${styles.cardContainer} ${styles.card1}`}>
-				<div className={`globalPadding ${styles.card} `}>
-					{getTitleElement("Ventas")}
+				<div className={`globalPadding card `}>
+					<h2>Ventas</h2>
 				</div>
 			</div>
 
@@ -55,23 +40,20 @@ export const SellerProfile = () => {
 			<div
 				className={` ${styles.cardContainer} ${styles.sideBar} ${styles.card2}`}
 			>
-				<div className={`globalPadding ${styles.card}`}>
-					{getTitleElement("Agenda")}
-					<AgendaPreview />
-				</div>
+				<AgendaPreview />
 			</div>
 
 			{/* col */}
 			<div className={` ${styles.cardContainer} ${styles.card3}`}>
-				<div className={`globalPadding ${styles.card}`}>
-					{getTitleElement("Lorem ipsum dolor")}
+				<div className={`globalPadding card`}>
+					<h2>Ventas</h2>
 				</div>
 			</div>
 
 			{/* col */}
 			<div className={` ${styles.cardContainer} ${styles.card4}`}>
-				<div className={`globalPadding ${styles.card}`}>
-					{getTitleElement("Lorem ipsum dolor")}
+				<div className={`globalPadding card`}>
+					<h2>Ventas</h2>
 				</div>
 			</div>
 
