@@ -9,6 +9,7 @@
 .cardContainerChecklist > div {
 	display: flex;
 	flex-direction: row;
-	align-items: center;
+	align-items: baseline;
 	justify-content: space-between;
+	gap: 2rem;
 }

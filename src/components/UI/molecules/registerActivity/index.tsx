@@ -7,6 +7,7 @@ import {
 	StyledInputSubmit,
 	StyledTextArea,
 	StyledInputSelect,
+	StyledSelect,
 } from "@/components/UI/atoms";
 import { IconCross } from "@/assets";
 import { LeadActivityType } from "@/models";
@@ -76,6 +77,15 @@ export const RegisterActivity = (props: Props) => {
 					action=""
 					onSubmit={(e) => e.preventDefault()}
 				>
+					<StyledSelect customType="secondary" defaultValue="">
+						<option value="" disabled>
+							*-- Tipo --
+						</option>
+						<option value="">Whatsapp</option>
+						<option value="">Llamada</option>
+						<option value="">Correo</option>
+					</StyledSelect>
+
 					<Input
 						placeholder="Titulo"
 						inputType="text"
