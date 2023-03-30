@@ -55,13 +55,14 @@ export const CreateLead = (props: Props) => {
 	}
 	function formHandler(e: any) {
 		e.preventDefault();
+
 		console.log("sumbmiting form...", fields);
 
 		addLeadMutation.mutate();
 	}
 
 	useEffect(() => {
-		// dispatch({ type: "AgencyId", value: Number(User!.AgencyId) });
+		dispatch({ type: "AgencyId", value: Number(User!.AgencyId) });
 	}, []);
 
 	return (
@@ -279,6 +280,7 @@ const Second = (props: SecondProps) => {
 				</StyledSelect>
 
 				<Input
+					disabled={true}
 					placeholder="Unidades"
 					inputType="number"
 					value={props.fields!.units.toString()}

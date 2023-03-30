@@ -56,7 +56,7 @@ export const LeadData = (props: Props) => {
 							rotate="0"
 						/>
 					</span>
-					<p className="p3">33 1786 3542</p>
+					<p className="p3">{props.lead.leadPhones[0].phone}</p>
 				</span>
 				<span className={`${styles.leadInfo}`}>
 					<span className={`${styles.leadIcon}`}>
@@ -66,7 +66,7 @@ export const LeadData = (props: Props) => {
 							rotate="0"
 						/>
 					</span>
-					<p className="p3">jorge.salgado@inbest.cloud</p>
+					<p className="p3">{props.lead.leadEmails[0].email}</p>
 				</span>
 			</div>
 
@@ -87,7 +87,7 @@ export const LeadData = (props: Props) => {
 			<div className={`col-xs-12 mt-4 ${styles.groupData}`}>
 				<p className="p4 semi-bold secondary">Detalles</p>
 				<p className="p4 semi-bold highlight">Fecha y Hora</p>
-				<p className="p2 ">10 de Oct del 2022 8:30hrs</p>
+				<p className="p2 ">{String(props.lead.createdAt)}</p>
 			</div>
 
 			<div className={`col-xs-12 mt-4  ${styles.groupData}`}>
@@ -100,7 +100,7 @@ export const LeadData = (props: Props) => {
 			<div className={`col-xs-12 mt-4  ${styles.groupData}`}>
 				<p className="p4 semi-bold secondary">Cotización</p>
 				<p className="p4 semi-bold highlight">Fecha y Hora</p>
-				<p className="p2 ">10 de Oct del 2022 8:30hrs</p>
+				<p className="p2 ">{String(props.lead.createdAt)}</p>
 				<p className="p4 semi-bold highlight"> Archivo</p>
 				<p className="p3 link ">Cotización.pdf</p>
 			</div>

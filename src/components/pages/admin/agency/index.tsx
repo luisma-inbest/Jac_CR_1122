@@ -17,14 +17,14 @@ import {
 	AgencyUsers,
 } from "@/components/UI/organisms";
 import { Domain } from "@/constants";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 export const Agency = () => {
 	const [leadView, setLeadView] = useState(false);
 	const [lead, seadLead] = useState(null);
 	// const { state } = useLocation();
-	const agencyId = window.location.pathname.replace("/admin/agencies/", "");
-	console.log(agencyId);
+	const { id } = useParams();
+	const agencyId: string = id || "0";
 	// let agencyId = window.location.pathname.replace("/admin/agencies/", "");
 
 	const agencySocialMedia = [

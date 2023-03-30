@@ -20,7 +20,7 @@ const initial: Lead = {
 	productId: "",
 	AgencyId: 0,
 	buyType: "",
-	units: 0,
+	units: 1,
 };
 
 function reducer(state: Lead, action: Action): Lead {

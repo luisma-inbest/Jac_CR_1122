@@ -15,6 +15,7 @@ import { LeadAPI } from "@/apis";
 import { useMutation } from "react-query";
 import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
 import { reducer, initial } from "./reducer";
+import activitytypes from "./activitiyTypes";
 
 interface Props {
 	func: () => void;
@@ -77,23 +78,34 @@ export const RegisterActivity = (props: Props) => {
 					action=""
 					onSubmit={(e) => e.preventDefault()}
 				>
-					<StyledSelect customType="secondary" defaultValue="">
+					<StyledSelect
+						customType="secondary"
+						defaultValue=""
+						onChange={(e) =>
+							dispatch({
+								type: "typeActivity",
+								value: e.target.value,
+							})
+						}
+					>
 						<option value="" disabled>
 							*-- Tipo --
 						</option>
-						<option value="">Whatsapp</option>
-						<option value="">Llamada</option>
-						<option value="">Correo</option>
+						{activitytypes.map((type: any) => (
+							<option value={type.slug} key={type.slug}>
+								{type.description}
+							</option>
+						))}
 					</StyledSelect>
 
 					<Input
 						placeholder="Titulo"
 						inputType="text"
 						type="reducer"
-						value={fields.leadActivityType}
+						value={fields.title}
 						params={{
 							dispatch: dispatch,
-							dispType: "typeActivity",
+							dispType: "title",
 						}}
 					/>
 

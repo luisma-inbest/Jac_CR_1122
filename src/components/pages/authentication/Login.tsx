@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Logo, LogoFull } from "@/assets";
+import { IconEye, IconEyeOff, Logo, LogoFull } from "@/assets";
 import {
 	StyledInputText,
 	StyledInputSubmit,
@@ -24,8 +24,12 @@ export const Login = () => {
 	const [role, setRole] = useState("admin");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [showPassword, setShowPassword] = useState(false);
 	const logoColor = getComputedStyle(document.body).getPropertyValue(
 		"--main-color"
+	);
+	const secondaryColor = getComputedStyle(document.body).getPropertyValue(
+		"--secondary-text"
 	);
 
 	const handleSubmit = (event: React.FormEvent<EventTarget>) => {
@@ -65,13 +69,37 @@ export const Login = () => {
 								type="state"
 								params={{ setValue: setEmail }}
 							/>
-							<Input
-								placeholder="Contraseña"
-								inputType="password"
-								value={password}
-								type="state"
-								params={{ setValue: setPassword }}
-							/>
+							<div className={styles.passwordContainer}>
+								<div className={styles.passwordInput}>
+									<Input
+										placeholder="Contraseña"
+										inputType={
+											showPassword ? "text" : "password"
+										}
+										value={password}
+										type="state"
+										params={{ setValue: setPassword }}
+									/>
+								</div>
+								<div
+									className={styles.iconContainer}
+									onClick={() =>
+										setShowPassword(!showPassword)
+									}
+								>
+									{showPassword ? (
+										<IconEye
+											size="100%"
+											color={secondaryColor}
+										/>
+									) : (
+										<IconEyeOff
+											size="100%"
+											color={secondaryColor}
+										/>
+									)}
+								</div>
+							</div>
 
 							{/* <div className={`${styles.checkbox}`}>
 								<input

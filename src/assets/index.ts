@@ -30,6 +30,8 @@ import { IconFeedback } from "./icons/IconFeedback";
 import { IconWhatsapp } from "./icons/IconWhatsapp";
 import { IconCheck } from "./icons/IconCheck";
 import { IconAdd } from "./icons/IconAdd";
+import { IconEye } from "./icons/IconEye";
+import { IconEyeOff } from "./icons/IconEyeOff";
 
 import { IconAlertError } from "./icons/Alert/IconError";
 import { IconAlertSuccess } from "./icons/Alert/IconSuccess";
@@ -70,4 +72,6 @@ export {
 	IconAlertSuccess,
 	IconAlertWarning,
 	IconAlertInfo,
+	IconEye,
+	IconEyeOff,
 };

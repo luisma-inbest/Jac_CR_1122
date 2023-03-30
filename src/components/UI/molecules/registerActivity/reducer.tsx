@@ -2,6 +2,7 @@ import { Lead, LeadActivityType } from "@/models";
 
 type Action =
 	| { type: "typeActivity"; value: string }
+	| { type: "title"; value: string }
 	| { type: "commentsActivity"; value: string }
 	| { type: "status"; value: string }
 	| { type: "date"; value: Date }
@@ -10,6 +11,7 @@ type Action =
 const initial: LeadActivityType = {
 	LeadId: 0,
 	leadActivityType: "",
+	title: "",
 	comments: "",
 	status: "1",
 	date: new Date(Date.parse("2000-01-01T00:00:00")),
@@ -19,6 +21,8 @@ function reducer(state: LeadActivityType, action: Action): LeadActivityType {
 	switch (action.type) {
 		case "typeActivity":
 			return { ...state, leadActivityType: action.value };
+		case "title":
+			return { ...state, title: action.value };
 		case "commentsActivity":
 			return { ...state, comments: action.value };
 		case "status":

@@ -67,3 +67,17 @@
 	color: var(--blue);
 	border: none;
 }
+
+.passwordContainer {
+	width: 100%;
+	display: flex;
+	align-items: baseline;
+}
+.passwordInput {
+	width: 95%;
+}
+
+.iconContainer {
+	height: 1.5rem;
+	cursor: pointer;
+}

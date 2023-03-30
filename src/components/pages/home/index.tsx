@@ -14,14 +14,18 @@ export const Home = () => {
 
 	function decideRoute(role: string): string {
 		let mainPage = handleMainPage(role).replace("/", "");
+		console.log("rol del usuario", role);
 
 		if (location.state != null) {
 			path = location?.state.path;
 			console.log("trae path", path);
 			let arr = path.split("/"); //la posicion 0 esta vacia
 			arr = arr.filter((item) => item != "#");
-			console.log(arr);
-			console.log(mainPage);
+
+			console.log("url arr:", arr);
+			console.log("mainpage dado el rol:", mainPage);
+
+			//validamos si puede ir a la otra ruta o lo mandamos a la principal de su rol
 			if (permissions[role].includes(arr[1])) {
 				console.log("tiene acceso..");
 				mainPage = path.replace("/#", "");

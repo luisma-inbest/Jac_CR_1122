@@ -17,6 +17,7 @@ type Props = {
 	placeholder: string;
 	value: string;
 	inputType: string;
+	disabled?: boolean;
 } & ConditionalProps;
 
 export const Input = (props: Props) => {
@@ -37,6 +38,7 @@ export const Input = (props: Props) => {
 	return (
 		<div className={styles.inputContain}>
 			<input
+				disabled={props.disabled}
 				className={styles.input}
 				type={props.inputType}
 				value={props.value}

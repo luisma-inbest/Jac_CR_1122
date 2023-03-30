@@ -24,8 +24,8 @@ type LeadPhaseType = {
 export type LeadDataType = {
 	id: number;
 	leadName: string;
-	leadPhones: string[];
-	leadEmails: string[];
+	leadPhones: any[];
+	leadEmails: any[];
 	leadPhase: LeadPhaseType;
 	LeadInterests: string[];
 	LeadOrigin: string;
@@ -34,6 +34,7 @@ export type LeadDataType = {
 
 export type LeadActivityType = {
 	date: Date;
+	title: string;
 	comments: string;
 	status: string;
 	leadActivityType: string;
