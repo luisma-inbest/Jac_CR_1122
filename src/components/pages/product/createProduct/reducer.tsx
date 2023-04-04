@@ -1,85 +1,57 @@
-import {Agency} from "@/models";
+import { Product } from "@/models";
 
 type Action =
-	| {type: "name"; value: string}
-	| {type: "businessName"; value: string}
-	| {type: "logo"; value: string}
-	| {type: "logoDark"; value: string}
-	| {type: "urlSite"; value: string}
-	| {type: "street"; value: string}
-	| {type: "exteriorNumber"; value: string}
-	| {type: "interiorNumber"; value: string}
-	| {type: "transferCode"; value: string}
-	| {type: "state"; value: string}
-	| {type: "city"; value: string}
-	| {type: "suburb"; value: string}
-	| {type: "postalCode"; value: string}
-	| {type: "municipality"; value: string}
-	| {type: "deputation"; value: string}
-	| {type: "service"; value: boolean}
-	| {type: "active"; value: boolean}
-	| {type: "agencySocialMedia"; value: any};
+	| { type: "name"; value: string }
+	| { type: "model"; value: string }
+	| { type: "productVersions"; value: string[] }
+	| { type: "price"; value: number }
+	| { type: "productColors"; value: number[] }
+	| { type: "ProductCollectionId"; value: number }
+	| { type: "showRoom360Url"; value: string }
+	| { type: "imageBase64"; value: string }
+	| { type: "onePagerBase64"; value: string }
+	| { type: "imageBase64"; value: string }
+	| { type: "dataSheetBase64"; value: string };
 
-const initial: Agency = {
+const initial: Product = {
 	name: "",
-	businessName: "",
-	logo: "",
-	logoDark: "",
-	urlSite: "",
-	service: true,
-	street: "",
-	exteriorNumber: "",
-	interiorNumber: "",
-	transferCode: "",
-	state: "",
-	city: "",
-	suburb: "",
-	postalCode: "",
-	municipality: "",
-	deputation: "",
-	agencySocialMedia: [],
+	model: "",
+	productVersions: [],
+	price: 0,
+	productColors: [],
+	ProductCollectionId: 0,
+	showRoom360Url: "",
+	imageBase64: "",
+	onePagerBase64: "",
+	dataSheetBase64: "",
 	active: true,
 };
 
-function reducer(state: Agency, action: Action): Agency {
+function reducer(state: Product, action: Action): Product {
 	switch (action.type) {
 		case "name":
-			return {...state, name: action.value};
-		case "businessName":
-			return {...state, businessName: action.value};
-		case "logo":
-			return {...state, logo: action.value};
-		case "logoDark":
-			return {...state, logoDark: action.value};
-		case "urlSite":
-			return {...state, urlSite: action.value};
-		case "service":
-			return {...state, service: action.value};
-		case "street":
-			return {...state, street: action.value};
-		case "exteriorNumber":
-			return {...state, exteriorNumber: action.value};
-		case "interiorNumber":
-			return {...state, interiorNumber: action.value};
-		case "transferCode":
-			return {...state, transferCode: action.value};
-		case "state":
-			return {...state, state: action.value};
-		case "city":
-			return {...state, city: action.value};
-		case "suburb":
-			return {...state, suburb: action.value};
-		case "postalCode":
-			return {...state, postalCode: action.value};
-		case "municipality":
-			return {...state, municipality: action.value};
-		case "deputation":
-			return {...state, deputation: action.value};
-		case "agencySocialMedia":
-			return {...state, agencySocialMedia: action.value};
+			return { ...state, name: action.value };
+		case "model":
+			return { ...state, model: action.value };
+		case "productVersions":
+			return { ...state, productVersions: action.value };
+		case "price":
+			return { ...state, price: action.value };
+		case "productColors":
+			return { ...state, productColors: action.value };
+		case "ProductCollectionId":
+			return { ...state, ProductCollectionId: action.value };
+		case "showRoom360Url":
+			return { ...state, showRoom360Url: action.value };
+		case "imageBase64":
+			return { ...state, imageBase64: action.value };
+		case "onePagerBase64":
+			return { ...state, onePagerBase64: action.value };
+		case "dataSheetBase64":
+			return { ...state, dataSheetBase64: action.value };
 		default:
 			return state;
 	}
 }
 
-export {reducer, initial};
+export { reducer, initial };

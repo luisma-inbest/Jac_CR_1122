@@ -56,7 +56,7 @@ export const LeadData = (props: Props) => {
 							rotate="0"
 						/>
 					</span>
-					<p className="p3">{props.lead.leadPhones[0].phone}</p>
+					<p className="p3">{props.lead.leadPhones[0].phone || ""}</p>
 				</span>
 				<span className={`${styles.leadInfo}`}>
 					<span className={`${styles.leadIcon}`}>
@@ -66,7 +66,7 @@ export const LeadData = (props: Props) => {
 							rotate="0"
 						/>
 					</span>
-					<p className="p3">{props.lead.leadEmails[0].email}</p>
+					<p className="p3">{props.lead.leadEmails[0].email || ""}</p>
 				</span>
 			</div>
 

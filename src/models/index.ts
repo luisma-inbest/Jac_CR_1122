@@ -7,6 +7,7 @@ import {
 	Lead,
 	LeadDataType,
 	LeadActivityType,
+	Product,
 } from "./crmTypes";
 //
 import { SellsRoutes, ProductRoutes, AdminRoutes } from "./routes";
@@ -20,6 +21,7 @@ export type {
 	Lead,
 	LeadDataType,
 	LeadActivityType,
+	Product,
 };
 
 export { SellsRoutes, ProductRoutes, AdminRoutes };

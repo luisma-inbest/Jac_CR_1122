@@ -20,18 +20,24 @@ export const FollowUpActivities = (props: AuctionProps) => {
 		{
 			title: "Cotización Contado",
 			buttonText: "Cotizar",
-			function: goTo("https://www.google.com"),
+			function: goTo(
+				"https://cck.creditoclick.com.mx/users-web/auth/cck/login?backTo=https://cck.creditoclick.com.mx/credimagen/josso_security_check"
+			),
 		},
 		{
 			title: "Demo Cotización Credito",
 			buttonText: "Cotizar",
-			function: goTo("https://www.google.com"),
+			function: goTo(
+				"https://cck.creditoclick.com.mx/users-web/auth/cck/login?backTo=https://cck.creditoclick.com.mx/credimagen/josso_security_check"
+			),
 		},
 
 		{
 			title: "Solicitud Crédito",
 			buttonText: "Solicitar",
-			function: goTo("https://www.google.com"),
+			function: goTo(
+				"https://cck.creditoclick.com.mx/users-web/auth/cck/login?backTo=https://cck.creditoclick.com.mx/credimagen/josso_security_check"
+			),
 		},
 		{
 			title: "Apartado",

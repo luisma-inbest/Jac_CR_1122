@@ -1,6 +1,7 @@
 import React, { useReducer, useState } from "react";
 import { AgencyAPI } from "@/apis/APIAgency";
 import {
+	ButtonFields,
 	Input,
 	InputFile,
 	StyledInputSubmit,
@@ -12,34 +13,67 @@ import States from "@/utils/states";
 import { reducer, initial } from "./reducer";
 import styles from "./CreateProduct.module.css";
 import { getBase64 } from "@/utils";
+import { ProductAPI } from "@/apis/APIProduct";
 
 export const CreateProduct = () => {
 	const [fields, dispatch] = useReducer(reducer, initial);
-	const [logo, setLogo] = useState("");
-	const [logoText, setLogoText] = useState("producto");
-	const [onePagerText, setOnePagerText] = useState("One Pager");
-	const [dataSheetText, setDataSheetText] = useState("ficha técnica");
-
-	async function handleFile(file: any) {
-		// console.log("File:", file)
-		setLogoText("Cargando...");
-		try {
-			let base64 = await getBase64(file);
-			setLogoText(file.name);
-			setLogo(base64);
-			dispatch({
-				type: "logo",
-				value: base64,
-			});
-		} catch (error) {
-			// console.log("Error:", error);
-			setLogoText("Error al cargar archivo");
-		}
-	}
+	const [productImageFile, setProductImageFile] = useState("producto");
+	const [onePagerTextFile, setOnePagerTextFile] = useState("One Pager");
+	const [dataSheetTextFile, setDataSheetTextFile] = useState("ficha técnica");
+	const [version, setVersion] = useState("");
 
 	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault();
-		AgencyAPI.create(fields);
+		ProductAPI.create(fields);
+		console.log(fields);
+	}
+
+	const handleFileProductImage = async (file: any) => {
+		setProductImageFile("Cargando...");
+		try {
+			let base64 = await getBase64(file);
+			setProductImageFile(file.name);
+			dispatch({
+				type: "imageBase64",
+				value: base64,
+			});
+		} catch (error) {
+			setProductImageFile("Error al cargar archivo");
+		}
+	};
+
+	const handleFileOnePager = async (file: any) => {
+		setOnePagerTextFile("Cargando...");
+		try {
+			let base64 = await getBase64(file);
+			setOnePagerTextFile(file.name);
+			dispatch({
+				type: "onePagerBase64",
+				value: base64,
+			});
+		} catch (error) {
+			setOnePagerTextFile("Error al cargar archivo");
+		}
+	};
+	const handleFileDataSheet = async (file: any) => {
+		setDataSheetTextFile("Cargando...");
+		try {
+			let base64 = await getBase64(file);
+			setDataSheetTextFile(file.name);
+			dispatch({
+				type: "dataSheetBase64",
+				value: base64,
+			});
+		} catch (error) {
+			setDataSheetTextFile("Error al cargar archivo");
+		}
+	};
+	function handleVersions() {
+		dispatch({
+			type: "productVersions",
+			value: [...fields.productVersions, `${version}`],
+		});
+		setVersion("");
 	}
 
 	return (
@@ -66,67 +100,83 @@ export const CreateProduct = () => {
 
 					<Input
 						placeholder="*Modelo"
-						inputType="text"
-						value={fields.businessName}
+						inputType="number"
+						value={fields.model}
 						type="reducer"
 						params={{
 							dispatch: dispatch,
-							dispType: "businessName",
+							dispType: "model",
 						}}
 					/>
 
 					<Input
 						placeholder="*Versión"
 						inputType="text"
-						value={fields.transferCode}
+						value={version}
+						type="state"
+						params={{ setValue: setVersion }}
+					/>
+					<ButtonFields
+						text="Agregar Versión"
+						func={handleVersions}
+					/>
+
+					<div className="mb-5">
+						{fields.productVersions.map((version, index) => {
+							return <h5 key={index}>{version}</h5>;
+						})}
+					</div>
+					<Input
+						placeholder="*Modelo"
+						inputType="text"
+						value={fields.model}
 						type="reducer"
 						params={{
 							dispatch: dispatch,
-							dispType: "transferCode",
+							dispType: "model",
 						}}
 					/>
 
-					<StyledSelect
-						customType="secondary"
-						defaultValue=""
-						onChange={(e) =>
-							dispatch({ type: "state", value: e.target.value })
-						}
-					>
-						<option value="" disabled>
-							*-- Color --
-						</option>
-						{States.map((e, index) => {
-							return (
-								<option key={index} value={e.sulg}>
-									{e.name}
-								</option>
-							);
-						})}
-					</StyledSelect>
+					<h5>Colores</h5>
+					<label htmlFor="">azul</label>
+					<input type="checkbox" name="favorite_pet" value="Cats" />
+					<label htmlFor="">azul</label>
+					<input type="checkbox" name="favorite_pet" value="Dogs" />
+					<label htmlFor="">azul</label>
+					<input type="checkbox" name="favorite_pet" value="Birds" />
+
 					<Input
 						placeholder="Precio"
-						inputType="text"
-						value={fields.urlSite!}
+						inputType="number"
+						value={String(fields.price)}
 						type="reducer"
-						params={{ dispatch: dispatch, dispType: "urlSite" }}
+						params={{ dispatch: dispatch, dispType: "price" }}
 					/>
 
 					{/* Info General */}
 					<p className="p2 bold secondary mb-0 mt-3">Adicional</p>
 					<hr className="hr mb-1" />
 
-					<InputFile text={logoText} handleFile={handleFile} />
-					<InputFile text={onePagerText} handleFile={handleFile} />
-					<InputFile text={dataSheetText} handleFile={handleFile} />
+					<InputFile
+						text={productImageFile}
+						handleFile={handleFileProductImage}
+					/>
+					<InputFile
+						text={onePagerTextFile}
+						handleFile={handleFileOnePager}
+					/>
+					<InputFile
+						text={dataSheetTextFile}
+						handleFile={handleFileDataSheet}
+					/>
 					<Input
 						placeholder="*Showroom 360"
 						inputType="text"
-						value={fields.municipality}
+						value={fields.showRoom360Url}
 						type="reducer"
 						params={{
 							dispatch: dispatch,
-							dispType: "municipality",
+							dispType: "showRoom360Url",
 						}}
 					/>
 
