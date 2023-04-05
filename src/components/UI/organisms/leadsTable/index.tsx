@@ -85,7 +85,6 @@ export const LeadsTable = (props: Props) => {
 					</thead>
 					<tbody>
 						{leads.map((lead: any) => {
-							console.log(lead.LeadActivities[0]);
 							return (
 								<LeadRow
 									key={lead.id}

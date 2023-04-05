@@ -112,6 +112,8 @@ const First = (props: FirstProps) => {
 		AlertsContext
 	) as AlertsContextType;
 	const [val, setVal] = useState("");
+	const [phone, setPhone] = useState("");
+	const [email, setEmail] = useState("");
 
 	const {
 		isLoading,
@@ -131,6 +133,23 @@ const First = (props: FirstProps) => {
 			);
 		},
 	});
+
+	function handlePhones() {
+		props.dispatch({
+			type: "leadPhones",
+			value: [...props.fields.leadPhones, `${phone}`],
+		});
+		setPhone("");
+		console.log(props.fields);
+	}
+	function handleEmails() {
+		props.dispatch({
+			type: "leadEmails",
+			value: [...props.fields.leadEmails, `${email}`],
+		});
+		setEmail("");
+		console.log(props.fields);
+	}
 
 	if (isLoading) return <p>Loading...</p>;
 
@@ -173,26 +192,32 @@ const First = (props: FirstProps) => {
 					})}
 				</StyledSelect>
 				<Input
-					placeholder="Número de contacto"
+					placeholder="Números de contacto"
 					inputType="number"
-					value={props.fields.leadPhones[0]}
-					type="reducer"
-					params={{
-						dispatch: props.dispatch,
-						dispType: "leadPhones",
-					}}
+					value={phone}
+					type="state"
+					params={{ setValue: setPhone }}
 				/>
+				<ButtonFields text="Agregar Número" func={handlePhones} />
+
+				<div className="mb-5">
+					{props.fields.leadPhones.map((phone, index) => {
+						return <h5 key={index}>{phone}</h5>;
+					})}
+				</div>
 
 				<Input
-					placeholder="Correo de contacto"
+					placeholder="Correos de contacto"
 					inputType="text"
-					value={props.fields.leadEmails[0]}
-					type="reducer"
-					params={{
-						dispatch: props.dispatch,
-						dispType: "leadEmails",
-					}}
+					value={email}
+					type="state"
+					params={{ setValue: setEmail }}
 				/>
+				<ButtonFields text="Agregar Correo" func={handleEmails} />
+
+				{props.fields.leadEmails.map((email, index) => {
+					return <h5 key={index}>{email}</h5>;
+				})}
 
 				<StyledInputSubmit
 					value="siguiente"
@@ -255,7 +280,7 @@ const Second = (props: SecondProps) => {
 				</StyledSelect>
 
 				<Input
-					disabled={false}
+					disabled={true}
 					placeholder="Unidades"
 					inputType="number"
 					value={props.fields!.units.toString()}
