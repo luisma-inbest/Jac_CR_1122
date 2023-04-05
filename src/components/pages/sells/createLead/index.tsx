@@ -274,7 +274,7 @@ const Second = (props: SecondProps) => {
 					<option value="" disabled>
 						-- Tipo de Compra --
 					</option>
-					<option value="man"> Debito </option>
+					<option value="man"> Contado </option>
 					<option value="woman">Crédito</option>
 					<option value="woman">Leasing</option>
 				</StyledSelect>

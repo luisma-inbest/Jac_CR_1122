@@ -93,4 +93,5 @@
 .tabBody > .active {
 	position: relative;
 	opacity: 1;
+	top: 0;
 }
