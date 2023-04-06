@@ -9,21 +9,24 @@ interface Props {
 	model: string;
 	color: number;
 	status: string;
-	date: string;
+	createdAt: Date;
+	updatedAt: Date;
 }
 
 export const LeadRow = (props: Props) => {
 	const navigate = useNavigate();
 	const colors = ["", styles.leadCold, styles.leadTracing, styles.leadHot];
+	const [auction, setAuction] = useState(false);
 
 	/**/
 	const [days, setDays] = useState(0);
 	const [hours, setHours] = useState(0);
 	const [minutes, setMinutes] = useState(0);
 	const [seconds, setSeconds] = useState(0);
+	const [totalMins, setTotalMins] = useState(0);
 
 	// const deadline = props.date.split("-");
-	const oldDate = Date.parse(props.date);
+	const oldDate = new Date(props.createdAt.toString());
 
 	const getTime = () => {
 		const time = Date.now() - Number(oldDate);
@@ -33,6 +36,7 @@ export const LeadRow = (props: Props) => {
 		setHours(Math.floor((time / (1000 * 60 * 60)) % 24));
 		setMinutes(Math.floor((time / 1000 / 60) % 60));
 		setSeconds(Math.floor((time / 1000) % 60));
+		setTotalMins(Math.floor(time / 1000 / 60));
 	};
 	useEffect(() => {
 		const interval = setInterval(() => getTime(), 1000);
@@ -42,11 +46,11 @@ export const LeadRow = (props: Props) => {
 	/**/
 
 	const pickColor = () => {
-		if (minutes <= 5) {
+		if (totalMins <= 5) {
 			return styles.green;
-		} else if (minutes > 5 && minutes <= 10) {
+		} else if (totalMins > 5 && totalMins <= 60) {
 			return styles.orange;
-		} else if (minutes > 10) {
+		} else if (totalMins > 60) {
 			return styles.red;
 		} else {
 			return "";
@@ -77,7 +81,9 @@ export const LeadRow = (props: Props) => {
 				</p>
 			</td>
 			<td>
-				<p className="p4 secondary no-margin">{props.date}</p>
+				<p className="p4 secondary no-margin">
+					{props.createdAt.toString()}
+				</p>
 			</td>
 		</tr>
 	);

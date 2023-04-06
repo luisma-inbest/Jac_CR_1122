@@ -18,6 +18,8 @@ import UserContext, { UserContextType } from "@/context/UserContext";
 
 interface Props {
 	func: () => void;
+	refreshFunc: (val: boolean) => void;
+	refresh: boolean;
 }
 
 export const CreateLead = (props: Props) => {
@@ -40,6 +42,9 @@ export const CreateLead = (props: Props) => {
 				"Lead Creado",
 				"El lead se creo correctamente"
 			);
+			setTimeout(() => {
+				props.refreshFunc(!props.refresh);
+			}, 1000);
 		},
 		onError(error, variables, context) {
 			console.log(error);
@@ -59,6 +64,8 @@ export const CreateLead = (props: Props) => {
 		console.log("sumbmiting form...", fields);
 
 		addLeadMutation.mutate();
+
+		props.func();
 	}
 
 	useEffect(() => {
@@ -216,6 +223,7 @@ interface SecondProps {
 }
 const Second = (props: SecondProps) => {
 	const [val, setVal] = useState("");
+
 	return (
 		<>
 			<form onSubmit={props.submit}>

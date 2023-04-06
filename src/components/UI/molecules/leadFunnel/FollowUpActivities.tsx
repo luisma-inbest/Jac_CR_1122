@@ -103,9 +103,9 @@ export const FollowUpActivities = (props: AuctionProps) => {
 				icon={<IconCheck size="100%" color="#000" />}
 				cardContent={
 					<div>
-						{cotizaciones.map((cotizacion) => {
+						{cotizaciones.map((cotizacion, index) => {
 							return (
-								<>
+								<div key={index}>
 									<p className="p4 no-margin secondary semi-bold">
 										{cotizacion.title}
 									</p>
@@ -122,7 +122,7 @@ export const FollowUpActivities = (props: AuctionProps) => {
 											full={false}
 										/>
 									</div>
-								</>
+								</div>
 							);
 						})}
 					</div>

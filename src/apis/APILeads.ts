@@ -23,13 +23,14 @@ export const LeadAPI = {
 	getAll: async function (type: string, agency: string, page: number) {
 		return api
 			.request({
-				url: `/lead/?AgencyId=${agency}&phase=${type}&page=${page}&limit=10`,
+				url: `/lead/?AgencyId=${agency}&phase=${type}&page=${page}&limit=3`,
 				//url: `/lead/?AgencyId=14&phase=en-cierre&page=1&limit=10`,
 				method: "GET",
 			})
 			.then((response) => {
 				//el primer data es para acceder a la respuesta y en el segundo ya esta el arreglo
-				return response.data.data;
+				// console.log(response.data);
+				return response.data;
 			})
 			.catch((error: any) => {
 				console.log("Hubo un error");

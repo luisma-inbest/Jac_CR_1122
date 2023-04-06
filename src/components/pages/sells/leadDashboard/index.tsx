@@ -37,9 +37,10 @@ export const LeadDashboard = () => {
 	let { leadId } = useParams();
 	const [leadView, setLeadView] = useState(false);
 	const [leadData, setLeadData] = useState<LeadDataType>(initialData);
+	const [refresh, setRefresh] = useState(false);
 
 	const { isLoading, data, isError, error } = useQuery({
-		queryKey: [`lead-${leadId}`],
+		queryKey: [`lead-${leadId}`, [refresh]],
 		queryFn: () => LeadAPI.getLead(String(leadId)),
 		onSuccess: (data) => {
 			console.log("exito", data);

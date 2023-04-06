@@ -9,6 +9,7 @@ import UserContext, { UserContextType } from "@/context/UserContext";
 
 interface Props {
 	type: number;
+	refresh?: boolean;
 }
 
 const statusArray = ["subasta", "1er-contacto", "seguimiento", "en-cierre"];
@@ -25,6 +26,7 @@ export const LeadsTable = (props: Props) => {
 		document.documentElement
 	).getPropertyValue("--highlight-text");
 	const [page, setPage] = useState<number>(1);
+	const [maxPage, setMaxPage] = useState<number>(1);
 
 	function generateLeadNickname(firstName: string, lastName: string) {
 		return firstName.split(" ")[0] + " " + lastName.split(" ")[0];
@@ -43,10 +45,16 @@ export const LeadsTable = (props: Props) => {
 		isError,
 		error,
 	} = useQuery({
-		queryKey: [`leads-${User!.AgencyId}-${statusArray[props.type]}`, page],
+		queryKey: [
+			`leads-${User!.AgencyId}-${statusArray[props.type]}`,
+			[page, props.refresh],
+		],
 		queryFn: () =>
 			LeadAPI.getAll(statusArray[props.type], User!.AgencyId, page),
-		onSuccess: (data) => {},
+		onSuccess: (data) => {
+			setMaxPage(data.pages);
+			console.log(data);
+		},
 		// staleTime: 5 * (60 * 1000), // 5 mins
 		// cacheTime: 10 * (60 * 1000), // 10 mins
 	});
@@ -84,7 +92,7 @@ export const LeadsTable = (props: Props) => {
 						</tr>
 					</thead>
 					<tbody>
-						{leads.map((lead: any) => {
+						{leads.data.map((lead: any) => {
 							return (
 								<LeadRow
 									key={lead.id}
@@ -96,8 +104,9 @@ export const LeadsTable = (props: Props) => {
 									user={getUser(lead.User)}
 									model={lead.model}
 									status="pruebita"
-									date={lead.date || "2023-03-10T10:07:00"}
 									color={props.type}
+									createdAt={lead.createdAt}
+									updatedAt={lead.updatedAt}
 								/>
 							);
 						})}
@@ -107,9 +116,13 @@ export const LeadsTable = (props: Props) => {
 				{/* pagination */}
 				<div className={styles.paginationContainer}>
 					<div className={styles.pagination}>
-						<h5 onClick={() => setPage(page - 1)}> &#8678; </h5>
+						{page > 1 && (
+							<h5 onClick={() => setPage(page - 1)}> &#8678; </h5>
+						)}
 						<h5> {page} </h5>
-						<h5 onClick={() => setPage(page + 1)}>&#8680;</h5>
+						{page < maxPage && (
+							<h5 onClick={() => setPage(page + 1)}>&#8680;</h5>
+						)}
 					</div>
 				</div>
 				{/* pagination */}

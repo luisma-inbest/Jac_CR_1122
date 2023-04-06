@@ -11,9 +11,10 @@ import { LeadAPI } from "@/apis";
 
 export const Leads = () => {
 	const [leadView, setLeadView] = useState(false);
+	const [refresh, setRefresh] = useState(false);
 
 	const PageTabs = ["Subasta", "1er Contacto", "Seguimiento", "Cierre"];
-	const TabOne = <LeadsTable type={0} />;
+	const TabOne = <LeadsTable type={0} refresh={refresh} />;
 	const TabTwo = <LeadsTable type={1} />;
 	const TabThree = <LeadsTable type={2} />;
 	const TabFour = <LeadsTable type={3} />;
@@ -46,7 +47,15 @@ export const Leads = () => {
 				</div>
 			</div>
 
-			{leadView ? <CreateLead func={windowHandler} /> : <></>}
+			{leadView ? (
+				<CreateLead
+					func={windowHandler}
+					refreshFunc={setRefresh}
+					refresh={refresh}
+				/>
+			) : (
+				<></>
+			)}
 		</div>
 	);
 };
