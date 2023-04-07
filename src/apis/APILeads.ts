@@ -93,4 +93,22 @@ export const LeadAPI = {
 				throw new Error(error);
 			});
 	},
+	//modificar este metodo para cambiar campos
+	updateSeller: async function (leadId: string, data: any) {
+		return api
+			.request({
+				url: `/lead/${leadId}`,
+				method: "PATCH",
+				data: data,
+			})
+			.then((response) => {
+				return response.data.data;
+			})
+			.catch((error: any) => {
+				if (error.response) {
+					console.log(error.response.data);
+				}
+				throw new Error(error);
+			});
+	},
 };

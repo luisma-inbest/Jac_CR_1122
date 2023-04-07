@@ -21,7 +21,7 @@ import {
 export const Login = () => {
 	const navigate = useNavigate();
 	const { User, SetUser } = useContext(UserContext) as UserContextType;
-	const [role, setRole] = useState("admin");
+	const [role, setRole] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);

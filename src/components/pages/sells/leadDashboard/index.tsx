@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styles from "./Sells.module.css";
 import { Loader, StyledInputText } from "@/components/UI/atoms";
 import {
@@ -12,15 +12,17 @@ import { RegisterActivity } from "@/components/UI/molecules";
 import { CurrentLeadProvider } from "@/context/CurrentLeadContext";
 import { useParams } from "react-router-dom";
 import { LeadAPI } from "@/apis";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { LeadDataType } from "@/models";
 import { initial } from "../createLead/reducer";
+import UserContext, { UserContextType } from "@/context/UserContext";
+import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
 
 let initialData: LeadDataType = {
 	id: -1,
 	leadName: "",
-	leadEmails: [],
-	leadPhones: [],
+	leadEmails: [""],
+	leadPhones: [""],
 	leadPhase: {
 		id: -1,
 		description: "",
@@ -31,6 +33,8 @@ let initialData: LeadDataType = {
 	LeadInterests: [],
 	LeadOrigin: "",
 	createdAt: new Date(),
+	updatedAt: new Date(),
+	UserId: -1,
 };
 
 export const LeadDashboard = () => {
@@ -38,6 +42,54 @@ export const LeadDashboard = () => {
 	const [leadView, setLeadView] = useState(false);
 	const [leadData, setLeadData] = useState<LeadDataType>(initialData);
 	const [refresh, setRefresh] = useState(false);
+	const { User } = useContext(UserContext) as UserContextType;
+	const { Alerts, SetAlerts, createAlert } = useContext(
+		AlertsContext
+	) as AlertsContextType;
+
+	useEffect(() => {
+		console.log("useEffect", leadData.leadPhase.slug);
+		if (leadData.leadPhase.slug === "subasta") {
+			console.log("es subasta");
+			LeadAPI.updateSeller(leadId!, {
+				data: {
+					UserId: User!.id,
+				},
+			})
+				.then((res) => {
+					console.log("exito", res);
+					createAlert(
+						"success",
+						"Exito",
+						"El lead se ha asignado correctamente"
+					);
+				})
+				.catch((err) => {
+					console.log("error", err);
+					createAlert(
+						"error",
+						"Error",
+						"Hubo un error al asignar el lead"
+					);
+				});
+			LeadAPI.nextPhase(leadData.id)
+				.then((res) => {
+					createAlert(
+						"success",
+						"Fase actualizada",
+						"El ha cambiado"
+					);
+					setRefresh(!refresh);
+				})
+				.catch((err) => {
+					createAlert(
+						"error",
+						"Error al actualizar fase",
+						"Hubo un error"
+					);
+				});
+		}
+	}, [leadData]);
 
 	const { isLoading, data, isError, error } = useQuery({
 		queryKey: [`lead-${leadId}`, [refresh]],
@@ -47,21 +99,22 @@ export const LeadDashboard = () => {
 			setLeadData({
 				id: data.id,
 				leadName: data.firstAndLastName,
-				leadEmails: data.LeadEmails,
-				leadPhones: data.LeadPhones,
+				leadEmails: data.LeadEmails || [""],
+				leadPhones: data.LeadPhones || [""],
 				leadPhase: data.LeadPhase,
 				LeadInterests: data.LeadInterests,
 				LeadOrigin: data.LeadOrigin,
 				createdAt: data.createdAt,
+				updatedAt: data.updatedAt,
+				UserId: data.UserId,
 			});
 			console.log("actividades", data.LeadActivities);
 		},
 		onError: (error) => {
 			console.log("error", error);
 		},
-
-		// staleTime: 5 * (60 * 1000), // 5 mins
-		// cacheTime: 10 * (60 * 1000), // 10 mins
+		staleTime: 10 * (60 * 1000), // 10 mins
+		cacheTime: 15 * (60 * 1000), // 15 mins
 	});
 	if (isLoading) {
 		return (
@@ -96,6 +149,8 @@ export const LeadDashboard = () => {
 			activityHandler={windowHandler}
 			leadPhase={leadData.leadPhase.slug}
 			leadData={leadData}
+			refresher={setRefresh}
+			refresh={refresh}
 		/>
 	);
 	const TabThree = <LeadChat />;

@@ -30,6 +30,8 @@ export type LeadDataType = {
 	LeadInterests: string[];
 	LeadOrigin: string;
 	createdAt: Date;
+	updatedAt: Date;
+	UserId: number;
 };
 
 export type LeadActivityType = {

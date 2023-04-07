@@ -22,6 +22,8 @@ interface Props {
 	activityHandler: () => void;
 	leadPhase: string;
 	leadData: LeadDataType;
+	refresher: (val: boolean) => void;
+	refresh: boolean;
 }
 export const LeadFunnel = (props: Props) => {
 	const { Alerts, SetAlerts, createAlert } = useContext(
@@ -32,6 +34,7 @@ export const LeadFunnel = (props: Props) => {
 		LeadAPI.nextPhase(props.leadData.id)
 			.then((res) => {
 				createAlert("success", "Fase actualizada", "El ha cambiado");
+				props.refresher(!props.refresh);
 			})
 			.catch((err) => {
 				createAlert(
