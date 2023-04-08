@@ -49,8 +49,19 @@ export const LeadDashboard = () => {
 
 	useEffect(() => {
 		console.log("useEffect", leadData.leadPhase.slug);
-		if (leadData.leadPhase.slug === "subasta") {
+		if (
+			leadData.leadPhase.slug === "subasta" &&
+			(User?.permissions.includes("coordinator") ||
+				User?.permissions.includes("bdc") ||
+				User?.permissions.includes("adviser-digital") ||
+				User?.permissions.includes("adviser-floor") ||
+				User?.permissions.includes("adviser-hybrid") ||
+				User?.permissions.includes("adviser-telefonica") ||
+				User?.permissions.includes("adviser-telefonica"))
+		) {
 			console.log("es subasta");
+
+			// asignar el lead al usuario y refrescar
 			LeadAPI.updateSeller(leadId!, {
 				data: {
 					UserId: User!.id,
@@ -77,7 +88,7 @@ export const LeadDashboard = () => {
 					createAlert(
 						"success",
 						"Fase actualizada",
-						"El ha cambiado"
+						"El lead ha cambiado"
 					);
 					setRefresh(!refresh);
 				})
@@ -87,6 +98,7 @@ export const LeadDashboard = () => {
 						"Error al actualizar fase",
 						"Hubo un error"
 					);
+					4;
 				});
 		}
 	}, [leadData]);

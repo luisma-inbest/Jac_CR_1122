@@ -17,7 +17,7 @@ interface AuctionProps {
 }
 
 export const ClosingSellsActivities = (props: AuctionProps) => {
-	const [readioValue, setRadioValue] = useState({
+	const [radioValue, setRadioValue] = useState({
 		flotilla: false,
 		demo: false,
 		menudeo: true,
@@ -58,7 +58,7 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 											Flotilla
 										</p>
 										<StyledInputRadio
-											checked={readioValue.flotilla}
+											checked={radioValue.flotilla}
 											onChange={() => {
 												setRadioValue({
 													flotilla: true,
@@ -74,7 +74,7 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 											Demo
 										</p>
 										<StyledInputRadio
-											checked={readioValue.demo}
+											checked={radioValue.demo}
 											onChange={() => {
 												setRadioValue({
 													flotilla: false,
@@ -90,7 +90,7 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 											Menudeo
 										</p>
 										<StyledInputRadio
-											checked={readioValue.menudeo}
+											checked={radioValue.menudeo}
 											onChange={() => {
 												setRadioValue({
 													flotilla: false,
@@ -117,6 +117,9 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 									<option value={0} disabled>
 										-- Método de Pago --
 									</option>
+									<option value="cash"> Contado </option>
+									<option value="credit">Crédito</option>
+									<option value="leasing">Leasing</option>
 								</StyledSelect>
 							}
 						/>
@@ -184,34 +187,6 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 								</div>
 							}
 						/>
-
-						<CardFunnel
-							mainText="Venta digital"
-							icon={<IconCheck size="100%" color="#000" />}
-							cardContent={
-								<div className={styles.cardContainerChecklist}>
-									<div>
-										<p className="p4 bold secondary">Si</p>
-										<StyledInputRadio
-											checked={digitalSell}
-											onChange={() => {
-												setDigitalSell(true);
-											}}
-										/>
-									</div>
-
-									<div>
-										<p className="p4 bold secondary">No</p>
-										<StyledInputRadio
-											checked={!digitalSell}
-											onChange={() => {
-												setDigitalSell(false);
-											}}
-										/>
-									</div>
-								</div>
-							}
-						/>
 					</>
 				}
 			/>
@@ -225,14 +200,6 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 						<div>
 							<p className="p4 bold secondary">
 								Verificación de Inventario
-							</p>
-							{/* <input type="checkbox" name="scales" checked={true} /> */}
-							<input type="checkbox" name="scales" />
-						</div>
-						{/* task */}
-						<div>
-							<p className="p4 bold secondary">
-								Programacion de previa
 							</p>
 							{/* <input type="checkbox" name="scales" checked={true} /> */}
 							<input type="checkbox" name="scales" />

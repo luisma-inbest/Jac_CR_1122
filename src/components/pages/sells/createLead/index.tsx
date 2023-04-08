@@ -12,7 +12,7 @@ import { IconCross } from "@/assets";
 import { reducer, initial } from "./reducer";
 import { Lead } from "@/models";
 import { useMutation, useQuery } from "react-query";
-import { LeadAPI, LeadOriginAPI } from "@/apis";
+import { LeadAPI, LeadOriginAPI, ProductAPI } from "@/apis";
 import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
 import UserContext, { UserContextType } from "@/context/UserContext";
 
@@ -223,6 +223,30 @@ interface SecondProps {
 }
 const Second = (props: SecondProps) => {
 	const [val, setVal] = useState("");
+	const { Alerts, SetAlerts, createAlert } = useContext(
+		AlertsContext
+	) as AlertsContextType;
+
+	const {
+		isLoading,
+		isError,
+		error,
+		data: products,
+	} = useQuery({
+		queryKey: "products",
+		queryFn: () => ProductAPI.getAll(2),
+		staleTime: 20 * (60 * 1000), // 20 mins
+		cacheTime: 25 * (60 * 1000), // 25 mins
+		onError: (error) => {
+			createAlert(
+				"error",
+				"Error de carga",
+				"No se encontraron origenes Lead"
+			);
+		},
+	});
+
+	if (isLoading) return <p>Loading...</p>;
 
 	return (
 		<>
@@ -240,8 +264,13 @@ const Second = (props: SecondProps) => {
 					<option value="" disabled>
 						-- Producto --
 					</option>
-					<option value="man">Sei4 Pro</option>
-					<option value="woman">J 7</option>
+					{products?.map((product: any) => {
+						return (
+							<option key={product.id} value={product.id}>
+								{product.name} {product.version}
+							</option>
+						);
+					})}
 				</StyledSelect>
 
 				<StyledSelect
@@ -257,13 +286,14 @@ const Second = (props: SecondProps) => {
 					<option value="" disabled>
 						-- Tipo de Compra --
 					</option>
-					<option value="man"> Contado </option>
-					<option value="woman">Crédito</option>
-					<option value="woman">Leasing</option>
+					<option value="retail"> Retail </option>
+					<option value="flotilla">Flotilla</option>
 				</StyledSelect>
 
 				<Input
-					disabled={false}
+					disabled={
+						props.fields.buyType === "flotilla" ? false : true
+					}
 					placeholder="Unidades"
 					inputType="number"
 					value={props.fields!.units.toString()}

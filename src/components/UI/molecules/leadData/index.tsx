@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./LeadData.module.css";
 import { IconMail, IconPhone, carExample } from "@/assets";
 import { LeadDataType } from "@/models";
+import UserContext, { UserContextType } from "@/context/UserContext";
 
 interface Props {
 	lead: LeadDataType;
 }
 
 export const LeadData = (props: Props) => {
+	const { User } = useContext(UserContext) as UserContextType;
+	const [permissions, setPermissions] = useState<boolean>(false);
 	console.log(props.lead);
 	const colorSecondary = getComputedStyle(
 		document.documentElement
@@ -27,6 +30,22 @@ export const LeadData = (props: Props) => {
 				return;
 		}
 	};
+	useEffect(() => {
+		if (
+			props.lead.leadPhase.slug === "subasta" &&
+			(User?.permissions.includes("coordinator") ||
+				User?.permissions.includes("bdc") ||
+				User?.permissions.includes("adviser-digital") ||
+				User?.permissions.includes("adviser-floor") ||
+				User?.permissions.includes("adviser-hybrid") ||
+				User?.permissions.includes("adviser-telefonica") ||
+				User?.permissions.includes("adviser-telefonica"))
+		) {
+			setPermissions(false);
+		} else {
+			setPermissions(true);
+		}
+	}, []);
 
 	return (
 		<div className="row">
@@ -56,7 +75,9 @@ export const LeadData = (props: Props) => {
 							rotate="0"
 						/>
 					</span>
-					<p className="p3">{props.lead.leadPhones[0].phone}</p>
+					<p className="p3">
+						{permissions ? props.lead.leadPhones[0].phone : "-"}
+					</p>
 				</span>
 				<span className={`${styles.leadInfo}`}>
 					<span className={`${styles.leadIcon}`}>
@@ -66,7 +87,9 @@ export const LeadData = (props: Props) => {
 							rotate="0"
 						/>
 					</span>
-					<p className="p3">{props.lead.leadEmails[0].email}</p>
+					<p className="p3">
+						{permissions ? props.lead.leadEmails[0].email : "-"}
+					</p>
 				</span>
 			</div>
 

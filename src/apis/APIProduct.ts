@@ -19,10 +19,11 @@ export const ProductAPI = {
 				throw new Error(error);
 			});
 	},
-	getAll: async function (type: string, agency: string, page: number) {
+	getAll: async function (page: number) {
 		return api
 			.request({
-				url: `/product/?page=${page}&limit=10`,
+				// url: `/product/?page=${page}&limit=10`,
+				url: `/product/`,
 				method: "GET",
 			})
 			.then((response) => {
