@@ -33,7 +33,7 @@ export const LeadFunnel = (props: Props) => {
 	function nextPhaseLead() {
 		LeadAPI.nextPhase(props.leadData.id)
 			.then((res) => {
-				createAlert("success", "Fase actualizada", "El ha cambiado");
+				createAlert("success", "Fase actualizada", "El estatus del lead ha cambiado");
 				props.refresher(!props.refresh);
 			})
 			.catch((err) => {
