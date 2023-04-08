@@ -156,6 +156,24 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 									<option value={0} disabled>
 										-- Aseguradora --
 									</option>
+									<option value="bbva">BBVA</option>
+									<option value="banorte">BANORTE</option>
+									<option value="qualitas">QUALITAS</option>
+									<option value="ana">A.N.A</option>
+									<option value="gnp">GNP</option>
+									<option value="axa">AXA</option>
+									<option value="hdi">HDI</option>
+									<option value="chubb">CHUBB</option>
+									<option value="aig">AIG</option>
+									<option value="hsbc">HSBC</option>
+									<option value="afirme">AFIRME</option>
+									<option value="agroasemex">AGROASEMEX</option>
+									<option value="sura">SURA</option>
+									<option value="zurich">ZURICH</option>
+									<option value="inbursa">INBURSA</option>
+									<option value="mapfre">MAPFRE</option>
+									<option value="citibanamex">CITIBANAMEX</option>
+									<option value="otro">OTRO</option>
 								</StyledSelect>
 							}
 						/>
