@@ -77,7 +77,7 @@ export const LeadDashboard = () => {
 					createAlert(
 						"success",
 						"Fase actualizada",
-						"El ha cambiado"
+						"El estatus del lead ha cambiado"
 					);
 					setRefresh(!refresh);
 				})
