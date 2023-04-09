@@ -13,7 +13,7 @@ interface AuctionProps {
 export const AuctionActivities = (props: AuctionProps) => {
 	return (
 		<>
-			<CardFunnel
+			{/* <CardFunnel
 				mainText="Tomar"
 				icon={<IconCheck size="100%" color="#000" />}
 				cardContent={
@@ -26,7 +26,7 @@ export const AuctionActivities = (props: AuctionProps) => {
 						}}
 					/>
 				}
-			/>
+			/> */}
 		</>
 	);
 };

@@ -115,18 +115,18 @@ export const LeadData = (props: Props) => {
 
 			<div className={`col-xs-12 mt-4  ${styles.groupData}`}>
 				<p className="p4 semi-bold secondary">Canal</p>
-				<p className="p4 semi-bold highlight">Sitio Web</p>
-				<p className="p4 semi-bold highlight">Nombre Landing</p>
-				<p className="p3 link ">Link</p>
+				<p className="p4 semi-bold highlight">
+					{props.lead.LeadOrigin.slug}
+				</p>
 			</div>
 
-			<div className={`col-xs-12 mt-4  ${styles.groupData}`}>
+			{/* <div className={`col-xs-12 mt-4  ${styles.groupData}`}>
 				<p className="p4 semi-bold secondary">Cotización</p>
 				<p className="p4 semi-bold highlight">Fecha y Hora</p>
 				<p className="p2 ">{String(props.lead.createdAt)}</p>
 				<p className="p4 semi-bold highlight"> Archivo</p>
 				<p className="p3 link ">Cotización.pdf</p>
-			</div>
+			</div> */}
 
 			<div className={`${styles.empty}`}></div>
 		</div>

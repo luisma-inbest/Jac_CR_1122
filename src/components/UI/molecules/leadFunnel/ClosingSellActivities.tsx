@@ -61,9 +61,9 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 											checked={radioValue.flotilla}
 											onChange={() => {
 												setRadioValue({
-													flotilla: true,
-													demo: false,
-													menudeo: false,
+													demo: true,
+													nuevo: false,
+													seminuevo: false,
 												});
 											}}
 										/>
@@ -167,12 +167,16 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 									<option value="aig">AIG</option>
 									<option value="hsbc">HSBC</option>
 									<option value="afirme">AFIRME</option>
-									<option value="agroasemex">AGROASEMEX</option>
+									<option value="agroasemex">
+										AGROASEMEX
+									</option>
 									<option value="sura">SURA</option>
 									<option value="zurich">ZURICH</option>
 									<option value="inbursa">INBURSA</option>
 									<option value="mapfre">MAPFRE</option>
-									<option value="citibanamex">CITIBANAMEX</option>
+									<option value="citibanamex">
+										CITIBANAMEX
+									</option>
 									<option value="otro">OTRO</option>
 								</StyledSelect>
 							}
