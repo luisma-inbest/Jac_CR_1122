@@ -64,7 +64,7 @@ export const CreateAgendaEvent = (props: Props) => {
 		e.preventDefault();
 		console.log("sumbmiting form...", fields);
 
-		createEventMutation.mutate();
+		// createEventMutation.mutate();
 	}
 
 	useEffect(() => {

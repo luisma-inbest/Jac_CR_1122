@@ -1,15 +1,57 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import styles from "./Agenda.module.css";
-import { Button, EventCard } from "@/components/UI/atoms";
+import { Button, EventCard, Loader } from "@/components/UI/atoms";
 import { CreateAgendaEvent } from "../createAgendaEvent";
+import { AgendaAPI } from "@/apis/APIAgenda";
+import { useQuery } from "react-query";
+import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
 
 export const Agenda = () => {
-	const [activeTab, setActiveTab] = useState("today");
+	const [activeTab, setActiveTab] = useState("day");
 	const [registerEvent, setRegisterEvent] = useState(false);
+	const { Alerts, SetAlerts, createAlert } = useContext(
+		AlertsContext
+	) as AlertsContextType;
+	const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
+
+	const { isLoading, data, isError, error } = useQuery({
+		queryKey: [`events`, [activeTab]],
+		queryFn: () => AgendaAPI.getAll("26", activeTab, date),
+		onError: (error) => {
+			createAlert(
+				"error",
+				"Error",
+				"Hubo un error al obtener los eventos"
+			);
+		},
+
+		// staleTime: 5 * (60 * 1000), // 5 mins
+		// cacheTime: 10 * (60 * 1000), // 10 mins
+	});
 
 	function handleRegisterEvent() {
 		setRegisterEvent(!registerEvent);
+	}
+
+	if (isLoading) {
+		return (
+			<div className="row">
+				<div className={`col-xs-12 loaderContainer`}>
+					<Loader />
+				</div>
+			</div>
+		);
+	}
+
+	if (isError) {
+		return (
+			<div className="row">
+				<div className={`col-xs-12 loaderContainer`}>
+					<h1>Hubo un error</h1>
+				</div>
+			</div>
+		);
 	}
 
 	return (
@@ -17,9 +59,9 @@ export const Agenda = () => {
 			<div className={`col-xs-12 ${styles.mainContainer}`}>
 				<div className={`col-xs-12 mb-1 ${styles.tabs}`}>
 					<p
-						onClick={() => setActiveTab("today")}
+						onClick={() => setActiveTab("day")}
 						className={`p2 ${styles.tab} ${
-							activeTab === "today" ? styles.active : ""
+							activeTab === "day" ? styles.active : ""
 						} `}
 					>
 						Hoy
@@ -48,17 +90,17 @@ export const Agenda = () => {
 				</div>
 
 				<div className={styles.events}>
-					<EventCard />
-					<EventCard />
-					<EventCard />
-					<EventCard />
-					<EventCard />
-					<EventCard />
-					<EventCard />
-					<EventCard />
-					<EventCard />
-					<EventCard />
-					<EventCard />
+					{data.map((event: any, index: number) => {
+						return (
+							<EventCard
+								key={index}
+								title={event.title}
+								comments={event.comments}
+								date={event.date}
+								leadId={event.leadId}
+							/>
+						);
+					})}
 				</div>
 			</div>
 

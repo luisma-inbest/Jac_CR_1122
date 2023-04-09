@@ -19,11 +19,10 @@ export const AgendaAPI = {
 				throw new Error(error);
 			});
 	},
-	getAll: async function (page: number) {
+	getAll: async function (userId: string, range: string, date: string) {
 		return api
 			.request({
-				// url: `/product/?page=${page}&limit=10`,
-				url: `/product/`,
+				url: `/userReminder/${userId}?range=${range}&date=${date}`,
 				method: "GET",
 			})
 			.then((response) => {
