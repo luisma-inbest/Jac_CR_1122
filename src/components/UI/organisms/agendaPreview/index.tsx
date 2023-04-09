@@ -23,8 +23,8 @@ export const AgendaPreview = () => {
 						<h2 className={styles.title}>Agenda</h2>
 					</div>
 					<div className={styles.buttons}>
-						<button className="btn btn-primary">Ver todo</button>
-						<button className="btn btn-primary">Ver todo</button>
+						<button className="btn btn-primary">Ir Agenda</button>
+						<button className="btn btn-primary">Agregar</button>
 					</div>
 				</div>
 
@@ -71,7 +71,7 @@ export const AgendaPreview = () => {
 					<EventCard />
 				</div>
 
-				<Button text="Nuevo" full={true} func={handleRegisterEvent} />
+				<Button text="Agregar" full={true} func={handleRegisterEvent} />
 			</div>
 
 			{registerEvent ? (

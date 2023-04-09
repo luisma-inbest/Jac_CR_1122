@@ -18,6 +18,7 @@ import { useMutation, useQuery } from "react-query";
 import { LeadAPI, LeadOriginAPI } from "@/apis";
 import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
 import UserContext, { UserContextType } from "@/context/UserContext";
+import { AgendaAPI } from "@/apis/APIAgenda";
 
 interface Props {
 	func: () => void;
@@ -33,32 +34,42 @@ export const CreateAgendaEvent = (props: Props) => {
 		AlertsContext
 	) as AlertsContextType;
 	const [currentLead, setCurrentLead] = useState(props.leadId || null);
+	const { User } = useContext(UserContext) as UserContextType;
 
-	// const addLeadMutation = useMutation({
-	// 	mutationFn: () => LeadAPI.create(fields),
-	// 	onSuccess(data, variables, context) {
-	// 		console.log(data);
-	// 		createAlert(
-	// 			"success",
-	// 			"Lead Creado",
-	// 			"El lead se creo correctamente"
-	// 		);
-	// 	},
-	// 	onError(error, variables, context) {
-	// 		console.log(error);
-	// 		createAlert("error", "Error", "Hubo un error al crear el lead");
-	// 	},
-	// });
+	const createEventMutation = useMutation({
+		mutationFn: () =>
+			AgendaAPI.create({
+				title: fields.title,
+				comments: fields.comments,
+				UserId: fields.UserId,
+				date: new Date(
+					Date.parse(`${fields.dateFormatted}T${fields.time}:00`)
+				),
+			}),
+		onSuccess(data, variables, context) {
+			console.log(data);
+			createAlert(
+				"success",
+				"Evento Creado",
+				"El evento se creo correctamente"
+			);
+		},
+		onError(error, variables, context) {
+			console.log(error);
+			createAlert("error", "Error", "Hubo un error al crear el evento");
+		},
+	});
 
 	function formHandler(e: any) {
 		e.preventDefault();
 		console.log("sumbmiting form...", fields);
 
-		// addLeadMutation.mutate();
+		createEventMutation.mutate();
 	}
 
 	useEffect(() => {
 		// dispatch({ type: "AgencyId", value: Number(User!.AgencyId) });
+		dispatch({ type: "UserId", value: String(User!.id) });
 	}, []);
 
 	return (
@@ -76,7 +87,7 @@ export const CreateAgendaEvent = (props: Props) => {
 						type="reducer"
 						params={{
 							dispatch: dispatch,
-							dispType: "firstName",
+							dispType: "title",
 						}}
 					/>
 					<StyledTextArea
@@ -106,8 +117,8 @@ export const CreateAgendaEvent = (props: Props) => {
 							customType="secondary"
 							onChange={(e) =>
 								dispatch({
-									type: "date",
-									value: new Date(e.target.value),
+									type: "dateFormatted",
+									value: e.target.value,
 								})
 							}
 						/>
@@ -115,8 +126,8 @@ export const CreateAgendaEvent = (props: Props) => {
 							customType="secondary"
 							onChange={(e) =>
 								dispatch({
-									type: "date",
-									value: new Date(e.target.value),
+									type: "time",
+									value: e.target.value,
 								})
 							}
 						/>

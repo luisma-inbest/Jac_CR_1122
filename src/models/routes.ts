@@ -31,4 +31,5 @@ export const SellsRoutes = {
 	SellerProfile: "seller-profile",
 	FutureLeads: "future-leads",
 	FrozenLeads: "frozen-leads",
+	Agenda: "agenda",
 };

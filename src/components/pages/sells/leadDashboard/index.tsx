@@ -98,7 +98,6 @@ export const LeadDashboard = () => {
 						"Error al actualizar fase",
 						"Hubo un error"
 					);
-					4;
 				});
 		}
 	}, [leadData]);

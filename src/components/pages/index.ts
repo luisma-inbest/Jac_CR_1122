@@ -14,6 +14,7 @@ import {
 	LeadDashboard,
 	CreateLead,
 	SellerProfile,
+	Agenda,
 } from "./sells/";
 import {
 	ProductDashboard,
@@ -37,6 +38,7 @@ export {
 	Leads,
 	CreateLead,
 	SellerProfile,
+	Agenda,
 	ProductDashboard,
 	ProductDetails,
 	ProductOnePager,

@@ -46,7 +46,7 @@ export const Main = () => {
 				<main className="row">
 					<div className={`col-xs-12 ${styles.mobilePadding}`}>
 						{/* Aqui Va el contenido*/}
-						{/* <Path /> */}
+						<Path />
 						<Outlet />
 					</div>
 					{/* */}

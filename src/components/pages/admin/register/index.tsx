@@ -21,6 +21,7 @@ import { reducer, initial } from "./reducer";
 import { User } from "@/models";
 import { useMutation, useQuery } from "react-query";
 import { UserAPI } from "@/apis";
+import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
 
 interface Props {
 	agency?: string;
@@ -30,6 +31,9 @@ export const Register = (props: Props) => {
 	const [fields, dispatch] = useReducer(reducer, initial);
 	const [phone, setPhone] = useState("");
 	const [email, setEmail] = useState("");
+	const { Alerts, SetAlerts, createAlert } = useContext(
+		AlertsContext
+	) as AlertsContextType;
 
 	const logoColor = getComputedStyle(document.body).getPropertyValue(
 		"--main-color"
@@ -44,6 +48,15 @@ export const Register = (props: Props) => {
 		mutationFn: () => UserAPI.create(fields),
 		onSuccess(data, variables, context) {
 			console.log("exito papito", data);
+			createAlert(
+				"success",
+				"Usuario Creado",
+				"El usuario se creo correctamente"
+			);
+		},
+		onError(error, variables, context) {
+			console.log(error);
+			createAlert("error", "Error", "Hubo un error al crear el lead");
 		},
 	});
 

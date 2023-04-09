@@ -37,10 +37,15 @@ export const submenuSells = [
 		text: "Leads",
 		route: "/sells/leads",
 	},
+	// {
+	// 	pos: 1.2,
+	// 	text: "Dashboard Ventas",
+	// 	route: "/sells",
+	// },
 	{
-		pos: 1.2,
-		text: "Dashboard Ventas",
-		route: "/sells",
+		pos: 1.3,
+		text: "Mi Agenda",
+		route: "/sells/agenda",
 	},
 	// {
 	// 	pos: 1.3,
@@ -48,7 +53,3 @@ export const submenuSells = [
 	// 	route: "/sells/seller-profile",
 	// },
 ];
-
-// lising;
-// financiado;
-// contado;
