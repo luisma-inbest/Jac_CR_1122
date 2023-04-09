@@ -58,17 +58,12 @@ export const AgendaPreview = () => {
 				</div>
 
 				<div className={styles.events}>
-					<EventCard />
-					<EventCard />
-					<EventCard />
-					<EventCard />
-					<EventCard />
-					<EventCard />
-					<EventCard />
-					<EventCard />
-					<EventCard />
-					<EventCard />
-					<EventCard />
+					<EventCard
+						title=""
+						comments=""
+						date={new Date().toString()}
+						leadId={1}
+					/>
 				</div>
 
 				<Button text="Agregar" full={true} func={handleRegisterEvent} />

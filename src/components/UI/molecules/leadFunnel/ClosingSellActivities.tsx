@@ -18,9 +18,9 @@ interface AuctionProps {
 
 export const ClosingSellsActivities = (props: AuctionProps) => {
 	const [radioValue, setRadioValue] = useState({
-		flotilla: false,
+		nuevo: true,
 		demo: false,
-		menudeo: true,
+		seminuevo: false,
 	});
 	const [exchangeCar, setExchangeCar] = useState(false);
 	const [digitalSell, setDigitalSell] = useState(false);
@@ -55,14 +55,14 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 								<div className={styles.cardContainerChecklist}>
 									<div>
 										<p className="p4 bold secondary">
-											Flotilla
+											Nuevo
 										</p>
 										<StyledInputRadio
-											checked={radioValue.flotilla}
+											checked={radioValue.nuevo}
 											onChange={() => {
 												setRadioValue({
-													demo: true,
-													nuevo: false,
+													nuevo: true,
+													demo: false,
 													seminuevo: false,
 												});
 											}}
@@ -74,12 +74,12 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 											Demo
 										</p>
 										<StyledInputRadio
-											checked={radioValue.demo}
+											checked={radioValue.nuevo}
 											onChange={() => {
 												setRadioValue({
-													flotilla: false,
+													nuevo: false,
 													demo: true,
-													menudeo: false,
+													seminuevo: false,
 												});
 											}}
 										/>
@@ -87,15 +87,15 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 
 									<div>
 										<p className="p4 bold secondary">
-											Menudeo
+											Seminuevo
 										</p>
 										<StyledInputRadio
-											checked={radioValue.menudeo}
+											checked={radioValue.seminuevo}
 											onChange={() => {
 												setRadioValue({
-													flotilla: false,
+													nuevo: false,
 													demo: false,
-													menudeo: true,
+													seminuevo: true,
 												});
 											}}
 										/>

@@ -9,7 +9,7 @@ import { User } from "@/models";
 export function signUp(user: User) {
 	let dataEmail = { Name: "email", Value: user.email };
 	let dataNickname = { Name: "nickname", Value: user.nickname };
-	let dataRole = { Name: "custom:role", Value: user.userRole };
+	let dataRole = { Name: "custom:role", Value: `shared,${user.userRole}` };
 	let dataID = { Name: "custom:id", Value: user.userId };
 	let AgencyId = { Name: "custom:agencyID", Value: user.AgencyId };
 
