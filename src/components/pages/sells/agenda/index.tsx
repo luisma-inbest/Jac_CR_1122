@@ -6,6 +6,7 @@ import { CreateAgendaEvent } from "../createAgendaEvent";
 import { AgendaAPI } from "@/apis/APIAgenda";
 import { useQuery } from "react-query";
 import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
+import UserContext, { UserContextType } from "@/context/UserContext";
 
 export const Agenda = () => {
 	const [activeTab, setActiveTab] = useState("day");
@@ -14,10 +15,11 @@ export const Agenda = () => {
 		AlertsContext
 	) as AlertsContextType;
 	const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
+	const { User } = useContext(UserContext) as UserContextType;
 
 	const { isLoading, data, isError, error } = useQuery({
 		queryKey: [`events`, [activeTab]],
-		queryFn: () => AgendaAPI.getAll("26", activeTab, date),
+		queryFn: () => AgendaAPI.getAll(String(User!.id), activeTab, date),
 		onError: (error) => {
 			createAlert(
 				"error",

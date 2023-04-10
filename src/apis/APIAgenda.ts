@@ -13,6 +13,7 @@ export const AgendaAPI = {
 				return response.data.data;
 			})
 			.catch((error: any) => {
+				console.log("Hubo un error");
 				if (error.response) {
 					console.log(error.response.data);
 				}
