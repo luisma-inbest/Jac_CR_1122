@@ -1,36 +1,43 @@
-import React, {createContext, useState, ReactNode, type Dispatch} from "react";
+import React, {
+	createContext,
+	useState,
+	ReactNode,
+	type Dispatch,
+} from "react";
+import { ContextChilds } from "@/models/contextChilds";
 
+// type of user
 export type UserType = {
 	id: number;
 	name: string;
+	email: string;
+	AgencyId: string;
 	permissions: string[];
 } | null;
-
+// user methods
+// este se usa principalmente en las llamadas para definir el tipado
 export type UserContextType = {
 	User: UserType;
 	SetUser: (value: UserType) => void;
+	test: () => void;
 };
-
-interface Props {
-	children: JSX.Element | JSX.Element[] | ReactNode;
-}
 
 //export const UserContext = createContext<userContextInterface | null>(null);
 
-const Context = createContext({});
+const UserContext = createContext({});
 
-const INITIAL_USER: UserType = {
-	id: 0,
-	name: "string",
-	permissions: [""],
-};
-
-export const UserProvider = ({children}: Props) => {
+export const UserProvider = ({ children }: ContextChilds) => {
 	const [User, SetUser] = useState<UserType>(null);
 
+	function test() {
+		console.log("test desde el userprovider");
+	}
+
 	return (
-		<Context.Provider value={{User, SetUser}}>{children}</Context.Provider>
+		<UserContext.Provider value={{ User, SetUser, test }}>
+			{children}
+		</UserContext.Provider>
 	);
 };
 
-export default Context;
+export default UserContext;

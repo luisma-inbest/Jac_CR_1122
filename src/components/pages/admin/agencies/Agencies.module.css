@@ -1,0 +1,9 @@
+.tableContainer {
+	width: 100%;
+	overflow-x: auto;
+	padding: 2rem;
+	background-color: var(--white);
+	border-radius: var(--br-2);
+	min-height: calc(100vh - 7rem - 3rem - 5rem - 6rem);
+	/* full - header - marginURL - tabHeader - marginTabHeader */
+}

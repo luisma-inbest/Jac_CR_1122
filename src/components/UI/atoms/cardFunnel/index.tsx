@@ -1,40 +1,36 @@
-import React, {useState} from "react";
-import {IconArrow} from "@/assets";
+import React, { useState } from "react";
+import { IconArrow } from "@/assets";
 
 import styles from "./CardFunnel.module.css";
 
-import {
-	iconSelector,
-	textSelector,
-	buttonHandler,
-	buttonTextHandler,
-	dropHandler,
-} from "./functions";
+import { Button } from "../button";
 
 interface Props {
-	type: string;
-	drop: boolean;
+	mainText: string;
+	icon: any;
+	cardContent: any;
 }
 
 export const CardFunnel = (props: Props) => {
 	const [fullContainer, setFullContainer] = useState(false);
 	function cardHandler() {
-		if (props.drop) {
-			setFullContainer(!fullContainer);
-		}
+		setFullContainer(!fullContainer);
 	}
 
 	return (
-		<div className={`${styles.card} ${fullContainer ? styles.fullCard : ""}`}>
+		<div
+			className={`${styles.card} ${fullContainer ? styles.fullCard : ""}`}
+		>
+			{/* header  */}
 			<div className={`mb-3 ${styles.cardContainer}`}>
 				<div className={styles.left} onClick={() => cardHandler()}>
 					<span
 						className={`${styles.iconContainer} `}
 						onClick={() => cardHandler()}
 					>
-						{iconSelector(props.type)}
+						{props.icon}
 					</span>
-					<p className="p4 no-margin bold">{textSelector(props.type)}</p>
+					<p className="p4 no-margin bold">{props.mainText}</p>
 				</div>
 				<span
 					className={`${styles.iconContainer} ${
@@ -42,12 +38,11 @@ export const CardFunnel = (props: Props) => {
 					}`}
 					onClick={() => cardHandler()}
 				>
-					<IconArrow size="100%" color="#000" />
+					<IconArrow size="100%" color="#000" rotate="0" />
 				</span>
 			</div>
-			<div className={styles.cardContainer}>
-				{dropHandler(props.drop, props.type)}
-			</div>
+			{/* body from component */}
+			{props.cardContent}
 		</div>
 	);
 };

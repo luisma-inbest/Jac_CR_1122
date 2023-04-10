@@ -1,25 +1,35 @@
 export const PublicRoutes = {
-	LOGIN: "login",
+	Login: "login",
+	// Product
+};
+export const SharedRoutes = {
+	Profile: "profile",
+};
+export const ProductRoutes = {
+	Product: "product",
+	Main: "",
+	Create: "create",
+	Details: "details/:id",
+	OnePager: "details/:id/one-pager",
 };
 
 export const AdminRoutes = {
-	ADMIN: "admin",
-	REGISTER: "register",
+	Admin: "admin",
+	Main: "",
+	Register: "register",
+	Users: "users",
+	Agencies: "agencies",
+	Agency: "agencies/:id",
+	AgencyCreate: "agencies/create",
 };
 
 export const SellsRoutes = {
-	main: "",
+	Sells: "sells",
+	Main: "",
 	Leads: "leads",
-	SingleLead: "leads/:id",
+	SingleLead: "leads/:leadId",
+	SellerProfile: "seller-profile",
 	FutureLeads: "future-leads",
 	FrozenLeads: "frozen-leads",
-};
-
-///
-
-export const AgentRoutes = {
-	AGENT: "agent",
-	MENU1: "sells",
-	Menu2: "prospects",
-	Menu3: "agents",
+	Agenda: "agenda",
 };

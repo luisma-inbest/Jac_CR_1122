@@ -1,0 +1,42 @@
+.row {
+	border-bottom: 1px solid var(--gray2);
+	padding-bottom: 1rem;
+	margin-bottom: 1rem;
+}
+
+.row td {
+	display: flex;
+	align-items: center;
+	min-width: 17rem;
+	width: 20%;
+}
+
+.row td:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.firstColumn {
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+}
+
+.imagePrev {
+	height: 6rem;
+	width: auto;
+}
+
+.productStatus {
+	height: 100%;
+	width: 7px;
+	background-color: var(--white);
+	border-radius: var(--br-2);
+}
+
+.active {
+	background-color: var(--active-agency);
+}
+.unactive {
+	background-color: var(--unactive-agency);
+}

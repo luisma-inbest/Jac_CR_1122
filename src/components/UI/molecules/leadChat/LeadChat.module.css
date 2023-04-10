@@ -1,0 +1,43 @@
+.logo {
+	margin: 0px 11px 5px 0px;
+	font-family: Montserrat;
+	font-size: 18px;
+	font-weight: 600;
+	letter-spacing: normal;
+	justify-content: center;
+	color: #ffff;
+	padding: 8px 0px 6px 10px;
+}
+.header {
+	margin: 15px 20px;
+}
+
+.circle {
+	display: flex;
+	width: 30px;
+	height: 40px;
+	flex-grow: 0;
+	margin: 0px 11px 1px 0px;
+	background-color: #7bcefd;
+	border-radius: 100%;
+	justify-content: center;
+}
+
+.client {
+	text-align: center;
+}
+
+.daySeparator {
+	width: 30px;
+	height: 22px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 5px;
+	margin: 15px 190px 10px 190px;
+	padding: 5px;
+	border-radius: 5px;
+	background-color: #141a26;
+	color: #ffffff;
+}

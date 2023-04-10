@@ -1,0 +1,21 @@
+.formContainer {
+	flex-direction: column;
+	align-items: center;
+}
+
+.main_component {
+	background-color: var(--white);
+	padding: 2rem;
+	box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.09);
+	border-radius: var(--br-3);
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 0.4rem;
+	width: 100%;
+}
+.form label {
+	margin-bottom: 0;
+}

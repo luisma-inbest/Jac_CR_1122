@@ -1,34 +1,35 @@
-import React, {useContext} from "react";
-import {Route, Routes} from "react-router-dom";
+import React, { useContext } from "react";
+import { Route, Routes } from "react-router-dom";
 
-import {
-	Home,
-	Login,
-	Register,
-	Admin,
-	SellsDashboard,
-	Leads,
-	LeadDashboard,
-} from "@/Components/pages";
-import {Main} from "@/components/templates";
-import {ProtectedRoute} from "./ProtectedRoute";
+import { ProtectedRoute } from "./ProtectedRoute";
 
-import UserContext, {
-	UserContextType,
-	UserProvider,
-	UserType,
-} from "@/context/UserContext";
-import {AgentRoutes, SellsRoutes} from "@/models/routes";
+import UserContext, { UserContextType } from "./../context/UserContext";
+import { SellsRouter } from "./SellsRouter";
+import { PublicRouter } from "./PublicRouter";
+import { AdminRouter } from "./AdminRouter";
+import { ProductRouter } from "./ProductRouter";
+import { SharedRouter } from "./SharedRouter";
 
 export const Routing = () => {
-	const {User, SetUser} = useContext(UserContext) as UserContextType;
+	const { User, SetUser } = useContext(UserContext) as UserContextType;
 
 	return (
 		<Routes>
 			{/* public urls */}
-			<Route path="/" element={<Home />} />
-			<Route path="/login" element={<Login />} />
-			<Route path="/register" element={<Register />} />
+			{PublicRouter}
+
+			{/* General urls */}
+			<Route
+				element={
+					<ProtectedRoute
+						isAllowed={
+							!!User && User.permissions.includes("shared")
+						}
+					/>
+				}
+			>
+				{SharedRouter}
+			</Route>
 
 			{/* admin urls */}
 			<Route
@@ -38,10 +39,7 @@ export const Routing = () => {
 					/>
 				}
 			>
-				<Route path="admin" element={<Main />}>
-					<Route path="" element={<Admin />} />
-					<Route path="/admin/properties" element={<Register />} />
-				</Route>
+				{AdminRouter}
 			</Route>
 
 			{/* sells urls */}
@@ -51,21 +49,34 @@ export const Routing = () => {
 						isAllowed={
 							!!User &&
 							(User.permissions.includes("sells") ||
-								User.permissions.includes("admin"))
+								User.permissions.includes("admin") ||
+								User.permissions.includes("manager") ||
+								User.permissions.includes("coordinator") ||
+								User.permissions.includes("bdc") ||
+								User.permissions.includes("adviser-digital") ||
+								User.permissions.includes("adviser-floor") ||
+								User.permissions.includes("adviser-hybrid") ||
+								User.permissions.includes("hostess"))
 						}
 					/>
 				}
 			>
-				<Route path="sells" element={<Main />}>
-					<Route path={SellsRoutes.main} element={<SellsDashboard />} />
-					<Route path={SellsRoutes.Leads} element={<Leads />} />
-					<Route path={SellsRoutes.SingleLead} element={<LeadDashboard />} />
-					<Route path={SellsRoutes.FutureLeads} element={<SellsDashboard />} />
-					<Route path={SellsRoutes.FrozenLeads} element={<SellsDashboard />} />
-				</Route>
+				{SellsRouter}
 			</Route>
 
-			<Route path="/*" element={<h1>404</h1>} />
+			{/* product urls */}
+			<Route
+				element={
+					<ProtectedRoute
+						isAllowed={!!User && User.permissions.includes("admin")}
+					/>
+				}
+			>
+				{ProductRouter}
+			</Route>
+
+			{/* 404 */}
+			<Route path="/*" element={<h1>Error 404 desde React Router</h1>} />
 		</Routes>
 	);
 };

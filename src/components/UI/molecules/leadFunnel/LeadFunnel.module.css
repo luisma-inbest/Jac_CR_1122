@@ -1,2 +1,19 @@
 .funnelTab {
 }
+.cardContainerClasic {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+.cardContainerChecklist > div {
+	display: flex;
+	flex-direction: row;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 2rem;
+}
+
+.input {
+	font-size: var(--h5);
+}

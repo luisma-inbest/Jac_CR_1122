@@ -1,7 +1,7 @@
 .header {
 	width: 100%;
 	height: 5rem;
-	background-color: #062236;
+	background-color: var(--main-color);
 	padding: 1rem 0;
 	border-bottom-left-radius: var(--br-3);
 	border-bottom-right-radius: var(--br-3);
@@ -66,4 +66,18 @@
 .customSelect option:hover {
 	color: var(--blue);
 	border: none;
+}
+
+.passwordContainer {
+	width: 100%;
+	display: flex;
+	align-items: baseline;
+}
+.passwordInput {
+	width: 95%;
+}
+
+.iconContainer {
+	height: 1.5rem;
+	cursor: pointer;
 }

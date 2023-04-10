@@ -12,7 +12,7 @@ export const IconArrow = (props: Props) => {
 			style={{
 				width: `${props.size}`,
 				height: `${props.size}`,
-				transform: `rotate(${props.rotate} deg)`,
+				transform: `rotate(${props.rotate}deg)`,
 			}}
 			viewBox="0 0 18 32"
 			fill="none"

@@ -5,6 +5,13 @@
 	/* align-items: center; */
 }
 
+.toast {
+	position: fixed;
+	right: 3.2rem;
+	top: 3.2rem;
+	z-index: 99999;
+}
+
 /* main  */
 main {
 	min-height: calc(100vh - 9rem);

@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "./Tabs.module.css";
 
 interface Props {}
@@ -10,14 +10,16 @@ export const Tabs = (props: any) => {
 	const prueba = useRef<HTMLDivElement>(null);
 
 	function toggleTab(tab: number) {
-		console.log("toggleTab" + tab);
+		// console.log("toggleTab" + tab);
 		setActiveTab(tab);
 		if (props.full) {
-			prueba!.current!.style.left = `calc(25% * ${tab})`;
+			prueba!.current!.style.left = `calc(25% * ${tab} )`;
 		} else {
 			if (viewport_width > 993) {
 				console.log("3");
-				prueba!.current!.style.left = `calc(calc(100% / 3) * ${tab - 1})`;
+				prueba!.current!.style.left = `calc(calc(100% / 3) * ${
+					tab - 1
+				})`;
 			} else if (viewport_width < 992) {
 				console.log("4");
 				prueba!.current!.style.left = `calc(25% * ${tab})`;
@@ -42,8 +44,10 @@ export const Tabs = (props: any) => {
 						if (index == 0) {
 							return (
 								<p
-									className={`p3 ${
-										props.full ? styles.tabOptionFull : styles.tabOption
+									className={`p4 ${
+										props.full
+											? styles.tabOptionFull
+											: styles.tabOption
 									} ${props.full ? "" : styles.firstTab} ${
 										activeTab == index ? styles.active : ""
 									}`}
@@ -56,9 +60,13 @@ export const Tabs = (props: any) => {
 						} else {
 							return (
 								<p
-									className={`p3 ${
-										props.full ? styles.tabOptionFull : styles.tabOption
-									} ${activeTab == index ? styles.active : ""}`}
+									className={`p4 ${
+										props.full
+											? styles.tabOptionFull
+											: styles.tabOption
+									} ${
+										activeTab == index ? styles.active : ""
+									}`}
 									key={index}
 									onClick={() => toggleTab(index)}
 								>
@@ -74,7 +82,9 @@ export const Tabs = (props: any) => {
 					id="tabIndicator"
 					ref={prueba}
 					className={`${
-						props.full ? styles.tabIndicatorFull : styles.tabIndicator
+						props.full
+							? styles.tabIndicatorFull
+							: styles.tabIndicator
 					} `}
 				></div>
 				{/* /Indicator */}

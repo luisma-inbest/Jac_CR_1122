@@ -1,0 +1,69 @@
+.tableRow {
+	border-bottom: 1px solid var(--gray2);
+	padding-bottom: 1rem;
+	margin-bottom: 1rem;
+	/* cursor: pointer; */
+}
+
+.tableRow td {
+	/* min-width: 20rem; */
+	/* width: 33.3%; */
+	display: flex;
+	align-items: end;
+	min-width: 15rem;
+	width: 20%;
+}
+.tableRow td:nth-child(1) {
+	min-width: 25rem;
+}
+
+.tableRow td:hover {
+	text-decoration: underline;
+}
+
+/* .tableRow td:nth-child(1) {
+	width: 35%;
+}
+.tableRow td:nth-child(2) {
+	width: 30%;
+}
+.tableRow td:nth-child(3) {
+	width: 20%;
+}
+.tableRow td:nth-child(4) {
+	width: 15%;
+} */
+
+.nameColumn {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 1rem;
+}
+
+.leadColor {
+	height: 100%;
+	width: 7px;
+	background-color: var(--white);
+	border-radius: var(--br-2);
+}
+
+.leadCold {
+	background-color: var(--cold-lead);
+}
+.leadTracing {
+	background-color: var(--tracing-lead);
+}
+.leadHot {
+	background-color: var(--hot-lead);
+}
+
+.green {
+	color: var(--green);
+}
+.orange {
+	color: var(--tracing-lead);
+}
+.red {
+	color: var(--red);
+}

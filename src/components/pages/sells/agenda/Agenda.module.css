@@ -1,0 +1,58 @@
+.mainContainer {
+	width: 100%;
+	overflow-x: auto;
+	padding: 2rem;
+	background-color: var(--white);
+	border-radius: var(--br-2);
+	height: calc(100vh - 7rem - 3rem - 5rem - 6rem);
+	max-height: calc(100vh - 7rem - 3rem - 5rem - 6rem);
+	overflow: hidden;
+}
+
+.header {
+	max-width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.tabs {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+}
+
+.tab {
+	padding: 0.3rem 2rem;
+	border-radius: 20px;
+	background-color: var(--gray2);
+	color: var(--gray1);
+	cursor: pointer;
+}
+
+.tabs > .active {
+	background-color: #2c74bb;
+	color: var(--white);
+}
+
+.events {
+	height: 100%;
+	max-height: calc(100% - 5rem);
+	padding-bottom: 3rem;
+
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+
+	overflow-y: scroll;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.events::-webkit-scrollbar {
+	display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.events {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}

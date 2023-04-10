@@ -2,7 +2,7 @@
 header {
 	height: 7rem;
 	width: 100%;
-	background-color: var(--black);
+	background-color: var(--main-color);
 	box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.09);
 	border-bottom-left-radius: var(--br-2);
 	border-bottom-right-radius: var(--br-2);

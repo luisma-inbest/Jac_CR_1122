@@ -1,4 +1,4 @@
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 
 export interface PropsTxt {
 	customType: string;
@@ -6,29 +6,30 @@ export interface PropsTxt {
 export const StyledInputText = styled.input.attrs<PropsTxt>({
 	type: "text",
 })`
-	background-color: ${(props: PropSubmit) =>
+	background-color: ${(props: PropType) =>
 		props.customType === "gray" ? "var(--background)" : "var(--white)"};
+	color: var(--text);
 	border: none;
 	font-size: var(--p);
 	border-radius: var(--br-1);
-	height: 3rem;
-	padding: 1em 0.5em;
+	min-height: 3rem;
+	padding: 1rem 0.5rem;
 	margin-bottom: 1.9rem;
 	&:focus {
 		outline: 3px solid var(--highlight);
 	}
 `;
 
-export interface PropSubmit {
+interface PropType {
 	customType: string;
 }
 
-export const StyledInputSubmit = styled.input.attrs<PropSubmit>({
+export const StyledInputSubmit = styled.input.attrs<PropType>({
 	type: "submit",
 })`
-	background-color: ${(props: PropSubmit) =>
+	background-color: ${(props: PropType) =>
 		props.customType === "primary" ? "var(--highlight)" : "var(--white)"};
-	color: ${(props: PropSubmit) =>
+	color: ${(props: PropType) =>
 		props.customType === "primary" ? "var(--white)" : "var(--red)"};
 
 	font-size: var(--p2);
@@ -49,26 +50,25 @@ export const StyledInputRadio = styled.input.attrs({
 	background-color: #fff;
 	margin: 0;
 	appearance: none;
-	background-color: #fff;
 	margin: 0;
 	font: inherit;
 	color: currentColor;
-	width: 1.15em;
-	height: 1.15em;
+	width: 1.5em;
+	height: 1.5em;
 	border: 0.15em solid currentColor;
-	border-radius: 30%;
+	border-radius: 45%;
 	transform: translateY(-0.075em);
 	display: grid;
 	place-content: center;
 
 	&:before {
 		content: "";
-		width: 0.65em;
-		height: 0.65em;
+		width: 0.9em;
+		height: 0.9em;
 		border-radius: 50%;
 		transform: scale(0);
 		transition: 220ms transform ease-in-out;
-		box-shadow: inset 1em 1em var(--color-secondary);
+		box-shadow: inset 1em 1em #0069d1;
 	}
 
 	&:checked &:before {
@@ -80,20 +80,46 @@ export const StyledInputRadio = styled.input.attrs({
 	}
 `;
 
-export const StyledInputDate = styled.input.attrs({
+export const StyledInputDate = styled.input.attrs<PropType>({
 	type: "date",
 })`
-	max-width: 15rem;
-	height: 3rem;
+	min-height: 3rem;
 	text-align: center;
 	border: none;
-	background-color: var(--white);
-	padding: 0.3em 0.5em;
-	border-radius: var(--br-2);
-
-	font-size: var(--p3);
+	background-color: ${(props: PropType) =>
+		props.customType === "primary" ? "var(--background)" : "var(--white)"};
+	padding: 1rem 0.5rem;
+	border-radius: var(--br-1);
+	border-bottom: ${(props: PropType) =>
+		props.customType === "primary" ? "none" : "1px solid var(--gray2)"};
+	font-size: var(--p);
+	text-align: left;
 	color: var(--text);
 	cursor: pointer;
+	margin-bottom: 1.9rem;
+
+	&:focus {
+		outline: 3px solid #3fa9f5;
+	}
+`;
+
+export const StyledInputTime = styled.input.attrs<PropType>({
+	type: "time",
+})`
+	min-height: 3rem;
+	text-align: center;
+	border: none;
+	background-color: ${(props: PropType) =>
+		props.customType === "primary" ? "var(--background)" : "var(--white)"};
+	padding: 1rem 0.5rem;
+	border-radius: var(--br-1);
+	border-bottom: ${(props: PropType) =>
+		props.customType === "primary" ? "none" : "1px solid var(--gray2)"};
+	font-size: var(--p);
+	text-align: left;
+	color: var(--text);
+	cursor: pointer;
+	margin-bottom: 1.9rem;
 
 	&:focus {
 		outline: 3px solid #3fa9f5;
@@ -111,7 +137,8 @@ export const StyledInputSelect = styled.select.attrs({
 	font-size: var(--p3);
 
   /* Personalize */
-  width: auto;
+  width: 100%;
+	min-width: 30rem;
 	height: 3rem;
   padding: 0.3em 0.7em;
 	padding-right: 2.5em;
@@ -121,6 +148,7 @@ export const StyledInputSelect = styled.select.attrs({
       no-repeat right 0.8em center / 1em,
     var(--white);
   color: var(--text);
+	font-size: var(--p);
   border-radius: var(--br-2);
   /*box-shadow: 0 0 0.em 0 rgba(0, 0, 0, 0.2);*/
   cursor: pointer;
@@ -131,7 +159,7 @@ export const StyledInputSelect = styled.select.attrs({
     color: inherit;
     background-color: var(--white);
 		font-family: Arial;
-		font-size: var(--p3);
+		font-size: var(--p);
   }
 
   /* Remove focus outline */

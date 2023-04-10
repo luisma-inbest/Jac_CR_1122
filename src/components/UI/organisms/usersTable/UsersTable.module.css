@@ -1,0 +1,8 @@
+.table {
+	width: 100%;
+	max-width: 100%;
+	padding: 30px;
+	border-collapse: collapse;
+	border-spacing: 0 1em;
+	overflow-x: auto;
+}

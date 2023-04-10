@@ -1,0 +1,27 @@
+.card {
+	height: 7rem;
+	width: 100%;
+	max-width: 65rem;
+	padding: 2rem 1rem;
+	background-color: var(--white);
+	border-radius: var(--br-1);
+	margin-bottom: 2rem;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.iconContainer {
+	height: 100%;
+	width: auto;
+	aspect-ratio: 1 / 1;
+}
+
+.cardContent {
+	height: 100%;
+	width: 3000%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}

@@ -1,0 +1,13 @@
+.agendaCard {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	background-color: var(--background);
+	border-radius: var(--br-2);
+	padding: 1rem;
+}
+.content {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0rem 2rem;
+}

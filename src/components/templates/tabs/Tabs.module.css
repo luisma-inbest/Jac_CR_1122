@@ -1,6 +1,7 @@
 .tabs {
 	position: relative;
 	width: 100%;
+	overflow: hidden;
 }
 
 .tabHeader {
@@ -15,7 +16,6 @@
 .tabOption,
 .tabOptionFull {
 	width: 25%;
-	color: var(--main-text);
 	font-weight: 800;
 	text-align: center;
 	margin: 0;
@@ -38,6 +38,7 @@
 .tabOption.active,
 .tabOptionFull.active {
 	color: var(--white);
+	font-size: var(--p3);
 }
 
 @media (min-width: 62em) {
@@ -71,6 +72,7 @@
 	/* full - header - marginURL - tabHeader - marginTabHeader */
 	/* position: relative; */
 	overflow: hidden;
+	/* overflow-x: auto; */
 	/* overflow-x: scroll; add if you want tables to have scroll */
 }
 
@@ -89,6 +91,7 @@
 }
 
 .tabBody > .active {
-	position: static;
+	position: relative;
 	opacity: 1;
+	top: 0;
 }

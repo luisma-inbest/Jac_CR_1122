@@ -4,7 +4,8 @@
 .container {
 	margin: auto;
 	padding: 0 2rem 0 2rem;
-	width: 100vw;
+	/* width: 100vw; */
+	width: 100%;
 	max-width: 160rem;
 }
 @media (max-width: 48em) {

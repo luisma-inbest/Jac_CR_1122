@@ -7,21 +7,21 @@ export const submenuHR = [
 	{
 		pos: 5.2,
 		text: "Listado Vacantes",
-		route: "/hr/vacants",
+		route: "vacants",
 	},
 	{
 		pos: 5.3,
 		text: "Candidatos",
-		route: "/hr/candidates",
+		route: "candidates",
 	},
 	{
 		pos: 5.4,
 		text: "Banco de CV`s",
-		route: "/hr/cvs",
+		route: "cvs",
 	},
 	{
 		pos: 5.5,
 		text: "Agenda",
-		route: "/hr/agenda",
+		route: "agenda",
 	},
 ];
