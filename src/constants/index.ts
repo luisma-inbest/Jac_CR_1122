@@ -1,4 +1,4 @@
-const enviroment: string = "local"; // local, dev, prod
+const enviroment: string = "prod"; // local, dev, prod
 //--------------------------------------------
 var Domain: string;
 var Backend: string;
@@ -24,3 +24,4 @@ switch (enviroment) {
 }
 
 export { Domain, Backend };
+//J4C@CRM7865#

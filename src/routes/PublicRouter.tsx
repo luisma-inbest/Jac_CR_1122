@@ -34,6 +34,6 @@ export const PublicRouter = (
 		{/* public urls */}
 		<Route path="/" element={<Home />} />
 		<Route path={PublicRoutes.Login} element={<Login />} />
-		{/* <Route path="/register" element={<Register />} /> */}
+		<Route path="/register" element={<Register />} />
 	</Route>
 );

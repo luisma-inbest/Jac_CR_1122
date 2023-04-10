@@ -16,8 +16,8 @@ export function signUp(user: User) {
 	let attributeList = [
 		new CognitoUserAttribute(dataEmail),
 		new CognitoUserAttribute(dataNickname),
-		new CognitoUserAttribute(dataID),
 		new CognitoUserAttribute(dataRole),
+		new CognitoUserAttribute(dataID),
 		new CognitoUserAttribute(AgencyId),
 	];
 
