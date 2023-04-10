@@ -20,7 +20,7 @@ export const FirstContactActivities = (props: AuctionProps) => {
 					<BasicBody
 						buttonText="Confirmar"
 						buttonFunc={props.nextPhaseLead}
-						alternativeText="Editar"
+						alternativeText=""
 						alternativeFunc={() => {
 							return;
 						}}
