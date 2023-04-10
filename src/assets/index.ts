@@ -32,6 +32,7 @@ import { IconCheck } from "./icons/IconCheck";
 import { IconAdd } from "./icons/IconAdd";
 import { IconEye } from "./icons/IconEye";
 import { IconEyeOff } from "./icons/IconEyeOff";
+import { IconCalendar } from "./icons/IconCalendar";
 
 import { IconAlertError } from "./icons/Alert/IconError";
 import { IconAlertSuccess } from "./icons/Alert/IconSuccess";
@@ -63,6 +64,7 @@ export {
 	IconArrow,
 	IconPhone,
 	IconMail,
+	IconCalendar,
 	IconUnfold,
 	IconFeedback,
 	IconWhatsapp,
