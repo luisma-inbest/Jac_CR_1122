@@ -25,9 +25,6 @@ export const Activities = (props: AuctionProps) => {
 	const checkFunction = () => {
 		console.log("check");
 	};
-	const feedbackFunction = () => {
-		console.log("feedback");
-	};
 
 	return (
 		<>
@@ -148,7 +145,7 @@ export const Activities = (props: AuctionProps) => {
 				}
 			/>
 
-			<CardFunnel
+			{/* <CardFunnel
 				mainText="Crear Recordatorio"
 				icon={<IconCheck size="100%" color="#000" />}
 				cardContent={
@@ -163,7 +160,7 @@ export const Activities = (props: AuctionProps) => {
 						}}
 					/>
 				}
-			/>
+			/> */}
 		</>
 	);
 };

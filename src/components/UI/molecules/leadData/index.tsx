@@ -132,7 +132,7 @@ export const LeadData = (props: Props) => {
 				</div>
 			) : (
 				<div className="mt-2">
-					<h5>No hay un producto seleccionado...</h5>
+					<p className="p2">No hay un producto seleccionado...</p>
 				</div>
 			)}
 

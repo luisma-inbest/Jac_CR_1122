@@ -42,14 +42,14 @@ export const LeadDashboard = () => {
 	const [leadView, setLeadView] = useState(false);
 	const [leadData, setLeadData] = useState<LeadDataType>(initialData);
 	const [refresh, setRefresh] = useState(false);
+	const [runEffect, setRunEffect] = useState(false);
 	const { User } = useContext(UserContext) as UserContextType;
 	const { Alerts, SetAlerts, createAlert } = useContext(
 		AlertsContext
 	) as AlertsContextType;
 
-	useEffect(() => {
-		console.log("useEffect", leadData.leadPhase.slug);
-		if (
+	function verifyLead() {
+		return (
 			leadData.leadPhase.slug === "subasta" &&
 			(User?.permissions.includes("coordinator") ||
 				User?.permissions.includes("bdc") ||
@@ -58,52 +58,60 @@ export const LeadDashboard = () => {
 				User?.permissions.includes("adviser-hybrid") ||
 				User?.permissions.includes("adviser-telefonica") ||
 				User?.permissions.includes("adviser-telefonica"))
-		) {
-			console.log("es subasta");
+		);
+	}
 
-			// asignar el lead al usuario y refrescar
-			LeadAPI.updateSeller(leadId!, {
-				data: {
-					UserId: User!.id,
-				},
+	function updateLead() {
+		console.log("actualizando lead");
+		// asignar el lead al usuario y refrescar
+		LeadAPI.updateSeller(leadId!, {
+			data: {
+				UserId: User!.id,
+			},
+		})
+			.then((res) => {
+				console.log("exito", res);
+				createAlert(
+					"success",
+					"Exito",
+					"El lead se ha asignado correctamente"
+				);
+				LeadAPI.nextPhase(leadData.id)
+					.then((res) => {
+						createAlert(
+							"success",
+							"Fase actualizada",
+							"El estatus del lead ha cambiado"
+						);
+						setRefresh(!refresh);
+					})
+					.catch((err) => {
+						createAlert(
+							"error",
+							"Error al actualizar fase",
+							"Hubo un error"
+						);
+					});
 			})
-				.then((res) => {
-					console.log("exito", res);
-					createAlert(
-						"success",
-						"Exito",
-						"El lead se ha asignado correctamente"
-					);
-				})
-				.catch((err) => {
-					console.log("error", err);
-					createAlert(
-						"error",
-						"Error",
-						"Hubo un error al asignar el lead"
-					);
-				});
-			LeadAPI.nextPhase(leadData.id)
-				.then((res) => {
-					createAlert(
-						"success",
-						"Fase actualizada",
-						"El estatus del lead ha cambiado"
-					);
-					setRefresh(!refresh);
-				})
-				.catch((err) => {
-					createAlert(
-						"error",
-						"Error al actualizar fase",
-						"Hubo un error"
-					);
-				});
+			.catch((err) => {
+				console.log("error", err);
+				createAlert(
+					"error",
+					"Error",
+					"Hubo un error al asignar el lead"
+				);
+			});
+	}
+	useEffect(() => {
+		console.log("useEffect", leadData.leadPhase.slug);
+		if (verifyLead()) {
+			console.log("es subasta");
+			updateLead();
 		}
-	}, [leadData, leadId]);
+	}, [runEffect]);
 
 	const { isLoading, data, isError, error } = useQuery({
-		queryKey: [`lead-${leadId}`, [refresh], [leadData]],
+		queryKey: [`lead-${leadId}`, [refresh, leadData]],
 		queryFn: () => LeadAPI.getLead(String(leadId)),
 		onSuccess: (data) => {
 			console.log("exito", data);
@@ -120,13 +128,14 @@ export const LeadDashboard = () => {
 				UserId: data.UserId,
 				rfc: data.rfc,
 			});
+			setRunEffect(true);
 			console.log("actividades", data.LeadActivities);
 		},
 		onError: (error) => {
 			console.log("error", error);
 		},
-		staleTime: 10 * (60 * 1000), // 10 mins
-		cacheTime: 15 * (60 * 1000), // 15 mins
+		// staleTime: 10 * (60 * 1000), // 10 mins
+		// cacheTime: 15 * (60 * 1000), // 15 mins
 	});
 	if (isLoading) {
 		return (
