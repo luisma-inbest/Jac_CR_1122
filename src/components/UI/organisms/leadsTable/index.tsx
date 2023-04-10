@@ -95,18 +95,20 @@ export const LeadsTable = (props: Props) => {
 						{leads.data.map((lead: any) => {
 							return (
 								<LeadRow
-									key={lead.id}
-									id={lead.id}
-									name={generateLeadNickname(
-										lead.firstName,
-										lead.lastName
-									)}
-									user={getUser(lead.User)}
-									model={lead.model}
-									status="pruebita"
-									color={props.type}
-									createdAt={lead.createdAt}
-									updatedAt={lead.updatedAt}
+									key={lead.id || ""}
+									id={lead.id || ""}
+									name={
+										generateLeadNickname(
+											lead.firstName,
+											lead.lastName
+										) || ""
+									}
+									user={getUser(lead.User) || ""}
+									model={lead.model || ""}
+									status=""
+									color={props.type || 0}
+									createdAt={lead.createdAt || ""}
+									updatedAt={lead.updatedAt || ""}
 								/>
 							);
 						})}
