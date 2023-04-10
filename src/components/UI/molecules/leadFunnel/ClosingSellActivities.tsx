@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
 	Button,
 	CardFunnel,
@@ -10,6 +10,7 @@ import { IconCheck, IconWhatsapp } from "@/assets";
 import { BasicBody } from "./Activities";
 import { LeadDataType } from "@/models";
 import { StyledInputRadio } from "@/components/UI/atoms";
+import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
 
 interface AuctionProps {
 	leadData: LeadDataType;
@@ -24,6 +25,13 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 	});
 	const [exchangeCar, setExchangeCar] = useState(false);
 	const [digitalSell, setDigitalSell] = useState(false);
+
+	const [editVin, setEditVin] = useState(false);
+	const [vin, setVin] = useState(props.leadData.rfc);
+	const { Alerts, SetAlerts, createAlert } = useContext(
+		AlertsContext
+	) as AlertsContextType;
+
 	return (
 		<>
 			<CardFunnel

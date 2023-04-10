@@ -16,6 +16,9 @@ export const LeadData = (props: Props) => {
 		document.documentElement
 	).getPropertyValue("--secondary-text");
 
+	const [product, setProduct] = useState<any>({});
+	const [isProduct, setIsProduct] = useState<boolean>(false);
+
 	const pickPhaseColor = (phase: string) => {
 		switch (phase) {
 			case "subasta":
@@ -31,6 +34,21 @@ export const LeadData = (props: Props) => {
 		}
 	};
 	useEffect(() => {
+		//validar producto
+		if (props.lead.LeadInterests.length > 0) {
+			console.log("hay producto...");
+			setIsProduct(true);
+			let currentProduct =
+				props.lead.LeadInterests[props.lead.LeadInterests.length - 1];
+			setProduct({
+				imageUrl: currentProduct.Product.imageUrl,
+				name: currentProduct.Product.name,
+				model: currentProduct.Product.model,
+				transmission: currentProduct.Product.transmission,
+				color: currentProduct.ProductColor.slug,
+			});
+		}
+
 		if (
 			props.lead.leadPhase.slug === "subasta" &&
 			(User?.permissions.includes("coordinator") ||
@@ -93,24 +111,35 @@ export const LeadData = (props: Props) => {
 				</span>
 			</div>
 
-			<div className="col-xs-12 mt-4">
-				<p className="p4 semi-bold secondary">Vehiculo</p>
-				<div className={`${styles.infoCar}`}>
-					<div className={`${styles.carImage}`}>
-						<img src={carExample} alt="" />
-					</div>
-					<div className={`${styles.carInfo} ${styles.groupData}`}>
-						<p className="p2 semi-bold">Modelo Vehiculo</p>
-						<p className="p3">Color</p>
-						<p className="p3 link"> Ver Detalles </p>
+			{isProduct ? (
+				<div className="col-xs-12 mt-4">
+					<p className="p4 semi-bold secondary">Vehiculo</p>
+					<div className={`${styles.infoCar}`}>
+						<div className={`${styles.carImage}`}>
+							<img src={product.imageUrl} alt="" />
+						</div>
+						<div
+							className={`${styles.carInfo} ${styles.groupData}`}
+						>
+							<p className="p2 semi-bold">
+								{product.name} {product.model}{" "}
+								{product.transmission}
+							</p>
+							<p className="p3">{product.color}</p>
+							{/* <p className="p3 link"> Ver Detalles </p> */}
+						</div>
 					</div>
 				</div>
-			</div>
+			) : (
+				<div className="mt-2">
+					<h5>No hay un producto seleccionado...</h5>
+				</div>
+			)}
 
 			<div className={`col-xs-12 mt-4 ${styles.groupData}`}>
 				<p className="p4 semi-bold secondary">Detalles</p>
 				<p className="p4 semi-bold highlight">Fecha y Hora</p>
-				<p className="p2 ">{String(props.lead.createdAt)}</p>
+				<p className="p2 ">{props.lead.createdAt.toString()}</p>
 			</div>
 
 			<div className={`col-xs-12 mt-4  ${styles.groupData}`}>

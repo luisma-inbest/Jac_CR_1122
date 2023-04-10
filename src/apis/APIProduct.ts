@@ -38,4 +38,22 @@ export const ProductAPI = {
 				throw new Error(error);
 			});
 	},
+	getProduct: async function (productId: string) {
+		return api
+			.request({
+				url: `/product/${productId}`,
+				method: "GET",
+			})
+			.then((response) => {
+				//el primer data es para acceder a la respuesta y en el segundo ya esta el arreglo
+				return response.data.data;
+			})
+			.catch((error: any) => {
+				console.log("Hubo un error");
+				if (error.response) {
+					console.log(error.response.data);
+				}
+				throw new Error(error);
+			});
+	},
 };
