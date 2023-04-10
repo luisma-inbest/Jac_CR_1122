@@ -144,8 +144,12 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 									}}
 								>
 									<option value={0} disabled>
-										-- Seguro Financiado --
+										-- Financiera --
 									</option>
+									<option value="contado">CONTADO</option>
+									<option value="cetelem">CETELEM</option>
+									<option value="solufi">SOLUFI</option>
+									<option value="otro">OTRO</option>
 								</StyledSelect>
 							}
 						/>
@@ -175,16 +179,12 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 									<option value="aig">AIG</option>
 									<option value="hsbc">HSBC</option>
 									<option value="afirme">AFIRME</option>
-									<option value="agroasemex">
-										AGROASEMEX
-									</option>
+									<option value="agroasemex">AGROASEMEX</option>
 									<option value="sura">SURA</option>
 									<option value="zurich">ZURICH</option>
 									<option value="inbursa">INBURSA</option>
 									<option value="mapfre">MAPFRE</option>
-									<option value="citibanamex">
-										CITIBANAMEX
-									</option>
+									<option value="citibanamex">CITIBANAMEX</option>
 									<option value="otro">OTRO</option>
 								</StyledSelect>
 							}
