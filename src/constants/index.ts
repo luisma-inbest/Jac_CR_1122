@@ -1,4 +1,4 @@
-const enviroment: string = "dev"; // local, dev, prod
+const enviroment: string = "local"; // local, dev, prod
 //--------------------------------------------
 var Domain: string;
 var Backend: string;
@@ -16,8 +16,8 @@ switch (enviroment) {
 		break;
 	case "prod":
 		var Domain =
-			"http://jac-crm-front-end.s3-website-us-east-1.amazonaws.com";
-		var Backend = "https://39kvm7kjwh.execute-api.us-east-1.amazonaws.com/";
+			"http://jac-crm-front-end-prod.s3-website-us-east-1.amazonaws.com";
+		var Backend = "https://vgn14b37gb.execute-api.us-east-1.amazonaws.com/";
 		break;
 	default:
 		break;

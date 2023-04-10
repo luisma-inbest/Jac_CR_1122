@@ -23,6 +23,8 @@ import { AgendaAPI } from "@/apis/APIAgenda";
 interface Props {
 	func: () => void;
 	leadId?: number;
+	refresh: boolean;
+	refresher: (val: boolean) => void;
 }
 
 export const CreateAgendaEvent = (props: Props) => {
@@ -53,6 +55,8 @@ export const CreateAgendaEvent = (props: Props) => {
 				"Evento Creado",
 				"El evento se creo correctamente"
 			);
+			props.func();
+			props.refresher(!props.refresh);
 		},
 		onError(error, variables, context) {
 			console.log(error);

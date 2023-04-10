@@ -16,9 +16,10 @@ export const Agenda = () => {
 	) as AlertsContextType;
 	const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
 	const { User } = useContext(UserContext) as UserContextType;
+	const [refresh, setRefresh] = useState(false);
 
 	const { isLoading, data, isError, error } = useQuery({
-		queryKey: [`events`, [activeTab]],
+		queryKey: [`events`, [activeTab, refresh]],
 		queryFn: () => AgendaAPI.getAll(String(User!.id), activeTab, date),
 		onError: (error) => {
 			createAlert(
@@ -115,7 +116,11 @@ export const Agenda = () => {
 			</div>
 
 			{registerEvent ? (
-				<CreateAgendaEvent func={handleRegisterEvent} />
+				<CreateAgendaEvent
+					func={handleRegisterEvent}
+					refresh={refresh}
+					refresher={setRefresh}
+				/>
 			) : (
 				<></>
 			)}

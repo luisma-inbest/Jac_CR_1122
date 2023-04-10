@@ -74,7 +74,7 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 											Demo
 										</p>
 										<StyledInputRadio
-											checked={radioValue.nuevo}
+											checked={radioValue.demo}
 											onChange={() => {
 												setRadioValue({
 													nuevo: false,

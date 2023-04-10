@@ -32,6 +32,7 @@ export type LeadDataType = {
 	createdAt: Date;
 	updatedAt: Date;
 	UserId: number;
+	rfc?: string;
 };
 
 export type LeadActivityType = {

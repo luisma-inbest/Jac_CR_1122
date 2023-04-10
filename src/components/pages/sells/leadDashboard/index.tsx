@@ -118,6 +118,7 @@ export const LeadDashboard = () => {
 				createdAt: data.createdAt,
 				updatedAt: data.updatedAt,
 				UserId: data.UserId,
+				rfc: data.rfc,
 			});
 			console.log("actividades", data.LeadActivities);
 		},
@@ -153,6 +154,7 @@ export const LeadDashboard = () => {
 		setLeadView(!leadView);
 	};
 
+	// const PageTabs = ["Datos", "Funnel", "Chat", "Historial"];
 	const PageTabs = ["Datos", "Funnel", "Chat", "Historial"];
 	const TabOne = <LeadData lead={leadData} />;
 	const TabTwo = (

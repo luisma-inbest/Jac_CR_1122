@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "./Tabs.module.css";
 
 interface Props {}
@@ -17,7 +17,9 @@ export const Tabs = (props: any) => {
 		} else {
 			if (viewport_width > 993) {
 				console.log("3");
-				prueba!.current!.style.left = `calc(calc(100% / 3) * ${tab - 1})`;
+				prueba!.current!.style.left = `calc(calc(100% / 3) * ${
+					tab - 1
+				})`;
 			} else if (viewport_width < 992) {
 				console.log("4");
 				prueba!.current!.style.left = `calc(25% * ${tab})`;
@@ -43,7 +45,9 @@ export const Tabs = (props: any) => {
 							return (
 								<p
 									className={`p4 ${
-										props.full ? styles.tabOptionFull : styles.tabOption
+										props.full
+											? styles.tabOptionFull
+											: styles.tabOption
 									} ${props.full ? "" : styles.firstTab} ${
 										activeTab == index ? styles.active : ""
 									}`}
@@ -57,8 +61,12 @@ export const Tabs = (props: any) => {
 							return (
 								<p
 									className={`p4 ${
-										props.full ? styles.tabOptionFull : styles.tabOption
-									} ${activeTab == index ? styles.active : ""}`}
+										props.full
+											? styles.tabOptionFull
+											: styles.tabOption
+									} ${
+										activeTab == index ? styles.active : ""
+									}`}
 									key={index}
 									onClick={() => toggleTab(index)}
 								>
@@ -74,7 +82,9 @@ export const Tabs = (props: any) => {
 					id="tabIndicator"
 					ref={prueba}
 					className={`${
-						props.full ? styles.tabIndicatorFull : styles.tabIndicator
+						props.full
+							? styles.tabIndicatorFull
+							: styles.tabIndicator
 					} `}
 				></div>
 				{/* /Indicator */}

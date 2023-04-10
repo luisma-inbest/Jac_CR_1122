@@ -26,7 +26,7 @@ export const NavbarHeader = (props: Props) => {
 	const navigate = useNavigate();
 
 	function handleProfile() {
-		navigate("/profile");
+		// navigate("/profile");
 	}
 
 	return (

@@ -29,7 +29,7 @@
 	gap: 1rem;
 }
 .navUser:hover {
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 .userPhoto {
 	width: 5rem;
