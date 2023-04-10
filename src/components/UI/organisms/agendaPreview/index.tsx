@@ -71,6 +71,7 @@ export const AgendaPreview = () => {
 
 			{registerEvent ? (
 				// <CreateAgendaEvent func={handleRegisterEvent} re />
+				<></>
 			) : (
 				<></>
 			)}
