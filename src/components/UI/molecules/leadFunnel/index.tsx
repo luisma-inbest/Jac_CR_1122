@@ -110,7 +110,7 @@ export const LeadFunnel = (props: Props) => {
 					/>
 				}
 			/>
-			<p className="p3 secondary bold">Descartar</p>
+			{/* <p className="p3 secondary bold">Descartar</p>
 			<CardFunnel
 				mainText="Descarte"
 				icon={<IconFeedback size="100%" color="#000" />}
@@ -122,7 +122,7 @@ export const LeadFunnel = (props: Props) => {
 						alternativeFunc={() => console.log("")}
 					/>
 				}
-			/>
+			/> */}
 		</div>
 	);
 };

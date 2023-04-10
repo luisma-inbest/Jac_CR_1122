@@ -28,6 +28,7 @@ export type LeadDataType = {
 	leadEmails: any[];
 	leadPhase: LeadPhaseType;
 	LeadInterests: any[];
+	LeadActivities: any[];
 	LeadOrigin: any;
 	createdAt: Date;
 	updatedAt: Date;

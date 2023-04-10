@@ -96,7 +96,7 @@ export const FollowUpActivities = (props: AuctionProps) => {
 					</div>
 				}
 			/>
-			<CardFunnel
+			{/* <CardFunnel
 				mainText="Prueba de Manejo"
 				icon={<IconCheck size="100%" color="#000" />}
 				cardContent={
@@ -107,7 +107,7 @@ export const FollowUpActivities = (props: AuctionProps) => {
 						alternativeFunc={() => console.log("")}
 					/>
 				}
-			/>
+			/> */}
 			<CardFunnel
 				mainText="RFC Cliente"
 				icon={<IconCheck size="100%" color="#000" />}

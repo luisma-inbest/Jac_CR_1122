@@ -31,6 +31,7 @@ let initialData: LeadDataType = {
 		updatedAt: "",
 	},
 	LeadInterests: [],
+	LeadActivities: [],
 	LeadOrigin: "",
 	createdAt: new Date(),
 	updatedAt: new Date(),
@@ -120,6 +121,7 @@ export const LeadDashboard = () => {
 				leadName: data.firstAndLastName,
 				leadEmails: data.LeadEmails || [""],
 				leadPhones: data.LeadPhones || [""],
+				LeadActivities: data.LeadActivities,
 				leadPhase: data.LeadPhase,
 				LeadInterests: data.LeadInterests,
 				LeadOrigin: data.LeadOrigin,
@@ -176,7 +178,7 @@ export const LeadDashboard = () => {
 		/>
 	);
 	const TabThree = <LeadChat />;
-	const TabFour = <LeadHistory activities={data.LeadActivities} />;
+	const TabFour = <LeadHistory activities={leadData.LeadActivities} />;
 	const TabsComponents = [TabOne, TabTwo, TabThree, TabFour];
 
 	return (

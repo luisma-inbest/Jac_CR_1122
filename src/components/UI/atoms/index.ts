@@ -23,7 +23,6 @@ import { Button } from "./button";
 import { ButtonFields } from "./buttonFields";
 
 import { InputFile } from "./inputFile";
-import { DateFormat, DateFormatType } from "./dateFormat";
 
 import { CardProduct } from "./cardProduct";
 import { ButtonProduct } from "./buttonProduct";
@@ -59,8 +58,6 @@ export {
 	Button,
 	ButtonFields,
 	InputFile,
-	DateFormat,
-	DateFormatType,
 	CardProduct,
 	ButtonProduct,
 	PieChart,
