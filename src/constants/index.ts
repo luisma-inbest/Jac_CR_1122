@@ -3,25 +3,34 @@ const enviroment: string = "dev"; // local, dev, prod
 var Domain: string;
 var Backend: string;
 var Cognito: string;
+var poolData: any;
 
 switch (enviroment) {
 	case "local":
-		var Domain = "http://localhost:5173";
-		var Backend = "https://39kvm7kjwh.execute-api.us-east-1.amazonaws.com/";
+		Domain = "http://localhost:5173";
+		Backend = "https://39kvm7kjwh.execute-api.us-east-1.amazonaws.com/";
+		poolData = {
+			UserPoolId: "us-east-1_Um0V3IHnS",
+			ClientId: "52nj5l30o4sm7813o419ms82va",
+		};
 		break;
 	case "dev":
-		var Domain =
+		Domain =
 			"http://jac-crm-front-end-dev.s3-website-us-east-1.amazonaws.com";
-		var Backend = "https://39kvm7kjwh.execute-api.us-east-1.amazonaws.com/";
+		Backend = "https://39kvm7kjwh.execute-api.us-east-1.amazonaws.com/";
 		break;
 	case "prod":
-		var Domain =
+		Domain =
 			"http://jac-crm-front-end-prod.s3-website-us-east-1.amazonaws.com";
-		var Backend = "https://vgn14b37gb.execute-api.us-east-1.amazonaws.com/";
+		Backend = "https://vgn14b37gb.execute-api.us-east-1.amazonaws.com/";
+		poolData = {
+			UserPoolId: "us-east-1_WDfEjlZIh",
+			ClientId: "paj5qfl0urgsv6lljt4o0mc8j",
+		};
 		break;
 	default:
 		break;
 }
 
-export { Domain, Backend };
+export { Domain, Backend, poolData };
 //J4C@CRM7865#
