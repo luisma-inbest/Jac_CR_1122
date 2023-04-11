@@ -18,6 +18,10 @@ switch (enviroment) {
 		Domain =
 			"http://jac-crm-front-end-dev.s3-website-us-east-1.amazonaws.com";
 		Backend = "https://39kvm7kjwh.execute-api.us-east-1.amazonaws.com/";
+		poolData = {
+			UserPoolId: "us-east-1_Um0V3IHnS",
+			ClientId: "52nj5l30o4sm7813o419ms82va",
+		};
 		break;
 	case "prod":
 		Domain =
