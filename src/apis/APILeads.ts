@@ -44,7 +44,6 @@ export const LeadAPI = {
 		return api
 			.request({
 				url: `/lead/${leadId}`,
-				//url: `/lead/?AgencyId=14&phase=en-cierre&page=1&limit=10`,
 				method: "GET",
 			})
 			.then((response) => {
@@ -63,7 +62,6 @@ export const LeadAPI = {
 		return api
 			.request({
 				url: `/lead/nextPhase/${leadId}`,
-				//url: `/lead/?AgencyId=14&phase=en-cierre&page=1&limit=10`,
 				method: "PATCH",
 			})
 			.then((response) => {

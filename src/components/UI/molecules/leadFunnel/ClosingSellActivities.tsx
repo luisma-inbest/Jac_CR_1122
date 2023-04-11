@@ -25,12 +25,15 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 	});
 	const [exchangeCar, setExchangeCar] = useState(false);
 	const [digitalSell, setDigitalSell] = useState(false);
-
-	const [editVin, setEditVin] = useState(false);
-	const [vin, setVin] = useState(props.leadData.rfc);
 	const { Alerts, SetAlerts, createAlert } = useContext(
 		AlertsContext
 	) as AlertsContextType;
+
+	const [editVin, setEditVin] = useState(false);
+	const [vin, setVin] = useState(props.leadData.rfc);
+	const [metodoPago, setMetodoPago] = useState("0");
+	const [seguroFinanciado, setSeguroFinanciado] = useState("0");
+	const [aseguradora, setAseguradora] = useState("0");
 
 	return (
 		<>
@@ -117,9 +120,9 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 							cardContent={
 								<StyledSelect
 									customType="secondary"
-									value={0}
+									value={metodoPago}
 									onChange={(e) => {
-										return;
+										setMetodoPago(e.target.value);
 									}}
 								>
 									<option value={0} disabled>
@@ -138,12 +141,12 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 							cardContent={
 								<StyledSelect
 									customType="secondary"
-									value={0}
+									value={seguroFinanciado}
 									onChange={(e) => {
-										return;
+										setSeguroFinanciado(e.target.value);
 									}}
 								>
-									<option value={0} disabled>
+									<option value={"0"} disabled>
 										-- Financiera --
 									</option>
 									<option value="contado">CONTADO</option>
@@ -160,12 +163,12 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 							cardContent={
 								<StyledSelect
 									customType="secondary"
-									value={0}
+									value={aseguradora}
 									onChange={(e) => {
-										return;
+										setAseguradora(e.target.value);
 									}}
 								>
-									<option value={0} disabled>
+									<option value={"0"} disabled>
 										-- Aseguradora --
 									</option>
 									<option value="bbva">BBVA</option>
@@ -179,12 +182,16 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 									<option value="aig">AIG</option>
 									<option value="hsbc">HSBC</option>
 									<option value="afirme">AFIRME</option>
-									<option value="agroasemex">AGROASEMEX</option>
+									<option value="agroasemex">
+										AGROASEMEX
+									</option>
 									<option value="sura">SURA</option>
 									<option value="zurich">ZURICH</option>
 									<option value="inbursa">INBURSA</option>
 									<option value="mapfre">MAPFRE</option>
-									<option value="citibanamex">CITIBANAMEX</option>
+									<option value="citibanamex">
+										CITIBANAMEX
+									</option>
 									<option value="otro">OTRO</option>
 								</StyledSelect>
 							}
