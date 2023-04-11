@@ -63,7 +63,7 @@ export const CreateLead = (props: Props) => {
 
 		console.log("sumbmiting form...", fields);
 
-		addLeadMutation.mutate();
+		// addLeadMutation.mutate();
 
 		props.func();
 	}
