@@ -64,16 +64,18 @@ export const LeadRow = (props: Props) => {
 					className={`${styles.leadColor} ${colors[props.color]}`}
 				></div>
 				<Link to={`${props.id}`}>
-					<p className="p3 semi-bold no-margin">{props.name}</p>
-					<p className="p4 secondary no-margin">{props.model}</p>
+					<p className="p3 semi-bold no-margin">{props.name || ""}</p>
+					<p className="p4 secondary no-margin">
+						{props.model || ""}
+					</p>
 				</Link>
 			</td>
 
 			<td>
-				<p className="p4 secondary no-margin">{props.user}</p>
+				<p className="p4 secondary no-margin">{props.user || ""}</p>
 			</td>
 			<td>
-				<p className="p4 secondary no-margin">{props.status}</p>
+				<p className="p4 secondary no-margin">{props.status || ""}</p>
 			</td>
 			<td>
 				<p className={`p4 secondary no-margin ${pickColor()}`}>

@@ -55,8 +55,8 @@ export const LeadsTable = (props: Props) => {
 			setMaxPage(data.pages);
 			console.log(data);
 		},
-		// staleTime: 5 * (60 * 1000), // 5 mins
-		// cacheTime: 10 * (60 * 1000), // 10 mins
+		staleTime: 5 * (60 * 1000), // 5 mins
+		cacheTime: 10 * (60 * 1000), // 10 mins
 	});
 
 	if (isLoading) {
