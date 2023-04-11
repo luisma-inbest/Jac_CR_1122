@@ -8,6 +8,10 @@ switch (enviroment) {
 	case "local":
 		Domain = "http://localhost:5173";
 		Backend = "https://39kvm7kjwh.execute-api.us-east-1.amazonaws.com/";
+		poolData = {
+			UserPoolId: "us-east-1_Um0V3IHnS",
+			ClientId: "52nj5l30o4sm7813o419ms82va",
+		};
 		break;
 	case "dev":
 		Domain =
