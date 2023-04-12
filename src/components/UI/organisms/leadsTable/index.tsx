@@ -75,7 +75,7 @@ export const LeadsTable = (props: Props) => {
 				<table className={`${styles.table}`}>
 					<thead>
 						<tr className={styles.tableHeader}>
-							<th className="p4 highlight">Nombre</th>
+							<th className="p4 highlight">Contacto</th>
 							<th className="p4 highlight">Asesor</th>
 							<th className="p4 highlight">Estado</th>
 							<th className="p4 highlight">Ult. Contacto</th>

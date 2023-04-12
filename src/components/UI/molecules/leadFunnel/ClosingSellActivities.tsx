@@ -136,7 +136,7 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 						/>
 
 						<CardFunnel
-							mainText="Seguro Financiado"
+							mainText="Banco"
 							icon={<IconCheck size="100%" color="#000" />}
 							cardContent={
 								<StyledSelect
@@ -147,7 +147,7 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 									}}
 								>
 									<option value={"0"} disabled>
-										-- Financiera --
+										-- Banco --
 									</option>
 									<option value="contado">CONTADO</option>
 									<option value="cetelem">CETELEM</option>
