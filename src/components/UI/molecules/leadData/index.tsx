@@ -11,7 +11,6 @@ interface Props {
 export const LeadData = (props: Props) => {
 	const { User } = useContext(UserContext) as UserContextType;
 	const [permissions, setPermissions] = useState<boolean>(false);
-	console.log(props.lead);
 	const colorSecondary = getComputedStyle(
 		document.documentElement
 	).getPropertyValue("--secondary-text");
@@ -147,6 +146,11 @@ export const LeadData = (props: Props) => {
 				<p className="p4 semi-bold highlight">
 					{props.lead.LeadOrigin.slug}
 				</p>
+			</div>
+
+			<div className={`col-xs-12 mt-4  ${styles.groupData}`}>
+				<p className="p4 semi-bold secondary">Asesor</p>
+				<p className="p4 semi-bold highlight">{props.lead.UserId}</p>
 			</div>
 
 			{/* <div className={`col-xs-12 mt-4  ${styles.groupData}`}>

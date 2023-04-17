@@ -17,6 +17,7 @@ import { FirstContactActivities } from "./FirstContactActivities";
 import { FollowUpActivities } from "./FollowUpActivities";
 import { ClosingSellsActivities } from "./ClosingSellActivities";
 import { LeadDataType } from "@/models";
+import { HostessActivities } from "./HostessActivities";
 
 interface Props {
 	activityHandler: () => void;
@@ -44,6 +45,29 @@ export const LeadFunnel = (props: Props) => {
 				createAlert(
 					"error",
 					"Error al actualizar fase",
+					"Hubo un error"
+				);
+			});
+	}
+
+	function ruleOutLead(phase: string) {
+		let data = {
+			newPhase: phase,
+		};
+		console.log(data);
+		LeadAPI.ruleOut(props.leadData.id, data)
+			.then((res) => {
+				createAlert(
+					"success",
+					"Lead descartado",
+					"El estatus del lead ha cambiado"
+				);
+				props.refresher(!props.refresh);
+			})
+			.catch((err) => {
+				createAlert(
+					"error",
+					"Error al descartar lead",
 					"Hubo un error"
 				);
 			});
@@ -93,6 +117,9 @@ export const LeadFunnel = (props: Props) => {
 		<div className={styles.funnelTab}>
 			<p className="p3 secondary bold">{titles[props.leadPhase] || ""}</p>
 			{phases[props.leadPhase]}
+
+			<HostessActivities leadData={props.leadData} />
+
 			<p className="p3 secondary bold">Contacto</p>
 			{phases.all}
 			<p className="p3 secondary bold">Comentarios</p>
@@ -110,19 +137,19 @@ export const LeadFunnel = (props: Props) => {
 					/>
 				}
 			/>
-			{/* <p className="p3 secondary bold">Descartar</p>
+			<p className="p3 secondary bold">Descartar</p>
 			<CardFunnel
 				mainText="Descarte"
 				icon={<IconFeedback size="100%" color="#000" />}
 				cardContent={
 					<BasicBody
 						buttonText="Congelar"
-						buttonFunc={() => console.log("")}
+						buttonFunc={() => ruleOutLead("congelado")}
 						alternativeText="Futura Compra"
-						alternativeFunc={() => console.log("")}
+						alternativeFunc={() => ruleOutLead("futura-venta")}
 					/>
 				}
-			/> */}
+			/>
 		</div>
 	);
 };

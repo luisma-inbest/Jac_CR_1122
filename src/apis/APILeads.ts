@@ -109,7 +109,7 @@ export const LeadAPI = {
 				throw new Error(error);
 			});
 	},
-	editInfo: async function (leadId: number, data: any) {
+	editInfo: async function (leadId: string, data: any) {
 		return api
 			.request({
 				url: `/lead/${leadId}`,
@@ -117,7 +117,7 @@ export const LeadAPI = {
 				data: data,
 			})
 			.then((response) => {
-				return response.data.data;
+				return response.data;
 			})
 			.catch((error: any) => {
 				if (error.response) {

@@ -174,10 +174,7 @@ interface PropsBasic {
 export const BasicBody = (props: PropsBasic) => {
 	return (
 		<div className={styles.cardContainerClasic}>
-			<p
-				className="p3 link no-margin"
-				onClick={() => props.alternativeFunc}
-			>
+			<p className="p3 link no-margin" onClick={props.alternativeFunc}>
 				{props.alternativeText}
 			</p>
 			<Button
