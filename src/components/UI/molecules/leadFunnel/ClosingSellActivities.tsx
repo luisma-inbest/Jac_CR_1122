@@ -11,6 +11,8 @@ import { BasicBody } from "./Activities";
 import { LeadDataType } from "@/models";
 import { StyledInputRadio } from "@/components/UI/atoms";
 import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
+import { useMutation } from "react-query";
+import { LeadAPI } from "@/apis";
 
 interface AuctionProps {
 	leadData: LeadDataType;
@@ -34,6 +36,23 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 	const [metodoPago, setMetodoPago] = useState("0");
 	const [seguroFinanciado, setSeguroFinanciado] = useState("0");
 	const [aseguradora, setAseguradora] = useState("0");
+
+	const editRFCFunc = useMutation({
+		mutationFn: () =>
+			LeadAPI.editInfo(String(props.leadData.id), {
+				data: {
+					rfc: vin,
+				},
+			}),
+		onSuccess(data, variables, context) {
+			console.log(data);
+			createAlert("success", "Lead Actualizado", "El RFC se actualizó");
+		},
+		onError(error, variables, context) {
+			console.log(error);
+			createAlert("error", "Error", "Hubo un error al actualizar");
+		},
+	});
 
 	return (
 		<>

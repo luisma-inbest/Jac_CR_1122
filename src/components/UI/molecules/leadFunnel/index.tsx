@@ -18,6 +18,7 @@ import { FollowUpActivities } from "./FollowUpActivities";
 import { ClosingSellsActivities } from "./ClosingSellActivities";
 import { LeadDataType } from "@/models";
 import { HostessActivities } from "./HostessActivities";
+import UserContext, { UserContextType } from "@/context/UserContext";
 
 interface Props {
 	activityHandler: () => void;
@@ -27,6 +28,7 @@ interface Props {
 	refresh: boolean;
 }
 export const LeadFunnel = (props: Props) => {
+	const { User } = useContext(UserContext) as UserContextType;
 	const { Alerts, SetAlerts, createAlert } = useContext(
 		AlertsContext
 	) as AlertsContextType;
@@ -118,7 +120,11 @@ export const LeadFunnel = (props: Props) => {
 			<p className="p3 secondary bold">{titles[props.leadPhase] || ""}</p>
 			{phases[props.leadPhase]}
 
-			<HostessActivities leadData={props.leadData} />
+			{User?.permissions[1] === "hostess" ? (
+				<HostessActivities leadData={props.leadData} />
+			) : (
+				<></>
+			)}
 
 			<p className="p3 secondary bold">Contacto</p>
 			{phases.all}

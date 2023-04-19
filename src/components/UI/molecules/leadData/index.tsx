@@ -3,6 +3,9 @@ import styles from "./LeadData.module.css";
 import { IconMail, IconPhone, carExample } from "@/assets";
 import { LeadDataType } from "@/models";
 import UserContext, { UserContextType } from "@/context/UserContext";
+import CurrentLeadContext, {
+	CurrentLeadContextType,
+} from "@/context/CurrentLeadContext";
 
 interface Props {
 	lead: LeadDataType;
@@ -17,6 +20,9 @@ export const LeadData = (props: Props) => {
 
 	const [product, setProduct] = useState<any>({});
 	const [isProduct, setIsProduct] = useState<boolean>(false);
+	const { CurrentLead } = useContext(
+		CurrentLeadContext
+	) as CurrentLeadContextType;
 
 	const pickPhaseColor = (phase: string) => {
 		switch (phase) {

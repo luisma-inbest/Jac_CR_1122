@@ -7,11 +7,13 @@ import { useQuery } from "react-query";
 import { Loader } from "../../atoms";
 import UserContext, { UserContextType } from "@/context/UserContext";
 
+//COmponent Props
 interface Props {
 	type: number;
 	refresh?: boolean;
 }
 
+// Phases Arrays for the table and query
 const statusArray = ["subasta", "1er-contacto", "seguimiento", "en-cierre"];
 const arraySelector = [
 	"subastaLeads",
@@ -20,23 +22,38 @@ const arraySelector = [
 	"closingLeads",
 ];
 
+//Main Component
 export const LeadsTable = (props: Props) => {
+	//Comopnent Variables
 	const { User } = useContext(UserContext) as UserContextType;
 	const highlight = getComputedStyle(
 		document.documentElement
 	).getPropertyValue("--highlight-text");
 	const [page, setPage] = useState<number>(1);
 	const [maxPage, setMaxPage] = useState<number>(1);
+	const UserId = getUserId();
 
+	//Component Functions
+	//This function gives the userId Value given the role
+	function getUserId() {
+		if (
+			User!.permissions[1] == "coordinator" ||
+			User!.permissions[1] == "bdc" ||
+			User!.permissions[1] == "adviser-digital" ||
+			User!.permissions[1] == "adviser-floor" ||
+			User!.permissions[1] == "adviser-hybrid"
+		) {
+			return String(User!.id);
+		}
+		return "";
+	}
+	//This Function generates the nickname for the lead
 	function generateLeadNickname(firstName: string, lastName: string) {
 		return firstName.split(" ")[0] + " " + lastName.split(" ")[0];
 	}
-
+	//This function gets the user nickname if exists
 	function getUser(userToVerify: any) {
-		if (userToVerify != null) {
-			return userToVerify.nickname;
-		}
-		return "-";
+		return userToVerify == null ? "-" : userToVerify.nickname;
 	}
 
 	const {
@@ -50,7 +67,12 @@ export const LeadsTable = (props: Props) => {
 			[page, props.refresh],
 		],
 		queryFn: () =>
-			LeadAPI.getAll(statusArray[props.type], User!.AgencyId, page),
+			LeadAPI.getAll(
+				statusArray[props.type],
+				User!.AgencyId,
+				UserId,
+				page
+			),
 		onSuccess: (data) => {
 			setMaxPage(data.pages);
 			console.log(data);

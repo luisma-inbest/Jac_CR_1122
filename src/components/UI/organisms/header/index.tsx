@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./Header.module.css";
 import {
 	Logo,
@@ -9,6 +9,8 @@ import {
 	IconCalendar,
 } from "@/assets";
 import { useNavigate, useNavigation } from "react-router-dom";
+import { handleMainPage } from "@/models/routes&permissions";
+import UserContext, { UserContextType } from "@/context/UserContext";
 
 interface Props {
 	navHandler: () => void;
@@ -16,6 +18,7 @@ interface Props {
 
 export const Header = (props: Props) => {
 	const navigate = useNavigate();
+	const { User } = useContext(UserContext) as UserContextType;
 
 	return (
 		<header className="row">
@@ -23,7 +26,10 @@ export const Header = (props: Props) => {
 				<IconMenu size="80%" color="#fff" />
 			</span>
 
-			<span className={styles.logo} onClick={() => props.navHandler()}>
+			<span
+				className={styles.logo}
+				onClick={() => navigate(handleMainPage(User!.permissions[1]))}
+			>
 				<Logo color="#fff" size="60%" />
 			</span>
 

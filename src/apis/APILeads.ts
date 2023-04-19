@@ -20,10 +20,15 @@ export const LeadAPI = {
 				throw new Error(error);
 			});
 	},
-	getAll: async function (type: string, agency: string, page: number) {
+	getAll: async function (
+		type: string,
+		agency: string,
+		UserId: string,
+		page: number
+	) {
 		return api
 			.request({
-				url: `/lead/?AgencyId=${agency}&phase=${type}&page=${page}&limit=10`,
+				url: `/lead/?AgencyId=${agency}&phase=${type}&page=${page}&limit=10&UserId=${UserId}`,
 				//url: `/lead/?AgencyId=14&phase=en-cierre&page=1&limit=10`,
 				method: "GET",
 			})

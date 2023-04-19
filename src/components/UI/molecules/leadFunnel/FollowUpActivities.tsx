@@ -7,6 +7,9 @@ import { LeadDataType } from "@/models";
 import { useMutation } from "react-query";
 import { LeadAPI } from "@/apis";
 import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
+import CurrentLeadContext, {
+	CurrentLeadContextType,
+} from "@/context/CurrentLeadContext";
 
 const goTo = (url: string) => () => {
 	window.open(url, "_blank");
@@ -19,6 +22,10 @@ interface AuctionProps {
 }
 
 export const FollowUpActivities = (props: AuctionProps) => {
+	const { CurrentLead } = useContext(
+		CurrentLeadContext
+	) as CurrentLeadContextType;
+
 	const cotizaciones = [
 		{
 			title: "Cotización Contado",
