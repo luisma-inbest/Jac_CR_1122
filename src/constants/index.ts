@@ -2,6 +2,7 @@ const enviroment: string = "prod"; // local, dev, prod
 //--------------------------------------------
 var Domain: string;
 var Backend: string;
+var Cognito: string;
 var poolData: any;
 
 switch (enviroment) {
@@ -21,7 +22,6 @@ switch (enviroment) {
 			UserPoolId: "us-east-1_Um0V3IHnS",
 			ClientId: "52nj5l30o4sm7813o419ms82va",
 		};
-
 		break;
 	case "prod":
 		Domain =

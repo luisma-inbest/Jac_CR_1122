@@ -37,7 +37,7 @@ export const UserAPI = {
 				method: "GET",
 			})
 			.then((response) => {
-				console.log("todo bien", response.data.data);
+				// console.log("todo bien", response.data.data);
 				return response.data.data;
 			})
 			.catch((error: any) => {
@@ -68,7 +68,7 @@ export const UserAPI = {
 				method: "POST",
 				data: { data: user },
 			});
-			console.log(response.data);
+			// console.log(response.data);
 			let newId = response.data.id;
 			user.userId = String(newId);
 			const cognitoresponse = await validateCognitoUser(user);
@@ -87,7 +87,20 @@ export const UserAPI = {
 		try {
 			const response = await api.request({
 				url: `/user/${id}`,
-				method: "Delete",
+				method: "DELETE",
+			});
+			// console.log("resp:", response.data);
+			return response.data.data;
+		} catch (error) {
+			console.log(error);
+		}
+	},
+	filterSellers: async function (agency: string, roles: string[]) {
+		let rolesQuery = roles.map((role) => `role=${role}`).join("&");
+		try {
+			const response = await api.request({
+				url: `/user/?AgencyId=${agency}&${rolesQuery}`,
+				method: "GET",
 			});
 			// console.log("resp:", response.data);
 			return response.data.data;

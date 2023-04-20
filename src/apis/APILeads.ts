@@ -20,10 +20,15 @@ export const LeadAPI = {
 				throw new Error(error);
 			});
 	},
-	getAll: async function (type: string, agency: string, page: number) {
+	getAll: async function (
+		type: string,
+		agency: string,
+		UserId: string,
+		page: number
+	) {
 		return api
 			.request({
-				url: `/lead/?AgencyId=${agency}&phase=${type}&page=${page}&limit=10`,
+				url: `/lead/?AgencyId=${agency}&phase=${type}&page=${page}&limit=10&UserId=${UserId}`,
 				//url: `/lead/?AgencyId=14&phase=en-cierre&page=1&limit=10`,
 				method: "GET",
 			})
@@ -109,7 +114,7 @@ export const LeadAPI = {
 				throw new Error(error);
 			});
 	},
-	editInfo: async function (leadId: number, data: any) {
+	editInfo: async function (leadId: string, data: any) {
 		return api
 			.request({
 				url: `/lead/${leadId}`,
@@ -117,7 +122,7 @@ export const LeadAPI = {
 				data: data,
 			})
 			.then((response) => {
-				return response.data.data;
+				return response.data;
 			})
 			.catch((error: any) => {
 				if (error.response) {

@@ -3,6 +3,9 @@ import styles from "./LeadData.module.css";
 import { IconMail, IconPhone, carExample } from "@/assets";
 import { LeadDataType } from "@/models";
 import UserContext, { UserContextType } from "@/context/UserContext";
+import CurrentLeadContext, {
+	CurrentLeadContextType,
+} from "@/context/CurrentLeadContext";
 
 interface Props {
 	lead: LeadDataType;
@@ -11,13 +14,15 @@ interface Props {
 export const LeadData = (props: Props) => {
 	const { User } = useContext(UserContext) as UserContextType;
 	const [permissions, setPermissions] = useState<boolean>(false);
-	console.log(props.lead);
 	const colorSecondary = getComputedStyle(
 		document.documentElement
 	).getPropertyValue("--secondary-text");
 
 	const [product, setProduct] = useState<any>({});
 	const [isProduct, setIsProduct] = useState<boolean>(false);
+	const { CurrentLead } = useContext(
+		CurrentLeadContext
+	) as CurrentLeadContextType;
 
 	const pickPhaseColor = (phase: string) => {
 		switch (phase) {
@@ -147,6 +152,11 @@ export const LeadData = (props: Props) => {
 				<p className="p4 semi-bold highlight">
 					{props.lead.LeadOrigin.slug}
 				</p>
+			</div>
+
+			<div className={`col-xs-12 mt-4  ${styles.groupData}`}>
+				<p className="p4 semi-bold secondary">Asesor</p>
+				<p className="p4 semi-bold highlight">{props.lead.UserId}</p>
 			</div>
 
 			{/* <div className={`col-xs-12 mt-4  ${styles.groupData}`}>
