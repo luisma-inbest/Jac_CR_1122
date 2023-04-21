@@ -1,11 +1,10 @@
-import React, {useContext, useState} from "react";
+import React, { useContext, useState } from "react";
 
-import {Chart, Bar} from "react-chartjs-2";
-import {Chart as ChartJS, registerables} from "chart.js";
-import * as chartjs from "chart.js";
+import { Chart, Bar } from "react-chartjs-2";
+import { Chart as ChartJS, registerables } from "chart.js";
 ChartJS.register(...registerables);
 
-import {UserData} from "./Data";
+import { UserData } from "./Data";
 
 interface Props {
 	axis: string;

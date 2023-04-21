@@ -120,7 +120,10 @@ export const LeadFunnel = (props: Props) => {
 			<p className="p3 secondary bold">{titles[props.leadPhase] || ""}</p>
 			{phases[props.leadPhase]}
 
-			{User?.permissions[1] === "hostess" ? (
+			{User?.permissions[1] === "manager" ||
+			User?.permissions[1] === "coordinator" ||
+			User?.permissions[1] === "bdc" ||
+			User?.permissions[1] === "hostess" ? (
 				<HostessActivities leadData={props.leadData} />
 			) : (
 				<></>
