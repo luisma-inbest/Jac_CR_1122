@@ -36,6 +36,7 @@ export const LeadsTable = (props: Props) => {
 	//Component Functions
 	//This function gives the userId Value given the role
 	function getUserId() {
+		// if (props.type == 0) return "";
 		if (
 			User!.permissions[1] == "coordinator" ||
 			User!.permissions[1] == "bdc" ||
