@@ -59,6 +59,7 @@ export const CreateLead = (props: Props) => {
 		setPage(page - 1);
 	}
 
+	//TODO: delete the function
 	function borrar() {
 		let url: any =
 			"https://0roolpkdy5.execute-api.us-east-1.amazonaws.com/lead/";
@@ -92,6 +93,7 @@ export const CreateLead = (props: Props) => {
 
 		console.log("sumbmiting form...", fields);
 
+		//TODO: verify the mutation is not comented
 		addLeadMutation.mutate();
 		// borrar();
 
