@@ -8,6 +8,8 @@ import {
 	StyledTextArea,
 	StyledInputSelect,
 	StyledSelect,
+	StyledFlotatingWindow,
+	StyledFlotatingCard,
 } from "@/components/UI/atoms";
 import { IconCross } from "@/assets";
 import { LeadActivityType } from "@/models";
@@ -18,7 +20,6 @@ import { reducer, initial } from "./reducer";
 import activitytypes from "./activitiyTypes";
 
 interface Props {
-	func: () => void;
 	LeadId: number;
 }
 
@@ -67,81 +68,72 @@ export const RegisterActivity = (props: Props) => {
 	}, []);
 
 	return (
-		<div id="back" className={`${styles.window}`}>
-			<div className={`content-side ${styles.card}`}>
-				<h5 className="bold mb-0">Registrar Actividad</h5>
-				<span className={styles.iconContainer} onClick={props.func}>
-					<IconCross color={red} size="100%" />
-				</span>
-				<form
-					className={`mt-2 ${styles.form}`}
-					action=""
-					onSubmit={(e) => e.preventDefault()}
-				>
-					<StyledSelect
-						customType="secondary"
-						defaultValue=""
-						onChange={(e) =>
-							dispatch({
-								type: "typeActivity",
-								value: e.target.value,
-							})
-						}
-					>
-						<option value="" disabled>
-							*-- Tipo --
-						</option>
-						{activitytypes.map((type: any) => (
-							<option value={type.slug} key={type.slug}>
-								{type.description}
-							</option>
-						))}
-					</StyledSelect>
+		<form
+			className={`mt-2 ${styles.form}`}
+			action=""
+			onSubmit={(e) => e.preventDefault()}
+		>
+			<StyledSelect
+				customType="secondary"
+				defaultValue=""
+				onChange={(e) =>
+					dispatch({
+						type: "typeActivity",
+						value: e.target.value,
+					})
+				}
+			>
+				<option value="" disabled>
+					*-- Tipo --
+				</option>
+				{activitytypes.map((type: any) => (
+					<option value={type.slug} key={type.slug}>
+						{type.description}
+					</option>
+				))}
+			</StyledSelect>
 
-					<Input
-						placeholder="Titulo"
-						inputType="text"
-						type="reducer"
-						value={fields.title}
-						params={{
-							dispatch: dispatch,
-							dispType: "title",
-						}}
-					/>
+			<Input
+				placeholder="Titulo"
+				inputType="text"
+				type="reducer"
+				value={fields.title}
+				params={{
+					dispatch: dispatch,
+					dispType: "title",
+				}}
+			/>
 
-					<StyledTextArea
-						placeholder="Comentarios"
-						value={fields.comments}
-						onChange={(e) =>
-							dispatch({
-								type: "commentsActivity",
-								value: e.target.value,
-							})
-						}
-					></StyledTextArea>
+			<StyledTextArea
+				placeholder="Comentarios"
+				value={fields.comments}
+				onChange={(e) =>
+					dispatch({
+						type: "commentsActivity",
+						value: e.target.value,
+					})
+				}
+			></StyledTextArea>
 
-					<StyledInputSelect
-						value={fields.status}
-						onChange={(e) =>
-							dispatch({ type: "status", value: e.target.value })
-						}
-					>
-						<option value="1" selected disabled>
-							-- Estado --
-						</option>
-						<option value="success">Exitoso</option>
-						<option value="fail">Fallido</option>
-					</StyledInputSelect>
-					<StyledInputSubmit
-						value="Registrar"
-						customType="primary"
-						onClick={formHandler}
-					/>
-				</form>
-				<span className="buttonContainer">
-					<Button func={props.func} text="cancelar" full={false} />
-				</span>
-			</div>
-		</div>
+			<StyledSelect
+				customType="secondary"
+				defaultValue="1"
+				onChange={(e) =>
+					dispatch({ type: "status", value: e.target.value })
+				}
+			>
+				<option value="1" disabled>
+					-- Estado --
+				</option>
+				<option value="success">Exitoso</option>
+				<option value="fail">Fallido</option>
+			</StyledSelect>
+
+			<StyledInputSubmit
+				value="Registrar"
+				customType="primary"
+				onClick={formHandler}
+			/>
+		</form>
 	);
 };

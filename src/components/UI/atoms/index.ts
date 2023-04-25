@@ -8,6 +8,7 @@ import {
 } from "./StyledInputs";
 import { StyledTextArea } from "./StyledTextArea";
 import { StyledSelect } from "./StyledSelect";
+import { StyledFlotatingWindow, StyledFlotatingCard } from "./FlotatingWindow";
 
 import { NavbarLink } from "./StyledLink";
 import { NavbarHeader } from "./navbarHeader";
@@ -46,6 +47,8 @@ export {
 	StyledInputSelect,
 	StyledTextArea,
 	StyledSelect,
+	StyledFlotatingWindow,
+	StyledFlotatingCard,
 	Input,
 	MenuItem,
 	NavbarLink,

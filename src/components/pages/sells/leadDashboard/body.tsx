@@ -14,12 +14,16 @@ import { LeadAPI } from "@/apis";
 import { useMutation, useQuery } from "react-query";
 import { LeadDataType } from "@/models";
 import { initial } from "../createLead/reducer";
+import { FlotatingWindow } from "@/components/UI/molecules/FLotatingWIndow";
 import UserContext, { UserContextType } from "@/context/UserContext";
 import CurrentLeadContext, {
 	CurrentLeadProvider,
 	CurrentLeadContextType,
 } from "@/context/CurrentLeadContext";
+
 import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
+
+import LeadWindowContext, { LeadWindowContextType } from "@/context/LeadWindow";
 
 let initialData: LeadDataType = {
 	id: -1,
@@ -43,7 +47,6 @@ let initialData: LeadDataType = {
 
 export const Body = () => {
 	let { leadId } = useParams();
-	const [leadView, setLeadView] = useState(false);
 	const [leadData, setLeadData] = useState<LeadDataType>(initialData);
 	const [refresh, setRefresh] = useState(false);
 	const [runEffect, setRunEffect] = useState(false);
@@ -52,11 +55,16 @@ export const Body = () => {
 		AlertsContext
 	) as AlertsContextType;
 
+	const {
+		ShowLeadWindow,
+		SetShowLeadWindow,
+		FLotatingWindowContent,
+		SetFLotatingWindowContent,
+	} = useContext(LeadWindowContext) as LeadWindowContextType;
+
 	const { CurrentLead } = useContext(
 		CurrentLeadContext
 	) as CurrentLeadContextType;
-
-	console.log("\n\n\n Esto es una prueba:", CurrentLead, " \n\n\n");
 
 	function verifyLead() {
 		return (
@@ -168,10 +176,10 @@ export const Body = () => {
 	}
 
 	const windowHandler = () => {
-		if (!leadView) {
+		if (!ShowLeadWindow) {
 			window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 		}
-		setLeadView(!leadView);
+		SetShowLeadWindow(!ShowLeadWindow);
 	};
 
 	// const PageTabs = ["Datos", "Funnel", "Chat", "Historial"];
@@ -207,8 +215,12 @@ export const Body = () => {
 					</div>
 				</div>
 			</div>
-			{leadView ? (
-				<RegisterActivity func={windowHandler} LeadId={leadData.id} />
+			{ShowLeadWindow ? (
+				<FlotatingWindow
+					func={windowHandler}
+					header="Crear Actividdad"
+					content={<RegisterActivity LeadId={leadData.id} />}
+				/>
 			) : (
 				<></>
 			)}
