@@ -1,11 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useReducer, useContext, useState } from "react";
 import {
+	Input,
 	Button,
 	CardFunnel,
 	StyledInputSelect,
 	StyledSelect,
 } from "@/components/UI/atoms";
 import styles from "./LeadFunnel.module.css";
+//import { reducer, initial } from "./reducer";
 import { IconCheck, IconWhatsapp } from "@/assets";
 import { BasicBody } from "./Activities";
 import { LeadDataType } from "@/models";
@@ -20,6 +22,7 @@ interface AuctionProps {
 }
 
 export const ClosingSellsActivities = (props: AuctionProps) => {
+	//const [fields, dispatch] = useReducer(reducer, initial);
 	const [radioValue, setRadioValue] = useState({
 		nuevo: true,
 		demo: false,
@@ -65,16 +68,18 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 							mainText="Unidad VIN"
 							icon={<IconCheck size="100%" color="#000" />}
 							cardContent={
+								<>
 								<BasicBody
-									buttonText="Registrar"
-									buttonFunc={() => {
-										return;
-									}}
-									alternativeText=""
-									alternativeFunc={() => {
-										return;
-									}}
+										buttonText="Registrar"
+										buttonFunc={() => {
+											return;
+										} }
+										alternativeText=""
+										alternativeFunc={() => {
+											return;
+										} } 
 								/>
+								</>
 							}
 						/>
 
@@ -304,43 +309,19 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 			/>
 
 			<CardFunnel
-				mainText="Post Venta"
+				mainText="Cerrar Venta"
 				icon={<IconCheck size="100%" color="#000" />}
 				cardContent={
-					<div className={styles.cardContainerChecklist}>
-						{/* task */}
-						<div>
-							<p className="p4 bold secondary">
-								Agradecimiento de compra
-							</p>
-							{/* <input type="checkbox" name="scales" checked={true} /> */}
-							<input type="checkbox" name="scales" />
-						</div>
-						{/* task */}
-						<div>
-							<p className="p4 bold secondary">
-								Programacion de citas de mantemiento preventivo
-							</p>
-							{/* <input type="checkbox" name="scales" checked={true} /> */}
-							<input type="checkbox" name="scales" />
-						</div>
-						{/* task */}
-						<div>
-							<p className="p4 bold secondary">
-								Solicitud de referidos
-							</p>
-							{/* <input type="checkbox" name="scales" checked={true} /> */}
-							<input type="checkbox" name="scales" />
-						</div>
-						{/* task */}
-						<div>
-							<p className="p4 bold secondary">
-								Seguimiento periodico
-							</p>
-							{/* <input type="checkbox" name="scales" checked={true} /> */}
-							<input type="checkbox" name="scales" />
-						</div>
-					</div>
+					<BasicBody
+						buttonText="Guardar"
+						buttonFunc={() => {
+							return;
+						}}
+						alternativeText=""
+						alternativeFunc={() => {
+							return;
+						}}
+					/>
 				}
 			/>
 		</>

@@ -70,17 +70,16 @@ export const LeadRow = (props: Props) => {
 					</p>
 				</Link>
 			</td>
-
 			<td>
-				<p className="p4 secondary no-margin">{props.user || ""}</p>
+				<p className={`p4 secondary no-margin ${pickColor()}`}>
+					{days} días - {hours}:{minutes}:{seconds}
+				</p>
 			</td>
 			<td>
 				<p className="p4 secondary no-margin">{props.status || ""}</p>
 			</td>
 			<td>
-				<p className={`p4 secondary no-margin ${pickColor()}`}>
-					{days} días - {hours}:{minutes}:{seconds}
-				</p>
+				<p className="p4 secondary no-margin">{props.user || ""}</p>
 			</td>
 			<td>
 				<p className="p4 secondary no-margin">
