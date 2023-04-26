@@ -16,7 +16,6 @@ import { LeadAPI } from "@/apis";
 
 interface AuctionProps {
 	leadData: LeadDataType;
-	activityHandler: (activity: string) => void;
 }
 
 export const ClosingSellsActivities = (props: AuctionProps) => {

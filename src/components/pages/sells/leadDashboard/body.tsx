@@ -25,29 +25,8 @@ import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
 
 import LeadWindowContext, { LeadWindowContextType } from "@/context/LeadWindow";
 
-let initialData: LeadDataType = {
-	id: -1,
-	leadName: "",
-	leadEmails: [""],
-	leadPhones: [""],
-	leadPhase: {
-		id: -1,
-		description: "",
-		slug: "",
-		createdAt: "",
-		updatedAt: "",
-	},
-	LeadInterests: [],
-	LeadActivities: [],
-	LeadOrigin: "",
-	createdAt: new Date(),
-	updatedAt: new Date(),
-	UserId: -1,
-};
-
 export const Body = () => {
 	let { leadId } = useParams();
-	const [leadData, setLeadData] = useState<LeadDataType>(initialData);
 	const [refresh, setRefresh] = useState(false);
 	const [runEffect, setRunEffect] = useState(false);
 	const { User } = useContext(UserContext) as UserContextType;
@@ -62,13 +41,13 @@ export const Body = () => {
 		SetFLotatingWindowContent,
 	} = useContext(LeadWindowContext) as LeadWindowContextType;
 
-	const { CurrentLead } = useContext(
+	const { CurrentLead, SetCurrentLead } = useContext(
 		CurrentLeadContext
 	) as CurrentLeadContextType;
 
 	function verifyLead() {
 		return (
-			leadData.leadPhase.slug === "subasta" &&
+			CurrentLead.leadPhase.slug === "subasta" &&
 			(User?.permissions.includes("coordinator") ||
 				User?.permissions.includes("bdc") ||
 				User?.permissions.includes("adviser-digital") ||
@@ -94,7 +73,7 @@ export const Body = () => {
 					"Exito",
 					"El lead se ha asignado correctamente"
 				);
-				LeadAPI.nextPhase(leadData.id)
+				LeadAPI.nextPhase(CurrentLead.id)
 					.then((res) => {
 						createAlert(
 							"success",
@@ -121,7 +100,7 @@ export const Body = () => {
 			});
 	}
 	useEffect(() => {
-		console.log("useEffect", leadData.leadPhase.slug);
+		// console.log("useEffect", CurrentLead.leadPhase.slug);
 		if (verifyLead()) {
 			console.log("es subasta");
 			updateLead();
@@ -129,11 +108,12 @@ export const Body = () => {
 	}, [runEffect]);
 
 	const { isLoading, data, isError, error } = useQuery({
-		queryKey: [`lead-${leadId}`, [refresh, leadData]],
+		queryKey: [`lead-${leadId}`, [refresh]],
 		queryFn: () => LeadAPI.getLead(String(leadId)),
 		onSuccess: (data) => {
 			console.log("exito", data);
-			setLeadData({
+
+			SetCurrentLead({
 				id: data.id,
 				leadName: data.firstAndLastName,
 				leadEmails: data.LeadEmails || [""],
@@ -147,6 +127,7 @@ export const Body = () => {
 				UserId: data.UserId,
 				rfc: data.rfc,
 			});
+
 			setRunEffect(true);
 			console.log("actividades", data.LeadActivities);
 		},
@@ -175,27 +156,19 @@ export const Body = () => {
 		);
 	}
 
-	const windowHandler = () => {
-		if (!ShowLeadWindow) {
-			window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-		}
-		SetShowLeadWindow(!ShowLeadWindow);
-	};
-
 	// const PageTabs = ["Datos", "Funnel", "Chat", "Historial"];
 	const PageTabs = ["Datos", "Funnel", "Chat", "Historial"];
-	const TabOne = <LeadData lead={leadData} />;
+	const TabOne = <LeadData lead={CurrentLead} />;
 	const TabTwo = (
 		<LeadFunnel
-			activityHandler={windowHandler}
-			leadPhase={leadData.leadPhase.slug}
-			leadData={leadData}
+			leadPhase={CurrentLead.leadPhase.slug}
+			leadData={CurrentLead}
 			refresher={setRefresh}
 			refresh={refresh}
 		/>
 	);
 	const TabThree = <LeadChat />;
-	const TabFour = <LeadHistory activities={leadData.LeadActivities} />;
+	const TabFour = <LeadHistory activities={CurrentLead.LeadActivities} />;
 	const TabsComponents = [TabOne, TabTwo, TabThree, TabFour];
 
 	return (
@@ -203,7 +176,7 @@ export const Body = () => {
 			<div className={`contentVerticalPadding ${styles.mainContainer}`}>
 				<div className="row">
 					<div className={`col-xs-12 col-md-6 ${styles.userData}`}>
-						<LeadData lead={leadData} />
+						<LeadData lead={CurrentLead} />
 					</div>
 					<div className={`col-xs-12  col-md-6 `}>
 						<Tabs
@@ -215,15 +188,7 @@ export const Body = () => {
 					</div>
 				</div>
 			</div>
-			{ShowLeadWindow ? (
-				<FlotatingWindow
-					func={windowHandler}
-					header="Crear Actividdad"
-					content={<RegisterActivity LeadId={leadData.id} />}
-				/>
-			) : (
-				<></>
-			)}
+			{ShowLeadWindow ? <FlotatingWindow /> : <></>}
 		</>
 	);
 };

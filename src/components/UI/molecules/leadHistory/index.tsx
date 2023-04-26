@@ -11,7 +11,7 @@ export const LeadHistory = (props: Props) => {
 		<div className={styles.tab}>
 			{/* <p className="p3 secondary bold">1er Contacto</p> */}
 			{props.activities.map((leadContact, index) => {
-				console.log(leadContact.date);
+				// console.log(leadContact.date);
 				return (
 					<CardHistory
 						key={index}

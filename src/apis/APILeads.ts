@@ -79,7 +79,7 @@ export const LeadAPI = {
 				throw new Error(error);
 			});
 	},
-	addActivity: async function (leadId: number, activity: LeadActivityType) {
+	addActivity: async function (activity: LeadActivityType) {
 		return api
 			.request({
 				url: `/leadActivity`,

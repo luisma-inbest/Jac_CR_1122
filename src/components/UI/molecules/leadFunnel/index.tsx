@@ -19,9 +19,11 @@ import { ClosingSellsActivities } from "./ClosingSellActivities";
 import { LeadDataType } from "@/models";
 import { HostessActivities } from "./HostessActivities";
 import UserContext, { UserContextType } from "@/context/UserContext";
+import LeadWindowContext, { LeadWindowContextType } from "@/context/LeadWindow";
+import { RegisterActivity } from "../registerActivity";
+import { windowTop } from "@/utils/functions";
 
 interface Props {
-	activityHandler: () => void;
 	leadPhase: string;
 	leadData: LeadDataType;
 	refresher: (val: boolean) => void;
@@ -32,6 +34,9 @@ export const LeadFunnel = (props: Props) => {
 	const { Alerts, SetAlerts, createAlert } = useContext(
 		AlertsContext
 	) as AlertsContextType;
+	const { ShowLeadWindow, SetShowLeadWindow, SetLeadWindow } = useContext(
+		LeadWindowContext
+	) as LeadWindowContextType;
 
 	function nextPhaseLead() {
 		LeadAPI.nextPhase(props.leadData.id)
@@ -82,12 +87,7 @@ export const LeadFunnel = (props: Props) => {
 		"en-cierre": "Cierre de Venta",
 	};
 	const phases: any = {
-		all: (
-			<Activities
-				leadData={props.leadData}
-				activityHandler={props.activityHandler}
-			/>
-		),
+		all: <Activities leadData={props.leadData} />,
 		subasta: (
 			<AuctionActivities
 				leadData={props.leadData}
@@ -103,16 +103,10 @@ export const LeadFunnel = (props: Props) => {
 		seguimiento: (
 			<FollowUpActivities
 				leadData={props.leadData}
-				activityHandler={props.activityHandler}
 				nextPhaseLead={nextPhaseLead}
 			/>
 		),
-		"en-cierre": (
-			<ClosingSellsActivities
-				leadData={props.leadData}
-				activityHandler={props.activityHandler}
-			/>
-		),
+		"en-cierre": <ClosingSellsActivities leadData={props.leadData} />,
 	};
 
 	return (
@@ -138,7 +132,12 @@ export const LeadFunnel = (props: Props) => {
 				cardContent={
 					<BasicBody
 						buttonText="Crear Actividad"
-						buttonFunc={() => props.activityHandler()}
+						buttonFunc={() => {
+							SetLeadWindow(
+								"Registrar Nueva Actividad",
+								<RegisterActivity></RegisterActivity>
+							);
+						}}
 						alternativeText=""
 						alternativeFunc={() => {
 							return;

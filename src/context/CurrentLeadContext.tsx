@@ -31,9 +31,10 @@ let initialData: LeadDataType = {
 	LeadInterests: [],
 	LeadActivities: [],
 	LeadOrigin: "",
+	rfc: "",
+	UserId: -1,
 	createdAt: new Date(),
 	updatedAt: new Date(),
-	UserId: -1,
 };
 
 // esta función es el provider, es decir el que le brindará la información a todos los children

@@ -5,6 +5,7 @@ import React, {
 	type Dispatch,
 } from "react";
 import { ContextChilds } from "@/models/contextChilds";
+import { windowTop } from "@/utils/functions";
 
 // user methods
 // este se usa principalmente en las llamadas para definir el tipado
@@ -13,6 +14,9 @@ export type LeadWindowContextType = {
 	SetShowLeadWindow: (value: boolean) => void;
 	FLotatingWindowContent: JSX.Element;
 	SetFLotatingWindowContent: (value: JSX.Element) => void;
+	Header: string;
+	SetHeader: (value: string) => void;
+	SetLeadWindow: (header: string, content: JSX.Element) => void;
 };
 
 export const LeadWindowContext = React.createContext({});
@@ -22,7 +26,15 @@ export const LeadWindowContext = React.createContext({});
 export const LeadWindowProvider = ({ children }: ContextChilds) => {
 	const [ShowLeadWindow, SetShowLeadWindow] = useState<boolean>(false);
 	const [FLotatingWindowContent, SetFLotatingWindowContent] =
-		useState<JSX.Element>();
+		useState<JSX.Element>(<></>);
+	const [Header, SetHeader] = useState<string>("");
+
+	function SetLeadWindow(header: string, content: JSX.Element) {
+		windowTop();
+		SetHeader(header);
+		SetFLotatingWindowContent(content);
+		SetShowLeadWindow(true);
+	}
 
 	return (
 		<LeadWindowContext.Provider
@@ -31,6 +43,9 @@ export const LeadWindowProvider = ({ children }: ContextChilds) => {
 				SetShowLeadWindow,
 				FLotatingWindowContent,
 				SetFLotatingWindowContent,
+				Header,
+				SetHeader,
+				SetLeadWindow,
 			}}
 		>
 			{children}

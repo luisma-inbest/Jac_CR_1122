@@ -10,3 +10,11 @@ export const getBase64 = (file: any) => {
 		};
 	});
 };
+
+export const windowTop = () => {
+	window.scrollTo({
+		top: 0,
+		left: 0,
+		behavior: "smooth",
+	});
+};

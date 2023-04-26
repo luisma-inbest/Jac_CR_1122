@@ -12,8 +12,12 @@
 	font-weight: 600;
 }
 
-.status {
-	color: #d63944;
+.statusTrue {
+	color: var(--green);
+	text-align: right;
+}
+.statusFalse {
+	color: var(--red);
 	text-align: right;
 }
 

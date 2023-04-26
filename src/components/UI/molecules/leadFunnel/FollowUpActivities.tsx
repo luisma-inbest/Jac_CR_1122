@@ -17,7 +17,6 @@ const goTo = (url: string) => () => {
 
 interface AuctionProps {
 	leadData: LeadDataType;
-	activityHandler: (activity: string) => void;
 	nextPhaseLead: () => void;
 }
 
