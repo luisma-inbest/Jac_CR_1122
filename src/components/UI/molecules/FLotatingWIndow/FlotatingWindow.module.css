@@ -1,0 +1,8 @@
+.iconContainer {
+	height: 2rem;
+	width: 2rem;
+	cursor: pointer;
+	position: absolute;
+	left: 1rem;
+	top: 1.5rem;
+}

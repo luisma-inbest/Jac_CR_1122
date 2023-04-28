@@ -5,6 +5,7 @@ import { CreateLead } from "./createLead";
 import { SellerProfile } from "./sellerProfile";
 import { CreateAgendaEvent } from "./createAgendaEvent";
 import { Agenda } from "./agenda";
+import { SearchLeads } from "./searchLeads";
 
 export {
 	SellsDashboard,
@@ -14,4 +15,5 @@ export {
 	SellerProfile,
 	CreateAgendaEvent,
 	Agenda,
+	SearchLeads,
 };

@@ -79,7 +79,6 @@ export const RegisterActivity = (props: Props) => {
 			action=""
 			onSubmit={(e) => e.preventDefault()}
 		>
-			<h2>El id es: {CurrentLead.id}</h2>
 			<StyledSelect
 				customType="secondary"
 				defaultValue=""

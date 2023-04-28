@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useReducer, useState } from "react";
-import styles from "./RegisterActivity.module.css";
+import styles from "./FlotatingWindow.module.css";
 import {
 	StyledInputText,
 	Button,

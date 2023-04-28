@@ -21,7 +21,7 @@ import { HostessActivities } from "./HostessActivities";
 import UserContext, { UserContextType } from "@/context/UserContext";
 import LeadWindowContext, { LeadWindowContextType } from "@/context/LeadWindow";
 import { RegisterActivity } from "../registerActivity";
-import { windowTop } from "@/utils/functions";
+import { RuleOutActivity } from "../ruleOutActivity";
 
 interface Props {
 	leadPhase: string;
@@ -52,29 +52,6 @@ export const LeadFunnel = (props: Props) => {
 				createAlert(
 					"error",
 					"Error al actualizar fase",
-					"Hubo un error"
-				);
-			});
-	}
-
-	function ruleOutLead(phase: string) {
-		let data = {
-			newPhase: phase,
-		};
-		console.log(data);
-		LeadAPI.ruleOut(props.leadData.id, data)
-			.then((res) => {
-				createAlert(
-					"success",
-					"Lead descartado",
-					"El estatus del lead ha cambiado"
-				);
-				props.refresher(!props.refresh);
-			})
-			.catch((err) => {
-				createAlert(
-					"error",
-					"Error al descartar lead",
 					"Hubo un error"
 				);
 			});
@@ -152,9 +129,19 @@ export const LeadFunnel = (props: Props) => {
 				cardContent={
 					<BasicBody
 						buttonText="Congelar"
-						buttonFunc={() => ruleOutLead("congelado")}
+						buttonFunc={() =>
+							SetLeadWindow(
+								"Congelar Lead",
+								<RuleOutActivity ruleOutType="freeze"></RuleOutActivity>
+							)
+						}
 						alternativeText="Futura Compra"
-						alternativeFunc={() => ruleOutLead("futura-venta")}
+						alternativeFunc={() =>
+							SetLeadWindow(
+								"Lead Futura Compra",
+								<RuleOutActivity ruleOutType="future-sell"></RuleOutActivity>
+							)
+						}
 					/>
 				}
 			/>

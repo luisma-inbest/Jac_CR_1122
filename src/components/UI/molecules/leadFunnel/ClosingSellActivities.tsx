@@ -31,12 +31,12 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 	) as AlertsContextType;
 
 	const [editVin, setEditVin] = useState(false);
-	const [vin, setVin] = useState(props.leadData.rfc);
+	const [vin, setVin] = useState("");
 	const [metodoPago, setMetodoPago] = useState("0");
 	const [seguroFinanciado, setSeguroFinanciado] = useState("0");
 	const [aseguradora, setAseguradora] = useState("0");
 
-	const editRFCFunc = useMutation({
+	const editVINFunc = useMutation({
 		mutationFn: () =>
 			LeadAPI.editInfo(String(props.leadData.id), {
 				data: {
@@ -45,7 +45,7 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 			}),
 		onSuccess(data, variables, context) {
 			console.log(data);
-			createAlert("success", "Lead Actualizado", "El RFC se actualizó");
+			createAlert("success", "Venta actualizada", "El VIN se actualizó");
 		},
 		onError(error, variables, context) {
 			console.log(error);
@@ -64,16 +64,27 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 							mainText="Unidad VIN"
 							icon={<IconCheck size="100%" color="#000" />}
 							cardContent={
-								<BasicBody
-									buttonText="Registrar"
-									buttonFunc={() => {
-										return;
-									}}
-									alternativeText=""
-									alternativeFunc={() => {
-										return;
-									}}
-								/>
+								<div className={styles.cardContainerClasic}>
+									<input
+										className={styles.input}
+										placeholder="VIN"
+										value={vin!}
+										disabled={!editVin}
+										type="text"
+										onChange={(e) => setVin(e.target.value)}
+									/>
+									<Button
+										text={editVin ? "Guardar" : "Editar"}
+										func={() => {
+											if (editVin) {
+												console.log("llamo backend");
+												editVINFunc.mutate();
+											}
+											setEditVin(!editVin);
+										}}
+										full={false}
+									/>
+								</div>
 							}
 						/>
 

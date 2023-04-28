@@ -1,17 +1,18 @@
-import {LeadsTable} from "../organisms";
-import {LeadData} from "./leadData";
-import {LeadChat} from "./leadChat";
-import {LeadFunnel} from "./leadFunnel";
-import {LeadHistory} from "./leadHistory";
-import {RegisterActivity} from "./registerActivity";
-import {LeadRow} from "./leadRow";
-import {UserRow} from "./userRow";
-import {AgencyRow} from "./agencyRow";
-import {ProductRow} from "./productRow";
-import {SalesInfoCard} from "./salesInfoCard";
-import {PieChartLabel} from "./pieChartLabel";
-import {StackedBarChartLabel} from "./stackedBarChartLabel";
-import {DropdownMenu} from "./dropdownMenu";
+import { LeadsTable } from "../organisms";
+import { LeadData } from "./leadData";
+import { LeadChat } from "./leadChat";
+import { LeadFunnel } from "./leadFunnel";
+import { LeadHistory } from "./leadHistory";
+import { RegisterActivity } from "./registerActivity";
+import { RuleOutActivity } from "./ruleOutActivity";
+import { LeadRow } from "./leadRow";
+import { UserRow } from "./userRow";
+import { AgencyRow } from "./agencyRow";
+import { ProductRow } from "./productRow";
+import { SalesInfoCard } from "./salesInfoCard";
+import { PieChartLabel } from "./pieChartLabel";
+import { StackedBarChartLabel } from "./stackedBarChartLabel";
+import { DropdownMenu } from "./dropdownMenu";
 
 export {
 	LeadsTable,
@@ -19,6 +20,7 @@ export {
 	LeadData,
 	LeadFunnel,
 	RegisterActivity,
+	RuleOutActivity,
 	LeadHistory,
 	SalesInfoCard,
 	PieChartLabel,

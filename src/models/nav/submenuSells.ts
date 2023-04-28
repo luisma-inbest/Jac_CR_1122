@@ -43,9 +43,19 @@ export const submenuSells = [
 	// 	route: "/sells",
 	// },
 	{
-		pos: 1.3,
+		pos: 1.2,
 		text: "Mi Agenda",
 		route: "/sells/agenda",
+	},
+	{
+		pos: 1.3,
+		text: "Leads Congelados",
+		route: "/sells/leads/search/?leadPhase=5",
+	},
+	{
+		pos: 1.4,
+		text: "Futura Venta",
+		route: "/sells/leads/search/?leadPhase=6",
 	},
 	// {
 	// 	pos: 1.3,

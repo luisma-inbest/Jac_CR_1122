@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const StyledFlotatingWindow = styled.div`
 	background-color: rgba(116, 116, 116, 0.6);
-	width: 100vw;
+	width: 100%;
 	height: 100vh;
 
 	display: flex;
