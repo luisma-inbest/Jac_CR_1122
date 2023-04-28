@@ -21,9 +21,9 @@ export default defineConfig({
 				"masked-icon.svg",
 			],
 			manifest: {
-				name: "My Awesome App",
-				short_name: "MyApp",
-				description: "My Awesome App description",
+				name: "JAC CRM",
+				short_name: "CRM",
+				description: "CRM interno para JAC",
 				theme_color: "#ffffff",
 				icons: [
 					{
