@@ -99,9 +99,9 @@ export const LeadsTable = (props: Props) => {
 					<thead>
 						<tr className={styles.tableHeader}>
 							<th className="p4 highlight">Contacto</th>
-							<th className="p4 highlight">Asesor</th>
-							<th className="p4 highlight">Estado</th>
 							<th className="p4 highlight">Ult. Contacto</th>
+							<th className="p4 highlight">Estado</th>
+							<th className="p4 highlight">Asesor</th>
 							<th className={`p4 highlight `}>
 								Fecha
 								<span className={`${styles.iconContainer}`}>
