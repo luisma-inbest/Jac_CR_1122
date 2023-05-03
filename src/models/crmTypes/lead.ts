@@ -36,6 +36,8 @@ export type LeadDataType = {
 	updatedAt: Date;
 	UserId: number;
 	rfc?: string;
+	buyType: string;
+	Sales: any[];
 };
 
 export type LeadActivityType = {

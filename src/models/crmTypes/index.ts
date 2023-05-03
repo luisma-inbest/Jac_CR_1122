@@ -6,6 +6,7 @@ import { ProductRowProps } from "./productTable";
 import { Lead, LeadDataType, LeadActivityType } from "./lead";
 import { Product } from "./product";
 import { AgendaEvent } from "./agenda";
+import { Sale } from "./sale";
 
 export type {
 	User,
@@ -18,4 +19,5 @@ export type {
 	LeadDataType,
 	LeadActivityType,
 	AgendaEvent,
+	Sale,
 };

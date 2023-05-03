@@ -15,7 +15,7 @@ import { AuctionActivities } from "./AuctionActivities";
 import { Activities, BasicBody } from "./Activities";
 import { FirstContactActivities } from "./FirstContactActivities";
 import { FollowUpActivities } from "./FollowUpActivities";
-import { ClosingSellsActivities } from "./ClosingSellActivities";
+import { ClosingSellsActivities } from "./closingActivities/ClosingSellActivities";
 import { LeadDataType } from "@/models";
 import { HostessActivities } from "./HostessActivities";
 import UserContext, { UserContextType } from "@/context/UserContext";

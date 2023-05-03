@@ -25,6 +25,7 @@ let initial: LeadDataType = {
 		createdAt: "",
 		updatedAt: "",
 	},
+	buyType: "",
 	LeadInterests: [],
 	LeadActivities: [],
 	LeadOrigin: "",
@@ -32,6 +33,7 @@ let initial: LeadDataType = {
 	UserId: -1,
 	createdAt: new Date(),
 	updatedAt: new Date(),
+	Sales: [],
 };
 
 function reducer(state: LeadDataType, action: Action): LeadDataType {

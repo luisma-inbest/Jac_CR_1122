@@ -127,11 +127,13 @@ export const Body = () => {
 					updatedAt: data.updatedAt,
 					UserId: data.UserId,
 					rfc: data.rfc,
+					buyType: data.SaleType.description,
+					Sales: data.Sales,
 				},
 			});
 
 			setRunEffect(true);
-			console.log("actividades", data.LeadActivities);
+			// console.log("actividades", data.LeadActivities);
 		},
 		onError: (error) => {
 			console.log("error", error);

@@ -132,6 +132,15 @@ export const LeadData = (props: Props) => {
 							{/* <p className="p3 link"> Ver Detalles </p> */}
 						</div>
 					</div>
+					<div className="mt-3">
+						<p className="p4 semi-bold highlight">
+							Información Venta
+						</p>
+						<p className="p2">{CurrentLead.buyType}</p>
+						<p className="p2">
+							{CurrentLead.LeadInterests[0].quantity} unidad(es)
+						</p>
+					</div>
 				</div>
 			) : (
 				<div className="mt-2">

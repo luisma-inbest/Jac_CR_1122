@@ -9,6 +9,7 @@ import {
 	LeadActivityType,
 	Product,
 	AgendaEvent,
+	Sale,
 } from "./crmTypes";
 //
 import { SellsRoutes, ProductRoutes, AdminRoutes } from "./routes";
@@ -24,6 +25,7 @@ export type {
 	LeadActivityType,
 	Product,
 	AgendaEvent,
+	Sale,
 };
 
 export { SellsRoutes, ProductRoutes, AdminRoutes };

@@ -1,4 +1,4 @@
-import React, { useReducer, useContext, useState } from "react";
+import React, { useReducer, useContext, useState, useEffect } from "react";
 import {
 	Input,
 	Button,
@@ -6,15 +6,19 @@ import {
 	StyledInputSelect,
 	StyledSelect,
 } from "@/components/UI/atoms";
-import styles from "./LeadFunnel.module.css";
+import styles from "./../LeadFunnel.module.css";
 //import { reducer, initial } from "./reducer";
 import { IconCheck, IconWhatsapp } from "@/assets";
-import { BasicBody } from "./Activities";
+import { BasicBody } from "../Activities";
 import { LeadDataType } from "@/models";
 import { StyledInputRadio } from "@/components/UI/atoms";
 import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
 import { useMutation } from "react-query";
 import { LeadAPI } from "@/apis";
+import { reducer, initial } from "./reducer";
+import CurrentLeadContext, {
+	CurrentLeadContextType,
+} from "@/context/currentLeadContext/CurrentLeadContext";
 
 interface AuctionProps {
 	leadData: LeadDataType;
@@ -25,36 +29,30 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 	const [radioValue, setRadioValue] = useState({
 		nuevo: true,
 		demo: false,
-		seminuevo: false,
 	});
-	const [exchangeCar, setExchangeCar] = useState(false);
-	const [digitalSell, setDigitalSell] = useState(false);
 	const { Alerts, SetAlerts, createAlert } = useContext(
 		AlertsContext
 	) as AlertsContextType;
+	const { CurrentLead } = useContext(
+		CurrentLeadContext
+	) as CurrentLeadContextType;
+	const [fields, dispatch] = useReducer(reducer, initial);
 
-	const [editVin, setEditVin] = useState(false);
-	const [vin, setVin] = useState("");
-	const [metodoPago, setMetodoPago] = useState("0");
-	const [seguroFinanciado, setSeguroFinanciado] = useState("0");
-	const [aseguradora, setAseguradora] = useState("0");
-
-	const editVINFunc = useMutation({
-		mutationFn: () =>
-			LeadAPI.editInfo(String(props.leadData.id), {
-				data: {
-					rfc: vin,
-				},
-			}),
-		onSuccess(data, variables, context) {
-			console.log(data);
-			createAlert("success", "Venta actualizada", "El VIN se actualizó");
-		},
-		onError(error, variables, context) {
-			console.log(error);
-			createAlert("error", "Error", "Hubo un error al actualizar");
-		},
-	});
+	useEffect(() => {
+		//TODO: falta razón social y situación fiscal
+		dispatch({
+			type: "all",
+			value: {
+				id: CurrentLead.Sales[0].id,
+				vins: CurrentLead.Sales[0].SaleVINs,
+				condition: CurrentLead.Sales[0].SaleCondition,
+				PaymentMethod: CurrentLead.Sales[0].SalePayment,
+				bank: CurrentLead.Sales[0].SaleBank,
+				insuranceCarrier: CurrentLead.Sales[0].insuranceCarrier,
+				takeCarInExange: CurrentLead.Sales[0].SaleTakeCarInExange,
+			},
+		});
+	}, []);
 
 	return (
 		<>
@@ -68,31 +66,26 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 							icon={<IconCheck size="100%" color="#000" />}
 							cardContent={
 								<div className={styles.cardContainerClasic}>
-									<input
-										className={styles.input}
-										placeholder="VIN"
-										value={vin!}
-										disabled={!editVin}
-										type="text"
-										onChange={(e) => setVin(e.target.value)}
-									/>
-									<Button
-										text={editVin ? "Guardar" : "Editar"}
-										func={() => {
-											if (editVin) {
-												console.log("llamo backend");
-												editVINFunc.mutate();
-											}
-											setEditVin(!editVin);
-										}}
-										full={false}
-									/>
+									{CurrentLead.Sales[0].SaleVINs.map(
+										(vin: any, index: any) => (
+											<Input
+												placeholder="VIN"
+												inputType="text"
+												value={vin}
+												type="reducer"
+												params={{
+													dispatch: dispatch,
+													dispType: "firstName",
+												}}
+											/>
+										)
+									)}
 								</div>
 							}
 						/>
 
 						<CardFunnel
-							mainText="Tipo de Venta"
+							mainText="Condición de Venta"
 							icon={<IconCheck size="100%" color="#000" />}
 							cardContent={
 								<div className={styles.cardContainerChecklist}>
@@ -101,12 +94,11 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 											Nuevo
 										</p>
 										<StyledInputRadio
-											checked={radioValue.nuevo}
+											name="condition"
 											onChange={() => {
-												setRadioValue({
-													nuevo: true,
-													demo: false,
-													seminuevo: false,
+												dispatch({
+													type: "condition",
+													value: "new",
 												});
 											}}
 										/>
@@ -117,28 +109,11 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 											Demo
 										</p>
 										<StyledInputRadio
-											checked={radioValue.demo}
+											name="condition"
 											onChange={() => {
-												setRadioValue({
-													nuevo: false,
-													demo: true,
-													seminuevo: false,
-												});
-											}}
-										/>
-									</div>
-
-									<div>
-										<p className="p4 bold secondary">
-											Seminuevo
-										</p>
-										<StyledInputRadio
-											checked={radioValue.seminuevo}
-											onChange={() => {
-												setRadioValue({
-													nuevo: false,
-													demo: false,
-													seminuevo: true,
+												dispatch({
+													type: "condition",
+													value: "demo",
 												});
 											}}
 										/>
@@ -152,12 +127,15 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 							cardContent={
 								<StyledSelect
 									customType="secondary"
-									value={metodoPago}
+									value={fields.paymentMethod}
 									onChange={(e) => {
-										setMetodoPago(e.target.value);
+										dispatch({
+											type: "paymentMethod",
+											value: e.target.value,
+										});
 									}}
 								>
-									<option value={0} disabled>
+									<option value="0" disabled>
 										-- Método de Pago --
 									</option>
 									<option value="cash"> Contado </option>
@@ -173,12 +151,15 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 							cardContent={
 								<StyledSelect
 									customType="secondary"
-									value={seguroFinanciado}
+									value={fields.bank}
 									onChange={(e) => {
-										setSeguroFinanciado(e.target.value);
+										dispatch({
+											type: "bank",
+											value: e.target.value,
+										});
 									}}
 								>
-									<option value={"0"} disabled>
+									<option value="0" disabled>
 										-- Banco --
 									</option>
 									<option value="contado">CONTADO</option>
@@ -195,12 +176,15 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 							cardContent={
 								<StyledSelect
 									customType="secondary"
-									value={aseguradora}
+									value={fields.insuranceCarrier}
 									onChange={(e) => {
-										setAseguradora(e.target.value);
+										dispatch({
+											type: "insuranceCarrier",
+											value: e.target.value,
+										});
 									}}
 								>
-									<option value={"0"} disabled>
+									<option value="0" disabled>
 										-- Aseguradora --
 									</option>
 									<option value="bbva">BBVA</option>
@@ -237,9 +221,12 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 									<div>
 										<p className="p4 bold secondary">Si</p>
 										<StyledInputRadio
-											checked={exchangeCar}
+											name="exchangeCar"
 											onChange={() => {
-												setExchangeCar(true);
+												dispatch({
+													type: "exchangeCar",
+													value: true,
+												});
 											}}
 										/>
 									</div>
@@ -247,9 +234,12 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 									<div>
 										<p className="p4 bold secondary">No</p>
 										<StyledInputRadio
-											checked={!exchangeCar}
+											name="exchangeCar"
 											onChange={() => {
-												setExchangeCar(false);
+												dispatch({
+													type: "exchangeCar",
+													value: false,
+												});
 											}}
 										/>
 									</div>
@@ -337,7 +327,10 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 				<Button
 					text="Guardar"
 					full={true}
-					func={() => console.log("actualizar lead info")}
+					func={() => {
+						console.log("actualizar lead info");
+						console.log(fields);
+					}}
 				/>
 			</div>
 		</>
