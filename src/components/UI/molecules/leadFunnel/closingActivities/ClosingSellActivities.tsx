@@ -38,6 +38,24 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 	) as CurrentLeadContextType;
 	const [fields, dispatch] = useReducer(reducer, initial);
 
+	function nextPhaseLead() {
+		LeadAPI.nextPhase(CurrentLead.id)
+			.then((res) => {
+				createAlert(
+					"success",
+					"Fase actualizada",
+					"El estatus del lead ha cambiado"
+				);
+			})
+			.catch((err) => {
+				createAlert(
+					"error",
+					"Error al actualizar fase",
+					"Hubo un error"
+				);
+			});
+	}
+
 	useEffect(() => {
 		//TODO: falta razón social y situación fiscal
 		dispatch({
@@ -237,7 +255,7 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 											name="exchangeCar"
 											onChange={() => {
 												dispatch({
-													type: "exchangeCar",
+													type: "exangeCar",
 													value: false,
 												});
 											}}
@@ -313,7 +331,7 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 					<BasicBody
 						buttonText="Cerrar Venta"
 						buttonFunc={() => {
-							return;
+							nextPhaseLead();
 						}}
 						alternativeText=""
 						alternativeFunc={() => {
