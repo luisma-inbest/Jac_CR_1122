@@ -1,4 +1,4 @@
-import { CurrentLeadProvider } from "@/context/CurrentLeadContext";
+import { CurrentLeadProvider } from "@/context/currentLeadContext/CurrentLeadContext";
 import React from "react";
 import { Body } from "./body";
 import { LeadWindowProvider } from "@/context/LeadWindow";

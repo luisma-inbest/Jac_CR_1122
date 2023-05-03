@@ -7,6 +7,7 @@ type Action =
 	| { type: "leadPhones"; value: string }
 	| { type: "LeadOriginId"; value: number }
 	| { type: "productId"; value: string }
+	| { type: "colorId"; value: string }
 	| { type: "AgencyId"; value: number }
 	| { type: "buyType"; value: string }
 	| { type: "units"; value: number };
@@ -18,9 +19,19 @@ const initial: Lead = {
 	leadPhones: [""],
 	LeadOriginId: 0,
 	productId: "",
+	colorId: "",
 	AgencyId: 0,
 	buyType: "",
 	units: 1,
+	leadInterests: [
+		{
+			date: Date(),
+			comments: "",
+			ProductId: 0,
+			ProductColorId: 0,
+			quantity: 0,
+		},
+	],
 };
 
 function reducer(state: Lead, action: Action): Lead {
@@ -35,14 +46,33 @@ function reducer(state: Lead, action: Action): Lead {
 			return { ...state, leadPhones: [action.value] };
 		case "LeadOriginId":
 			return { ...state, LeadOriginId: action.value };
-		case "productId":
-			return { ...state, productId: action.value };
 		case "AgencyId":
 			return { ...state, AgencyId: action.value };
+
 		case "buyType":
 			return { ...state, buyType: action.value };
+		case "productId":
+			return {
+				...state,
+				leadInterests: [
+					{ ...state.leadInterests[0], ProductId: action.value },
+				],
+			};
+		case "colorId":
+			return {
+				...state,
+				leadInterests: [
+					{ ...state.leadInterests[0], ProductColorId: action.value },
+				],
+			};
+
 		case "units":
-			return { ...state, units: action.value };
+			return {
+				...state,
+				leadInterests: [
+					{ ...state.leadInterests[0], quantity: action.value },
+				],
+			};
 		default:
 			return state;
 	}

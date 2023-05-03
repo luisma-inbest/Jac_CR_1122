@@ -13,9 +13,9 @@ export const Main = () => {
 	const [menu, setMenu] = useState(false);
 	const toast = useRef<HTMLDivElement>(null);
 
-	if (window.location.pathname === "/seller") {
-		console.log("entro");
-	}
+	// if (window.location.pathname === "/seller") {
+	// 	console.log("entro");
+	// }
 
 	const navHandler = () => {
 		setMenu(!menu);

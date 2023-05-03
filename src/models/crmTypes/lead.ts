@@ -6,11 +6,13 @@ export interface Lead {
 	leadPhones: string[];
 	LeadOriginId: number;
 	productId: string;
+	colorId: string;
 	leadPhaseId?: string;
 	AgencyId: number;
 	UserId?: number;
 	buyType: string;
 	units: number;
+	leadInterests: any;
 }
 
 type LeadPhaseType = {

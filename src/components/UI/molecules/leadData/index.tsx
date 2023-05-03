@@ -5,11 +5,9 @@ import { LeadDataType } from "@/models";
 import UserContext, { UserContextType } from "@/context/UserContext";
 import CurrentLeadContext, {
 	CurrentLeadContextType,
-} from "@/context/CurrentLeadContext";
+} from "@/context/currentLeadContext/CurrentLeadContext";
 
-interface Props {
-	lead: LeadDataType;
-}
+interface Props {}
 
 export const LeadData = (props: Props) => {
 	const { User } = useContext(UserContext) as UserContextType;
@@ -20,7 +18,7 @@ export const LeadData = (props: Props) => {
 
 	const [product, setProduct] = useState<any>({});
 	const [isProduct, setIsProduct] = useState<boolean>(false);
-	const { CurrentLead } = useContext(
+	const { CurrentLead, DispatchCurrentLead } = useContext(
 		CurrentLeadContext
 	) as CurrentLeadContextType;
 
@@ -40,11 +38,11 @@ export const LeadData = (props: Props) => {
 	};
 	useEffect(() => {
 		//validar producto
-		if (props.lead.LeadInterests.length > 0) {
+		if (CurrentLead.LeadInterests.length > 0) {
 			console.log("hay producto...");
 			setIsProduct(true);
 			let currentProduct =
-				props.lead.LeadInterests[props.lead.LeadInterests.length - 1];
+				CurrentLead.LeadInterests[CurrentLead.LeadInterests.length - 1];
 			setProduct({
 				imageUrl: currentProduct.Product.imageUrl,
 				name: currentProduct.Product.name,
@@ -55,7 +53,7 @@ export const LeadData = (props: Props) => {
 		}
 
 		if (
-			props.lead.leadPhase.slug === "subasta" &&
+			CurrentLead.leadPhase.slug === "subasta" &&
 			(User?.permissions.includes("coordinator") ||
 				User?.permissions.includes("bdc") ||
 				User?.permissions.includes("adviser-digital") ||
@@ -79,13 +77,13 @@ export const LeadData = (props: Props) => {
 			<div
 				className={`col-xs-12 ${styles.leadHeader} ${styles.groupData}`}
 			>
-				<p className={`bold black`}>{props.lead.leadName}</p>
+				<p className={`bold black`}>{CurrentLead.leadName}</p>
 				<p
 					className={`p3 ${styles.leadTemperature} ${pickPhaseColor(
-						props.lead.leadPhase.slug
+						CurrentLead.leadPhase.slug
 					)}`}
 				>
-					{props.lead.leadPhase.description || ""}
+					{CurrentLead.leadPhase.description || ""}
 				</p>
 			</div>
 
@@ -99,7 +97,7 @@ export const LeadData = (props: Props) => {
 						/>
 					</span>
 					<p className="p3">
-						{permissions ? props.lead.leadPhones[0].phone : "-"}
+						{permissions ? CurrentLead.leadPhones[0].phone : "-"}
 					</p>
 				</span>
 				<span className={`${styles.leadInfo}`}>
@@ -111,7 +109,7 @@ export const LeadData = (props: Props) => {
 						/>
 					</span>
 					<p className="p3">
-						{permissions ? props.lead.leadEmails[0].email : "-"}
+						{permissions ? CurrentLead.leadEmails[0].email : "-"}
 					</p>
 				</span>
 			</div>
@@ -144,19 +142,19 @@ export const LeadData = (props: Props) => {
 			<div className={`col-xs-12 mt-4 ${styles.groupData}`}>
 				<p className="p4 semi-bold secondary">Detalles</p>
 				<p className="p4 semi-bold highlight">Fecha y Hora</p>
-				<p className="p2 ">{props.lead.createdAt.toString()}</p>
+				<p className="p2 ">{CurrentLead.createdAt.toString()}</p>
 			</div>
 
 			<div className={`col-xs-12 mt-4  ${styles.groupData}`}>
 				<p className="p4 semi-bold secondary">Canal</p>
 				<p className="p4 semi-bold highlight">
-					{props.lead.LeadOrigin.slug}
+					{CurrentLead.LeadOrigin.slug}
 				</p>
 			</div>
 
 			<div className={`col-xs-12 mt-4  ${styles.groupData}`}>
 				<p className="p4 semi-bold secondary">Asesor</p>
-				<p className="p4 semi-bold highlight">{props.lead.UserId}</p>
+				<p className="p4 semi-bold highlight">{CurrentLead.UserId}</p>
 			</div>
 
 			{/* <div className={`col-xs-12 mt-4  ${styles.groupData}`}>

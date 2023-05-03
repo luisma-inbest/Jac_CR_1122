@@ -19,13 +19,24 @@ import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
 import { reducer, initial } from "./reducer";
 import CurrentLeadContext, {
 	CurrentLeadContextType,
-} from "@/context/CurrentLeadContext";
+} from "@/context/currentLeadContext/CurrentLeadContext";
 import { StyledInputDate } from "../../atoms/StyledInputs";
 import { useSearchParams } from "react-router-dom";
 
 interface Props {
 	ruleOutType: string;
 }
+
+const frezzeLead = [
+	"Los datos del lead son incorrectos",
+	"Solo pidio informacion, no tiene interés de compra",
+	"No se tiene el modelo enn inventario",
+	"El modelo no cubre sus necesiddades",
+	"El precio es alto",
+	"ya compró en otra marca",
+	"Oferta comercial poco atractiva",
+	"Solicitud de crédito rechazada",
+];
 
 export const RuleOutActivity = (props: Props) => {
 	const { Alerts, SetAlerts, createAlert } = useContext(
@@ -100,9 +111,9 @@ export const RuleOutActivity = (props: Props) => {
 					<option value="" disabled>
 						*-- Razón --
 					</option>
-					<option value="" disabled>
-						No esta interesado
-					</option>
+					{frezzeLead.map((reason) => (
+						<option value={reason}>{reason}</option>
+					))}
 				</StyledSelect>
 
 				<StyledInputSubmit

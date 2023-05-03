@@ -3,7 +3,7 @@ import { Button, StyledInputText } from "@/components/UI/atoms";
 import { LeadData } from "@/components/UI/molecules";
 import { Tabs } from "@/components/templates";
 import { RegisterActivity } from "@/components/UI/molecules";
-import { CurrentLeadProvider } from "@/context/CurrentLeadContext";
+import { CurrentLeadProvider } from "@/context/currentLeadContext/CurrentLeadContext";
 import styles from "./Agency.module.css";
 import {
 	AgencyGeneral,

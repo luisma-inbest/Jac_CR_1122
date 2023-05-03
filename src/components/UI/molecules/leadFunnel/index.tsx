@@ -22,14 +22,16 @@ import UserContext, { UserContextType } from "@/context/UserContext";
 import LeadWindowContext, { LeadWindowContextType } from "@/context/LeadWindow";
 import { RegisterActivity } from "../registerActivity";
 import { RuleOutActivity } from "../ruleOutActivity";
+import CurrentLeadContext, {
+	CurrentLeadContextType,
+} from "@/context/currentLeadContext/CurrentLeadContext";
 
 interface Props {
-	leadPhase: string;
-	leadData: LeadDataType;
 	refresher: (val: boolean) => void;
 	refresh: boolean;
 }
 export const LeadFunnel = (props: Props) => {
+	//TODO: aun quedan por eliminar el paso de props
 	const { User } = useContext(UserContext) as UserContextType;
 	const { Alerts, SetAlerts, createAlert } = useContext(
 		AlertsContext
@@ -37,9 +39,12 @@ export const LeadFunnel = (props: Props) => {
 	const { ShowLeadWindow, SetShowLeadWindow, SetLeadWindow } = useContext(
 		LeadWindowContext
 	) as LeadWindowContextType;
+	const { CurrentLead, DispatchCurrentLead } = useContext(
+		CurrentLeadContext
+	) as CurrentLeadContextType;
 
 	function nextPhaseLead() {
-		LeadAPI.nextPhase(props.leadData.id)
+		LeadAPI.nextPhase(CurrentLead.id)
 			.then((res) => {
 				createAlert(
 					"success",
@@ -64,38 +69,40 @@ export const LeadFunnel = (props: Props) => {
 		"en-cierre": "Cierre de Venta",
 	};
 	const phases: any = {
-		all: <Activities leadData={props.leadData} />,
+		all: <Activities leadData={CurrentLead} />,
 		subasta: (
 			<AuctionActivities
-				leadData={props.leadData}
+				leadData={CurrentLead}
 				nextPhaseLead={nextPhaseLead}
 			/>
 		),
 		"1er-contacto": (
 			<FirstContactActivities
-				leadData={props.leadData}
+				leadData={CurrentLead}
 				nextPhaseLead={nextPhaseLead}
 			/>
 		),
 		seguimiento: (
 			<FollowUpActivities
-				leadData={props.leadData}
+				leadData={CurrentLead}
 				nextPhaseLead={nextPhaseLead}
 			/>
 		),
-		"en-cierre": <ClosingSellsActivities leadData={props.leadData} />,
+		"en-cierre": <ClosingSellsActivities leadData={CurrentLead} />,
 	};
 
 	return (
 		<div className={styles.funnelTab}>
-			<p className="p3 secondary bold">{titles[props.leadPhase] || ""}</p>
-			{phases[props.leadPhase]}
+			<p className="p3 secondary bold">
+				{titles[CurrentLead.leadPhase.slug] || ""}
+			</p>
+			{phases[CurrentLead.leadPhase.slug]}
 
 			{User?.permissions[1] === "manager" ||
 			User?.permissions[1] === "coordinator" ||
 			User?.permissions[1] === "bdc" ||
 			User?.permissions[1] === "hostess" ? (
-				<HostessActivities leadData={props.leadData} />
+				<HostessActivities leadData={CurrentLead} />
 			) : (
 				<></>
 			)}

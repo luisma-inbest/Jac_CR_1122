@@ -9,7 +9,7 @@ import { LeadAPI } from "@/apis";
 import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
 import CurrentLeadContext, {
 	CurrentLeadContextType,
-} from "@/context/CurrentLeadContext";
+} from "@/context/currentLeadContext/CurrentLeadContext";
 
 const goTo = (url: string) => () => {
 	window.open(url, "_blank");
@@ -98,6 +98,13 @@ export const FollowUpActivities = (props: AuctionProps) => {
 							</p>
 							{/* <input type="checkbox" name="scales" checked={true} /> */}
 							<input type="checkbox" name="scales" />
+						</div>
+						<div>
+							<Button
+								text="Actualizar"
+								full={true}
+								func={() => console.log("actualizar lead info")}
+							/>
 						</div>
 					</div>
 				}

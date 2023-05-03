@@ -20,7 +20,7 @@ import { reducer, initial } from "./reducer";
 import activitytypes from "./activitiyTypes";
 import CurrentLeadContext, {
 	CurrentLeadContextType,
-} from "@/context/CurrentLeadContext";
+} from "@/context/currentLeadContext/CurrentLeadContext";
 
 interface Props {}
 
@@ -29,7 +29,7 @@ export const RegisterActivity = (props: Props) => {
 		AlertsContext
 	) as AlertsContextType;
 	const [fields, dispatch] = useReducer(reducer, initial);
-	const { CurrentLead, SetCurrentLead } = useContext(
+	const { CurrentLead, DispatchCurrentLead } = useContext(
 		CurrentLeadContext
 	) as CurrentLeadContextType;
 
@@ -45,10 +45,11 @@ export const RegisterActivity = (props: Props) => {
 				"Actividad Creada",
 				"La actividad se creo correctamente"
 			);
-			SetCurrentLead({
-				...CurrentLead,
-				LeadActivities: [fields, ...CurrentLead.LeadActivities],
-			});
+			//TODO: crear un metodo para agregar activities
+			// SetCurrentLead({
+			// 	...CurrentLead,
+			// 	LeadActivities: [fields, ...CurrentLead.LeadActivities],
+			// });
 		},
 		onError(error) {
 			console.log(error);
@@ -131,8 +132,8 @@ export const RegisterActivity = (props: Props) => {
 				<option value="1" disabled>
 					-- Estado --
 				</option>
-				<option value={0}>Exitoso</option>
-				<option value={1}>Fallido</option>
+				<option value={1}>Exitoso</option>
+				<option value={0}>Fallido</option>
 			</StyledSelect>
 
 			<StyledInputSubmit

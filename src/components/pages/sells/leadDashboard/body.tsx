@@ -19,7 +19,7 @@ import UserContext, { UserContextType } from "@/context/UserContext";
 import CurrentLeadContext, {
 	CurrentLeadProvider,
 	CurrentLeadContextType,
-} from "@/context/CurrentLeadContext";
+} from "@/context/currentLeadContext/CurrentLeadContext";
 
 import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
 
@@ -41,7 +41,7 @@ export const Body = () => {
 		SetFLotatingWindowContent,
 	} = useContext(LeadWindowContext) as LeadWindowContextType;
 
-	const { CurrentLead, SetCurrentLead } = useContext(
+	const { CurrentLead, DispatchCurrentLead } = useContext(
 		CurrentLeadContext
 	) as CurrentLeadContextType;
 
@@ -112,20 +112,22 @@ export const Body = () => {
 		queryFn: () => LeadAPI.getLead(String(leadId)),
 		onSuccess: (data) => {
 			console.log("exito", data);
-
-			SetCurrentLead({
-				id: data.id,
-				leadName: data.firstAndLastName,
-				leadEmails: data.LeadEmails || [""],
-				leadPhones: data.LeadPhones || [""],
-				LeadActivities: data.LeadActivities,
-				leadPhase: data.LeadPhase,
-				LeadInterests: data.LeadInterests,
-				LeadOrigin: data.LeadOrigin,
-				createdAt: data.createdAt,
-				updatedAt: data.updatedAt,
-				UserId: data.UserId,
-				rfc: data.rfc,
+			DispatchCurrentLead({
+				type: "all",
+				value: {
+					id: data.id,
+					leadName: data.firstAndLastName,
+					leadEmails: data.LeadEmails || [""],
+					leadPhones: data.LeadPhones || [""],
+					LeadActivities: data.LeadActivities,
+					leadPhase: data.LeadPhase,
+					LeadInterests: data.LeadInterests,
+					LeadOrigin: data.LeadOrigin,
+					createdAt: data.createdAt,
+					updatedAt: data.updatedAt,
+					UserId: data.UserId,
+					rfc: data.rfc,
+				},
 			});
 
 			setRunEffect(true);
@@ -158,17 +160,13 @@ export const Body = () => {
 
 	// const PageTabs = ["Datos", "Funnel", "Chat", "Historial"];
 	const PageTabs = ["Datos", "Funnel", "Chat", "Historial"];
-	const TabOne = <LeadData lead={CurrentLead} />;
+	const TabOne = <LeadData />;
 	const TabTwo = (
-		<LeadFunnel
-			leadPhase={CurrentLead.leadPhase.slug}
-			leadData={CurrentLead}
-			refresher={setRefresh}
-			refresh={refresh}
-		/>
+		//TODO: eliminar refresher
+		<LeadFunnel refresher={setRefresh} refresh={refresh} />
 	);
 	const TabThree = <LeadChat />;
-	const TabFour = <LeadHistory activities={CurrentLead.LeadActivities} />;
+	const TabFour = <LeadHistory />;
 	const TabsComponents = [TabOne, TabTwo, TabThree, TabFour];
 
 	return (
@@ -176,7 +174,7 @@ export const Body = () => {
 			<div className={`contentVerticalPadding ${styles.mainContainer}`}>
 				<div className="row">
 					<div className={`col-xs-12 col-md-6 ${styles.userData}`}>
-						<LeadData lead={CurrentLead} />
+						<LeadData />
 					</div>
 					<div className={`col-xs-12  col-md-6 `}>
 						<Tabs

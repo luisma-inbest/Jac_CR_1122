@@ -321,7 +321,7 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 				icon={<IconCheck size="100%" color="#000" />}
 				cardContent={
 					<BasicBody
-						buttonText="Guardar"
+						buttonText="Cerrar Venta"
 						buttonFunc={() => {
 							return;
 						}}
@@ -332,6 +332,14 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 					/>
 				}
 			/>
+
+			<div className="mt-2">
+				<Button
+					text="Guardar"
+					full={true}
+					func={() => console.log("actualizar lead info")}
+				/>
+			</div>
 		</>
 	);
 };
