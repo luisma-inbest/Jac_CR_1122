@@ -50,12 +50,17 @@ export const submenuSells = [
 	{
 		pos: 1.3,
 		text: "Leads Congelados",
-		route: "/sells/leads/search/?leadPhase=5",
+		route: "/sells/leads/search/?leadPhase=congelado",
 	},
 	{
 		pos: 1.4,
 		text: "Futura Venta",
-		route: "/sells/leads/search/?leadPhase=6",
+		route: "/sells/leads/search/?leadPhase=futura-venta",
+	},
+	{
+		pos: 1.5,
+		text: "Ventas",
+		route: "/sells/leads/search/?leadPhase=cerrado",
 	},
 	// {
 	// 	pos: 1.3,

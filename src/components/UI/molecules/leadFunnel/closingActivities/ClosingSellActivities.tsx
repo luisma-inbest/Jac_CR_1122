@@ -19,6 +19,7 @@ import { reducer, initial } from "./reducer";
 import CurrentLeadContext, {
 	CurrentLeadContextType,
 } from "@/context/currentLeadContext/CurrentLeadContext";
+import { SaleAPI } from "@/apis/APISales";
 
 interface AuctionProps {
 	leadData: LeadDataType;
@@ -56,18 +57,42 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 			});
 	}
 
+	const SaleMutation = useMutation({
+		mutationFn: () => SaleAPI.update(fields),
+		onSuccess(data, variables, context) {
+			console.log(data);
+			createAlert(
+				"success",
+				"Venta modificada",
+				"La información se subió correctamente"
+			);
+		},
+		onError(error, variables, context) {
+			console.log(error);
+			createAlert(
+				"error",
+				"Error",
+				"Hubo un error al modificar la venta"
+			);
+		},
+	});
+
 	useEffect(() => {
-		//TODO: falta razón social y situación fiscal
 		dispatch({
 			type: "all",
 			value: {
 				id: CurrentLead.Sales[0].id,
+				leadId: CurrentLead.id,
 				vins: CurrentLead.Sales[0].SaleVINs,
 				condition: CurrentLead.Sales[0].SaleCondition,
-				PaymentMethod: CurrentLead.Sales[0].SalePayment,
+				Payment: CurrentLead.Sales[0].SalePayment,
 				bank: CurrentLead.Sales[0].SaleBank,
 				insuranceCarrier: CurrentLead.Sales[0].insuranceCarrier,
 				takeCarInExange: CurrentLead.Sales[0].SaleTakeCarInExange,
+				businessName: CurrentLead.Sales[0].BusinessName,
+				taxRegime: CurrentLead.Sales[0].TaxRegime,
+				saleType: CurrentLead.Sales[0].SaleType.description,
+				digitalSale: false,
 			},
 		});
 	}, []);
@@ -83,13 +108,16 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 							mainText="Unidad VIN"
 							icon={<IconCheck size="100%" color="#000" />}
 							cardContent={
-								<div className={styles.cardContainerClasic}>
+								<div
+									className={styles.cardContainerAlternative}
+								>
 									{CurrentLead.Sales[0].SaleVINs.map(
 										(vin: any, index: any) => (
 											<Input
+												key={index}
 												placeholder="VIN"
 												inputType="text"
-												value={vin}
+												value={vin.VIN}
 												type="reducer"
 												params={{
 													dispatch: dispatch,
@@ -98,6 +126,44 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 											/>
 										)
 									)}
+								</div>
+							}
+						/>
+						<CardFunnel
+							mainText="Regimen Fiscal"
+							icon={<IconCheck size="100%" color="#000" />}
+							cardContent={
+								<div className={styles.cardContainerClasic}>
+									<Input
+										placeholder="Regimen Fiscal"
+										inputType="text"
+										value={fields.taxRegime}
+										type="reducer"
+										//TODO: cambiar dispatch
+										params={{
+											dispatch: dispatch,
+											dispType: "taxRegime",
+										}}
+									/>
+								</div>
+							}
+						/>
+						<CardFunnel
+							mainText="Razón social"
+							icon={<IconCheck size="100%" color="#000" />}
+							cardContent={
+								<div className={styles.cardContainerClasic}>
+									<Input
+										placeholder="Razón Social"
+										inputType="text"
+										value={fields.businessName}
+										type="reducer"
+										//TODO: cambiar dispatch
+										params={{
+											dispatch: dispatch,
+											dispType: "businessName",
+										}}
+									/>
 								</div>
 							}
 						/>
@@ -145,10 +211,10 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 							cardContent={
 								<StyledSelect
 									customType="secondary"
-									value={fields.paymentMethod}
+									value={fields.payment}
 									onChange={(e) => {
 										dispatch({
-											type: "paymentMethod",
+											type: "payment",
 											value: e.target.value,
 										});
 									}}
@@ -242,7 +308,7 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 											name="exchangeCar"
 											onChange={() => {
 												dispatch({
-													type: "exchangeCar",
+													type: "exangeCar",
 													value: true,
 												});
 											}}

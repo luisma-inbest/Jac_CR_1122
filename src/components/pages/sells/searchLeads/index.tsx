@@ -22,11 +22,7 @@ export const SearchLeads = () => {
 
 	useEffect(() => {
 		console.log("corre useEffect");
-		if (params.get("leadPhase") == "5") {
-			setPhase("congelado");
-		} else if (params.get("leadPhase") == "6") {
-			setPhase("futura-venta");
-		}
+		setPhase(params.get("leadPhase") as string);
 	}, [params]);
 
 	//This Function generates the nickname for the lead
@@ -107,7 +103,7 @@ export const SearchLeads = () => {
 									user={getUser(lead.User) || ""}
 									model={lead.model || ""}
 									status=""
-									color={1}
+									color={0}
 									createdAt={lead.createdAt || ""}
 									updatedAt={lead.updatedAt || ""}
 								/>

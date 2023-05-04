@@ -138,8 +138,8 @@ export const Body = () => {
 		onError: (error) => {
 			console.log("error", error);
 		},
-		// staleTime: 10 * (60 * 1000), // 10 mins
-		// cacheTime: 15 * (60 * 1000), // 15 mins
+		staleTime: 15 * (60 * 1000), // 15 mins
+		cacheTime: 20 * (60 * 1000), // 20 mins
 	});
 	if (isLoading) {
 		return (

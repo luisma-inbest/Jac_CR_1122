@@ -5,19 +5,28 @@ type Action =
 	| { type: "id"; value: number }
 	| { type: "vin"; value: { index: string; value: string } }
 	| { type: "condition"; value: string }
-	| { type: "paymentMethod"; value: string }
+	| { type: "payment"; value: string }
 	| { type: "bank"; value: string }
 	| { type: "insuranceCarrier"; value: string }
-	| { type: "exangeCar"; value: boolean };
+	| { type: "exangeCar"; value: boolean }
+	| { type: "taxRegime"; value: string }
+	| { type: "saleType"; value: string }
+	| { type: "businessName"; value: string }
+	| { type: "digitalSale"; value: boolean };
 
 const initial: Sale = {
 	id: -1,
+	leadId: -1,
 	vins: [],
 	condition: "",
-	paymentMethod: "0",
+	payment: "0",
 	bank: "0",
+	taxRegime: "",
+	businessName: "",
+	saleType: "",
 	insuranceCarrier: "0",
 	takeCarInExange: false,
+	digitalSale: false,
 };
 
 function reducer(state: Sale, action: Action): Sale {
@@ -28,14 +37,18 @@ function reducer(state: Sale, action: Action): Sale {
 			return { ...state, id: action.value };
 		case "condition":
 			return { ...state, condition: action.value };
-		case "paymentMethod":
-			return { ...state, paymentMethod: action.value };
+		case "payment":
+			return { ...state, payment: action.value };
 		case "bank":
 			return { ...state, bank: action.value };
 		case "insuranceCarrier":
 			return { ...state, insuranceCarrier: action.value };
 		case "exangeCar":
 			return { ...state, takeCarInExange: action.value };
+		case "taxRegime":
+			return { ...state, taxRegime: action.value };
+		case "businessName":
+			return { ...state, businessName: action.value };
 
 		case "vin":
 			let vins = [...state.vins];
