@@ -43,7 +43,7 @@ export const RuleOutActivity = (props: Props) => {
 		AlertsContext
 	) as AlertsContextType;
 	const [fields, dispatch] = useReducer(reducer, initial);
-	const { CurrentLead, SetCurrentLead } = useContext(
+	const { CurrentLead } = useContext(
 		CurrentLeadContext
 	) as CurrentLeadContextType;
 
