@@ -84,11 +84,11 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 				id: CurrentLead.Sales[0].id,
 				leadId: CurrentLead.id,
 				vins: CurrentLead.Sales[0].SaleVINs,
-				condition: CurrentLead.Sales[0].SaleCondition,
-				Payment: CurrentLead.Sales[0].SalePayment,
-				bank: CurrentLead.Sales[0].SaleBank,
-				insuranceCarrier: CurrentLead.Sales[0].insuranceCarrier,
-				takeCarInExange: CurrentLead.Sales[0].SaleTakeCarInExange,
+				condition: CurrentLead.Sales[0].SaleCondition.slug,
+				payment: CurrentLead.Sales[0].SalePayment.slug,
+				bank: CurrentLead.Sales[0].SaleBank.slug,
+				insuranceCarrier: CurrentLead.Sales[0].SaleEnsurance.slug,
+				takeCarInExange: CurrentLead.Sales[0].takeCarInExange,
 				businessName: CurrentLead.Sales[0].BusinessName,
 				taxRegime: CurrentLead.Sales[0].TaxRegime,
 				saleType: CurrentLead.Sales[0].SaleType.description,
@@ -139,7 +139,6 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 										inputType="text"
 										value={fields.taxRegime}
 										type="reducer"
-										//TODO: cambiar dispatch
 										params={{
 											dispatch: dispatch,
 											dispType: "taxRegime",
@@ -158,7 +157,6 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 										inputType="text"
 										value={fields.businessName}
 										type="reducer"
-										//TODO: cambiar dispatch
 										params={{
 											dispatch: dispatch,
 											dispType: "businessName",
@@ -179,10 +177,13 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 										</p>
 										<StyledInputRadio
 											name="condition"
+											checked={
+												fields.condition === "nuevo"
+											}
 											onChange={() => {
 												dispatch({
 													type: "condition",
-													value: "new",
+													value: "nuevo",
 												});
 											}}
 										/>
@@ -194,6 +195,9 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 										</p>
 										<StyledInputRadio
 											name="condition"
+											checked={
+												fields.condition === "demo"
+											}
 											onChange={() => {
 												dispatch({
 													type: "condition",
@@ -222,8 +226,8 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 									<option value="0" disabled>
 										-- Método de Pago --
 									</option>
-									<option value="cash"> Contado </option>
-									<option value="credit">Crédito</option>
+									<option value="contado"> Contado </option>
+									<option value="credito">Crédito</option>
 									<option value="leasing">Leasing</option>
 								</StyledSelect>
 							}
@@ -274,7 +278,7 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 									<option value="bbva">BBVA</option>
 									<option value="banorte">BANORTE</option>
 									<option value="qualitas">QUALITAS</option>
-									<option value="ana">A.N.A</option>
+									<option value="a.n.a">A.N.A</option>
 									<option value="gnp">GNP</option>
 									<option value="axa">AXA</option>
 									<option value="hdi">HDI</option>
@@ -306,6 +310,9 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 										<p className="p4 bold secondary">Si</p>
 										<StyledInputRadio
 											name="exchangeCar"
+											checked={
+												fields.takeCarInExange === true
+											}
 											onChange={() => {
 												dispatch({
 													type: "exangeCar",
@@ -319,6 +326,9 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 										<p className="p4 bold secondary">No</p>
 										<StyledInputRadio
 											name="exchangeCar"
+											checked={
+												fields.takeCarInExange === false
+											}
 											onChange={() => {
 												dispatch({
 													type: "exangeCar",
@@ -413,6 +423,14 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 					full={true}
 					func={() => {
 						console.log("actualizar lead info");
+						console.log(fields);
+						SaleMutation.mutate();
+					}}
+				/>
+				<Button
+					text="Imprimir"
+					full={true}
+					func={() => {
 						console.log(fields);
 					}}
 				/>

@@ -5,8 +5,8 @@ export const SaleAPI = {
 	update: async function (sale: Sale) {
 		return api
 			.request({
-				url: `/sale/${sale.leadId}`,
-				method: "POST",
+				url: `/sale/${sale.id}`,
+				method: "PUT",
 				data: { data: sale },
 			})
 			.then((response) => {
