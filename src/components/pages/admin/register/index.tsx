@@ -47,12 +47,12 @@ export const Register = (props: Props) => {
 	const addUserMutation = useMutation({
 		mutationFn: () => UserAPI.create(fields),
 		onSuccess(data, variables, context) {
-			console.log("exito papito", data);
 			createAlert(
 				"success",
 				"Usuario Creado",
 				"El usuario se creo correctamente"
 			);
+			console.log("exito papito", data);
 		},
 		onError(error, variables, context) {
 			console.log(error);
@@ -231,8 +231,8 @@ export const Register = (props: Props) => {
 						defaultValue=""
 						onChange={(e) =>
 							dispatch({
-								type: "AgencyId",
-								value: e.target.value,
+								type: "agencies",
+								value: [e.target.value],
 							})
 						}
 					>
@@ -277,6 +277,18 @@ export const Register = (props: Props) => {
 						value="Registrar"
 					/>
 				</form>
+
+				<button
+					onClick={() => {
+						createAlert(
+							"success",
+							"Usuario Creado",
+							"El usuario se creo correctamente"
+						);
+					}}
+				>
+					prekfkadfl
+				</button>
 			</div>
 		</div>
 	);

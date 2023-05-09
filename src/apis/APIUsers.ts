@@ -75,11 +75,14 @@ export const UserAPI = {
 			if (!cognitoresponse) {
 				console.log("Error al crear el usuario en cognito");
 				this.delete(newId);
+				throw new Error("Error al crear el usuario en cognito");
 			}
+			return user.userId;
 		} catch (error: any) {
 			console.log("Hubo un error");
 			if (error.response) {
 				console.log(error.response.data);
+				throw new Error(error.response.data);
 			}
 		}
 	},
