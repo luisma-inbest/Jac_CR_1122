@@ -7,7 +7,7 @@
 		"card1 card1 card2"
 		"card3 card3 card4";
 }
-@media (max-width: 63em) {
+@media (max-width: 75em) {
 	.mainContainer {
 		grid-template-columns: repeat(1, 1fr);
 		grid-template-rows: repeat(1, 1fr);

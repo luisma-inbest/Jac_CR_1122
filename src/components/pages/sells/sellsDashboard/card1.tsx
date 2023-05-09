@@ -58,44 +58,36 @@ const Card1 = () => {
 				{/* data row */}
 				<div className="col-xs-12 col-md-6">
 					<div className="row">
-						<div className="col-xs-12 col-md-6">
-							<div className={`${styles.boxSeparator}`}>
-								<SalesInfoCard
-									title="Cantidad de ventas"
-									amount="12"
-									percentage="+2.5%"
-									dateRange="Rango de fecha"
-								/>
+						<div className="col-xs-12 col-sm-8 col-lg-6">
+							<div className={`${styles.infoContainer}`}>
+								<h6 className={`highlight`}>
+									Cantidad de ventas
+								</h6>
+								<h1 className={`bold`}>$12</h1>
+								<p className={`p3 secondary`}>Rango de fecha</p>
+							</div>
+						</div>
+						<div className="col-xs-12 col-md-8 col-lg-7">
+							<div className={`${styles.infoContainer}`}>
+								<h6 className={`highlight`}>Total de ventas</h6>
+								<h1 className={`bold`}>$12,000,000</h1>
+								<p className={`p3 secondary`}>Rango de fecha</p>
 							</div>
 						</div>
 						<div className="col-xs-12 col-md-6">
-							<div className={`box ${styles.boxSeparator}`}>
-								<SalesInfoCard
-									title="Total en Ventas"
-									amount="$27632"
-									percentage="+2.5%"
-									dateRange="Rango de fecha"
-								/>
+							<div className={`${styles.infoContainer}`}>
+								<h6 className={`highlight`}>Mis Leads</h6>
+								<h1 className={`bold`}>12</h1>
+								<p className={`p3 secondary`}>Rango de fecha</p>
 							</div>
 						</div>
 						<div className="col-xs-12 col-md-6">
-							<div className="box">
-								<SalesInfoCard
-									title="Mis Leads"
-									amount="16"
-									percentage="+2.5%"
-									dateRange="Rango de fecha"
-								/>
-							</div>
-						</div>
-						<div className="col-xs-12 col-md-6">
-							<div className="box">
-								<SalesInfoCard
-									title="Tiempo de primer contacto"
-									amount="12 min"
-									percentage="+2.5%"
-									dateRange="Rango de fecha"
-								/>
+							<div className={`${styles.infoContainer}`}>
+								<h6 className={`highlight`}>
+									Tiempo de primer contacto
+								</h6>
+								<h1 className={`bold`}>12</h1>
+								<p className={`p3 secondary`}>Rango de fecha</p>
 							</div>
 						</div>
 					</div>
