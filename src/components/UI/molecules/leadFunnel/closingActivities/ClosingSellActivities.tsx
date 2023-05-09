@@ -427,13 +427,13 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 						SaleMutation.mutate();
 					}}
 				/>
-				<Button
+				{/* <Button
 					text="Imprimir"
 					full={true}
 					func={() => {
 						console.log(fields);
 					}}
-				/>
+				/> */}
 			</div>
 		</>
 	);
