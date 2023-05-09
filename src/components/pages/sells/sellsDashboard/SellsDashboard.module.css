@@ -5,7 +5,7 @@
 	grid-template-rows: repeat(2, 1fr);
 	grid-template-areas:
 		"card1 card1 card2"
-		"card3 card3 card2";
+		"card3 card3 card4";
 }
 @media (max-width: 63em) {
 	.mainContainer {
@@ -14,7 +14,8 @@
 		grid-template-areas:
 			"card1"
 			"card2"
-			"card3";
+			"card3"
+			"card4";
 	}
 }
 /*
@@ -35,7 +36,11 @@ $grid-breakpoints: (
 .card3 {
 	grid-area: card3;
 }
+.card4 {
+	grid-area: card4;
+}
 
+/* Card styles */
 .cardContainer {
 	padding: 1rem;
 	max-width: 100%;
@@ -46,58 +51,4 @@ $grid-breakpoints: (
 	border-radius: var(--br-2);
 	height: 100%;
 	max-width: 100%;
-}
-
-@media (max-width: 63em) {
-	.userData {
-	}
-}
-
-.box {
-	margin-bottom: 2rem;
-	border-bottom: 2px solid var(--gray2);
-}
-
-.customColumn {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	height: 25rem;
-}
-
-.titleContainer {
-	display: flex;
-}
-
-.iconContainer {
-	height: 24px;
-	width: 24px;
-}
-
-.title {
-	padding-left: 10px;
-	font-weight: bold;
-	font-size: 20px;
-}
-
-.subTitle {
-	color: var(--secondary-text);
-	font-size: 16px;
-	font-weight: 600;
-}
-
-.paragraph {
-	color: var(--secondary-text);
-}
-
-.paragraphSeparator {
-	margin-bottom: 20px;
-}
-
-.boxSeparator {
-	border-bottom: 1px solid var(--gray2);
-}
-
-.carListContainer {
-	margin-top: 28px;
 }

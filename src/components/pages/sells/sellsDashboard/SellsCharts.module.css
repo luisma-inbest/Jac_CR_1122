@@ -1,0 +1,22 @@
+@media (max-width: 63em) {
+	.userData {
+	}
+}
+
+.customColumn {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 25rem;
+}
+
+.titleContainer {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.iconContainer {
+	height: 24px;
+	width: 24px;
+}

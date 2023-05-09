@@ -37,28 +37,28 @@ export const submenuSells = [
 		text: "Leads",
 		route: "/sells/leads",
 	},
-	// {
-	// 	pos: 1.2,
-	// 	text: "Dashboard Ventas",
-	// 	route: "/sells",
-	// },
 	{
 		pos: 1.2,
+		text: "Dashboard Ventas",
+		route: "/sells",
+	},
+	{
+		pos: 1.3,
 		text: "Mi Agenda",
 		route: "/sells/agenda",
 	},
 	{
-		pos: 1.3,
+		pos: 1.4,
 		text: "Leads Congelados",
 		route: "/sells/leads/search/?leadPhase=congelado",
 	},
 	{
-		pos: 1.4,
+		pos: 1.5,
 		text: "Futura Venta",
 		route: "/sells/leads/search/?leadPhase=futura-venta",
 	},
 	{
-		pos: 1.5,
+		pos: 1.6,
 		text: "Ventas",
 		route: "/sells/leads/search/?leadPhase=cerrado",
 	},
