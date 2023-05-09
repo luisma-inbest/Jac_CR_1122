@@ -11,7 +11,7 @@ export function signUp(user: User) {
 	let dataNickname = { Name: "nickname", Value: user.nickname };
 	let dataRole = { Name: "custom:role", Value: `shared,${user.userRole}` };
 	let dataID = { Name: "custom:id", Value: user.userId };
-	let AgencyId = { Name: "custom:agencyID", Value: user.AgencyId };
+	let AgencyId = { Name: "custom:agencyID", Value: user.agencies[0] };
 
 	let attributeList = [
 		new CognitoUserAttribute(dataEmail),
