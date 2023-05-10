@@ -31,6 +31,7 @@ export const NavBar: React.FunctionComponent<Props> = (props) => {
 	const { isLoading, data, isError, error } = useQuery({
 		queryKey: ["agencies"],
 		queryFn: AgencyAPI.getAll,
+		// queryFn: () => UserAPI.getAgencies(User!.id),
 		staleTime: 5 * (60 * 2500), // 25 mins
 		cacheTime: 10 * (60 * 3000), // 30 mins
 	});
@@ -59,6 +60,9 @@ export const NavBar: React.FunctionComponent<Props> = (props) => {
 		return <></>;
 	}
 
+	//TODO: imprimir info de usuario
+	console.log(User);
+
 	return (
 		<div
 			id="out"
@@ -81,15 +85,12 @@ export const NavBar: React.FunctionComponent<Props> = (props) => {
 									onChange={(e) =>
 										handleDistributorSelection(e)
 									}
-									disabled={
-										!["admin"].includes(
-											User!.permissions[1]
-										)
-									}
+									disabled={true}
 								>
 									<option value="" disabled>
 										Agencia
 									</option>
+									//TODO: ajustar data
 									{data.map((e: any, index: any) => {
 										return (
 											<option key={e.id} value={e.id}>

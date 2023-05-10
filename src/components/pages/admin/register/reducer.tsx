@@ -13,7 +13,7 @@ type Action =
 	| { type: "gender"; value: string }
 	| { type: "nickname"; value: string }
 	| { type: "birthDate"; value: string }
-	| { type: "agencies"; value: string[] }
+	| { type: "agencies"; value: string }
 	| { type: "userRole"; value: string }
 	| { type: "position"; value: string }
 	| { type: "state"; value: string };
@@ -62,7 +62,7 @@ function reducer(state: User, action: Action): User {
 		case "birthDate":
 			return { ...state, birthDate: action.value };
 		case "agencies":
-			return { ...state, agencies: action.value };
+			return { ...state, agencies: [...state.agencies, action.value] };
 		case "userRole":
 			return { ...state, userRole: action.value };
 		case "position":

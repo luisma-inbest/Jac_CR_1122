@@ -12,7 +12,11 @@ export const ButtonFields = (props: Props) => {
 		document.documentElement
 	).getPropertyValue("--highlight");
 	return (
-		<button className={styles.fullButton} onClick={() => props.func()}>
+		<button
+			className={styles.fullButton}
+			type="button"
+			onClick={() => props.func()}
+		>
 			<IconAdd size="90%" color={highlight} />
 			{props.text}
 		</button>

@@ -31,6 +31,8 @@ export const Register = (props: Props) => {
 	const [fields, dispatch] = useReducer(reducer, initial);
 	const [phone, setPhone] = useState("");
 	const [email, setEmail] = useState("");
+	const [agencie, setAgencie] = useState("");
+	const [agenciesValues, setAgenciesValues] = useState([""]);
 	const { Alerts, SetAlerts, createAlert } = useContext(
 		AlertsContext
 	) as AlertsContextType;
@@ -56,9 +58,15 @@ export const Register = (props: Props) => {
 		},
 		onError(error, variables, context) {
 			console.log(error);
-			createAlert("error", "Error", "Hubo un error al crear el lead");
+			createAlert("error", "Error", "Hubo un error al crear el usuario");
 		},
 	});
+
+	function filterById(id: string) {
+		return data.filter(function (jsonObject: any) {
+			return jsonObject["id"] == id;
+		})[0];
+	}
 
 	function handlePhones() {
 		dispatch({
@@ -75,6 +83,17 @@ export const Register = (props: Props) => {
 		});
 		setEmail("");
 		console.log(fields);
+	}
+	function handleAgencies() {
+		if (!fields.agencies.includes(agencie)) {
+			dispatch({
+				type: "agencies",
+				value: agencie,
+			});
+			setAgenciesValues([...agenciesValues, filterById(agencie).name]);
+		}
+
+		setAgencie("");
 	}
 
 	const handleSubmit: any = async (event: React.FormEvent<EventTarget>) => {
@@ -228,13 +247,10 @@ export const Register = (props: Props) => {
 
 					<StyledSelect
 						customType="secondary"
-						defaultValue=""
-						onChange={(e) =>
-							dispatch({
-								type: "agencies",
-								value: [e.target.value],
-							})
-						}
+						value={agencie}
+						onChange={(e) => {
+							setAgencie(e.target.value);
+						}}
 					>
 						<option value="" disabled>
 							*-- Agencia --
@@ -247,6 +263,15 @@ export const Register = (props: Props) => {
 							);
 						})}
 					</StyledSelect>
+					<ButtonFields
+						text="Agregar Agencia"
+						func={handleAgencies}
+					/>
+					<div className="mb-5">
+						{agenciesValues.map((agencie, index) => {
+							return <h5 key={index}>{agencie}</h5>;
+						})}
+					</div>
 
 					<StyledSelect
 						customType="secondary"
@@ -277,18 +302,6 @@ export const Register = (props: Props) => {
 						value="Registrar"
 					/>
 				</form>
-
-				<button
-					onClick={() => {
-						createAlert(
-							"success",
-							"Usuario Creado",
-							"El usuario se creo correctamente"
-						);
-					}}
-				>
-					prekfkadfl
-				</button>
 			</div>
 		</div>
 	);
