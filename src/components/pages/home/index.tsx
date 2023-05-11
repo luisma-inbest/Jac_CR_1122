@@ -5,6 +5,7 @@ import { getParams } from "@/auth/AuthFuncs";
 import UserContext, { UserContextType } from "@/context/UserContext";
 import { handleSession } from "@/auth";
 import { permissions } from "@/utils";
+import { UserAPI } from "@/apis";
 
 export const Home = () => {
 	const { User, SetUser } = useContext(UserContext) as UserContextType;
@@ -38,13 +39,22 @@ export const Home = () => {
 	useEffect(() => {
 		handleSession()
 			.then((data: any) => {
-				SetUser({
-					id: data.id,
-					email: data.email,
-					name: data.name,
-					permissions: data.role,
-					AgencyId: data.AgencyId,
-				});
+				UserAPI.getOne(data.id)
+					.then((res) => {
+						// console.log("usuario respuesta:", res);
+						//TODO: se va a cambiar agencies
+						SetUser({
+							id: res.id,
+							email: res.email,
+							name: res.nickname,
+							permissions: data.role,
+							agencies: res.Agencies,
+							AgencyId: res.Agencies[0],
+						});
+					})
+					.catch((err) => {
+						console.log("err", err);
+					});
 				let newPath = decideRoute(data.role[1]);
 				// console.clear();
 				navigate(newPath);

@@ -22,15 +22,15 @@ export const Agencies = () => {
 		cacheTime: 10 * (60 * 1000), // 10 mins
 		onSuccess: (data) => {
 			console.log(data);
-			createAlert("success", "Exito!", "agencias cargadas correctamente");
+			// createAlert("success", "Exito!", "agencias cargadas correctamente");
 		},
 		onError: (error) => {
 			console.log(error);
-			createAlert(
-				"error",
-				"Error!",
-				"No se pudieron cargar las agencias"
-			);
+			// createAlert(
+			// 	"error",
+			// 	"Error!",
+			// 	"No se pudieron cargar las agencias"
+			// );
 		},
 	});
 

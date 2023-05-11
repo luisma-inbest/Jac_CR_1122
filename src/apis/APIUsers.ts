@@ -25,10 +25,23 @@ function validateCognitoUser(user: User) {
 }
 
 export const UserAPI = {
-	test: function () {
-		return new Promise((resolve, reject) => {
-			resolve(1);
-		});
+	getOne: function (id: number) {
+		return api
+			.request({
+				url: `/user/${id}}`,
+				method: "GET",
+			})
+			.then((response) => {
+				// console.log("todo bien", response.data.data);
+				return response.data.data;
+			})
+			.catch((error: any) => {
+				console.log("Hubo un error");
+				if (error.response) {
+					console.log(error.response.data);
+				}
+				throw new Error(error);
+			});
 	},
 	getAll: async function () {
 		return api
@@ -75,11 +88,14 @@ export const UserAPI = {
 			if (!cognitoresponse) {
 				console.log("Error al crear el usuario en cognito");
 				this.delete(newId);
+				throw new Error("Error al crear el usuario en cognito");
 			}
+			return user.userId;
 		} catch (error: any) {
 			console.log("Hubo un error");
 			if (error.response) {
 				console.log(error.response.data);
+				throw new Error(error.response.data);
 			}
 		}
 	},
@@ -100,6 +116,18 @@ export const UserAPI = {
 		try {
 			const response = await api.request({
 				url: `/user/?AgencyId=${agency}&${rolesQuery}`,
+				method: "GET",
+			});
+			// console.log("resp:", response.data);
+			return response.data.data;
+		} catch (error) {
+			console.log(error);
+		}
+	},
+	getUserAgencies: async function (id: number) {
+		try {
+			const response = await api.request({
+				url: `/user/agencies/${id}}`,
 				method: "GET",
 			});
 			// console.log("resp:", response.data);

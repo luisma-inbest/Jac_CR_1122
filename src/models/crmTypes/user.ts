@@ -9,7 +9,7 @@ export interface User {
 	gender: string;
 	nickname: string;
 	birthDate: string;
-	AgencyId: string;
+	agencies: string[];
 	userRole: string;
 	position: string;
 	state: string;

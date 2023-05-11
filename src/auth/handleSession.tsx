@@ -16,7 +16,6 @@ function handleSession() {
 					email: data["email"],
 					name: data["nickname"],
 					role: data["custom:role"],
-					AgencyId: data["custom:agencyID"],
 				});
 			})
 			.catch((err: any) => {

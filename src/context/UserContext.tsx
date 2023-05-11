@@ -11,8 +11,9 @@ export type UserType = {
 	id: number;
 	name: string;
 	email: string;
-	AgencyId: string;
 	permissions: string[];
+	agencies: string[];
+	AgencyId: string;
 } | null;
 // user methods
 // este se usa principalmente en las llamadas para definir el tipado
