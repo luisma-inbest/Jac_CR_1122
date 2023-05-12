@@ -34,7 +34,7 @@
 export const submenuSells = [
 	{
 		pos: 1.1,
-		text: "Leads",
+		text: "Leads / Prospectos",
 		route: "/sells/leads",
 	},
 	{

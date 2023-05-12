@@ -161,7 +161,7 @@ export const Body = () => {
 	}
 
 	// const PageTabs = ["Datos", "Funnel", "Chat", "Historial"];
-	const PageTabs = ["Datos", "Funnel", "Chat", "Historial"];
+	const PageTabs = ["Datos", "Funnel", "Agenda", "Historial"];
 	const TabOne = <LeadData />;
 	const TabTwo = (
 		//TODO: eliminar refresher

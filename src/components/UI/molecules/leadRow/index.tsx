@@ -63,7 +63,7 @@ export const LeadRow = (props: Props) => {
 				<div
 					className={`${styles.leadColor} ${colors[props.color]}`}
 				></div>
-				<Link to={`${props.id}`}>
+				<Link to={`/sells/leads/${props.id}`}>
 					<p className="p3 semi-bold no-margin">{props.name || ""}</p>
 					<p className="p4 secondary no-margin">
 						{props.model || ""}

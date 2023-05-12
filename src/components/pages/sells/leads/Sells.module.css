@@ -18,5 +18,14 @@
 .buttonContainer {
 	width: 100%;
 	height: auto;
-	margin-top: 2rem;
+	margin-top: -3rem;
 }
+
+/*
+$grid-breakpoints: (
+  xs: 0,
+  sm: 48em,
+  md: 62em,
+  lg:75em,
+);
+*/
