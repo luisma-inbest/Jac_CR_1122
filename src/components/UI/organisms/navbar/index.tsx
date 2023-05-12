@@ -85,7 +85,7 @@ export const NavBar: React.FunctionComponent<Props> = (props) => {
 									onChange={(e) =>
 										handleDistributorSelection(e)
 									}
-									disabled={true}
+									disabled={false}
 								>
 									<option value="" disabled>
 										Agencia
