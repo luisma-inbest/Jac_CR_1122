@@ -37,6 +37,14 @@
 	--highlight-text: #9d9ea0;
 	--link: #0069d1;
 
+	/* charts colors  */
+	--chart-green: #0d9d00;
+	--chart-blue: #8dbdec;
+	--chart-yellow: #eed347;
+	--chart-orange: #e07d08;
+	--chart-red: #e9525d;
+	--highlight2: #898a8d;
+
 	/* Border Radious */
 	--br-1: 0.5rem;
 	--br-2: 1rem;
