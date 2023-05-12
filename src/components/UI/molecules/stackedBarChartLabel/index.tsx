@@ -3,36 +3,34 @@ import { Label } from "./label";
 import styles from "./StackedBarChartLabel.module.css";
 
 interface StackedBarChartLabelProps {
-    title: string;
-    data: [number, number, number, number];
+	title: string;
+	models: string[];
+	amounts: number[];
+	percentages: number[];
 }
 
-export const StackedBarChartLabel: React.FunctionComponent<StackedBarChartLabelProps> = (props) => {
-    return (
-        <div className="row">
-            <div className="col-xs-12">
-                <div className="box">
-                    <h3 className={styles.title}>{props.title}</h3>
-                </div>
-            </div>
-            {
-                props.data.map((amount, index) => {
-                    return (
-                        <div className="col-xs-3" key={index}>
-                            <div className="box">
-                                <Label
-                                    amount={amount}
-                                />
-                            </div>
-                        </div>
-                    );
-                })
-            }
-            <div className="col-xs-12">
-                <div className="box">
-                    <StackedBarChart data={props.data} />
-                </div>
-            </div>
-        </div>
-    );
+export const StackedBarChartLabel: React.FunctionComponent<
+	StackedBarChartLabelProps
+> = (props) => {
+	return (
+		<div className="row mb-3">
+			<div className="col-xs-12">
+				<h3 className={`${styles.title} noMargin`}>{props.title}</h3>
+			</div>
+			{props.models.map((model, index) => {
+				return (
+					<div className="col-xs-3" key={index}>
+						<Label
+							model={model}
+							amount={props.amounts[index]}
+							percentage={props.percentages[index]}
+						/>
+					</div>
+				);
+			})}
+			<div className="col-xs-12">
+				<StackedBarChart data={props.amounts} />
+			</div>
+		</div>
+	);
 };

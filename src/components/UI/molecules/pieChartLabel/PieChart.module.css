@@ -1,29 +1,57 @@
+/* piechart styles  */
+.chartContainer {
+	max-width: 32rem;
+	margin: auto;
+}
+@media (max-width: 48em) {
+	.chartContainer {
+		margin-bottom: 2rem;
+	}
+}
+
+/* label styles */
 .square {
-    height: 25px;
-    width: 25px;
+	height: 2rem;
+	width: 2rem;
+	border-radius: 0.25rem;
+}
+.labelContainer {
+	margin-bottom: 1rem;
+}
+@media (max-width: 62em) {
+	.labelContainer {
+		display: flex;
+		justify-content: space-between;
+	}
+}
+@media (max-width: 48em) {
+	.labelContainer {
+		margin-bottom: 2rem;
+	}
+}
+.labelHeader {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
 }
 
-.labels {
-    margin-top: 40px;
+.labelNumbers {
+	padding-left: 3rem;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+@media (max-width: 62em) {
+	.labelNumbers {
+		gap: 2rem;
+	}
 }
 
-.text {
-    font-size: 15px;
-    color: var(--selectedTab);
-}
-
-.amount {
-    font-size: 20px;
-    font-weight: bold;
-    color: #082a44;
-}
-
-.percentage {
-    font-size: 20px;
-    font-weight: bold;
-    color: #898a8d;
-}
-
-.labelInfo {
-    padding-left: 5px;
-}
+/*
+$grid-breakpoints: (
+  xs: 0,
+  sm: 48em,
+  md: 62em,
+  lg:75em,
+);
+*/

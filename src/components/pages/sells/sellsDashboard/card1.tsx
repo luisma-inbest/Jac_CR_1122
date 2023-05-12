@@ -18,12 +18,14 @@ import { PieChartLabelProps } from "@/components/UI/molecules/pieChartLabel";
 const Card1 = () => {
 	const salesData: PieChartLabelProps = {
 		labels: [
+			"Subasta",
 			"Primer Contacto",
 			"Datos Confirmados",
 			"Seguimiento",
-			"En Venta",
+			"Cierre",
 		],
-		amounts: [14, 25, 30, 12],
+		amounts: [10, 14, 25, 30, 12],
+		percentages: [10, 14, 25, 30, 12],
 	};
 
 	return (
@@ -34,7 +36,7 @@ const Card1 = () => {
 				</div>
 				<h2 className={`semi-bold`}>Funnel Ventas</h2>
 			</div>
-			<div className="row">
+			<div className="row mb-3">
 				<div className="col">
 					<p className={``}>
 						Lorem ipsum dolor sit amet consectetur. Volutpat integer
@@ -52,43 +54,42 @@ const Card1 = () => {
 					<PieChartLabel
 						labels={salesData.labels}
 						amounts={salesData.amounts}
+						percentages={salesData.percentages}
 					/>
 				</div>
 
 				{/* data row */}
 				<div className="col-xs-12 col-md-6">
-					<div className="row">
-						<div className="col-xs-12 col-sm-8 col-lg-6">
-							<div className={`${styles.infoContainer}`}>
-								<h6 className={`highlight`}>
-									Cantidad de ventas
-								</h6>
-								<h1 className={`bold`}>$12</h1>
-								<p className={`p3 secondary`}>Rango de fecha</p>
-							</div>
+					<div className={`${styles.detailsCard}`}>
+						<div
+							className={`${styles.infoContainer} ${styles.detailsComponent}`}
+						>
+							<h6 className={`highlight`}>Cantidad de ventas</h6>
+							<h1 className={`bold`}>$12</h1>
+							<p className={`p3 secondary`}>Rango de fecha</p>
 						</div>
-						<div className="col-xs-12 col-md-8 col-lg-7">
-							<div className={`${styles.infoContainer}`}>
-								<h6 className={`highlight`}>Total de ventas</h6>
-								<h1 className={`bold`}>$12,000,000</h1>
-								<p className={`p3 secondary`}>Rango de fecha</p>
-							</div>
+						{/* <div
+							className={` ${styles.infoContainer} ${styles.detailsComponent}`}
+						>
+							<h6 className={`highlight`}>Total de ventas</h6>
+							<h1 className={`bold`}>$12,000,000</h1>
+							<p className={`p3 secondary`}>Rango de fecha</p>
+						</div> */}
+						<div
+							className={` ${styles.infoContainer} ${styles.detailsComponent}`}
+						>
+							<h6 className={`highlight`}>Mis Leads</h6>
+							<h1 className={`bold`}>12</h1>
+							<p className={`p3 secondary`}>Rango de fecha</p>
 						</div>
-						<div className="col-xs-12 col-md-6">
-							<div className={`${styles.infoContainer}`}>
-								<h6 className={`highlight`}>Mis Leads</h6>
-								<h1 className={`bold`}>12</h1>
-								<p className={`p3 secondary`}>Rango de fecha</p>
-							</div>
-						</div>
-						<div className="col-xs-12 col-md-6">
-							<div className={`${styles.infoContainer}`}>
-								<h6 className={`highlight`}>
-									Tiempo de primer contacto
-								</h6>
-								<h1 className={`bold`}>12</h1>
-								<p className={`p3 secondary`}>Rango de fecha</p>
-							</div>
+						<div
+							className={` ${styles.infoContainer} ${styles.detailsComponent}`}
+						>
+							<h6 className={`highlight`}>
+								Tiempo de primer contacto
+							</h6>
+							<h1 className={`bold`}>12</h1>
+							<p className={`p3 secondary`}>Rango de fecha</p>
 						</div>
 					</div>
 				</div>

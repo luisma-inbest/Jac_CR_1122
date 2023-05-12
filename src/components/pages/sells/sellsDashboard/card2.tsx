@@ -22,51 +22,63 @@ const Card2 = () => {
 				<div className={styles.iconContainer}>
 					<IconSells size="100%" color="#000" />
 				</div>
-				<h2 className={styles.title}>Modelos</h2>
+				<h2 className={`semi-bold`}> Leads por Modelo</h2>
 			</div>
 			<div className="row">
 				<div className="col-xs-12">
-					<div className="box">
-						<StackedBarChartLabel
-							title="Eléctricos"
-							data={[25, 35, 40, 100]}
-						/>
-					</div>
+					<StackedBarChartLabel
+						title="Auto"
+						models={["modelo1", "modelo2", "modelo3", "modelo4"]}
+						amounts={[25, 50, 55, 100]}
+						percentages={[5, 15, 25, 30]}
+					/>
 				</div>
 				<div className="col-xs-12">
-					<div className="box">
-						<StackedBarChartLabel
-							title="Comerciales"
-							data={[25, 50, 75, 100]}
-						/>
-					</div>
+					<StackedBarChartLabel
+						title="SUV’s"
+						models={[
+							"modelo1",
+							"modelo2",
+							"modelo3",
+							"modelo4",
+							"modelo5",
+						]}
+						amounts={[25, 50, 55, 70, 80]}
+						percentages={[5, 15, 25, 30, 20]}
+					/>
 				</div>
 				<div className="col-xs-12">
-					<div className="box">
-						<StackedBarChartLabel
-							title="SUV’s"
-							data={[25, 50, 55, 100]}
-						/>
-					</div>
+					<StackedBarChartLabel
+						title="Electricos"
+						models={["modelo1", "modelo2", "modelo3", "modelo4"]}
+						amounts={[25, 50, 55, 100]}
+						percentages={[5, 15, 25, 30]}
+					/>
 				</div>
-			</div>
-			<div className={`row ${styles.carListContainer}`}>
 				<div className="col-xs-12">
-					<div className="box">
-						<h3 className={styles.subTitle}>
-							Orci senectus posuere id
-						</h3>
-					</div>
+					<StackedBarChartLabel
+						title="Pickups"
+						models={["modelo1", "modelo2", "modelo3", "modelo4"]}
+						amounts={[25, 50, 55, 100]}
+						percentages={[5, 15, 25, 30]}
+					/>
 				</div>
-				{Array.from(Array(4)).map(() => {
-					return (
-						<div className="col-xs-12">
-							<div className="box">
-								<CardProduct />
-							</div>
-						</div>
-					);
-				})}
+				<div className="col-xs-12">
+					<StackedBarChartLabel
+						title="Chasis Cabina"
+						models={["modelo1", "modelo2", "modelo3", "modelo4"]}
+						amounts={[25, 50, 55, 100]}
+						percentages={[5, 15, 25, 30]}
+					/>
+				</div>
+				<div className="col-xs-12">
+					<StackedBarChartLabel
+						title="VAN"
+						models={["modelo1", "modelo2", "modelo3", "modelo4"]}
+						amounts={[25, 50, 55, 100]}
+						percentages={[5, 15, 25, 30]}
+					/>
+				</div>
 			</div>
 		</>
 	);

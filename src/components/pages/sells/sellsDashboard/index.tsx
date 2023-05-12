@@ -14,6 +14,7 @@ import { Tabs } from "@/components/templates";
 import styles from "./SellsDashboard.module.css";
 import { IconSells } from "@/assets";
 import Card1 from "./card1";
+import Card2 from "./card2";
 
 const getTitleElement = (titleText: string) => {
 	return (
@@ -40,7 +41,9 @@ export const SellsDashboard = () => {
 			<div
 				className={` ${styles.cardContainer} ${styles.sideBar} ${styles.card2}`}
 			>
-				<div className={`globalPadding ${styles.card}`}></div>
+				<div className={`globalPadding ${styles.card}`}>
+					<Card2 />
+				</div>
 			</div>
 
 			{/* col */}
