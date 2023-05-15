@@ -22,9 +22,7 @@ export const Routing = () => {
 			<Route
 				element={
 					<ProtectedRoute
-						isAllowed={
-							!!User && User.permissions.includes("shared")
-						}
+						isAllowed={User && User.permissions.includes("shared")}
 					/>
 				}
 			>
@@ -35,7 +33,7 @@ export const Routing = () => {
 			<Route
 				element={
 					<ProtectedRoute
-						isAllowed={!!User && User.permissions.includes("admin")}
+						isAllowed={User && User.permissions.includes("admin")}
 					/>
 				}
 			>
@@ -47,7 +45,7 @@ export const Routing = () => {
 				element={
 					<ProtectedRoute
 						isAllowed={
-							!!User &&
+							User &&
 							(User.permissions.includes("sells") ||
 								User.permissions.includes("admin") ||
 								User.permissions.includes("manager") ||
@@ -68,7 +66,7 @@ export const Routing = () => {
 			<Route
 				element={
 					<ProtectedRoute
-						isAllowed={!!User && User.permissions.includes("admin")}
+						isAllowed={User && User.permissions.includes("admin")}
 					/>
 				}
 			>

@@ -31,6 +31,7 @@ export const LeadsTable = (props: Props) => {
 	).getPropertyValue("--highlight-text");
 	const [page, setPage] = useState<number>(1);
 	const [maxPage, setMaxPage] = useState<number>(1);
+	const [reload, setReload] = useState<boolean>(false);
 	const UserId = getUserId();
 
 	//Component Functions
@@ -65,7 +66,7 @@ export const LeadsTable = (props: Props) => {
 	} = useQuery({
 		queryKey: [
 			`leads-${User!.AgencyId}-${statusArray[props.type]}`,
-			[page, props.refresh],
+			[page, props.refresh, reload],
 		],
 		queryFn: () =>
 			LeadAPI.getAll(
@@ -76,10 +77,10 @@ export const LeadsTable = (props: Props) => {
 			),
 		onSuccess: (data) => {
 			setMaxPage(data.pages);
-			console.log(data);
+			//console.log(data);
 		},
-		staleTime: 5 * (60 * 1000), // 5 mins
-		cacheTime: 10 * (60 * 1000), // 10 mins
+		// staleTime: 5 * (60 * 1000), // 5 mins
+		// cacheTime: 10 * (60 * 1000), // 10 mins
 	});
 
 	if (isLoading) {

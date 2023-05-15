@@ -61,7 +61,7 @@ export const NavBar: React.FunctionComponent<Props> = (props) => {
 	}
 
 	//TODO: imprimir info de usuario
-	console.log(User);
+	// console.log(User);
 
 	return (
 		<div

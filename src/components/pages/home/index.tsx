@@ -13,6 +13,8 @@ export const Home = () => {
 	const location = useLocation();
 	let path = "";
 
+	console.log("pasa a home");
+
 	function decideRoute(role: string): string {
 		let mainPage = handleMainPage(role).replace("/", "");
 		console.log("rol del usuario", role);

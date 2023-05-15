@@ -148,7 +148,7 @@ export function getParams() {
 						}
 						results["custom:role"] =
 							results["custom:role"].split(",");
-						console.log(results);
+						// console.log(results);
 						resolve(results);
 					});
 				});

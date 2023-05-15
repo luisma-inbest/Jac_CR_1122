@@ -22,7 +22,6 @@ const initial: Lead = {
 	colorId: "",
 	AgencyId: 0,
 	buyType: "",
-	units: 1,
 	leadInterests: [
 		{
 			date: Date(),
