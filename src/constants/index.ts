@@ -37,4 +37,3 @@ switch (enviroment) {
 }
 
 export { Domain, Backend, poolData };
-//J4C@CRM7865#
