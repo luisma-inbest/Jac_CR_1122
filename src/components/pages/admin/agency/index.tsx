@@ -15,30 +15,14 @@ import { Domain } from "@/constants";
 import { useLocation, useParams } from "react-router-dom";
 
 export const Agency = () => {
-	const [leadView, setLeadView] = useState(false);
-	const [lead, seadLead] = useState(null);
-	// const { state } = useLocation();
-	const { id } = useParams();
-	const agencyId: string = id || "0";
-	// let agencyId = window.location.pathname.replace("/admin/agencies/", "");
-
-	const agencySocialMedia = [
-		{
-			name: "Facebook",
-			url: "http://facebook.com/@inbest-cloud",
-		},
-		{
-			name: "YouTube",
-			url: "http://youtube.com/@inbest-cloud",
-		},
-	];
+	const { agencyId } = useParams();
 
 	const PageTabs = ["General", "Ubicación", "Colaboradores", "Redes"];
-	const TabOne = <AgencyGeneral />;
+	const TabOne = <AgencyGeneral agencyId={agencyId} />;
 	const TabTwo = <AgencyLocation />;
 	// const TabThree = <AgencyUsers agencyId={state.agencyId} />;
-	const TabThree = <AgencyUsers agencyId={agencyId} />;
-	const TabFour = <AgencySocial agencySocialMedia={agencySocialMedia} />;
+	const TabThree = <AgencyUsers agencyId={agencyId!} />;
+	const TabFour = <AgencySocial />;
 	const TabsComponents = [TabOne, TabTwo, TabThree, TabFour];
 
 	return (

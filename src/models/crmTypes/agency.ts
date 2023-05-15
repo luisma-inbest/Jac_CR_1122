@@ -24,6 +24,9 @@ export interface Agency {
 	manager?: string;
 	phone?: string;
 	email?: string;
+
 	active: boolean;
 	agencySocialMedia: any;
+
+	assignmentType: string;
 }
