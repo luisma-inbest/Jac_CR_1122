@@ -36,4 +36,21 @@ export const AgencyAPI = {
 				throw new Error(error);
 			});
 	},
+	getAgency: async function (id: string) {
+		return api
+			.request({
+				url: `/agency/${id}`,
+				method: "GET",
+			})
+			.then((response) => {
+				return response.data.data;
+			})
+			.catch((error: any) => {
+				console.log("Hubo un error");
+				if (error.response) {
+					console.log(error.response.data);
+				}
+				throw new Error(error);
+			});
+	},
 };

@@ -1,0 +1,6 @@
+.cardContainerChecklist > div {
+	display: flex;
+	flex-direction: row;
+	align-items: baseline;
+	gap: 1rem;
+}

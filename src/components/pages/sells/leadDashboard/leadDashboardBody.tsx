@@ -25,7 +25,7 @@ import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
 
 import LeadWindowContext, { LeadWindowContextType } from "@/context/LeadWindow";
 
-export const Body = () => {
+export const LeadDashboardBody = () => {
 	let { leadId } = useParams();
 	const [refresh, setRefresh] = useState(false);
 	const [runEffect, setRunEffect] = useState(false);

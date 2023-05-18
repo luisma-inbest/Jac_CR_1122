@@ -15,7 +15,6 @@ import { NavbarHeader } from "./navbarHeader";
 import { Input } from "./input";
 import { MenuItem } from "./menuItem";
 import { Path } from "./path";
-import { Dropdown } from "./dropdown";
 
 import { CardFunnel } from "./cardFunnel";
 import { CardHistory } from "./cardHistory";
@@ -54,7 +53,6 @@ export {
 	NavbarLink,
 	NavbarHeader,
 	Path,
-	Dropdown,
 	CardFunnel,
 	CardHistory,
 	CardChat,

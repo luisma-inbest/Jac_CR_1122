@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Input, Dropdown } from "@/components/UI/atoms";
+import { Button, Input } from "@/components/UI/atoms";
 
 export const AgencyLocation = () => {
 	const [street, setStret] = useState<string>("Venustiano Carranza");
@@ -80,38 +80,38 @@ export const AgencyLocation = () => {
 				</div>
 				<div className="col-xs-6">
 					<div className="box padding-side">
-						<Dropdown
+						{/* <Dropdown
 							title="Estado"
 							menuItems={states}
 							onSelection={setState}
-						/>
+						/> */}
 					</div>
 				</div>
 				<div className="col-xs-6">
 					<div className="box padding-side">
-						<Dropdown
+						{/* <Dropdown
 							title="Municipio"
 							menuItems={municipalities}
 							onSelection={setMunicipality}
-						/>
+						/> */}
 					</div>
 				</div>
 				<div className="col-xs-6">
 					<div className="box padding-side">
-						<Dropdown
+						{/* <Dropdown
 							title="Colonia"
 							menuItems={neighborhoods}
 							onSelection={setNeighborhood}
-						/>
+						/> */}
 					</div>
 				</div>
 				<div className="col-xs-6">
 					<div className="box padding-side">
-						<Dropdown
+						{/* <Dropdown
 							title="Delegación"
 							menuItems={delegations}
 							onSelection={setDelegation}
-						/>
+						/> */}
 					</div>
 				</div>
 				<div className="col-xs-6">

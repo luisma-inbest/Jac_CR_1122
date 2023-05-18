@@ -1,49 +1,39 @@
 import { useContext, useEffect, useReducer, useState } from "react";
-import { Button, Input, Dropdown, StyledSelect } from "@/components/UI/atoms";
-import { reducer, initial } from "./reducer";
+import {
+	Button,
+	Input,
+	StyledSelect,
+	StyledInputRadio,
+} from "@/components/UI/atoms";
 import { UserAPI } from "@/apis";
+//contexts
 import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
 import UserContext, { UserContextType } from "@/context/UserContext";
+import CurrentAgencyContext, {
+	CurrentAgencyContextType,
+} from "@/context/currentAgencyContext/CurrentAgencyContext";
+//styles
+import styles from "./AgencyGeneral.module.css";
 
-interface Props {
-	agencyId: any;
-}
+interface Props {}
 
 export const AgencyGeneral = (props: Props) => {
-	const [commercialName, setCommercialName] =
-		useState<string>("JAC MX Planta");
-	const [businessName, setBusinessName] = useState<string>("JAC MX");
-	const [logo, setLogo] = useState<string>("");
-	const [logoDark, setLogoDark] = useState<string>("");
-	const [url, setUrl] = useState<string>("");
-	const [view360, setView360] = useState<string>("");
-	const [googleMapsUrl, setGoogleMapsUrl] = useState<string>("");
-	const [sicop, setSicop] = useState<string>("");
-	const [transferCode, setTransferCode] = useState<string>("");
-
-	const [contactName, setContactName] = useState<string>("");
-	const [position, setPosition] = useState<string>("");
-	const [email, setEmail] = useState<string>("");
-	const [phoneNumber, setPhoneNumber] = useState<string>("");
-
-	const [selectedSeller, setSelectedSeller] = useState({ name: "???" });
-
-	const sellers = [{ name: "??" }, { name: "????" }];
-
 	//TODO: borrar todo lo de arriba
-	const [fields, dispatch] = useReducer(reducer, initial);
 	const [dataSellers, setDataSellers] = useState<any>([]);
+	const { User } = useContext(UserContext) as UserContextType;
 	const { Alerts, SetAlerts, createAlert } = useContext(
 		AlertsContext
 	) as AlertsContextType;
-	const { User } = useContext(UserContext) as UserContextType;
+	const { CurrentAgency, DispatchCurrentAgency } = useContext(
+		CurrentAgencyContext
+	) as CurrentAgencyContextType;
 
 	const handleFormSubmit = () => {
 		// Call API.
 	};
 
 	useEffect(() => {
-		UserAPI.filterSellers(String(props.agencyId), [
+		UserAPI.filterSellers(String(CurrentAgency.id), [
 			"coordinator",
 			"bdc",
 			"adviser-digital",
@@ -51,7 +41,7 @@ export const AgencyGeneral = (props: Props) => {
 			"adviser-hybrid",
 		])
 			.then((res) => {
-				console.log("sellers:", res);
+				// console.log("sellers:", res);
 				setDataSellers(res);
 			})
 			.catch((err) => {
@@ -63,197 +53,171 @@ export const AgencyGeneral = (props: Props) => {
 		<>
 			<div className="row">
 				<div className="col-xs-12">
-					<div className=" content-side">
-						<h2>Información General</h2>
-					</div>
+					<h2>Información General</h2>
 				</div>
-				<div className="col-xs-4">
-					<div className=" padding-side">
-						<Input
-							placeholder="Nombre comercial (Marca)"
-							inputType="text"
-							value={commercialName}
-							type="state"
-							params={{ setValue: setCommercialName }}
-						/>
-					</div>
+				<div className="col-xs-12 col-md-6 ">
+					<Input
+						placeholder="Nombre comercial"
+						inputType="text"
+						value={CurrentAgency.name}
+						type="reducer"
+						params={{
+							dispatch: DispatchCurrentAgency,
+							dispType: "name",
+						}}
+					/>
 				</div>
-				<div className="col-xs-4">
-					<div className=" padding-side">
-						<Input
-							placeholder="Razón social"
-							inputType="text"
-							value={businessName}
-							type="state"
-							params={{ setValue: setBusinessName }}
-						/>
-					</div>
+				<div className="col-xs-12 col-md-6 ">
+					<Input
+						placeholder="Razón social"
+						inputType="text"
+						value={CurrentAgency.businessName}
+						type="reducer"
+						params={{
+							dispatch: DispatchCurrentAgency,
+							dispType: "businessName",
+						}}
+					/>
 				</div>
-				<div className="col-xs-4">
-					<div className=" padding-side">
-						<Input
-							placeholder="Logo"
-							inputType="text"
-							value={logo}
-							type="state"
-							params={{ setValue: setLogo }}
-						/>
-					</div>
+				<div className="col-xs-12 col-md-4 ">
+					<Input
+						placeholder="Logo"
+						inputType="text"
+						value={CurrentAgency.picLogo!}
+						type="reducer"
+						params={{
+							dispatch: DispatchCurrentAgency,
+							dispType: "picLogo",
+						}}
+					/>
+				</div>
+				<div className="col-xs-12 col-md-4 ">
+					<Input
+						placeholder="Logo Dark"
+						inputType="text"
+						value={CurrentAgency.picLogoDark!}
+						type="reducer"
+						params={{
+							dispatch: DispatchCurrentAgency,
+							dispType: "picLogoDark",
+						}}
+					/>
+				</div>
+				<div className="col-xs-12 col-md-4">
+					<Input
+						placeholder="URL"
+						inputType="text"
+						value={CurrentAgency.urlSite!}
+						type="reducer"
+						params={{
+							dispatch: DispatchCurrentAgency,
+							dispType: "urlSiteurlSite",
+						}}
+					/>
+				</div>
+				<div className="col-xs-12 col-md-6">
+					<Input
+						placeholder="Vista 360"
+						inputType="url"
+						value={CurrentAgency.url360View!}
+						type="reducer"
+						params={{
+							dispatch: DispatchCurrentAgency,
+							dispType: "url360View",
+						}}
+					/>
+				</div>
+				<div className="col-xs-12 col-md-6">
+					<Input
+						placeholder="URL Google Maps"
+						inputType="text"
+						value={CurrentAgency.urlGoogleMaps!}
+						type="reducer"
+						params={{
+							dispatch: DispatchCurrentAgency,
+							dispType: "urlGoogleMaps",
+						}}
+					/>
+				</div>
+				<div className="col-xs-12 col-md-6">
+					<Input
+						placeholder="SICOP"
+						inputType="text"
+						value={CurrentAgency.sicop!}
+						type="reducer"
+						params={{
+							dispatch: DispatchCurrentAgency,
+							dispType: "sicop",
+						}}
+					/>
+				</div>
+				<div className="col-xs-12 col-md-6">
+					<Input
+						placeholder="Código de transferencia"
+						inputType="text"
+						value={CurrentAgency.transferCode!}
+						type="reducer"
+						params={{
+							dispatch: DispatchCurrentAgency,
+							dispType: "transferCode",
+						}}
+					/>
+				</div>
+			</div>
+
+			<div className="row mt-4">
+				<div className="col-xs-12">
+					<h2>Servicios de Seller</h2>
 				</div>
 				<div className="col-xs-12">
-					<div className=" padding-side">
-						<Input
-							placeholder="Logo Dark"
-							inputType="text"
-							value={logoDark}
-							type="state"
-							params={{ setValue: setLogoDark }}
-						/>
-					</div>
-				</div>
-				<div className="col-xs-12">
-					<div className=" padding-side">
-						<Input
-							placeholder="URL"
-							inputType="text"
-							value={url}
-							type="state"
-							params={{ setValue: setUrl }}
-						/>
-					</div>
-				</div>
-				<div className="col-xs-6">
-					<div className=" padding-side">
-						<Input
-							placeholder="Vista 360"
-							inputType="url"
-							value={view360}
-							type="state"
-							params={{ setValue: setView360 }}
-						/>
-					</div>
-				</div>
-				<div className="col-xs-6">
-					<div className=" padding-side">
-						<Input
-							placeholder="URL Google Maps"
-							inputType="text"
-							value={googleMapsUrl}
-							type="state"
-							params={{ setValue: setGoogleMapsUrl }}
-						/>
-					</div>
-				</div>
-				<div className="col-xs-6">
-					<div className=" padding-side">
-						<Input
-							placeholder="SICOP"
-							inputType="text"
-							value={sicop}
-							type="state"
-							params={{ setValue: setSicop }}
-						/>
-					</div>
-				</div>
-				<div className="col-xs-6">
-					<div className=" padding-side">
-						<Input
-							placeholder="Código de transferencia"
-							inputType="text"
-							value={transferCode}
-							type="state"
-							params={{ setValue: setTransferCode }}
-						/>
+					<div className={styles.cardContainerChecklist}>
+						<div>
+							<StyledInputRadio
+								name="condition"
+								checked={CurrentAgency.hasService}
+								onChange={() => {
+									DispatchCurrentAgency({
+										type: "hasService",
+										value: true,
+									});
+								}}
+							/>
+							<p className="p4 bold secondary">
+								Cuenta con Servicio
+							</p>
+						</div>
+
+						<div>
+							<StyledInputRadio
+								name="condition"
+								checked={!CurrentAgency.hasService}
+								onChange={() => {
+									DispatchCurrentAgency({
+										type: "hasService",
+										value: false,
+									});
+								}}
+							/>
+							<p className="p4 bold secondary">
+								No Cuenta con Servicio
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<div className="row">
+			<div className="row mt-4">
 				<div className="col-xs-12">
-					<div className=" content-side">
-						<h2>Contacto</h2>
-					</div>
-				</div>
-				<div className="col-xs-6">
-					<div className=" padding-side">
-						<Input
-							placeholder="Nombre del contacto"
-							inputType="text"
-							value={contactName}
-							type="state"
-							params={{ setValue: setContactName }}
-						/>
-					</div>
-				</div>
-				<div className="col-xs-6">
-					<div className=" padding-side">
-						<Input
-							placeholder="Puesto"
-							inputType="text"
-							value={position}
-							type="state"
-							params={{ setValue: setPosition }}
-						/>
-					</div>
-				</div>
-				<div className="col-xs-6">
-					<div className=" padding-side">
-						<Input
-							placeholder="Correo"
-							inputType="email"
-							value={email}
-							type="state"
-							params={{ setValue: setEmail }}
-						/>
-					</div>
-				</div>
-				<div className="col-xs-6">
-					<div className=" padding-side">
-						<Input
-							placeholder="Teléfono"
-							inputType="number"
-							value={phoneNumber}
-							type="state"
-							params={{ setValue: setPhoneNumber }}
-						/>
-					</div>
-				</div>
-				<div className="col-xs-12">
-					<div className=" padding-side">
-						<span>Mostrar agentes en formularios de citas</span>
-					</div>
-				</div>
-			</div>
-
-			<div className="row">
-				<div className="col-xs-12">
-					<div className=" content-side">
-						<h2>Servicios de Seller</h2>
-					</div>
-				</div>
-				<div className="col-xs-12">
-					<div className=" padding-side">
-						<Dropdown
-							title="JAC Store habilitada para"
-							menuItems={sellers}
-							onSelection={setSelectedSeller}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div className="row">
-				<div className="col-xs-12 ">
 					<h2>Asignación de Leads</h2>
 				</div>
 
 				<div className="col-xs-12 col-md-6">
 					<StyledSelect
 						customType="secondary"
-						value={fields.assignmentType}
+						value={CurrentAgency.AgencyIncomingLeadRuleId}
 						onChange={(e) => {
-							dispatch({
-								type: "assignmentType",
+							DispatchCurrentAgency({
+								type: "AgencyIncomingLeadRuleId",
 								value: e.target.value,
 							});
 						}}
@@ -261,12 +225,12 @@ export const AgencyGeneral = (props: Props) => {
 						<option value="" disabled>
 							-- Tipo de asignación --
 						</option>
-						<option value="auction">Subasta</option>
-						<option value="defaultUser">Gerente</option>
+						<option value="1">Subasta</option>
+						<option value="2">Usuario Asignado</option>
 					</StyledSelect>
 				</div>
 
-				{fields.assignmentType === "defaultUser" ? (
+				{CurrentAgency.AgencyIncomingLeadRuleId === "defaultUser" ? (
 					<div className="col-xs-12 col-md-6">
 						<StyledSelect customType="secondary" defaultValue="">
 							<option value="" disabled>
@@ -286,15 +250,74 @@ export const AgencyGeneral = (props: Props) => {
 				)}
 			</div>
 
+			<div className="row mt-4">
+				<div className="col-xs-12">
+					<h2>Contacto(s)</h2>
+				</div>
+				<div className="col-xs-12 col-md-6">
+					<Input
+						placeholder="Nombre del contacto"
+						inputType="text"
+						disabled={true}
+						value={CurrentAgency.name!}
+						type="reducer"
+						params={{
+							dispatch: DispatchCurrentAgency,
+							dispType: "",
+						}}
+					/>
+				</div>
+				<div className="col-xs-12 col-md-6">
+					<Input
+						placeholder="Puesto"
+						inputType="text"
+						disabled={true}
+						value={CurrentAgency.name!}
+						type="reducer"
+						params={{
+							dispatch: DispatchCurrentAgency,
+							dispType: "",
+						}}
+					/>
+				</div>
+				<div className="col-xs-12 col-md-6">
+					<Input
+						placeholder="Correo"
+						inputType="email"
+						disabled={true}
+						value={CurrentAgency.name!}
+						type="reducer"
+						params={{
+							dispatch: DispatchCurrentAgency,
+							dispType: "",
+						}}
+					/>
+				</div>
+				<div className="col-xs-12 col-md-6">
+					<Input
+						placeholder="Teléfono"
+						inputType="number"
+						disabled={true}
+						value={CurrentAgency.name!}
+						type="reducer"
+						params={{
+							dispatch: DispatchCurrentAgency,
+							dispType: "",
+						}}
+					/>
+				</div>
+				{/* <div className="col-xs-12">
+					<span>Mostrar agentes en formularios de citas</span>
+				</div> */}
+			</div>
+
 			<div className="row">
 				<div className="col-xs-12">
-					<div className=" content-side">
-						<Button
-							text="Actualizar"
-							func={() => handleFormSubmit()}
-							full={false}
-						/>
-					</div>
+					<Button
+						text="Actualizar"
+						func={() => handleFormSubmit()}
+						full={true}
+					/>
 				</div>
 			</div>
 		</>
