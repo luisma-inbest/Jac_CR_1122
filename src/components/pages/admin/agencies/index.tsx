@@ -11,13 +11,15 @@ import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
 
 export const Agencies = () => {
 	const navigate = useNavigate();
+	const [page, setPage] = useState<number>(1);
+	const [maxPage, setMaxPage] = useState<number>(1);
 	const { Alerts, SetAlerts, createAlert } = useContext(
 		AlertsContext
 	) as AlertsContextType;
 
 	const { isLoading, data, isError, error } = useQuery({
-		queryKey: ["agencies"],
-		queryFn: AgencyAPI.getAll,
+		queryKey: [`agencies-${page}`, [page]],
+		queryFn: () => AgencyAPI.getAgencies(page),
 		staleTime: 5 * (60 * 1000), // 5 mins
 		cacheTime: 10 * (60 * 1000), // 10 mins
 		onSuccess: (data) => {
@@ -58,7 +60,22 @@ export const Agencies = () => {
 		<div className="row">
 			<div className={`col-xs-12 ${styles.tableContainer}`}>
 				<AgenciesTable agencies={data} />
+
+				{/* pagination */}
+				<div className={styles.paginationContainer}>
+					<div className={styles.pagination}>
+						{page > 1 && (
+							<h5 onClick={() => setPage(page - 1)}> &#8678; </h5>
+						)}
+						<h5> {page} </h5>
+						{page < maxPage && (
+							<h5 onClick={() => setPage(page + 1)}>&#8680;</h5>
+						)}
+					</div>
+				</div>
+				{/* pagination */}
 			</div>
+
 			<div className="col-xs-12 mt-2">
 				<Button
 					text="Registrar nueva agencia"

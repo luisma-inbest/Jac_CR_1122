@@ -23,14 +23,12 @@ export interface Agency {
 	municipality: string;
 	deputation: string;
 	sicop: string;
-	manager?: string;
-	phone?: string;
-	email?: string;
 
 	active: boolean;
 	AgencySocialMedia: any;
 
 	AgencyIncomingLeadRuleId: string;
+	LeadOwnerId: string;
 
 	Manager?: any[];
 	Users?: any[];

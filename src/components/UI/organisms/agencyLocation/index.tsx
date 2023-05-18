@@ -1,149 +1,176 @@
-import { useState } from "react";
-import { Button, Input } from "@/components/UI/atoms";
+import { useContext, useState } from "react";
+import { Button, Input, StyledSelect } from "@/components/UI/atoms";
+import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
+import CurrentAgencyContext, {
+	CurrentAgencyContextType,
+} from "@/context/currentAgencyContext/CurrentAgencyContext";
+import { useMutation } from "react-query";
+import { AgencyAPI } from "@/apis";
+import States from "@/utils/states";
 
 export const AgencyLocation = () => {
-	const [street, setStret] = useState<string>("Venustiano Carranza");
-	const [interiorNumber, setInteriorNumber] = useState<string>("JAC MX");
-	const [externalNumber, setNumberNumber] = useState<string>("");
-	const [postalCode, setPostalCode] = useState<string>("");
-	const [latitute, setLatitude] = useState<string>("");
-	const [longitude, setLongitude] = useState<string>("");
+	const { Alerts, SetAlerts, createAlert } = useContext(
+		AlertsContext
+	) as AlertsContextType;
+	const { CurrentAgency, DispatchCurrentAgency } = useContext(
+		CurrentAgencyContext
+	) as CurrentAgencyContextType;
 
-	const [state, setState] = useState({ name: "???" });
-	const [municipality, setMunicipality] = useState({ name: "???" });
-	const [neighborhood, setNeighborhood] = useState({ name: "???" });
-	const [delegation, setDelegation] = useState({ name: "???" });
+	const editAgencyMutation = useMutation({
+		mutationFn: () => AgencyAPI.update(CurrentAgency),
+		onSuccess(data, variables, context) {
+			createAlert(
+				"success",
+				"Exito!",
+				"La información se ha actualizado"
+			);
+		},
+		onError(error, variables, context) {
+			console.log(error);
+			createAlert("error", "Error", "Hubo un error");
+		},
+	});
 
-	const states = [{ name: "CDMX" }, { name: "Guadalajara" }];
-	const municipalities = [{ name: "Santa Fe" }, { name: "Coyoacán" }];
-	const neighborhoods = [{ name: "Roma" }, { name: "Condesa" }];
-	const delegations = [
-		{ name: "Iztapalapa" },
-		{ name: "Venustiano Carranza" },
-	];
-
-	const handleFormSubmit = () => {
-		// Call API.
+	const handleFormSubmit = (event: any) => {
+		event.preventDefault();
+		console.log(CurrentAgency);
+		editAgencyMutation.mutate();
 	};
 
 	return (
 		<>
+			<div className="row ">
+				<div className="col-xs-12 mb-2">
+					<h2>Ubicación</h2>
+				</div>
+				<div className="col-xs-12 col-md-9">
+					<Input
+						placeholder="Calle"
+						inputType="text"
+						value={CurrentAgency.street}
+						type="reducer"
+						params={{
+							dispatch: DispatchCurrentAgency,
+							dispType: "street",
+						}}
+					/>
+				</div>
+				<div className="col-xs-6 col-md-3">
+					<Input
+						placeholder="Número exterior"
+						inputType="number"
+						value={CurrentAgency.exteriorNumber}
+						type="reducer"
+						params={{
+							dispatch: DispatchCurrentAgency,
+							dispType: "exteriorNumber",
+						}}
+					/>
+				</div>
+				<div className="col-xs-6 col-md-3">
+					<Input
+						placeholder="Número interior"
+						inputType="number"
+						value={CurrentAgency.interiorNumber!}
+						type="reducer"
+						params={{
+							dispatch: DispatchCurrentAgency,
+							dispType: "interiorNumber",
+						}}
+					/>
+				</div>
+
+				<div className="col-xs-6 col-md-3">
+					<Input
+						placeholder="Código postal"
+						inputType="number"
+						value={CurrentAgency.postalCode}
+						type="reducer"
+						params={{
+							dispatch: DispatchCurrentAgency,
+							dispType: "postalCode",
+						}}
+					/>
+				</div>
+				<div className="col-xs-12 col-md-8">
+					<StyledSelect
+						customType="secondary"
+						value={CurrentAgency.state}
+						onChange={(e) =>
+							DispatchCurrentAgency({
+								type: "state",
+								value: e.target.value,
+							})
+						}
+					>
+						<option value="" disabled>
+							*-- Estado --
+						</option>
+						{States.map((e, index) => {
+							return (
+								<option key={index} value={e.sulg}>
+									{e.name}
+								</option>
+							);
+						})}
+					</StyledSelect>
+				</div>
+				<div className="col-xs-12 col-md-6">
+					<Input
+						placeholder="Ciudad"
+						inputType="text"
+						value={CurrentAgency.city}
+						type="reducer"
+						params={{
+							dispatch: DispatchCurrentAgency,
+							dispType: "city",
+						}}
+					/>
+				</div>
+				<div className="col-xs-12 col-md-6">
+					<Input
+						placeholder="Municipio"
+						inputType="text"
+						value={CurrentAgency.municipality}
+						type="reducer"
+						params={{
+							dispatch: DispatchCurrentAgency,
+							dispType: "municipality",
+						}}
+					/>
+				</div>
+				<div className="col-xs-12 col-md-6">
+					<Input
+						placeholder="Delegación"
+						inputType="text"
+						value={CurrentAgency.deputation}
+						type="reducer"
+						params={{
+							dispatch: DispatchCurrentAgency,
+							dispType: "deputation",
+						}}
+					/>
+				</div>
+				<div className="col-xs-12 col-md-6">
+					<Input
+						placeholder="Colonia"
+						inputType="text"
+						value={CurrentAgency.suburb}
+						type="reducer"
+						params={{
+							dispatch: DispatchCurrentAgency,
+							dispType: "suburb",
+						}}
+					/>
+				</div>
+			</div>
 			<div className="row">
 				<div className="col-xs-12">
-					<div className="box content-side">
-						<h2>Ubicación</h2>
-					</div>
-				</div>
-				<div className="col-xs-12">
-					<div className="box padding-side">
-						<Input
-							placeholder="Calle"
-							inputType="text"
-							value={street}
-							type="state"
-							params={{ setValue: setStret }}
-						/>
-					</div>
-				</div>
-				<div className="col-xs-4">
-					<div className="box padding-side">
-						<Input
-							placeholder="Número interior"
-							inputType="number"
-							value={interiorNumber}
-							type="state"
-							params={{ setValue: setInteriorNumber }}
-						/>
-					</div>
-				</div>
-				<div className="col-xs-4">
-					<div className="box padding-side">
-						<Input
-							placeholder="Número exterior"
-							inputType="number"
-							value={externalNumber}
-							type="state"
-							params={{ setValue: setNumberNumber }}
-						/>
-					</div>
-				</div>
-				<div className="col-xs-4">
-					<div className="box padding-side">
-						<Input
-							placeholder="Código postal"
-							inputType="number"
-							value={postalCode}
-							type="state"
-							params={{ setValue: setPostalCode }}
-						/>
-					</div>
-				</div>
-				<div className="col-xs-6">
-					<div className="box padding-side">
-						{/* <Dropdown
-							title="Estado"
-							menuItems={states}
-							onSelection={setState}
-						/> */}
-					</div>
-				</div>
-				<div className="col-xs-6">
-					<div className="box padding-side">
-						{/* <Dropdown
-							title="Municipio"
-							menuItems={municipalities}
-							onSelection={setMunicipality}
-						/> */}
-					</div>
-				</div>
-				<div className="col-xs-6">
-					<div className="box padding-side">
-						{/* <Dropdown
-							title="Colonia"
-							menuItems={neighborhoods}
-							onSelection={setNeighborhood}
-						/> */}
-					</div>
-				</div>
-				<div className="col-xs-6">
-					<div className="box padding-side">
-						{/* <Dropdown
-							title="Delegación"
-							menuItems={delegations}
-							onSelection={setDelegation}
-						/> */}
-					</div>
-				</div>
-				<div className="col-xs-6">
-					<div className="box padding-side">
-						<Input
-							placeholder="Latitud"
-							inputType="string"
-							value={latitute}
-							type="state"
-							params={{ setValue: setLatitude }}
-						/>
-					</div>
-				</div>
-				<div className="col-xs-6">
-					<div className="box padding-side">
-						<Input
-							placeholder="Longitud"
-							inputType="string"
-							value={longitude}
-							type="state"
-							params={{ setValue: setLongitude }}
-						/>
-					</div>
-				</div>
-				<div className="col-xs-12">
-					<div className="box content-side">
-						<Button
-							text="Actualizar"
-							func={() => handleFormSubmit()}
-							full={false}
-						/>
-					</div>
+					<Button
+						text="Actualizar"
+						func={(even: any) => handleFormSubmit(event)}
+						full={true}
+					/>
 				</div>
 			</div>
 		</>

@@ -5,7 +5,7 @@ import {
 	StyledSelect,
 	StyledInputRadio,
 } from "@/components/UI/atoms";
-import { UserAPI } from "@/apis";
+import { AgencyAPI, UserAPI } from "@/apis";
 //contexts
 import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
 import UserContext, { UserContextType } from "@/context/UserContext";
@@ -14,6 +14,7 @@ import CurrentAgencyContext, {
 } from "@/context/currentAgencyContext/CurrentAgencyContext";
 //styles
 import styles from "./AgencyGeneral.module.css";
+import { useMutation } from "react-query";
 
 interface Props {}
 
@@ -28,8 +29,25 @@ export const AgencyGeneral = (props: Props) => {
 		CurrentAgencyContext
 	) as CurrentAgencyContextType;
 
-	const handleFormSubmit = () => {
-		// Call API.
+	const editAgencyMutation = useMutation({
+		mutationFn: () => AgencyAPI.update(CurrentAgency),
+		onSuccess(data, variables, context) {
+			createAlert(
+				"success",
+				"Exito!",
+				"La información se ha actualizado"
+			);
+		},
+		onError(error, variables, context) {
+			console.log(error);
+			createAlert("error", "Error", "Hubo un error");
+		},
+	});
+
+	const handleFormSubmit = (event: any) => {
+		event.preventDefault();
+		console.log(CurrentAgency);
+		editAgencyMutation.mutate();
 	};
 
 	useEffect(() => {
@@ -47,12 +65,19 @@ export const AgencyGeneral = (props: Props) => {
 			.catch((err) => {
 				console.log("sellers err:", err);
 			});
+
+		if (CurrentAgency.AgencyIncomingLeadRuleId == "2") {
+			DispatchCurrentAgency({
+				type: "AgencyIncomingLeadRuleId",
+				value: "2",
+			});
+		}
 	}, []);
 
 	return (
 		<>
 			<div className="row">
-				<div className="col-xs-12">
+				<div className="col-xs-12 mb-2">
 					<h2>Información General</h2>
 				</div>
 				<div className="col-xs-12 col-md-6 ">
@@ -230,9 +255,19 @@ export const AgencyGeneral = (props: Props) => {
 					</StyledSelect>
 				</div>
 
-				{CurrentAgency.AgencyIncomingLeadRuleId === "defaultUser" ? (
+				{CurrentAgency.AgencyIncomingLeadRuleId == "2" ? (
 					<div className="col-xs-12 col-md-6">
-						<StyledSelect customType="secondary" defaultValue="">
+						<StyledSelect
+							customType="secondary"
+							value={CurrentAgency.LeadOwnerId}
+							onChange={(e: any) => {
+								DispatchCurrentAgency({
+									type: "LeadOwnerId",
+									value: e.target.value,
+								});
+								console.log(e.target.value);
+							}}
+						>
 							<option value="" disabled>
 								-- Asignar Usuario --
 							</option>
@@ -309,17 +344,16 @@ export const AgencyGeneral = (props: Props) => {
 				{/* <div className="col-xs-12">
 					<span>Mostrar agentes en formularios de citas</span>
 				</div> */}
-			</div>
-
-			<div className="row">
 				<div className="col-xs-12">
 					<Button
 						text="Actualizar"
-						func={() => handleFormSubmit()}
+						func={(even: any) => handleFormSubmit(event)}
 						full={true}
 					/>
 				</div>
 			</div>
+
+			{/* <div className="row"></div> */}
 		</>
 	);
 };

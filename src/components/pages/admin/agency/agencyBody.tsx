@@ -50,7 +50,41 @@ export const AgencyBody = () => {
 			DispatchCurrentAgency({
 				type: "all",
 				value: {
-					...data,
+					id: data.id,
+					name: data.name,
+					businessName: data.businessName,
+
+					picLogo: data.picLogo,
+					picLogoDark: data.picLogoDark,
+					urlSite: data.urlSite,
+
+					url360: data.url360,
+					urlGoogleMaps: data.urlGoogleMaps,
+
+					hasService: data.hasService,
+
+					street: data.street,
+					exteriorNumber: data.exteriorNumber,
+					interiorNumber: data.interiorNumber,
+					state: data.State.slug,
+					transferCode: data.transferCode,
+					city: data.City.name,
+					suburb: data.Suburb.name,
+					postalCode: data.PostalCode.code,
+					municipality: data.municipality,
+					deputation: data.deputation,
+					sicop: data.sicop,
+
+					active: data.active,
+					AgencySocialMedia: data.AgencySocialMedia,
+
+					AgencyIncomingLeadRuleId: String(
+						data.AgencyIncomingLeadRuleId
+					),
+					LeadOwnerId: data.LeadOwnerId,
+
+					Manager: data.Manager,
+					Users: data.Users,
 				},
 			});
 

@@ -22,14 +22,13 @@ type Action =
 	| { type: "municipality"; value: string }
 	| { type: "deputation"; value: string }
 	| { type: "sicop"; value: string }
-	| { type: "manager"; value: string }
-	| { type: "phone"; value: string }
-	| { type: "email"; value: string }
 	| { type: "hasService"; value: boolean }
 	| { type: "active"; value: boolean }
 	| { type: "AgencyIncomingLeadRuleId"; value: string }
+	| { type: "LeadOwnerId"; value: string }
 	//TODO: Checar
 	| { type: "Checar"; value: any }
+	| { type: "Manager"; value: any }
 	| { type: "Users"; value: any[] };
 
 const initial: Agency = {
@@ -56,15 +55,13 @@ const initial: Agency = {
 	deputation: "",
 	sicop: "",
 
-	manager: "",
-	phone: "",
-	email: "",
-
 	hasService: false,
-	active: false,
+	active: true,
 
 	AgencyIncomingLeadRuleId: "",
+	LeadOwnerId: "",
 
+	Manager: [],
 	Users: [],
 };
 
@@ -112,18 +109,14 @@ function reducer(state: Agency, action: Action): Agency {
 			return { ...state, deputation: action.value };
 		case "sicop":
 			return { ...state, sicop: action.value };
-		case "manager":
-			return { ...state, manager: action.value };
-		case "phone":
-			return { ...state, phone: action.value };
-		case "email":
-			return { ...state, email: action.value };
 		case "hasService":
 			return { ...state, hasService: action.value };
 		case "active":
 			return { ...state, active: action.value };
 		case "AgencyIncomingLeadRuleId":
 			return { ...state, AgencyIncomingLeadRuleId: action.value };
+		case "LeadOwnerId":
+			return { ...state, LeadOwnerId: action.value };
 		case "Users":
 			return { ...state, Users: action.value };
 
