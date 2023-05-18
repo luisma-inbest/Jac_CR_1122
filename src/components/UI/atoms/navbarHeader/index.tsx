@@ -1,12 +1,7 @@
 import React, { useState, useContext } from "react";
 import { user } from "@/assets";
 import { Menu } from "@/models/nav/menu";
-import {
-	MenuItem,
-	Dropdown,
-	StyledSelect,
-	Loader,
-} from "@/components/UI/atoms";
+import { MenuItem, StyledSelect, Loader } from "@/components/UI/atoms";
 import { DropdownMenu } from "@/components/UI/molecules";
 import { LogoFull, IconNotification, IconCross, IconCalendar } from "@/assets";
 import UserContext, { UserContextType } from "@/context/UserContext";

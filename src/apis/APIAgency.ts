@@ -44,7 +44,7 @@ export const AgencyAPI = {
 				method: "GET",
 			})
 			.then((response) => {
-				return response.data.data;
+				return response.data;
 			})
 			.catch((error: any) => {
 				console.log("Hubo un error");

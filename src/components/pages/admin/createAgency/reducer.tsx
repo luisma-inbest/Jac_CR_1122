@@ -1,85 +1,94 @@
-import {Agency} from "@/models";
+import { Agency } from "@/models";
 
 type Action =
-	| {type: "name"; value: string}
-	| {type: "businessName"; value: string}
-	| {type: "logo"; value: string}
-	| {type: "logoDark"; value: string}
-	| {type: "urlSite"; value: string}
-	| {type: "street"; value: string}
-	| {type: "exteriorNumber"; value: string}
-	| {type: "interiorNumber"; value: string}
-	| {type: "transferCode"; value: string}
-	| {type: "state"; value: string}
-	| {type: "city"; value: string}
-	| {type: "suburb"; value: string}
-	| {type: "postalCode"; value: string}
-	| {type: "municipality"; value: string}
-	| {type: "deputation"; value: string}
-	| {type: "service"; value: boolean}
-	| {type: "active"; value: boolean}
-	| {type: "agencySocialMedia"; value: any};
+	| { type: "name"; value: string }
+	| { type: "businessName"; value: string }
+	| { type: "logo"; value: string }
+	| { type: "logoDark"; value: string }
+	| { type: "urlSite"; value: string }
+	| { type: "street"; value: string }
+	| { type: "exteriorNumber"; value: string }
+	| { type: "interiorNumber"; value: string }
+	| { type: "transferCode"; value: string }
+	| { type: "state"; value: string }
+	| { type: "city"; value: string }
+	| { type: "suburb"; value: string }
+	| { type: "postalCode"; value: string }
+	| { type: "municipality"; value: string }
+	| { type: "deputation"; value: string }
+	| { type: "service"; value: boolean }
+	| { type: "active"; value: boolean }
+	| { type: "agencySocialMedia"; value: any };
 
 const initial: Agency = {
 	name: "",
 	businessName: "",
-	logo: "",
-	logoDark: "",
+
+	picLogo: "",
+	picLogoDark: "",
 	urlSite: "",
-	service: true,
+	url360View: "",
+	urlGoogleMaps: "",
+	AgencySocialMedia: "",
+
 	street: "",
 	exteriorNumber: "",
 	interiorNumber: "",
-	transferCode: "",
 	state: "",
+	transferCode: "",
 	city: "",
 	suburb: "",
 	postalCode: "",
 	municipality: "",
 	deputation: "",
-	agencySocialMedia: [],
+	sicop: "",
+
+	hasService: false,
 	active: true,
+
+	AgencyIncomingLeadRuleId: "",
+	LeadOwnerId: "",
 };
 
 function reducer(state: Agency, action: Action): Agency {
 	switch (action.type) {
 		case "name":
-			return {...state, name: action.value};
+			return { ...state, name: action.value };
 		case "businessName":
-			return {...state, businessName: action.value};
+			return { ...state, businessName: action.value };
 		case "logo":
-			return {...state, logo: action.value};
+			return { ...state, picLogo: action.value };
 		case "logoDark":
-			return {...state, logoDark: action.value};
+			return { ...state, picLogoDark: action.value };
 		case "urlSite":
-			return {...state, urlSite: action.value};
+			return { ...state, urlSite: action.value };
 		case "service":
-			return {...state, service: action.value};
+			return { ...state, hasService: action.value };
 		case "street":
-			return {...state, street: action.value};
+			return { ...state, street: action.value };
 		case "exteriorNumber":
-			return {...state, exteriorNumber: action.value};
+			return { ...state, exteriorNumber: action.value };
 		case "interiorNumber":
-			return {...state, interiorNumber: action.value};
+			return { ...state, interiorNumber: action.value };
 		case "transferCode":
-			return {...state, transferCode: action.value};
+			return { ...state, transferCode: action.value };
 		case "state":
-			return {...state, state: action.value};
+			return { ...state, state: action.value };
 		case "city":
-			return {...state, city: action.value};
+			return { ...state, city: action.value };
 		case "suburb":
-			return {...state, suburb: action.value};
+			return { ...state, suburb: action.value };
 		case "postalCode":
-			return {...state, postalCode: action.value};
+			return { ...state, postalCode: action.value };
 		case "municipality":
-			return {...state, municipality: action.value};
+			return { ...state, municipality: action.value };
 		case "deputation":
-			return {...state, deputation: action.value};
+			return { ...state, deputation: action.value };
 		case "agencySocialMedia":
-			return {...state, agencySocialMedia: action.value};
+			return { ...state, AgencySocialMedia: action.value };
 		default:
 			return state;
 	}
 }
 
-export {reducer, initial};
+export { reducer, initial };

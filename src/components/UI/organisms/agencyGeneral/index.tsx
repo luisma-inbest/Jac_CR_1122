@@ -54,6 +54,7 @@ export const AgencyGeneral = (props: Props) => {
 		UserAPI.filterSellers(String(CurrentAgency.id), [
 			"coordinator",
 			"bdc",
+			"hostess",
 			"adviser-digital",
 			"adviser-floor",
 			"adviser-hybrid",

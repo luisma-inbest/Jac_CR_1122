@@ -3,7 +3,6 @@ import styles from "./NavBar.module.css";
 import { Menu } from "@/models/nav/menu";
 import {
 	MenuItem,
-	Dropdown,
 	StyledSelect,
 	Loader,
 	NavbarHeader,

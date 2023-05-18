@@ -24,6 +24,7 @@ export const Agencies = () => {
 		cacheTime: 10 * (60 * 1000), // 10 mins
 		onSuccess: (data) => {
 			console.log(data);
+			setMaxPage(data.pages);
 			// createAlert("success", "Exito!", "agencias cargadas correctamente");
 		},
 		onError: (error) => {
@@ -59,7 +60,7 @@ export const Agencies = () => {
 	return (
 		<div className="row">
 			<div className={`col-xs-12 ${styles.tableContainer}`}>
-				<AgenciesTable agencies={data} />
+				<AgenciesTable agencies={data.data} />
 
 				{/* pagination */}
 				<div className={styles.paginationContainer}>
