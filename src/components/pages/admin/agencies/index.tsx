@@ -20,8 +20,8 @@ export const Agencies = () => {
 	const { isLoading, data, isError, error } = useQuery({
 		queryKey: [`agencies-${page}`, [page]],
 		queryFn: () => AgencyAPI.getAgencies(page),
-		staleTime: 5 * (60 * 1000), // 5 mins
-		cacheTime: 10 * (60 * 1000), // 10 mins
+		// staleTime: 5 * (60 * 1000), // 5 mins
+		// cacheTime: 10 * (60 * 1000), // 10 mins
 		onSuccess: (data) => {
 			console.log(data);
 			setMaxPage(data.pages);
