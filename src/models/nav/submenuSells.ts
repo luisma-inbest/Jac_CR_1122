@@ -37,11 +37,11 @@ export const submenuSells = [
 		text: "Leads / Prospectos",
 		route: "/sells/leads",
 	},
-	{
-		pos: 1.2,
-		text: "Dashboard Ventas",
-		route: "/sells",
-	},
+	// {
+	// 	pos: 1.2,
+	// 	text: "Dashboard Ventas",
+	// 	route: "/sells",
+	// },
 	{
 		pos: 1.3,
 		text: "Mi Agenda",
