@@ -1,15 +1,16 @@
 export interface Agency {
+	id?: string;
 	name: string;
 	businessName: string;
 
-	logo?: string;
-	logoDark?: string;
+	picLogo?: string;
+	picLogoDark?: string;
 	urlSite?: string;
 
 	url360View?: string;
 	urlGoogleMaps?: string;
 
-	service: boolean;
+	hasService: boolean;
 
 	street: string;
 	exteriorNumber: string;
@@ -21,9 +22,14 @@ export interface Agency {
 	postalCode: string;
 	municipality: string;
 	deputation: string;
-	manager?: string;
-	phone?: string;
-	email?: string;
+	sicop: string;
+
 	active: boolean;
-	agencySocialMedia: any;
+	AgencySocialMedia: any;
+
+	AgencyIncomingLeadRuleId: string;
+	LeadOwnerId: string;
+
+	Manager?: any[];
+	Users?: any[];
 }

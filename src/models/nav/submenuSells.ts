@@ -34,7 +34,7 @@
 export const submenuSells = [
 	{
 		pos: 1.1,
-		text: "Leads",
+		text: "Leads / Prospectos",
 		route: "/sells/leads",
 	},
 	// {
@@ -43,22 +43,22 @@ export const submenuSells = [
 	// 	route: "/sells",
 	// },
 	{
-		pos: 1.2,
+		pos: 1.3,
 		text: "Mi Agenda",
 		route: "/sells/agenda",
 	},
 	{
-		pos: 1.3,
+		pos: 1.4,
 		text: "Leads Congelados",
 		route: "/sells/leads/search/?leadPhase=congelado",
 	},
 	{
-		pos: 1.4,
+		pos: 1.5,
 		text: "Futura Venta",
 		route: "/sells/leads/search/?leadPhase=futura-venta",
 	},
 	{
-		pos: 1.5,
+		pos: 1.6,
 		text: "Ventas",
 		route: "/sells/leads/search/?leadPhase=cerrado",
 	},

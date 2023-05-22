@@ -13,6 +13,8 @@ export const Home = () => {
 	const location = useLocation();
 	let path = "";
 
+	console.log("pasa a home");
+
 	function decideRoute(role: string): string {
 		let mainPage = handleMainPage(role).replace("/", "");
 		console.log("rol del usuario", role);
@@ -41,7 +43,7 @@ export const Home = () => {
 			.then((data: any) => {
 				UserAPI.getOne(data.id)
 					.then((res) => {
-						// console.log("usuario respuesta:", res);
+						console.log("usuario respuesta:", res);
 						//TODO: se va a cambiar agencies
 						SetUser({
 							id: res.id,
@@ -49,7 +51,7 @@ export const Home = () => {
 							name: res.nickname,
 							permissions: data.role,
 							agencies: res.Agencies,
-							AgencyId: res.Agencies[0],
+							AgencyId: res.Agencies[0].id,
 						});
 					})
 					.catch((err) => {

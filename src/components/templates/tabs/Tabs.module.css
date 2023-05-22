@@ -85,7 +85,7 @@
 .tabContent {
 	position: absolute;
 	opacity: 0;
-	top: -100%;
+	top: -200%;
 	transform: translateY(-10px);
 	transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
 }

@@ -11,7 +11,7 @@ export interface Lead {
 	AgencyId: number;
 	UserId?: number;
 	buyType: string;
-	units: number;
+	units?: number;
 	leadInterests: any;
 }
 

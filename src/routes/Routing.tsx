@@ -22,9 +22,7 @@ export const Routing = () => {
 			<Route
 				element={
 					<ProtectedRoute
-						isAllowed={
-							!!User && User.permissions.includes("shared")
-						}
+						isAllowed={User && User.permissions.includes("shared")}
 					/>
 				}
 			>
@@ -35,7 +33,7 @@ export const Routing = () => {
 			<Route
 				element={
 					<ProtectedRoute
-						isAllowed={!!User && User.permissions.includes("admin")}
+						isAllowed={User && User.permissions.includes("admin")}
 					/>
 				}
 			>
@@ -47,7 +45,7 @@ export const Routing = () => {
 				element={
 					<ProtectedRoute
 						isAllowed={
-							!!User &&
+							User &&
 							(User.permissions.includes("sells") ||
 								User.permissions.includes("admin") ||
 								User.permissions.includes("manager") ||
@@ -68,7 +66,7 @@ export const Routing = () => {
 			<Route
 				element={
 					<ProtectedRoute
-						isAllowed={!!User && User.permissions.includes("admin")}
+						isAllowed={User && User.permissions.includes("admin")}
 					/>
 				}
 			>
@@ -76,7 +74,7 @@ export const Routing = () => {
 			</Route>
 
 			{/* 404 */}
-			<Route path="/*" element={<h1>Error 404 desde React Router</h1>} />
+			<Route path="/*" element={<h1>Error 404: Ruta no encontrada</h1>} />
 		</Routes>
 	);
 };

@@ -19,7 +19,7 @@ export const AdminRoutes = {
 	Register: "register",
 	Users: "users",
 	Agencies: "agencies",
-	Agency: "agencies/:id",
+	Agency: "agencies/:agencyId",
 	AgencyCreate: "agencies/create",
 };
 

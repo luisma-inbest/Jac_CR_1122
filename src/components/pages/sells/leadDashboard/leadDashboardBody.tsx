@@ -25,7 +25,7 @@ import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
 
 import LeadWindowContext, { LeadWindowContextType } from "@/context/LeadWindow";
 
-export const Body = () => {
+export const LeadDashboardBody = () => {
 	let { leadId } = useParams();
 	const [refresh, setRefresh] = useState(false);
 	const [runEffect, setRunEffect] = useState(false);
@@ -131,6 +131,18 @@ export const Body = () => {
 					Sales: data.Sales,
 				},
 			});
+			if (data.LeadEmails.length == 0) {
+				DispatchCurrentLead({
+					type: "addEmail",
+					value: "",
+				});
+			}
+			if (data.LeadPhones.length == 0) {
+				DispatchCurrentLead({
+					type: "addPhone",
+					value: "",
+				});
+			}
 
 			setRunEffect(true);
 			// console.log("actividades", data.LeadActivities);
@@ -161,7 +173,7 @@ export const Body = () => {
 	}
 
 	// const PageTabs = ["Datos", "Funnel", "Chat", "Historial"];
-	const PageTabs = ["Datos", "Funnel", "Chat", "Historial"];
+	const PageTabs = ["Datos", "Funnel", "Agenda", "Historial"];
 	const TabOne = <LeadData />;
 	const TabTwo = (
 		//TODO: eliminar refresher

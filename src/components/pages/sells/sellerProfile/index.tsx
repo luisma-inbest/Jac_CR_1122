@@ -25,6 +25,7 @@ export const SellerProfile = () => {
 			"En Venta",
 		],
 		amounts: [14, 25, 30, 12],
+		percentages: [14, 25, 30, 12],
 	};
 
 	return (

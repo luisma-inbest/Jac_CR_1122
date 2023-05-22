@@ -21,17 +21,9 @@ export interface UserRowProps {
 export const Users = () => {
 	// const [users, setUsers] = useState<UserRowProps[]>([]);
 	const navigate = useNavigate();
-	const { Alerts, SetAlerts } = useContext(
+	const { Alerts, SetAlerts, createAlert } = useContext(
 		AlertsContext
 	) as AlertsContextType;
-	function createAlert(type: string, title: string, text: string) {
-		let newAlert: any = {
-			type: type,
-			title: "Titulo",
-			text: "textito",
-		};
-		SetAlerts([...Alerts, newAlert]);
-	}
 
 	const { isLoading, data, isError, error } = useQuery({
 		queryKey: ["users"],
@@ -40,7 +32,7 @@ export const Users = () => {
 		cacheTime: 10 * (60 * 1000), // 10 mins
 		onSuccess: (data) => {
 			console.log(data);
-			createAlert("success", "Exito!", "agencias cargadas correctamente");
+			// createAlert("success", "Exito!", "agencias cargadas correctamente");
 		},
 		onError: (error) => {
 			console.log(error);

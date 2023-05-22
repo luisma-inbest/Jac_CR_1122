@@ -5,7 +5,7 @@
 .input {
 	height: 3rem;
 	width: 100%;
-	min-width: 30rem;
+	/* min-width: 30rem; */
 	border: none;
 	font-size: var(--p);
 	color: var(--main-color);

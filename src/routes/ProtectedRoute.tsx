@@ -13,6 +13,7 @@ export const ProtectedRoute = ({
 	isAllowed,
 	redirectTo = "/",
 }: any) => {
+	const { User, SetUser } = useContext(UserContext) as UserContextType;
 	if (!isAllowed) {
 		// validateSesion(redirectTo)
 
@@ -21,8 +22,10 @@ export const ProtectedRoute = ({
 		// console.log("pathname:", path);
 
 		let path = window.location.href.replace(Domain, "");
-		console.log("href:", window.location.href);
-		console.log("newPath: ", path);
+		console.log("pasa por protected route");
+		console.log("usuario:", User);
+		console.log("intenta ingresar a:", window.location.href);
+		// console.log("newPath: ", path);
 
 		return <Navigate to={redirectTo} state={{ path: path }} />;
 	}

@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {Chart} from "react-chartjs-2";
+import React, { useState } from "react";
+import { Chart } from "react-chartjs-2";
 import {
 	Chart as ChartJS,
 	CategoryScale,
@@ -33,16 +33,15 @@ interface PieChartProps {
 }
 
 export const PieChart: React.FunctionComponent<PieChartProps> = (props) => {
-	const labels = props.hideLabels
-		? []
-		: props.labels;
+	const labels = props.hideLabels ? [] : props.labels;
 
 	const [chartData, setChartData] = useState({
 		labels: labels,
 		datasets: [
 			{
-				label: props.title,
+				label: "Leads",
 				data: props.data,
+				hoverOffset: 10,
 				backgroundColor: props.colors,
 				borderColor: "white",
 				borderWidth: 2,

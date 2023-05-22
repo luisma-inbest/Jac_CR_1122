@@ -36,4 +36,57 @@ export const AgencyAPI = {
 				throw new Error(error);
 			});
 	},
+	getAgencies: async function (page: number) {
+		console.log("get agencies");
+		return api
+			.request({
+				url: `/agency/?page=${page}&limit=10`,
+				method: "GET",
+			})
+			.then((response) => {
+				return response.data;
+			})
+			.catch((error: any) => {
+				console.log("Hubo un error");
+				if (error.response) {
+					console.log(error.response.data);
+				}
+				throw new Error(error);
+			});
+	},
+	getAgency: async function (id: string) {
+		return api
+			.request({
+				url: `/agency/${id}`,
+				method: "GET",
+			})
+			.then((response) => {
+				return response.data.data;
+			})
+			.catch((error: any) => {
+				console.log("Hubo un error");
+				if (error.response) {
+					console.log(error.response.data);
+				}
+				throw new Error(error);
+			});
+	},
+	update: async function (agency: Agency) {
+		// console.log("update agency", agency);
+		try {
+			const response = await api.request({
+				url: `/agency/${agency.id}`,
+				method: "PUT",
+				data: { data: agency },
+			});
+			console.log(response);
+			return response.data.data;
+		} catch (error: any) {
+			console.log("Hubo un error");
+			if (error.response) {
+				console.log(error.response.data);
+				throw new Error(error.response.data.message);
+			}
+		}
+	},
 };

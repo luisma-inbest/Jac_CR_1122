@@ -59,35 +59,6 @@ export const CreateLead = (props: Props) => {
 		setPage(page - 1);
 	}
 
-	//TODO: delete the function
-	function borrar() {
-		let url: any =
-			"https://0roolpkdy5.execute-api.us-east-1.amazonaws.com/lead/";
-
-		fetch(url, {
-			headers: {
-				"Content-Type": "application/json",
-				authorization: "Bearer 16d7a4fca7442dda3ad93c9a726597e4",
-			},
-			method: "POST",
-			body: JSON.stringify({
-				AgencyId: "94c7ef1a-6514-4079-b985-da80f183933c",
-				Lead: {
-					firstName: "Wiximo77",
-					lastName: "Wiximo77",
-					leadEmails: ["email@gmail.com"],
-					leadPhones: ["3331113333"],
-					products: ["5d60d928-041a-45df-ae17-2a2947600df4"],
-				},
-			}),
-		})
-			.then((response) => {
-				console.log(response);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	}
 	function formHandler(e: any) {
 		e.preventDefault();
 
@@ -95,7 +66,6 @@ export const CreateLead = (props: Props) => {
 
 		//TODO: verify the mutation is not comented
 		addLeadMutation.mutate();
-		// borrar();
 
 		props.func();
 	}
@@ -357,7 +327,7 @@ const Second = (props: SecondProps) => {
 					}
 					placeholder="Unidades"
 					inputType="number"
-					value={props.fields!.units.toString()}
+					value={String(props.fields.leadInterests[0].quantity)}
 					type="reducer"
 					params={{ dispatch: props.dispatch, dispType: "units" }}
 				/>

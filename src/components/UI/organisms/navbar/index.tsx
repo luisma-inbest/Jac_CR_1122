@@ -3,7 +3,6 @@ import styles from "./NavBar.module.css";
 import { Menu } from "@/models/nav/menu";
 import {
 	MenuItem,
-	Dropdown,
 	StyledSelect,
 	Loader,
 	NavbarHeader,
@@ -61,7 +60,7 @@ export const NavBar: React.FunctionComponent<Props> = (props) => {
 	}
 
 	//TODO: imprimir info de usuario
-	console.log(User);
+	// console.log(User);
 
 	return (
 		<div
@@ -91,13 +90,15 @@ export const NavBar: React.FunctionComponent<Props> = (props) => {
 										Agencia
 									</option>
 									//TODO: ajustar data
-									{data.map((e: any, index: any) => {
-										return (
-											<option key={e.id} value={e.id}>
-												{e.name}
-											</option>
-										);
-									})}
+									{User?.agencies.map(
+										(e: any, index: any) => {
+											return (
+												<option key={e.id} value={e.id}>
+													{e.name}
+												</option>
+											);
+										}
+									)}
 								</StyledSelect>
 							</li>
 							{submenus.map((item: any, index) => {

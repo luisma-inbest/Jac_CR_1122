@@ -31,12 +31,6 @@ export const Leads = () => {
 		<div className={`contentVerticalPadding ${styles.mainContainer}`}>
 			<div className="row">
 				<div className={`col-xs-12`}>
-					<Tabs
-						tabs={PageTabs}
-						components={TabsComponents}
-						one={LeadData}
-						full={true}
-					/>
 					<div className={styles.buttonContainer}>
 						<Button
 							text="Agregar nuevo lead"
@@ -44,6 +38,12 @@ export const Leads = () => {
 							full={true}
 						/>
 					</div>
+					<Tabs
+						tabs={PageTabs}
+						components={TabsComponents}
+						one={LeadData}
+						full={true}
+					/>
 				</div>
 			</div>
 

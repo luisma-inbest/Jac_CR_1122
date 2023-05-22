@@ -22,7 +22,7 @@ interface Props {
 }
 
 export const AgencyUsers = (props: Props) => {
-	console.log(`user/?AgencyId=${props.agencyId}`);
+	// console.log(`user/?AgencyId=${props.agencyId}`);
 	const navigate = useNavigate();
 	const { isLoading, data, isError, error } = useQuery({
 		queryKey: ["users"],

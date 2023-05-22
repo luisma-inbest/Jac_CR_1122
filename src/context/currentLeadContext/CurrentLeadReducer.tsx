@@ -5,7 +5,9 @@ type Action =
 	| { type: "firstName"; value: string }
 	| { type: "lastName"; value: string }
 	| { type: "leadEmails"; value: string }
+	| { type: "addEmail"; value: string }
 	| { type: "leadPhones"; value: string }
+	| { type: "addPhone"; value: string }
 	| { type: "LeadOriginId"; value: number }
 	| { type: "productId"; value: string }
 	| { type: "colorId"; value: string }
@@ -40,6 +42,17 @@ function reducer(state: LeadDataType, action: Action): LeadDataType {
 	switch (action.type) {
 		case "all":
 			return { ...action.value };
+		case "addEmail":
+			return {
+				...state,
+				leadEmails: [...state.leadEmails, action.value],
+			};
+		case "addPhone":
+			return {
+				...state,
+				leadPhones: [...state.leadPhones, action.value],
+			};
+
 		default:
 			return state;
 	}

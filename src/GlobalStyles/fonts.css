@@ -129,8 +129,14 @@ p {
 .highlight {
 	color: var(--highlight-text);
 }
+.highlight2 {
+	color: var(--highlight2);
+}
 .secondary {
 	color: var(--secondary-text);
+}
+.secondary2 {
+	color: var(--selectedTab);
 }
 .link {
 	color: var(--link);

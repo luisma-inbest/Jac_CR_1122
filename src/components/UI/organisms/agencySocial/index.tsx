@@ -1,23 +1,14 @@
 import styles from "./AgencySocial.module.css";
 
-interface AgencySocialProps {
-	agencySocialMedia: {
-		name: string;
-		url: string;
-	}[];
-}
-
-export const AgencySocial: React.FunctionComponent<AgencySocialProps> = (
-	props
-) => {
-	const tableRows = props.agencySocialMedia.map((socialMedia, index) => {
-		return (
-			<tr key={index}>
-				<td className="bold">{socialMedia.name}</td>
-				<td>{socialMedia.url}</td>
-			</tr>
-		);
-	});
+export const AgencySocial = () => {
+	// const tableRows = props.agencySocialMedia.map((socialMedia, index) => {
+	// 	return (
+	// 		<tr key={index}>
+	// 			<td className="bold">{socialMedia.name}</td>
+	// 			<td>{socialMedia.url}</td>
+	// 		</tr>
+	// 	);
+	// });
 
 	return (
 		<>
@@ -29,7 +20,7 @@ export const AgencySocial: React.FunctionComponent<AgencySocialProps> = (
 				</div>
 				<div className="col-xs-12">
 					<div className="box content-side">
-						<table className={`${styles.table}`}>
+						{/* <table className={`${styles.table}`}>
 							<thead>
 								<tr>
 									<th className="p4 highlight">Red Social</th>
@@ -37,7 +28,7 @@ export const AgencySocial: React.FunctionComponent<AgencySocialProps> = (
 								</tr>
 							</thead>
 							<tbody>{tableRows}</tbody>
-						</table>
+						</table> */}
 					</div>
 				</div>
 			</div>
