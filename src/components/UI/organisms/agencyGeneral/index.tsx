@@ -51,6 +51,7 @@ export const AgencyGeneral = (props: Props) => {
 	};
 
 	useEffect(() => {
+		//TODO: no se filtra por agencia
 		UserAPI.filterSellers(String(CurrentAgency.id), [
 			"coordinator",
 			"bdc",
