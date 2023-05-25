@@ -67,7 +67,7 @@ export const FollowUpActivities = (props: AuctionProps) => {
 
 	const editRFCFunc = useMutation({
 		mutationFn: () =>
-			LeadAPI.editInfo(String(props.leadData.id), {
+			LeadAPI.updateFields(String(props.leadData.id), {
 				data: {
 					rfc: rfc,
 				},

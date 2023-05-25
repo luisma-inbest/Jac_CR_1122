@@ -24,7 +24,8 @@ export const HostessActivities = (props: Props) => {
 	function handleReassign() {
 		console.log("asignar a:", asignedSeller);
 
-		LeadAPI.editInfo(String(props.leadData.id), {
+		//TODO: modificar función de reasignar lead
+		LeadAPI.updateFields(String(props.leadData.id), {
 			data: { UserId: asignedSeller },
 		})
 			.then((res) => {
