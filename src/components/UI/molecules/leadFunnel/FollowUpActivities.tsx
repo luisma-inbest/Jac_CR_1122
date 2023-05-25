@@ -33,8 +33,11 @@ export const FollowUpActivities = (props: AuctionProps) => {
 			title: "Cotización Contado",
 			buttonText: "Cotizar",
 			function: goTo(
-				"https://cck.creditoclick.com.mx/users-web/auth/cck/login?backTo=https://cck.creditoclick.com.mx/credimagen/josso_security_check"
+				"https://jac-crm-pdf.s3.amazonaws.com/Formato_de_cotizacio%CC%81n.pdf"
 			),
+			// function: goTo(
+			// 	"https://cck.creditoclick.com.mx/users-web/auth/cck/login?backTo=https://cck.creditoclick.com.mx/credimagen/josso_security_check"
+			// ),
 		},
 		{
 			title: "Demo Cotización Credito",
@@ -43,12 +46,18 @@ export const FollowUpActivities = (props: AuctionProps) => {
 				"https://cck.creditoclick.com.mx/users-web/auth/cck/login?backTo=https://cck.creditoclick.com.mx/credimagen/josso_security_check"
 			),
 		},
-
 		{
 			title: "Solicitud Crédito",
 			buttonText: "Solicitar",
 			function: goTo(
 				"https://cck.creditoclick.com.mx/users-web/auth/cck/login?backTo=https://cck.creditoclick.com.mx/credimagen/josso_security_check"
+			),
+		},
+		{
+			title: "Motivadores de Compra",
+			buttonText: "ir",
+			function: goTo(
+				"https://jac-crm-pdf.s3.amazonaws.com/Deteccio%CC%81n_de_motivadores_de_compra.pdf"
 			),
 		},
 		{
