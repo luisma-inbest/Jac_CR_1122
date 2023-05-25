@@ -127,7 +127,7 @@ export const LeadsTable = (props: Props) => {
 											lead.lastName
 										) || ""
 									}
-									user={getUser(lead.User) || ""}
+									user={lead.User.firstAndLastName || "-"}
 									model={lead.model || ""}
 									status=""
 									color={props.type || 0}
