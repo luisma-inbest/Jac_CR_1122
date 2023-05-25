@@ -25,6 +25,7 @@ import { RuleOutActivity } from "../ruleOutActivity";
 import CurrentLeadContext, {
 	CurrentLeadContextType,
 } from "@/context/currentLeadContext/CurrentLeadContext";
+import { EditLead } from "../editLead";
 
 interface Props {
 	refresher: (val: boolean) => void;
@@ -119,13 +120,28 @@ export const LeadFunnel = (props: Props) => {
 						buttonFunc={() => {
 							SetLeadWindow(
 								"Registrar Nueva Actividad",
-								<RegisterActivity></RegisterActivity>
+								<RegisterActivity />
 							);
 						}}
 						alternativeText=""
 						alternativeFunc={() => {
 							return;
 						}}
+					/>
+				}
+			/>
+			<p className="p3 secondary bold">Editar</p>
+			<CardFunnel
+				mainText="Editar"
+				icon={<IconFeedback size="100%" color="#000" />}
+				cardContent={
+					<BasicBody
+						buttonText="Editar Lead"
+						buttonFunc={() => {
+							SetLeadWindow("Eitar Lead", <EditLead />);
+						}}
+						alternativeText=""
+						alternativeFunc={() => 1}
 					/>
 				}
 			/>
@@ -139,14 +155,14 @@ export const LeadFunnel = (props: Props) => {
 						buttonFunc={() =>
 							SetLeadWindow(
 								"Congelar Lead",
-								<RuleOutActivity ruleOutType="freeze"></RuleOutActivity>
+								<RuleOutActivity ruleOutType="freeze" />
 							)
 						}
 						alternativeText="Futura Compra"
 						alternativeFunc={() =>
 							SetLeadWindow(
 								"Lead Futura Compra",
-								<RuleOutActivity ruleOutType="future-sell"></RuleOutActivity>
+								<RuleOutActivity ruleOutType="future-sell" />
 							)
 						}
 					/>

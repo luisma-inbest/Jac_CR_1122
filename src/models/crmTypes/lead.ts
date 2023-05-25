@@ -25,6 +25,8 @@ type LeadPhaseType = {
 
 export type LeadDataType = {
 	id: number;
+	leadFirstName: string;
+	leadLastName: string;
 	leadName: string;
 	leadPhones: any[];
 	leadEmails: any[];

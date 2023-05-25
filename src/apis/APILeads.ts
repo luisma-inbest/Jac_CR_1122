@@ -1,5 +1,5 @@
 import { api, API_ROUTE } from "./axiosConfig";
-import { Lead } from "@/models";
+import { Lead, LeadDataType } from "@/models";
 import { LeadActivityType } from "@/models";
 
 export const LeadAPI = {
@@ -139,15 +139,49 @@ export const LeadAPI = {
 				throw new Error(error);
 			});
 	},
-	editInfo: async function (leadId: string, data: any) {
+	editInfo: async function (lead: LeadDataType) {
 		return api
 			.request({
-				url: `/lead/${leadId}`,
+				url: `/lead/${lead.id}`,
 				method: "PATCH",
-				data: data,
+				data: {
+					data: {
+						firstName: lead.leadFirstName,
+						lastName: lead.leadLastName,
+						leadPhones: lead.leadPhones,
+						leadEmails: lead.leadEmails,
+					},
+				},
 			})
 			.then((response) => {
 				return response.data;
+			})
+			.catch((error: any) => {
+				if (error.response) {
+					console.log(error.response.data);
+				}
+				throw new Error(error);
+			});
+	},
+	modifyInterest: async function (lead: LeadDataType) {
+		return api
+			.request({
+				url: `/leadInterest`,
+				method: "POST",
+				data: {
+					data: {
+						date: "2023-02-02",
+						comments: "Cambio de interes",
+						ProductId: lead.LeadInterests[0].ProductId,
+						ProductColorId: lead.LeadInterests[0].ProductColorId,
+						LeadId: lead.id,
+						saleType: lead.buyType,
+						quantity: 3,
+					},
+				},
+			})
+			.then((response) => {
+				return response.data.data;
 			})
 			.catch((error: any) => {
 				if (error.response) {

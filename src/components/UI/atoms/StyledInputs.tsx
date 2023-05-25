@@ -19,6 +19,25 @@ export const StyledInputText = styled.input.attrs<PropsTxt>({
 		outline: 3px solid var(--highlight);
 	}
 `;
+export const StyledMaterialInput = styled.input.attrs<PropsTxt>({
+	type: "text",
+})`
+	background-color: ${(props: PropType) =>
+		props.customType === "gray" ? "var(--background)" : "var(--white)"};
+	color: var(--text);
+	border: none;
+	font-size: var(--p);
+	border-radius: var(--br-1);
+	width: 100%;
+	min-height: 3rem;
+	padding: 1rem 0.5rem;
+	margin-bottom: 1.9rem;
+	border-bottom: 1px solid var(--gray2);
+	&:focus {
+		outline: none;
+		border-color: var(--highlight);
+	}
+`;
 
 interface PropType {
 	customType: string;

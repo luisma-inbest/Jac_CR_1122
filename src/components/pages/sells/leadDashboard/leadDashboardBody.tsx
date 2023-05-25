@@ -116,6 +116,8 @@ export const LeadDashboardBody = () => {
 				type: "all",
 				value: {
 					id: data.id,
+					leadFirstName: data.firstName,
+					leadLastName: data.lastName,
 					leadName: data.firstAndLastName,
 					leadEmails: data.LeadEmails || [""],
 					leadPhones: data.LeadPhones || [""],

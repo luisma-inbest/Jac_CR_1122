@@ -1,5 +1,6 @@
 import {
 	StyledInputText,
+	StyledMaterialInput,
 	StyledInputRadio,
 	StyledInputDate,
 	StyledInputTime,
@@ -39,6 +40,7 @@ import { Alert } from "./alert";
 
 export {
 	StyledInputText,
+	StyledMaterialInput,
 	StyledInputRadio,
 	StyledInputDate,
 	StyledInputTime,

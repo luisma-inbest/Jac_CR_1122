@@ -13,6 +13,7 @@ import { SalesInfoCard } from "./salesInfoCard";
 import { PieChartLabel } from "./pieChartLabel";
 import { StackedBarChartLabel } from "./stackedBarChartLabel";
 import { DropdownMenu } from "./dropdownMenu";
+import { EditLead } from "./editLead";
 
 export {
 	LeadsTable,
@@ -30,4 +31,5 @@ export {
 	AgencyRow,
 	ProductRow,
 	DropdownMenu,
+	EditLead,
 };
