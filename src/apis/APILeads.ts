@@ -175,8 +175,8 @@ export const LeadAPI = {
 						ProductId: lead.LeadInterests[0].ProductId,
 						ProductColorId: lead.LeadInterests[0].ProductColorId,
 						LeadId: lead.id,
-						saleType: lead.buyType,
-						quantity: 3,
+						buyType: lead.buyType.toLowerCase(),
+						quantity: lead.LeadInterests[0].quantity,
 					},
 				},
 			})

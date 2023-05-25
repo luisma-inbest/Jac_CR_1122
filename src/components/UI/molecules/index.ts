@@ -14,6 +14,7 @@ import { PieChartLabel } from "./pieChartLabel";
 import { StackedBarChartLabel } from "./stackedBarChartLabel";
 import { DropdownMenu } from "./dropdownMenu";
 import { EditLead } from "./editLead";
+import { ModifyInterest } from "./modifyInterest";
 
 export {
 	LeadsTable,
@@ -32,4 +33,5 @@ export {
 	ProductRow,
 	DropdownMenu,
 	EditLead,
+	ModifyInterest,
 };

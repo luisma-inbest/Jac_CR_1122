@@ -26,6 +26,7 @@ import CurrentLeadContext, {
 	CurrentLeadContextType,
 } from "@/context/currentLeadContext/CurrentLeadContext";
 import { EditLead } from "../editLead";
+import { ModifyInterest } from "../modifyInterest";
 
 interface Props {
 	refresher: (val: boolean) => void;
@@ -136,12 +137,14 @@ export const LeadFunnel = (props: Props) => {
 				icon={<IconFeedback size="100%" color="#000" />}
 				cardContent={
 					<BasicBody
-						buttonText="Editar Lead"
+						buttonText="Editar Interes"
 						buttonFunc={() => {
+							SetLeadWindow("Eitar Interes", <ModifyInterest />);
+						}}
+						alternativeText="Editar Lead"
+						alternativeFunc={() => {
 							SetLeadWindow("Eitar Lead", <EditLead />);
 						}}
-						alternativeText=""
-						alternativeFunc={() => 1}
 					/>
 				}
 			/>

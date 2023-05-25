@@ -89,10 +89,17 @@ function reducer(state: LeadDataType, action: Action): LeadDataType {
 			};
 		case "productId":
 			let interest1 = state.LeadInterests;
-			interest1[0].Product.id = action.value;
+			interest1[0].ProductId = action.value;
 			return {
 				...state,
 				LeadInterests: interest1,
+			};
+		case "colorId":
+			let interest = state.LeadInterests;
+			interest[0].ProductColorId = action.value;
+			return {
+				...state,
+				LeadInterests: interest,
 			};
 		case "units":
 			let interest2 = state.LeadInterests;
