@@ -130,7 +130,7 @@ export const EditLead = (props: Props) => {
 									customType="white"
 									placeholder="Número de contacto"
 									type="number"
-									value={CurrentLead.leadPhones[index].phone}
+									// value={CurrentLead.leadPhones[index].phone}
 									onChange={(e) => {
 										DispatchCurrentLead({
 											type: "editPhone",
@@ -155,7 +155,7 @@ export const EditLead = (props: Props) => {
 									customType="white"
 									placeholder="correo de contacto"
 									type="text"
-									value={CurrentLead.leadEmails[index].email}
+									// value={CurrentLead.leadEmails[index].email}
 									onChange={(e) => {
 										DispatchCurrentLead({
 											type: "editEmail",
