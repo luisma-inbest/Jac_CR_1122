@@ -1,25 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, CardFunnel } from "@/components/UI/atoms";
 import styles from "./LeadFunnel.module.css";
 import { IconPhone, IconWhatsapp, IconMail, IconCheck } from "@/assets";
 import { LeadDataType } from "@/models";
+import LeadWindowContext, { LeadWindowContextType } from "@/context/LeadWindow";
+import { RegisterActivity } from "../registerActivity";
 
 interface AuctionProps {
 	leadData: LeadDataType;
 }
 
 export const Activities = (props: AuctionProps) => {
+	const { ShowLeadWindow, SetShowLeadWindow, SetLeadWindow } = useContext(
+		LeadWindowContext
+	) as LeadWindowContextType;
+
 	const whatsFunction = (phone: string) => {
 		window.open(`https://api.whatsapp.com/send?phone=${phone}`);
-		//TODO: conect with LeadWIndowContext
+		SetLeadWindow("Registrar Nueva Actividad", <RegisterActivity />);
 	};
 	const phoneFunction = (phone: string) => {
 		window.open(`tel:${phone}}`);
-		//TODO: conect with LeadWIndowContext
+		SetLeadWindow("Registrar Nueva Actividad", <RegisterActivity />);
 	};
 	const emailFunction = (email: string) => {
 		window.open(`mailto:${email}`);
-		//TODO: conect with LeadWIndowContext
+		SetLeadWindow("Registrar Nueva Actividad", <RegisterActivity />);
 	};
 	const checkFunction = () => {
 		console.log("check");

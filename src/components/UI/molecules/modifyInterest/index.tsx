@@ -126,11 +126,15 @@ export const ModifyInterest = (props: Props) => {
 							: ""
 					}
 					onChange={(e) => {
-						console.log(e.target.value);
+						console.log(
+							"esta cambiando el vehiculo...",
+							e.target.value
+						);
 						DispatchCurrentLead({
 							type: "productId",
 							value: e.target.value,
 						});
+
 						setColors(
 							products[
 								findPositionById(

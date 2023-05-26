@@ -113,6 +113,49 @@ export const LeadDashboardBody = () => {
 		onSuccess: (data) => {
 			console.log("Lead", data);
 
+			let interestArr = [];
+			if (data.LeadInterests.length > 0) {
+				interestArr = data.LeadInterests;
+			} else {
+				interestArr = [
+					{
+						id: "",
+						date: "",
+						comments: "",
+						quantity: "",
+						active: "",
+						createdAt: "",
+						updatedAt: "",
+						LeadId: "",
+						ProductId: "",
+						ProductColorId: "",
+						Product: {
+							id: "",
+							name: "",
+							model: "",
+							version: "",
+							transmission: "",
+							active: "",
+							imageUrl: "",
+							price: "",
+							onePagerUrl: "",
+							showRoom360Url: "",
+							dataSheetUrl: "",
+							createdAt: "",
+							updatedAt: "",
+							ProductFamilyId: "",
+						},
+						ProductColor: {
+							id: "",
+							name: "",
+							slug: "",
+							createdAt: "",
+							updatedAt: "",
+						},
+					},
+				];
+			}
+
 			DispatchCurrentLead({
 				type: "all",
 				value: {
@@ -124,7 +167,8 @@ export const LeadDashboardBody = () => {
 					leadPhones: data.LeadPhones || [""],
 					LeadActivities: data.LeadActivities,
 					leadPhase: data.LeadPhase,
-					LeadInterests: data.LeadInterests,
+					// LeadInterests: data.LeadInterests,
+					LeadInterests: interestArr,
 					LeadOrigin: data.LeadOrigin,
 					createdAt: data.createdAt,
 					updatedAt: data.updatedAt,
