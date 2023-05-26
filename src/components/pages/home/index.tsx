@@ -43,7 +43,7 @@ export const Home = () => {
 			.then((data: any) => {
 				UserAPI.getOne(data.id)
 					.then((res) => {
-						console.log("usuario respuesta:", res);
+						// console.log("usuario respuesta:", res);
 						//TODO: se va a cambiar agencies
 						SetUser({
 							id: res.id,

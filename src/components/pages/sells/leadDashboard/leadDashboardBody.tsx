@@ -111,7 +111,8 @@ export const LeadDashboardBody = () => {
 		queryKey: [`lead-${leadId}`, [refresh]],
 		queryFn: () => LeadAPI.getLead(String(leadId)),
 		onSuccess: (data) => {
-			console.log("exito", data);
+			console.log("Lead", data);
+
 			DispatchCurrentLead({
 				type: "all",
 				value: {

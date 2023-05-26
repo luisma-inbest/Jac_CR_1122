@@ -62,19 +62,26 @@ export const ModifyInterest = (props: Props) => {
 		onSuccess: (data) => {
 			console.log("data", data);
 			console.log("currentlead", CurrentLead);
-			if (CurrentLead.LeadInterests[0].ProductId != undefined) {
-				console.log(
-					"CurrentLead",
-					CurrentLead.LeadInterests[0].ProductId
-				);
-				setColors(
+			if (
+				CurrentLead.LeadInterests[0] !== undefined &&
+				CurrentLead.LeadInterests[0].ProductId !== undefined
+			) {
+				// console.log(
+				// 	"CurrentLead",
+				// 	CurrentLead.LeadInterests[0].ProductId
+				// );
+				let tempColors =
 					data[
 						findPositionById(
 							data,
 							CurrentLead.LeadInterests[0].Product.id
 						)
-					].ProductColors
-				);
+					];
+
+				tempColors =
+					tempColors != undefined ? tempColors.ProductColors : [];
+
+				setColors(tempColors);
 			}
 		},
 		onError: (error) => {
@@ -93,6 +100,10 @@ export const ModifyInterest = (props: Props) => {
 	}
 
 	function findPositionById(arr: any, id: number) {
+		if (id == null || id == undefined) {
+			console.log("id is null");
+			return 0;
+		}
 		for (let i = 0; i < arr.length; i++) {
 			if (arr[i].id === id) {
 				return i; // Return the index if the id is found
@@ -109,7 +120,11 @@ export const ModifyInterest = (props: Props) => {
 			<form onSubmit={(e) => e.preventDefault()}>
 				<StyledSelect
 					customType="secondary"
-					value={CurrentLead.LeadInterests[0].ProductId || ""}
+					value={
+						CurrentLead.LeadInterests[0] != null
+							? CurrentLead.LeadInterests[0].ProductId || ""
+							: ""
+					}
 					onChange={(e) => {
 						console.log(e.target.value);
 						DispatchCurrentLead({
@@ -139,7 +154,11 @@ export const ModifyInterest = (props: Props) => {
 				</StyledSelect>
 				<StyledSelect
 					customType="secondary"
-					value={CurrentLead.LeadInterests[0].ProductColorId || ""}
+					value={
+						CurrentLead.LeadInterests[0] != null
+							? CurrentLead.LeadInterests[0].ProductColorId || ""
+							: ""
+					}
 					onChange={(e) =>
 						DispatchCurrentLead({
 							type: "colorId",
@@ -184,7 +203,11 @@ export const ModifyInterest = (props: Props) => {
 					disabled={CurrentLead.buyType === "Flotilla" ? false : true}
 					placeholder="Unidades"
 					inputType="number"
-					value={String(CurrentLead.LeadInterests[0].quantity)}
+					value={
+						CurrentLead.LeadInterests[0] != null
+							? String(CurrentLead.LeadInterests[0].quantity)
+							: ""
+					}
 					type="reducer"
 					params={{
 						dispatch: DispatchCurrentLead,

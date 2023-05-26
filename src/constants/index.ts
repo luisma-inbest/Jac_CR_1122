@@ -1,4 +1,4 @@
-const enviroment: string = "dev"; // local, dev, prod
+const enviroment: string = "prod-local"; // local, dev, prod
 //--------------------------------------------
 var Domain: string;
 var Backend: string;
@@ -24,6 +24,15 @@ switch (enviroment) {
 		break;
 	case "prod":
 		Domain = "https://crmjac.mx";
+		// Domain =
+		// 	"http://jac-crm-front-end-prod.s3-website-us-east-1.amazonaws.com";
+		Backend = "https://vgn14b37gb.execute-api.us-east-1.amazonaws.com/";
+		poolData = {
+			UserPoolId: "us-east-1_WDfEjlZIh",
+			ClientId: "paj5qfl0urgsv6lljt4o0mc8j",
+		};
+	case "prod-local":
+		Domain = "http://localhost:5173";
 		// Domain =
 		// 	"http://jac-crm-front-end-prod.s3-website-us-east-1.amazonaws.com";
 		Backend = "https://vgn14b37gb.execute-api.us-east-1.amazonaws.com/";
