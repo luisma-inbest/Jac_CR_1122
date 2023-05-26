@@ -152,8 +152,8 @@ export const LeadDashboardBody = () => {
 		onError: (error) => {
 			console.log("error", error);
 		},
-		staleTime: 15 * (60 * 1000), // 15 mins
-		cacheTime: 20 * (60 * 1000), // 20 mins
+		// staleTime: 15 * (60 * 1000), // 15 mins
+		// cacheTime: 20 * (60 * 1000), // 20 mins
 	});
 	if (isLoading) {
 		return (
