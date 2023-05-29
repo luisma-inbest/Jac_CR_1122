@@ -15,10 +15,33 @@
 	}
 }
 
+.filtersContainer {
+	height: auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+.searchContainer {
+	height: 3rem;
+	border-bottom: 1px solid var(--secondary-text);
+
+	display: flex;
+}
+.searchContainer input {
+	background-color: rgba(0, 0, 0, 0);
+	font-size: var(--p2);
+}
+.searchContainer svg:hover {
+	cursor: pointer;
+}
+.searchContainer input:focus {
+	border-color: rgba(0, 0, 0, 0);
+	outline: none;
+	font-size: var(--p);
+}
 .buttonContainer {
 	width: 100%;
 	height: auto;
-	margin-top: -3rem;
 }
 
 /*

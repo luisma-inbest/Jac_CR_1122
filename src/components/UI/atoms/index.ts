@@ -24,6 +24,7 @@ import { Button } from "./button";
 import { ButtonFields } from "./buttonFields";
 
 import { InputFile } from "./inputFile";
+import { FilterButton } from "./filterButton";
 
 import { CardProduct } from "./cardProduct";
 import { ButtonProduct } from "./buttonProduct";
@@ -61,6 +62,7 @@ export {
 	Button,
 	ButtonFields,
 	InputFile,
+	FilterButton,
 	CardProduct,
 	ButtonProduct,
 	PieChart,

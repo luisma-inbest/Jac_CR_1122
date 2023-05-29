@@ -22,7 +22,7 @@ export const StyledInputText = styled.input.attrs<PropsTxt>({
 export const StyledMaterialInput = styled.input.attrs<PropsTxt>({
 	type: "text",
 })`
-	background-color: ${(props: PropType) =>
+	background-color: ${(props: PropsTxt) =>
 		props.customType === "gray" ? "var(--background)" : "var(--white)"};
 	color: var(--text);
 	border: none;

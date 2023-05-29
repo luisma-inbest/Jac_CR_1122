@@ -33,6 +33,8 @@ import { IconAdd } from "./icons/IconAdd";
 import { IconEye } from "./icons/IconEye";
 import { IconEyeOff } from "./icons/IconEyeOff";
 import { IconCalendar } from "./icons/IconCalendar";
+import { IconFilter } from "./icons/IconFilter";
+import { IconSearch } from "./icons/IconSearch";
 
 import { IconAlertError } from "./icons/Alert/IconError";
 import { IconAlertSuccess } from "./icons/Alert/IconSuccess";
@@ -61,6 +63,7 @@ export {
 	IconOffice,
 	IconLocation,
 	IconUser,
+	IconFilter,
 	IconArrow,
 	IconPhone,
 	IconMail,
@@ -70,6 +73,7 @@ export {
 	IconWhatsapp,
 	IconCheck,
 	IconAdd,
+	IconSearch,
 	IconAlertError,
 	IconAlertSuccess,
 	IconAlertWarning,

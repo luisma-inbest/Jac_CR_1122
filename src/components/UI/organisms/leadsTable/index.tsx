@@ -10,7 +10,14 @@ import UserContext, { UserContextType } from "@/context/UserContext";
 //COmponent Props
 interface Props {
 	type: number;
-	refresh?: boolean;
+	data: {
+		AgencyId: string;
+		UserId: string;
+		ProductId: string;
+		search: string;
+		refresh: boolean;
+	};
+	dispatch: any;
 }
 
 // Phases Arrays for the table and query
@@ -32,12 +39,14 @@ export const LeadsTable = (props: Props) => {
 	const [page, setPage] = useState<number>(1);
 	const [maxPage, setMaxPage] = useState<number>(1);
 	const [reload, setReload] = useState<boolean>(false);
-	const UserId = getUserId();
+	// const UserId = getUserId();
 
 	//Component Functions
 	//This function gives the userId Value given the role
 	function getUserId() {
-		if (props.type == 0) return "";
+		if (props.type == 0) {
+			return "";
+		}
 		if (
 			User!.permissions[1] == "coordinator" ||
 			User!.permissions[1] == "bdc" ||
@@ -45,6 +54,7 @@ export const LeadsTable = (props: Props) => {
 			User!.permissions[1] == "adviser-floor" ||
 			User!.permissions[1] == "adviser-hybrid"
 		) {
+			props.dispatch({ type: "UserId", value: User!.id });
 			return String(User!.id);
 		}
 		return "";
@@ -66,15 +76,17 @@ export const LeadsTable = (props: Props) => {
 	} = useQuery({
 		queryKey: [
 			`leads-${User!.AgencyId}-${statusArray[props.type]}`,
-			[page, props.refresh, reload],
+			[page, props.data.refresh, reload],
 		],
 		queryFn: () =>
-			LeadAPI.getAll(
-				statusArray[props.type],
-				User!.AgencyId,
-				UserId,
-				page
-			),
+			LeadAPI.getAll({
+				agency: User!.AgencyId,
+				phase: statusArray[props.type],
+				UserId: props.data.UserId,
+				page: page,
+				ProductId: props.data.ProductId,
+				search: props.data.search,
+			}),
 		onSuccess: (data) => {
 			setMaxPage(data.pages);
 			//console.log(data);
