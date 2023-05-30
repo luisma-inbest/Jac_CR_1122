@@ -113,6 +113,9 @@ export const UserAPI = {
 	},
 	filterSellers: async function (agency: string, roles: string[]) {
 		let rolesQuery = roles.map((role) => `role=${role}`).join("&");
+		console.log("get users by agency and roles");
+		console.log(rolesQuery);
+
 		try {
 			const response = await api.request({
 				url: `/user/?AgencyId=${agency}&${rolesQuery}`,
