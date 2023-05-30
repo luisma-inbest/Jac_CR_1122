@@ -26,6 +26,7 @@ export const SellerProfile = () => {
 		],
 		amounts: [14, 25, 30, 12],
 		percentages: [14, 25, 30, 12],
+		colors: ["#8dbdec", "#eeeeee", "#0d9d00", "#ff0000"],
 	};
 
 	return (
