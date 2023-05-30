@@ -138,6 +138,19 @@ export const FilterWindow = (props: Props) => {
 						})}
 					</StyledSelect>
 
+					<div className={styles.searchInput}>
+						<Input
+							placeholder="Buscar"
+							inputType="text"
+							value={props.fields.search}
+							type="reducer"
+							params={{
+								dispatch: props.dispatch,
+								dispType: "search",
+							}}
+						/>
+					</div>
+
 					<StyledInputSubmit
 						value="Buscar"
 						customType="primary"

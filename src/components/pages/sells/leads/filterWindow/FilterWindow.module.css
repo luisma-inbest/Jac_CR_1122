@@ -38,3 +38,11 @@
 	left: 1rem;
 	top: 1.5rem;
 }
+.searchInput {
+	display: none;
+}
+@media (max-width: 48em) {
+	.searchInput {
+		display: block;
+	}
+}

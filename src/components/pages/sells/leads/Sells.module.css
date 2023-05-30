@@ -20,12 +20,22 @@
 	display: flex;
 	justify-content: space-between;
 }
+@media (max-width: 48em) {
+	.filtersContainer {
+		justify-content: right;
+	}
+}
 
 .searchContainer {
 	height: 3rem;
 	border-bottom: 1px solid var(--secondary-text);
 
 	display: flex;
+}
+@media (max-width: 48em) {
+	.searchContainer {
+		display: none;
+	}
 }
 .searchContainer input {
 	background-color: rgba(0, 0, 0, 0);
