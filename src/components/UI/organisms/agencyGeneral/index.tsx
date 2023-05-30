@@ -51,17 +51,19 @@ export const AgencyGeneral = (props: Props) => {
 	};
 
 	useEffect(() => {
+		setDataSellers([]);
+		console.log("useEffect");
 		//TODO: no se filtra por agencia
 		UserAPI.filterSellers(String(CurrentAgency.id), [
 			"coordinator",
 			"bdc",
 			"hostess",
-			"adviser-digital",
-			"adviser-floor",
-			"adviser-hybrid",
+			// "adviser-digital",
+			// "adviser-floor",
+			// "adviser-hybrid",
 		])
 			.then((res) => {
-				// console.log("sellers:", res);
+				console.log("sellers:", res);
 				setDataSellers(res);
 			})
 			.catch((err) => {
