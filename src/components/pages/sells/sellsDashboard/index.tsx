@@ -15,6 +15,7 @@ import styles from "./SellsDashboard.module.css";
 import { IconSells } from "@/assets";
 import Card1 from "./card1";
 import Card2 from "./card2";
+import Card4 from "./card4";
 
 const getTitleElement = (titleText: string) => {
 	return (
@@ -53,7 +54,9 @@ export const SellsDashboard = () => {
 
 			{/* col */}
 			<div className={` ${styles.cardContainer} ${styles.card4}`}>
-				<div className={`globalPadding ${styles.card}`}></div>
+				<div className={`globalPadding ${styles.card}`}>
+					<Card4 />
+				</div>
 			</div>
 		</div>
 	);

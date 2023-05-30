@@ -22,7 +22,7 @@ const Card2 = () => {
 				<div className={styles.iconContainer}>
 					<IconSells size="100%" color="#000" />
 				</div>
-				<h2 className={`semi-bold`}> Leads por Modelo</h2>
+				<h4 className={`semi-bold`}> Leads por Modelo</h4>
 			</div>
 			<div className="row">
 				<div className="col-xs-12">

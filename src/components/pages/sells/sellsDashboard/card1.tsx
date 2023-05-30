@@ -26,6 +26,7 @@ const Card1 = () => {
 		],
 		amounts: [10, 14, 25, 30, 12],
 		percentages: [10, 14, 25, 30, 12],
+		colors: ["#0d9d00", "#8dbdec", "#eed347", "#e07d08", "#e9525d"],
 	};
 
 	return (
@@ -34,7 +35,7 @@ const Card1 = () => {
 				<div className={styles.iconContainer}>
 					<IconSells size="100%" color="#000" />
 				</div>
-				<h2 className={`semi-bold`}>Funnel Ventas</h2>
+				<h4 className={`semi-bold`}>Funnel Ventas</h4>
 			</div>
 			<div className="row mb-3">
 				<div className="col">
@@ -55,6 +56,7 @@ const Card1 = () => {
 						labels={salesData.labels}
 						amounts={salesData.amounts}
 						percentages={salesData.percentages}
+						colors={salesData.colors}
 					/>
 				</div>
 
