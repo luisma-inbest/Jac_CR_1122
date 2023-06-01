@@ -49,6 +49,10 @@ $grid-breakpoints: (
 .card {
 	background-color: var(--white);
 	border-radius: var(--br-2);
-	height: 100%;
+	min-height: 100%;
 	max-width: 100%;
 }
+
+/* paso sigiuiente 
+que dijo cosio 
+y que van a hacer depsues  */

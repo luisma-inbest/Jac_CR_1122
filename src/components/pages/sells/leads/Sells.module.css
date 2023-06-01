@@ -28,6 +28,8 @@
 
 .searchContainer {
 	height: 3rem;
+	width: fit-content;
+	border-radius: var(--br-1);
 	border-bottom: 1px solid var(--secondary-text);
 
 	display: flex;
@@ -38,6 +40,7 @@
 	}
 }
 .searchContainer input {
+	width: 100%;
 	background-color: rgba(0, 0, 0, 0);
 	font-size: var(--p2);
 }
@@ -47,8 +50,13 @@
 .searchContainer input:focus {
 	border-color: rgba(0, 0, 0, 0);
 	outline: none;
-	font-size: var(--p);
+	/* font-size: var(--p); */
 }
+.iconContainer {
+	height: 3rem;
+	padding-bottom: 0.3rem;
+}
+
 .buttonContainer {
 	width: 100%;
 	height: auto;

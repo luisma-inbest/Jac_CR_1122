@@ -5,13 +5,15 @@ type Action =
 	| { type: "search"; value: string }
 	| { type: "AgencyId"; value: string }
 	| { type: "UserId"; value: string }
-	| { type: "ProductId"; value: string };
+	| { type: "ProductId"; value: string }
+	| { type: "currentProduct"; value: string };
 
 const initial: any = {
 	search: "",
 	AgencyId: "",
 	UserId: "",
 	ProductId: "",
+	currentProduct: "",
 	refresh: false,
 };
 
@@ -29,6 +31,8 @@ function reducer(state: any, action: Action): any {
 			return { ...state, UserId: action.value };
 		case "ProductId":
 			return { ...state, ProductId: action.value };
+		case "currentProduct":
+			return { ...state, currentProduct: action.value };
 
 		default:
 			return state;

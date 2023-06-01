@@ -95,7 +95,7 @@ export const FilterWindow = (props: Props) => {
 				<form action="" onSubmit={(e) => e.preventDefault()}>
 					<StyledSelect
 						customType="secondary"
-						value=""
+						value={props.fields.UserId}
 						onChange={(e: any) => {
 							props.dispatch({
 								type: "UserId",
@@ -104,9 +104,7 @@ export const FilterWindow = (props: Props) => {
 							console.log(e.target.value);
 						}}
 					>
-						<option value="" disabled>
-							-- Asignar Usuario --
-						</option>
+						<option value="">-- Asignar Usuario --</option>
 						{dataSellers.map((seller: any) => {
 							return (
 								<option value={seller.id} key={seller.id}>
@@ -118,17 +116,26 @@ export const FilterWindow = (props: Props) => {
 
 					<StyledSelect
 						customType="secondary"
-						defaultValue=""
+						value={props.fields.currentProduct}
 						onChange={(e) => {
+							if (e.target.value !== "") {
+								props.dispatch({
+									type: "ProductId",
+									value: products[e.target.value].id,
+								});
+							} else {
+								props.dispatch({
+									type: "ProductId",
+									value: "",
+								});
+							}
 							props.dispatch({
-								type: "ProductId",
-								value: products[e.target.value].id,
+								type: "currentProduct",
+								value: e.target.value,
 							});
 						}}
 					>
-						<option value="" disabled>
-							-- Producto --
-						</option>
+						<option value="">-- Producto --</option>
 						{products?.map((product: any, index: any) => {
 							return (
 								<option key={product.id} value={index}>

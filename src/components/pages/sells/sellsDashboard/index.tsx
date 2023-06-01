@@ -16,6 +16,7 @@ import { IconSells } from "@/assets";
 import Card1 from "./card1";
 import Card2 from "./card2";
 import Card4 from "./card4";
+import Card3 from "./card3";
 
 const getTitleElement = (titleText: string) => {
 	return (
@@ -49,7 +50,9 @@ export const SellsDashboard = () => {
 
 			{/* col */}
 			<div className={` ${styles.cardContainer} ${styles.card3}`}>
-				<div className={`globalPadding ${styles.card}`}></div>
+				<div className={`globalPadding ${styles.card}`}>
+					<Card3 />
+				</div>
 			</div>
 
 			{/* col */}

@@ -56,7 +56,7 @@ export const Leads = () => {
 							}}
 						/>
 						<div
-							className="iconContainer"
+							className={styles.iconContainer}
 							onClick={() =>
 								dispatch({
 									type: "refresh",

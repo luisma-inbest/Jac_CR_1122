@@ -128,10 +128,11 @@ export const LeadsTable = (props: Props) => {
 						</tr>
 					</thead>
 					<tbody>
-						{leads.data.map((lead: any) => {
+						{leads.data.map((lead: any, index: number) => {
 							return (
 								<LeadRow
-									key={lead.id || ""}
+									// key={lead.id}
+									key={index}
 									id={lead.id || ""}
 									name={
 										generateLeadNickname(

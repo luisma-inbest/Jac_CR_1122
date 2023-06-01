@@ -22,32 +22,37 @@ const Card3 = () => {
 				<div className={styles.iconContainer}>
 					<IconSells size="100%" color="#000" />
 				</div>
-				<h2 className={styles.title}>No sé</h2>
+				<h4 className={`semi-bold`}>Origenes Leads</h4>
 			</div>
 			<div className={`row ${styles.paragraphSeparator}`}>
 				<div className="col">
 					<div className="box">
 						<p className={styles.paragraph}>
-							Lorem ipsum dolor sit amet consectetur. Volutpat
-							integer dictum curabitur elementum. Orci senectus
-							posuere id sed vulputate ipsum molestie sit
-							adipiscing. Facilisis arcu et quis odio sit.
+							Gráfica comparativa sobre el origen de los leads con
+							respecto al mes pasado
 						</p>
 					</div>
 				</div>
 			</div>
 			<div className="row">
-				<div className="col-xs-12 col-md-6">
+				<div className="col-xs-12 col-md-12">
 					<div className="box">
 						<ComparativeBarChart
-							labels={["Lorem", "Lorem", "Lorem", "Lorem"]}
-							data1={[100, 50, 80, 85]}
-							data2={[65, 90, 55, 35]}
+							labels={[
+								"WA Seller",
+								"Autocosmos",
+								"Mercado Libre",
+								"Fan Page",
+								"Web",
+								"Piso",
+							]}
+							data1={[100, 50, 80, 85, 30, 45]}
+							data2={[65, 90, 55, 35, 17, 23]}
 						/>
 					</div>
 				</div>
 
-				<div className="col-xs-12 col-md-6">
+				{/* <div className="col-xs-12 col-md-6">
 					<div className="box">
 						<div className="row">
 							<div className="col-xs-12">
@@ -76,7 +81,7 @@ const Card3 = () => {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> */}
 			</div>
 		</>
 	);
