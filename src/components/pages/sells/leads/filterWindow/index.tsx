@@ -93,26 +93,31 @@ export const FilterWindow = (props: Props) => {
 					<IconCross color={red} size="100%" />
 				</span>
 				<form action="" onSubmit={(e) => e.preventDefault()}>
-					<StyledSelect
-						customType="secondary"
-						value={props.fields.UserId}
-						onChange={(e: any) => {
-							props.dispatch({
-								type: "UserId",
-								value: e.target.value,
-							});
-							console.log(e.target.value);
-						}}
-					>
-						<option value="">-- Asignar Usuario --</option>
-						{dataSellers.map((seller: any) => {
-							return (
-								<option value={seller.id} key={seller.id}>
-									{seller.nickname}
-								</option>
-							);
-						})}
-					</StyledSelect>
+					{/* {User?.permissions.includes("admin") && ( */}
+					{["admin", "manager", "coordinator", "hostess"].some((el) =>
+						User?.permissions.includes(el)
+					) && (
+						<StyledSelect
+							customType="secondary"
+							value={props.fields.UserId}
+							onChange={(e: any) => {
+								props.dispatch({
+									type: "UserId",
+									value: e.target.value,
+								});
+								console.log(e.target.value);
+							}}
+						>
+							<option value="">-- Asignar Usuario --</option>
+							{dataSellers.map((seller: any) => {
+								return (
+									<option value={seller.id} key={seller.id}>
+										{seller.nickname}
+									</option>
+								);
+							})}
+						</StyledSelect>
+					)}
 
 					<StyledSelect
 						customType="secondary"

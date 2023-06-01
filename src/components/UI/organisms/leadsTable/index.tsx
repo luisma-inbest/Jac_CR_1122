@@ -43,22 +43,22 @@ export const LeadsTable = (props: Props) => {
 
 	//Component Functions
 	//This function gives the userId Value given the role
-	function getUserId() {
-		if (props.type == 0) {
-			return "";
-		}
-		if (
-			User!.permissions[1] == "coordinator" ||
-			User!.permissions[1] == "bdc" ||
-			User!.permissions[1] == "adviser-digital" ||
-			User!.permissions[1] == "adviser-floor" ||
-			User!.permissions[1] == "adviser-hybrid"
-		) {
-			props.dispatch({ type: "UserId", value: User!.id });
-			return String(User!.id);
-		}
-		return "";
-	}
+	// function getUserId() {
+	// 	if (props.type == 0) {
+	// 		return "";
+	// 	}
+	// 	if (
+	// 		User!.permissions[1] == "coordinator" ||
+	// 		User!.permissions[1] == "bdc" ||
+	// 		User!.permissions[1] == "adviser-digital" ||
+	// 		User!.permissions[1] == "adviser-floor" ||
+	// 		User!.permissions[1] == "adviser-hybrid"
+	// 	) {
+	// 		props.dispatch({ type: "UserId", value: User!.id });
+	// 		return String(User!.id);
+	// 	}
+	// 	return "";
+	// }
 	//This Function generates the nickname for the lead
 	function generateLeadNickname(firstName: string, lastName: string) {
 		return firstName.split(" ")[0] + " " + lastName.split(" ")[0];
@@ -86,6 +86,7 @@ export const LeadsTable = (props: Props) => {
 				page: page,
 				ProductId: props.data.ProductId,
 				search: props.data.search,
+				RequestantId: User!.id,
 			}),
 		onSuccess: (data) => {
 			setMaxPage(data.pages);
@@ -100,6 +101,15 @@ export const LeadsTable = (props: Props) => {
 			<div className="row">
 				<div className={`col-xs-12 loaderContainer`}>
 					<Loader />
+				</div>
+			</div>
+		);
+	}
+	if (isError) {
+		return (
+			<div className="row">
+				<div className={`col-xs-12 loaderContainer`}>
+					<h5>Ha ocurrido un error</h5>
 				</div>
 			</div>
 		);

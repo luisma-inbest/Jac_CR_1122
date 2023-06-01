@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Sells.module.css";
 import {
@@ -16,6 +16,7 @@ import { LeadAPI } from "@/apis";
 import { FilterWindow } from "./filterWindow";
 import { IconSearch } from "@/assets";
 import { reducer, initial } from "./reducer";
+import UserContext, { UserContextType } from "@/context/UserContext";
 
 export const Leads = () => {
 	const [leadView, setLeadView] = useState(false);
@@ -24,6 +25,7 @@ export const Leads = () => {
 		"--secondary-text"
 	);
 	const [fields, dispatch] = useReducer(reducer, initial);
+	const { User } = useContext(UserContext) as UserContextType;
 
 	const PageTabs = ["Subasta", "1er Contacto", "Seguimiento", "Cierre"];
 	const TabOne = <LeadsTable type={0} data={fields} dispatch={dispatch} />;
@@ -38,6 +40,11 @@ export const Leads = () => {
 		}
 		setLeadView(!leadView);
 	};
+
+	useEffect(() => {
+		console.log("useeffect with user id:", User!.id);
+		dispatch({ type: "RequestantId", value: String(User!.id) });
+	}, []);
 
 	return (
 		<div className={`contentVerticalPadding ${styles.mainContainer}`}>

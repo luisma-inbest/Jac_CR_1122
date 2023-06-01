@@ -6,6 +6,7 @@ type Action =
 	| { type: "AgencyId"; value: string }
 	| { type: "UserId"; value: string }
 	| { type: "ProductId"; value: string }
+	| { type: "RequestantId"; value: string }
 	| { type: "currentProduct"; value: string };
 
 const initial: any = {
@@ -14,6 +15,7 @@ const initial: any = {
 	UserId: "",
 	ProductId: "",
 	currentProduct: "",
+	RequestantId: "",
 	refresh: false,
 };
 
@@ -33,6 +35,8 @@ function reducer(state: any, action: Action): any {
 			return { ...state, ProductId: action.value };
 		case "currentProduct":
 			return { ...state, currentProduct: action.value };
+		case "RequestantId":
+			return { ...state, RequestantId: action.value };
 
 		default:
 			return state;
