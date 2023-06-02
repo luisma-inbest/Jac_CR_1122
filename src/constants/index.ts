@@ -31,6 +31,7 @@ switch (enviroment) {
 			UserPoolId: "us-east-1_WDfEjlZIh",
 			ClientId: "paj5qfl0urgsv6lljt4o0mc8j",
 		};
+		break;
 	case "prod-local":
 		Domain = "http://localhost:5173";
 		// Domain =
