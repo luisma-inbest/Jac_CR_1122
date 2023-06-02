@@ -22,6 +22,7 @@ export const ProtectedRoute = ({
 		// console.log("pathname:", path);
 
 		let path = window.location.href.replace(Domain, "");
+		console.log("Domain", Domain);
 		console.log("pasa por protected route");
 		console.log("usuario:", User);
 		console.log("intenta ingresar a:", window.location.href);
