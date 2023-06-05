@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import { Link } from "react-router-dom";
 import {
 	BarChart,
 	CardProduct,
 	ComparativeBarChart,
+	Loader,
 } from "@/components/UI/atoms";
 import {
 	PieChartLabel,
@@ -14,8 +15,56 @@ import { Tabs } from "@/components/templates";
 import styles from "./SellsCharts.module.css";
 import { IconSells } from "@/assets";
 import { PieChartLabelProps } from "@/components/UI/molecules/pieChartLabel";
+import { useQuery } from "react-query";
+import { AgencyChartAPI } from "@/apis";
+import UserContext, { UserContextType } from "@/context/UserContext";
+import { initial, reducer } from "../reducer";
 
-const Card1 = () => {
+interface Props {
+	fields: any;
+}
+
+const Card1 = (props: Props) => {
+	const { User } = useContext(UserContext) as UserContextType;
+
+	const { isLoading, data, isError, error } = useQuery({
+		queryKey: [
+			`sellsDashboard-Funnel`,
+			[User!.AgencyId, props.fields.refresh],
+		],
+		queryFn: () =>
+			AgencyChartAPI.funnel(
+				User!.AgencyId,
+				props.fields.startDate,
+				props.fields.endDate,
+				props.fields.UserId
+			),
+		onSuccess: (data) => {
+			console.log(data);
+		},
+		// staleTime: 5 * (60 * 1000), // 5 mins
+		// cacheTime: 10 * (60 * 1000), // 10 mins
+	});
+
+	if (isLoading) {
+		return (
+			<div className="row">
+				<div className={`col-xs-12 loaderContainer`}>
+					<Loader />
+				</div>
+			</div>
+		);
+	}
+	if (isError) {
+		return (
+			<div className="row">
+				<div className={`col-xs-12 loaderContainer`}>
+					<h5>Ha ocurrido un error</h5>
+				</div>
+			</div>
+		);
+	}
+
 	const salesData: PieChartLabelProps = {
 		labels: [
 			"Subasta",

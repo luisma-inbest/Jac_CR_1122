@@ -12,7 +12,7 @@ interface Props {
 export const Logo = (props: Props) => {
 	return (
 		<svg
-			style={{width: `auto`, height: `${props.size}`}}
+			style={{ width: `auto`, height: `${props.size}` }}
 			viewBox="0 0 421 92"
 			fill="none"
 		>

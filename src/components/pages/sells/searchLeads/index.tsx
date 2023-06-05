@@ -8,9 +8,11 @@ import styles from "./SearchLeads.module.css";
 import { IconUnfold } from "@/assets";
 import { LeadRow } from "@/components/UI/molecules";
 import { useSearchParams } from "react-router-dom";
+import UserContext, { UserContextType } from "@/context/UserContext";
 
 export const SearchLeads = () => {
 	const [params, setParams] = useSearchParams();
+	const { User } = useContext(UserContext) as UserContextType;
 
 	const highlight = getComputedStyle(
 		document.documentElement
@@ -37,8 +39,9 @@ export const SearchLeads = () => {
 	// futura-venta
 
 	const { isLoading, data, isError, error } = useQuery({
-		queryKey: [`leads-search`, [page, phase]],
-		queryFn: () => LeadAPI.search(phase, "14", "", page),
+		queryKey: [`leads-search`, [page, phase, User!.AgencyId]],
+		queryFn: () =>
+			LeadAPI.search(phase, User!.AgencyId, "", page, User!.id),
 		onSuccess: (data) => {
 			setMaxPage(data.pages);
 		},

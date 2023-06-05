@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import { Link } from "react-router-dom";
 import {
 	BarChart,
 	CardProduct,
 	ComparativeBarChart,
+	Loader,
 } from "@/components/UI/atoms";
 import {
 	PieChartLabel,
@@ -14,8 +15,55 @@ import { Tabs } from "@/components/templates";
 import styles from "./SellsCharts.module.css";
 import { IconSells } from "@/assets";
 import { PieChartLabelProps } from "@/components/UI/molecules/pieChartLabel";
+import { AgencyChartAPI } from "@/apis";
+import { useQuery } from "react-query";
+import UserContext, { UserContextType } from "@/context/UserContext";
+import { initial, reducer } from "../reducer";
 
-const Card3 = () => {
+interface Props {
+	fields: any;
+}
+
+const Card3 = (props: Props) => {
+	const { User } = useContext(UserContext) as UserContextType;
+
+	const { isLoading, data, isError, error } = useQuery({
+		queryKey: [
+			`sellsDashboard-Origins`,
+			[User!.AgencyId, props.fields.refresh],
+		],
+		queryFn: () =>
+			AgencyChartAPI.origins(
+				User!.AgencyId,
+				props.fields.startDate,
+				props.fields.endDate,
+				props.fields.UserId
+			),
+		onSuccess: (data) => {
+			console.log(data);
+		},
+		// staleTime: 5 * (60 * 1000), // 5 mins
+		// cacheTime: 10 * (60 * 1000), // 10 mins
+	});
+
+	if (isLoading) {
+		return (
+			<div className="row">
+				<div className={`col-xs-12 loaderContainer`}>
+					<Loader />
+				</div>
+			</div>
+		);
+	}
+	if (isError) {
+		return (
+			<div className="row">
+				<div className={`col-xs-12 loaderContainer`}>
+					<h5>Ha ocurrido un error</h5>
+				</div>
+			</div>
+		);
+	}
 	return (
 		<>
 			<div className={`${styles.titleContainer}`}>
@@ -38,16 +86,9 @@ const Card3 = () => {
 				<div className="col-xs-12 col-md-12">
 					<div className="box">
 						<ComparativeBarChart
-							labels={[
-								"WA Seller",
-								"Autocosmos",
-								"Mercado Libre",
-								"Fan Page",
-								"Web",
-								"Piso",
-							]}
-							data1={[100, 50, 80, 85, 30, 45]}
-							data2={[65, 90, 55, 35, 17, 23]}
+							labels={data.labels}
+							data1={data.data1}
+							data2={data.data2}
 						/>
 					</div>
 				</div>

@@ -53,6 +53,45 @@ $grid-breakpoints: (
 	max-width: 100%;
 }
 
-/* paso sigiuiente 
-que dijo cosio 
-y que van a hacer depsues  */
+/* filters */
+.filtersContainer {
+	height: auto;
+	display: flex;
+	justify-content: space-between;
+}
+@media (max-width: 48em) {
+	.filtersContainer {
+		justify-content: right;
+	}
+}
+
+.searchContainer {
+	height: 3rem;
+	width: fit-content;
+	border-radius: var(--br-1);
+	border-bottom: 1px solid var(--secondary-text);
+
+	display: flex;
+}
+@media (max-width: 48em) {
+	.searchContainer {
+		display: none;
+	}
+}
+.searchContainer input {
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0);
+	font-size: var(--p2);
+}
+.searchContainer svg:hover {
+	cursor: pointer;
+}
+.searchContainer input:focus {
+	border-color: rgba(0, 0, 0, 0);
+	outline: none;
+	/* font-size: var(--p); */
+}
+.iconContainer {
+	height: 3rem;
+	padding-bottom: 0.3rem;
+}

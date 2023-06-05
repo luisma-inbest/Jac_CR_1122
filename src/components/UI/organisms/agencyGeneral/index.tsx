@@ -257,6 +257,7 @@ export const AgencyGeneral = (props: Props) => {
 						</option>
 						<option value="1">Subasta</option>
 						<option value="2">Usuario Asignado</option>
+						<option value="3">Aleatorio</option>
 					</StyledSelect>
 				</div>
 

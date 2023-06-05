@@ -45,11 +45,12 @@ export const LeadAPI = {
 		phase: string,
 		agency: string,
 		UserId: string,
-		page: number
+		page: number,
+		RequestantId: number
 	) {
 		return api
 			.request({
-				url: `/lead/?AgencyId=${agency}&phase=${phase}&page=${page}&limit=10&UserId=${UserId}`,
+				url: `/lead/?AgencyId=${agency}&phase=${phase}&page=${page}&limit=10&UserId=${UserId}&RequestantId=${RequestantId}`,
 				//url: `/lead/?AgencyId=14&phase=en-cierre&page=1&limit=10`,
 				method: "GET",
 			})
