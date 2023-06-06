@@ -59,9 +59,9 @@ export const AgencyGeneral = (props: Props) => {
 			"coordinator",
 			"bdc",
 			"hostess",
-			// "adviser-digital",
-			// "adviser-floor",
-			// "adviser-hybrid",
+			"adviser-digital",
+			"adviser-floor",
+			"adviser-hybrid",
 		])
 			.then((res) => {
 				console.log("sellers:", res);
