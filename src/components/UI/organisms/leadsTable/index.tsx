@@ -75,7 +75,7 @@ export const LeadsTable = (props: Props) => {
 		error,
 	} = useQuery({
 		queryKey: [
-			`leads-${User!.AgencyId}-${statusArray[props.type]}`,
+			`leads-${User!.AgencyId}-${statusArray[props.type]}-page`,
 			[page, props.data.refresh, reload],
 		],
 		queryFn: () =>
@@ -142,7 +142,7 @@ export const LeadsTable = (props: Props) => {
 							return (
 								<LeadRow
 									// key={lead.id}
-									key={index}
+									key={lead.id}
 									id={lead.id || ""}
 									name={
 										generateLeadNickname(
