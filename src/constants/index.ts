@@ -1,4 +1,4 @@
-const enviroment: string = "local"; // local, dev, prod, prod-local
+const enviroment: string = "prod"; // local, dev, prod, prod-local
 //--------------------------------------------
 var Domain: string;
 var Backend: string;
