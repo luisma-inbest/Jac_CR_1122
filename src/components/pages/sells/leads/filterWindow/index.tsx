@@ -7,6 +7,7 @@ import {
 	StyledInputSubmit,
 	ButtonFields,
 	StyledSelect,
+	StyledInputDate,
 } from "@/components/UI/atoms";
 import { IconCross } from "@/assets";
 import { Lead } from "@/models";
@@ -162,6 +163,28 @@ export const FilterWindow = (props: Props) => {
 							}}
 						/>
 					</div>
+
+					<label className="p2 mr-1">Inicio</label>
+					<StyledInputDate
+						customType="secondary"
+						onChange={(e) =>
+							props.dispatch({
+								type: "startDate",
+								value: e.target.value,
+							})
+						}
+					/>
+					<br />
+					<label className="p2 mr-1">Fin</label>
+					<StyledInputDate
+						customType="secondary"
+						onChange={(e) =>
+							props.dispatch({
+								type: "endDate",
+								value: e.target.value,
+							})
+						}
+					/>
 
 					<StyledInputSubmit
 						value="Buscar"

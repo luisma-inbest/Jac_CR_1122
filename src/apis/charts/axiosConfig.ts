@@ -1,6 +1,6 @@
 import axios from "axios";
-import { Backend, Domain } from "@/constants";
-const API_ROUTE = "https://u0cawkama8.execute-api.us-east-1.amazonaws.com";
+import { BackendDashboards } from "@/constants";
+const API_ROUTE = BackendDashboards;
 
 const api = axios.create({
 	withCredentials: false,

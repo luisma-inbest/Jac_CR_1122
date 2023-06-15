@@ -66,16 +66,10 @@ const Card1 = (props: Props) => {
 	}
 
 	const salesData: PieChartLabelProps = {
-		labels: [
-			"Subasta",
-			"Primer Contacto",
-			"Datos Confirmados",
-			"Seguimiento",
-			"Cierre",
-		],
-		amounts: [10, 14, 25, 30, 12],
-		percentages: [10, 14, 25, 30, 12],
-		colors: ["#0d9d00", "#8dbdec", "#eed347", "#e07d08", "#e9525d"],
+		labels: data.labels,
+		amounts: data.amounts,
+		percentages: data.percentages,
+		colors: ["#0d9d00", "#8dbdec", "#e07d08", "#e9525d"],
 	};
 
 	return (

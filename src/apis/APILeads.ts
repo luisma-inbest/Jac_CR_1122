@@ -24,7 +24,7 @@ export const LeadAPI = {
 		console.log("get leads with:", data);
 		return api
 			.request({
-				url: `/lead/?AgencyId=${data.agency}&phase=${data.phase}&UserId=${data.UserId}&ProductId=${data.ProductId}&search=${data.search}&RequestantId=${data.RequestantId}&page=${data.page}&limit=10`,
+				url: `/lead/?AgencyId=${data.agency}&phase=${data.phase}&UserId=${data.UserId}&ProductId=${data.ProductId}&search=${data.search}&StartDate=${data.startDate}&EndDate=${data.endDate}&RequestantId=${data.RequestantId}&page=${data.page}&limit=10`,
 				//url: `/lead/?AgencyId=14&phase=en-cierre&page=1&limit=10`,
 				method: "GET",
 			})
