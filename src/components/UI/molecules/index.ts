@@ -4,6 +4,7 @@ import { LeadChat } from "./leadChat";
 import { LeadFunnel } from "./leadFunnel";
 import { LeadHistory } from "./leadHistory";
 import { RegisterActivity } from "./registerActivity";
+import { RegisterTestDrive } from "./registerTestDrive";
 import { RuleOutActivity } from "./ruleOutActivity";
 import { LeadRow } from "./leadRow";
 import { UserRow } from "./userRow";
@@ -22,6 +23,7 @@ export {
 	LeadData,
 	LeadFunnel,
 	RegisterActivity,
+	RegisterTestDrive,
 	RuleOutActivity,
 	LeadHistory,
 	SalesInfoCard,

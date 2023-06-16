@@ -81,7 +81,7 @@ const Card4 = (props: Props) => {
 			</div>
 			<div className="row">
 				<div className={`col-xs-12`}>
-					<h1 className="bold">578 Leads</h1>
+					<h1 className="bold">{data.TotalLeads}Leads</h1>
 				</div>
 			</div>
 			<div>

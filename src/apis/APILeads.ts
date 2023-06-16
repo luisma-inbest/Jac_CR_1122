@@ -221,4 +221,22 @@ export const LeadAPI = {
 				throw new Error(error);
 			});
 	},
+	testDriveAppointment: async function (data: any) {
+		console.log("data: ", data);
+		return api
+			.request({
+				url: `/lead/TestDriveAppointment`,
+				method: "POST",
+				data: { data: data },
+			})
+			.then((response) => {
+				return response.data.data;
+			})
+			.catch((error: any) => {
+				if (error.response) {
+					console.log(error.response.data);
+				}
+				throw new Error(error);
+			});
+	},
 };
