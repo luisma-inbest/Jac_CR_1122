@@ -1,5 +1,4 @@
 import axios from "axios";
-//check
 import { BackendDashboards } from "@/constants";
 const API_ROUTE = BackendDashboards;
 
