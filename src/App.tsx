@@ -53,10 +53,7 @@ function App() {
 					// to store it and use it to send push notifications later
 				})
 				.catch((error) => {
-					console.log(
-						"Failed to subscribe to push notifications:",
-						error
-					);
+					console.log("Bienvenido a tu CRM ", error);
 				});
 		});
 	};
