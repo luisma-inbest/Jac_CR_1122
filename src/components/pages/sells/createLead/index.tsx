@@ -271,7 +271,8 @@ const Second = (props: SecondProps) => {
 					{products?.map((product: any, index: any) => {
 						return (
 							<option key={product.id} value={index}>
-								{product.name} {product.version}
+								{product.name} {product.version}{" "}
+								{product.transmission}
 							</option>
 						);
 					})}
