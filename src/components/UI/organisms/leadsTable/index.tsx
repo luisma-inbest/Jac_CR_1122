@@ -16,6 +16,8 @@ interface Props {
 		ProductId: string;
 		search: string;
 		refresh: boolean;
+		startDate: string;
+		endDate: string;
 	};
 	dispatch: any;
 }
@@ -87,6 +89,8 @@ export const LeadsTable = (props: Props) => {
 				ProductId: props.data.ProductId,
 				search: props.data.search,
 				RequestantId: User!.id,
+				startDate: props.data.startDate,
+				endDate: props.data.endDate,
 			}),
 		onSuccess: (data) => {
 			setMaxPage(data.pages);

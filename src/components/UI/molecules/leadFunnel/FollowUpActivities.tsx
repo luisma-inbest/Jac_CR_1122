@@ -10,6 +10,9 @@ import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
 import CurrentLeadContext, {
 	CurrentLeadContextType,
 } from "@/context/currentLeadContext/CurrentLeadContext";
+import LeadWindowContext, { LeadWindowContextType } from "@/context/LeadWindow";
+import { RegisterActivity } from "../registerActivity";
+import { RegisterTestDrive } from "../registerTestDrive";
 
 const goTo = (url: string) => () => {
 	window.open(url, "_blank");
@@ -27,6 +30,9 @@ export const FollowUpActivities = (props: AuctionProps) => {
 	const { Alerts, SetAlerts, createAlert } = useContext(
 		AlertsContext
 	) as AlertsContextType;
+	const { ShowLeadWindow, SetShowLeadWindow, SetLeadWindow } = useContext(
+		LeadWindowContext
+	) as LeadWindowContextType;
 
 	const cotizaciones = [
 		{
@@ -204,18 +210,23 @@ export const FollowUpActivities = (props: AuctionProps) => {
 					</div>
 				}
 			/>
-			{/* <CardFunnel
+			<CardFunnel
 				mainText="Prueba de Manejo"
 				icon={<IconCheck size="100%" color="#000" />}
 				cardContent={
 					<BasicBody
 						buttonText="Agendar"
-						buttonFunc={() => console.log("")}
+						buttonFunc={() => {
+							SetLeadWindow(
+								"Agendar Prueba de Manejo",
+								<RegisterTestDrive />
+							);
+						}}
 						alternativeText=""
 						alternativeFunc={() => console.log("")}
 					/>
 				}
-			/> */}
+			/>
 			<CardFunnel
 				mainText="RFC Cliente"
 				icon={<IconCheck size="100%" color="#000" />}

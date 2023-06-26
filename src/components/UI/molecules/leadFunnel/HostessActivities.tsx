@@ -13,6 +13,7 @@ interface Props {
 	leadData: LeadDataType;
 }
 
+//Acitidades del host
 export const HostessActivities = (props: Props) => {
 	const [asignedSeller, setAsignedSeller] = useState<any>(0);
 	const [dataSellers, setDataSellers] = useState<any>([]);

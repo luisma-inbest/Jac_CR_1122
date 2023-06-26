@@ -24,7 +24,7 @@ export const LeadAPI = {
 		console.log("get leads with:", data);
 		return api
 			.request({
-				url: `/lead/?AgencyId=${data.agency}&phase=${data.phase}&UserId=${data.UserId}&ProductId=${data.ProductId}&search=${data.search}&RequestantId=${data.RequestantId}&page=${data.page}&limit=10`,
+				url: `/lead/?AgencyId=${data.agency}&phase=${data.phase}&UserId=${data.UserId}&ProductId=${data.ProductId}&search=${data.search}&StartDate=${data.startDate}&EndDate=${data.endDate}&RequestantId=${data.RequestantId}&page=${data.page}&limit=10`,
 				//url: `/lead/?AgencyId=14&phase=en-cierre&page=1&limit=10`,
 				method: "GET",
 			})
@@ -210,6 +210,24 @@ export const LeadAPI = {
 				url: `/lead/deactivate/${leadId}`,
 				method: "PATCH",
 				data: data,
+			})
+			.then((response) => {
+				return response.data.data;
+			})
+			.catch((error: any) => {
+				if (error.response) {
+					console.log(error.response.data);
+				}
+				throw new Error(error);
+			});
+	},
+	testDriveAppointment: async function (data: any) {
+		console.log("data: ", data);
+		return api
+			.request({
+				url: `/lead/TestDriveAppointment`,
+				method: "POST",
+				data: { data: data },
 			})
 			.then((response) => {
 				return response.data.data;

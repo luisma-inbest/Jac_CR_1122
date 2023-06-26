@@ -7,7 +7,7 @@
 	justify-content: center;
 	align-items: center;
 
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
 
@@ -27,6 +27,11 @@
 	align-items: center;
 
 	position: relative;
+	overflow-y: scroll;
+}
+
+.form {
+	width: 70%;
 }
 
 .iconContainer {
@@ -40,6 +45,5 @@
 
 .datePicker {
 	display: flex;
-	gap: 2rem;
-	justify-content: space-between;
+	gap: 3rem;
 }

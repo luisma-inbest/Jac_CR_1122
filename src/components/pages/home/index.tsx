@@ -53,6 +53,12 @@ export const Home = () => {
 							agencies: res.Agencies,
 							AgencyId: res.Agencies[0].id,
 						});
+						UserAPI.saveActionUser(res.id, 1).then((res) => {
+							console.log(
+								"guardado de accion para reporteo",
+								res
+							);
+						});
 					})
 					.catch((err) => {
 						console.log("err", err);

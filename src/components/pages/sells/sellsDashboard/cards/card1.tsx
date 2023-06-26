@@ -66,16 +66,10 @@ const Card1 = (props: Props) => {
 	}
 
 	const salesData: PieChartLabelProps = {
-		labels: [
-			"Subasta",
-			"Primer Contacto",
-			"Datos Confirmados",
-			"Seguimiento",
-			"Cierre",
-		],
-		amounts: [10, 14, 25, 30, 12],
-		percentages: [10, 14, 25, 30, 12],
-		colors: ["#0d9d00", "#8dbdec", "#eed347", "#e07d08", "#e9525d"],
+		labels: data.labels,
+		amounts: data.amounts,
+		percentages: data.percentages,
+		colors: ["#0d9d00", "#8dbdec", "#e07d08", "#e9525d"],
 	};
 
 	return (
@@ -88,12 +82,7 @@ const Card1 = (props: Props) => {
 			</div>
 			<div className="row mb-3">
 				<div className="col">
-					<p className={``}>
-						Lorem ipsum dolor sit amet consectetur. Volutpat integer
-						dictum curabitur elementum. Orci senectus posuere id sed
-						vulputate ipsum molestie sit adipiscing. Facilisis arcu
-						et quis odio sit.
-					</p>
+					<p className={``}>Graficas Funnel de Ventas</p>
 				</div>
 			</div>
 
@@ -116,8 +105,8 @@ const Card1 = (props: Props) => {
 							className={`${styles.infoContainer} ${styles.detailsComponent}`}
 						>
 							<h6 className={`highlight`}>Cantidad de ventas</h6>
-							<h1 className={`bold`}>$12</h1>
-							<p className={`p3 secondary`}>Rango de fecha</p>
+							<h1 className={`bold`}>{data.TotalVentas}</h1>
+							{/* <p className={`p3 secondary`}>Rango de fecha</p> */}
 						</div>
 						{/* <div
 							className={` ${styles.infoContainer} ${styles.detailsComponent}`}
@@ -130,8 +119,8 @@ const Card1 = (props: Props) => {
 							className={` ${styles.infoContainer} ${styles.detailsComponent}`}
 						>
 							<h6 className={`highlight`}>Mis Leads</h6>
-							<h1 className={`bold`}>12</h1>
-							<p className={`p3 secondary`}>Rango de fecha</p>
+							<h1 className={`bold`}>{data.TotalLeads}</h1>
+							{/* <p className={`p3 secondary`}>Rango de fecha</p> */}
 						</div>
 						<div
 							className={` ${styles.infoContainer} ${styles.detailsComponent}`}
@@ -139,8 +128,8 @@ const Card1 = (props: Props) => {
 							<h6 className={`highlight`}>
 								Tiempo de primer contacto
 							</h6>
-							<h1 className={`bold`}>12</h1>
-							<p className={`p3 secondary`}>Rango de fecha</p>
+							<h1 className={`bold`}>{data.Time} -</h1>
+							{/* <p className={`p3 secondary`}>Rango de fecha</p> */}
 						</div>
 					</div>
 				</div>

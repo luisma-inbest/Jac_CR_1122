@@ -51,6 +51,10 @@ export default defineConfig({
 				find: "@/components/UI",
 				replacement: "/src/components/UI",
 			},
+			{
+				find: "@/constants",
+				replacement: "/src/constants",
+			},
 		],
 	},
 	build: {

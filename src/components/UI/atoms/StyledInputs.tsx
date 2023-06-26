@@ -54,7 +54,7 @@ export const StyledInputSubmit = styled.input.attrs<PropType>({
 	font-size: var(--p2);
 	font-weight: 600;
 	border: none;
-	border-radius: 0.5rem;
+	border-radius: 2rem;
 	height: 4rem;
 	width: 100%;
 	margin-bottom: 1.9rem;

@@ -11,7 +11,7 @@ export const AgencyChartAPI = {
 	) {
 		return api
 			.request({
-				url: `/lead/ByPhase?AgencyId=1&StartDate=2023-01-01&EndDate=2023-12-31&UserId=1`,
+				url: `/lead/ByAllPhases?AgencyId=${AgencyId}&StartDate=${startDate}&EndDate=${endDate}&UserId=${UserId}`,
 				method: "GET",
 			})
 			.then((response) => {
