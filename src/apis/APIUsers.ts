@@ -139,4 +139,19 @@ export const UserAPI = {
 			console.log(error);
 		}
 	},
+	saveActionUser: async function (UserId: number, action: number) {
+		try {
+			const response = await api.request({
+				url: `/user/Login/`,
+				method: "POST",
+				data: {
+					data: { UserId, action },
+				},
+			});
+			// console.log("resp:", response.data);
+			return response.data.data;
+		} catch (error) {
+			console.log(error);
+		}
+	},
 };

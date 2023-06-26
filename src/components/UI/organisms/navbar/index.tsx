@@ -12,7 +12,7 @@ import { LogoFull, IconNotification, IconCross } from "@/assets";
 import UserContext, { UserContextType } from "@/context/UserContext";
 import { logOut } from "@/auth/AuthFuncs";
 import { Navigate, useNavigate } from "react-router-dom";
-import { AgencyAPI } from "@/apis";
+import { AgencyAPI, UserAPI } from "@/apis";
 import { useQuery } from "react-query";
 
 interface Props {
@@ -42,6 +42,9 @@ export const NavBar: React.FunctionComponent<Props> = (props) => {
 	}
 
 	function handleLogOut() {
+		UserAPI.saveActionUser(User!.id, 2).then((res) => {
+			console.log("guardado de accion para reporteo", res);
+		});
 		logOut();
 		SetUser(null);
 		navigate("/login");
