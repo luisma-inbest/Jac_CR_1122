@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./UserRow.module.css";
-import {UserRowProps} from "@/models";
+import { UserRowProps } from "@/models";
 
 export const UserRow: React.FunctionComponent<UserRowProps> = (props) => {
 	return (
@@ -19,7 +19,9 @@ export const UserRow: React.FunctionComponent<UserRowProps> = (props) => {
 				<span className="p4 secondary no-margin">{props.email}</span>
 			</td>
 			<td className={``}>
-				<span className="p4 secondary no-margin">{props.role}</span>
+				<span className="p4 secondary no-margin">
+					{props.UserRole.description}
+				</span>
 			</td>
 		</tr>
 	);

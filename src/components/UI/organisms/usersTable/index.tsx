@@ -1,7 +1,7 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 
-import {UserRow} from "@/components/UI/molecules";
-import {UserRowProps} from "@/models";
+import { UserRow } from "@/components/UI/molecules";
+import { UserRowProps } from "@/models";
 import styles from "./UsersTable.module.css";
 
 interface UsersTableProps {
@@ -13,7 +13,9 @@ export const UsersTable = (props: UsersTableProps) => {
 		<table className={styles.table}>
 			<thead>
 				<tr>
-					<th className={`p4 highlight text-left`}>Nombre y Puesto</th>
+					<th className={`p4 highlight text-left`}>
+						Nombre y Puesto
+					</th>
 					<th className={`p4 highlight text-left`}>Área y Gerente</th>
 					<th className={`p4 highlight text-left`}>Correo</th>
 					<th className={`p4 highlight text-left`}>Rol de Usuario</th>
@@ -30,6 +32,7 @@ export const UsersTable = (props: UsersTableProps) => {
 						manager={user.manager}
 						email={user.email}
 						role={user.role}
+						UserRole={user.UserRole}
 					/>
 				))}
 				{/* Ends map with users */}

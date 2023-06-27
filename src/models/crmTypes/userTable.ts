@@ -5,4 +5,5 @@ export interface UserRowProps {
 	manager: string;
 	email: string;
 	role: string;
+	UserRole: any;
 }
