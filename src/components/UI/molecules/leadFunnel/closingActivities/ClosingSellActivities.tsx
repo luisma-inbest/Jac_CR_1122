@@ -5,6 +5,7 @@ import {
 	CardFunnel,
 	StyledInputSelect,
 	StyledSelect,
+	StyledMaterialInput,
 } from "@/components/UI/atoms";
 import styles from "./../LeadFunnel.module.css";
 //import { reducer, initial } from "./reducer";
@@ -111,21 +112,23 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 								<div
 									className={styles.cardContainerAlternative}
 								>
-									{CurrentLead.Sales[0].SaleVINs.map(
-										(vin: any, index: any) => (
-											<Input
-												key={index}
-												placeholder="VIN"
-												inputType="text"
-												value={vin.VIN}
-												type="reducer"
-												params={{
-													dispatch: dispatch,
-													dispType: "firstName",
-												}}
-											/>
-										)
-									)}
+									{fields.vins.map((vin: any, index: any) => (
+										<StyledMaterialInput
+											key={index}
+											placeholder="VIN"
+											value={vin.VIN}
+											customType="white"
+											onChange={(e) => {
+												dispatch({
+													type: "vin",
+													value: {
+														index: index,
+														value: e.target.value,
+													},
+												});
+											}}
+										/>
+									))}
 								</div>
 							}
 						/>

@@ -52,7 +52,7 @@ function reducer(state: Sale, action: Action): Sale {
 
 		case "vin":
 			let vins = [...state.vins];
-			vins[parseInt(action.value.index)] = action.value.value;
+			vins[parseInt(action.value.index)].VIN = action.value.value;
 			return { ...state, vins: vins };
 
 		default:

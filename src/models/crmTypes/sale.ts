@@ -1,7 +1,7 @@
 export type Sale = {
 	id: number;
 	leadId: number;
-	vins: string[];
+	vins: any[];
 	condition: string;
 	payment: string;
 	bank: string;
