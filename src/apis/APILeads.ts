@@ -3,12 +3,17 @@ import { Lead, LeadDataType } from "@/models";
 import { LeadActivityType } from "@/models";
 
 export const LeadAPI = {
-	create: async function (lead: Lead) {
+	create: async function (lead: Lead, UserId: number) {
 		return api
 			.request({
 				url: `/lead/`,
 				method: "POST",
-				data: { data: lead },
+				data: {
+					data: {
+						...lead,
+						UserId: UserId,
+					},
+				},
 			})
 			.then((response) => {
 				return response.data.data;
