@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { getParams, getSession } from "@/auth/AuthFuncs";
-import { Domain } from "@/constants";
 
 import { user } from "@/assets";
 import { handleMainPage } from "@/models/routes&permissions";
 import { Link, useNavigate } from "react-router-dom";
 import UserContext, { UserContextType } from "@/context/UserContext";
+import { Domain } from "@/constants";
 
 //protected routes with react
 export const ProtectedRoute = ({

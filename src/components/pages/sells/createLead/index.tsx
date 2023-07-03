@@ -34,7 +34,7 @@ export const CreateLead = (props: Props) => {
 	) as AlertsContextType;
 
 	const addLeadMutation = useMutation({
-		mutationFn: () => LeadAPI.create(fields),
+		mutationFn: () => LeadAPI.create(fields, User!.id),
 		onSuccess(data, variables, context) {
 			console.log(data);
 			createAlert(
