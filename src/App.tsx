@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { BrowserRouter, HashRouter } from "react-router-dom";
 import { useEffect } from "react";
+import { getMessaging, getToken } from "firebase/messaging";
+import { app } from "./constants/firebase";
 
 /* custom imports */
 import "./GlobalStyles/flexboxgrid.css";
@@ -11,6 +13,24 @@ import { AlertsProvider } from "@/context/AlertsContext";
 import { Routing } from "./routes/Routing";
 
 function App() {
+	//
+	const requestNotificationPermission = () => {
+		Notification.requestPermission().then((permission) => {
+			if (permission === "granted") {
+				// sendPushNotification();
+				getToken(getMessaging(app), {
+					vapidKey:
+						"BP-2gf8fDuutsPETlTTajzFBszghLmkXMYSqq668lBX9CrJjTZiwmGN8OE-OyRfuO1EBuLyKZhyDT3jOGFK-6Ew",
+				}).then((currentToken) => {
+					console.log("currentToken:", currentToken);
+				});
+			} else if (permission === "denied") {
+				console.log("denied");
+				alert("No podrás recibir notificaciones");
+			}
+		});
+	};
+
 	useEffect(() => {
 		if ("serviceWorker" in navigator) {
 			navigator.serviceWorker
@@ -31,32 +51,6 @@ function App() {
 		}
 		requestNotificationPermission();
 	}, []);
-
-	const requestNotificationPermission = () => {
-		Notification.requestPermission().then((permission) => {
-			if (permission === "granted") {
-				sendPushNotification();
-			}
-		});
-	};
-
-	const sendPushNotification = () => {
-		navigator.serviceWorker.ready.then((registration) => {
-			registration.pushManager
-				.subscribe({
-					userVisibleOnly: true,
-					applicationServerKey:
-						"BHBOI4eyr1qScBxCnoh6QYfSpLfI9ymu71q0BiD98-dghHDsZMwTuvG3mmfPHLHe8Lv4wEmw1VAWhbY1CIbF4to",
-				})
-				.then((subscription) => {
-					// Send the subscription object to your server
-					// to store it and use it to send push notifications later
-				})
-				.catch((error) => {
-					console.log("Bienvenido a tu CRM ", error);
-				});
-		});
-	};
 
 	return (
 		<UserProvider>
