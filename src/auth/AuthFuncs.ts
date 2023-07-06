@@ -5,6 +5,7 @@ import {
 	AuthenticationDetails,
 } from "amazon-cognito-identity-js";
 import { User } from "@/models";
+import { s } from "vitest/dist/types-198fd1d9";
 
 export function signUp(user: User) {
 	let dataEmail = { Name: "email", Value: user.email };
@@ -57,6 +58,23 @@ export function logIn(email: string, password: string) {
 			},
 			onFailure: (err) => {
 				console.log("onFailure:", err);
+				console.log("onFailure:", err.code);
+
+				switch (err.code) {
+					case "InvalidParameterException":
+						err.message = "Falta Usuario o Contraseña";
+						break;
+					case "NotAuthorizedException":
+						err.message = "Usuario o contraseña incorrectos";
+						break;
+					case "UserNotConfirmedException":
+						err.message = "Usuario no confirmado";
+						break;
+					default:
+						err.message = "Ha ocurrido un error";
+						break;
+				}
+
 				reject(err);
 			},
 			newPasswordRequired: (data) => {

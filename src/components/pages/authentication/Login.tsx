@@ -6,6 +6,7 @@ import {
 	StyledInputSubmit,
 	Input,
 	Button,
+	Loader,
 } from "@/components/UI/atoms/";
 import UserContext, { UserContextType } from "@/context/UserContext";
 
@@ -25,6 +26,9 @@ export const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const [response, setResponse] = useState("");
+
 	const logoColor = getComputedStyle(document.body).getPropertyValue(
 		"--main-color"
 	);
@@ -39,11 +43,15 @@ export const Login = () => {
 	};
 
 	async function loginAWS() {
-		console.log("cognito login...");
+		// console.log("cognito login...");
+		setLoading(true);
 		try {
 			await logIn(email, password);
+			setLoading(false);
 			navigate("/");
-		} catch (error) {
+		} catch (error: any) {
+			setResponse(error.message);
+			setLoading(false);
 			console.log(error);
 		}
 	}
@@ -109,6 +117,18 @@ export const Login = () => {
 								/>{" "}
 								<label>Mantener inicio de sesión abierto</label>
 							</div> */}
+							<div
+								className={
+									loading ? styles.active : styles.unactive
+								}
+							>
+								{loading ? (
+									<Loader />
+								) : (
+									<p className={`red`}>{response}</p>
+								)}
+							</div>
+
 							<StyledInputSubmit
 								customType="primary"
 								type="submit"
