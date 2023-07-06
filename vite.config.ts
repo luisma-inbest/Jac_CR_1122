@@ -1,3 +1,6 @@
+/// <reference types="vitest" />
+/// <reference types="vite/client" />
+
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
@@ -79,5 +82,9 @@ export default defineConfig({
 		watch: {
 			usePolling: true,
 		},
+	},
+	test: {
+		environment: "jsdom",
+		globals: true,
 	},
 });

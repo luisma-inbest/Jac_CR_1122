@@ -16,6 +16,7 @@ function App() {
 	//
 	const requestNotificationPermission = () => {
 		Notification.requestPermission().then((permission) => {
+			console.log("permission:", permission);
 			if (permission === "granted") {
 				// sendPushNotification();
 				getToken(getMessaging(app), {
@@ -26,30 +27,30 @@ function App() {
 				});
 			} else if (permission === "denied") {
 				console.log("denied");
-				alert("No podrás recibir notificaciones");
+				// alert("No podrás recibir notificaciones");
 			}
 		});
 	};
 
 	useEffect(() => {
-		if ("serviceWorker" in navigator) {
-			navigator.serviceWorker
-				.register("/push-sw.js")
-				.then((registration) => {
-					console.log(
-						"Push service worker registered:",
-						registration
-					);
-					// You can handle additional logic here if needed
-				})
-				.catch((error) => {
-					console.log(
-						"Push service worker registration failed:",
-						error
-					);
-				});
-		}
-		requestNotificationPermission();
+		// if ("serviceWorker" in navigator) {
+		// 	navigator.serviceWorker
+		// 		.register("/push-sw.js")
+		// 		.then((registration) => {
+		// 			console.log(
+		// 				"Push service worker registered:",
+		// 				registration
+		// 			);
+		// 			// You can handle additional logic here if needed
+		// 		})
+		// 		.catch((error) => {
+		// 			console.log(
+		// 				"Push service worker registration failed:",
+		// 				error
+		// 			);
+		// 		});
+		// }
+		// requestNotificationPermission();
 	}, []);
 
 	return (

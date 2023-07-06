@@ -147,12 +147,12 @@ export const FollowUpActivities = (props: AuctionProps) => {
 		console.log(CurrentLead.LeadActivities);
 		CurrentLead.LeadActivities.forEach((activity) => {
 			if (activity.LeadActivityType.slug === "envio-de-fichas-tecnicas") {
-				console.log("hay ficha");
+				// console.log("hay ficha");
 				setDataSheet(true);
 				setDataSheetInput(true);
 			}
 			if (activity.LeadActivityType.slug === "muestra-galeria") {
-				console.log("hay galeria");
+				// console.log("hay galeria");
 				setGalery(true);
 				setGaleryInput(true);
 			}
