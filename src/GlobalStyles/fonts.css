@@ -145,3 +145,6 @@ p {
 .link:hover {
 	text-decoration: underline;
 }
+.red {
+	color: var(--red);
+}

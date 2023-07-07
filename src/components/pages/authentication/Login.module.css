@@ -81,3 +81,12 @@
 	height: 1.5rem;
 	cursor: pointer;
 }
+
+.active {
+	height: 3rem;
+	margin-top: -1rem;
+	margin-bottom: 0.9rem;
+}
+.unactive {
+	margin-bottom: 0.9rem;
+}
