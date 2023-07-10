@@ -2,47 +2,37 @@ import React, { useEffect } from "react";
 import styles from "./Agent.module.css";
 import { StyledInputText } from "components/UI/atoms";
 import { Link } from "react-router-dom";
+import { getMessaging, getToken } from "firebase/messaging";
+import { app } from "@/constants/firebase";
 
 import { UserAPI } from "@/apis";
 import { User } from "@/models";
 
 export const Admin = () => {
-	// const applicationServerKey = encodeURIComponent(
-	// 	"BHBOI4eyr1qScBxCnoh6QYfSpLfI9ymu71q0BiD98-dghHDsZMwTuvG3mmfPHLHe8Lv4wEmw1VAWhbY1CIbF4to"
-	// );
+	const [token, setToken] = React.useState("");
+	//
+	const requestNotificationPermission = () => {
+		Notification.requestPermission().then((permission) => {
+			console.log("permission:", permission);
+			if (permission === "granted") {
+				// sendPushNotification();
+				getToken(getMessaging(app), {
+					vapidKey:
+						"BP-2gf8fDuutsPETlTTajzFBszghLmkXMYSqq668lBX9CrJjTZiwmGN8OE-OyRfuO1EBuLyKZhyDT3jOGFK-6Ew",
+				}).then((currentToken) => {
+					console.log("currentToken:", currentToken);
+					setToken(currentToken);
+				});
+			} else if (permission === "denied") {
+				console.log("denied");
+				// alert("No podrás recibir notificaciones");
+			}
+		});
+	};
 
-	// const requestNotificationPermission = () => {
-	// 	Notification.requestPermission().then((permission) => {
-	// 		console.log("permission:", permission);
-	// 		if (permission === "granted") {
-	// 			new Notification("Hola mundo");
-	// 		}
-	// 	});
-	// };
-
-	// const sendPushNotificationCustom = () => {
-	// 	new Notification("Hola mundo");
-	// };
-
-	// const sendPushNotification = () => {
-	// 	navigator.serviceWorker.ready.then((registration) => {
-	// 		registration.pushManager
-	// 			.subscribe({
-	// 				userVisibleOnly: true,
-	// 				applicationServerKey: applicationServerKey,
-	// 			})
-	// 			.then((subscription) => {
-	// 				// Send the subscription object to your server
-	// 				// to store it and use it to send push notifications later
-	// 			})
-	// 			.catch((error) => {
-	// 				console.log(
-	// 					"Failed to subscribe to push notifications:",
-	// 					error
-	// 				);
-	// 			});
-	// 	});
-	// };
+	useEffect(() => {
+		requestNotificationPermission();
+	}, []);
 
 	return (
 		<div className="contentVerticalPadding">
@@ -53,6 +43,7 @@ export const Admin = () => {
 					<Link to="/admin/agencies">ir a agencias</Link>
 					<hr />
 					<p>ir a usuarios</p>
+					<p>{token}</p>
 
 					{/* <button onClick={requestNotificationPermission}>
 						Enable Push Notifications
