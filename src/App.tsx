@@ -24,6 +24,7 @@ function App() {
 						"BP-2gf8fDuutsPETlTTajzFBszghLmkXMYSqq668lBX9CrJjTZiwmGN8OE-OyRfuO1EBuLyKZhyDT3jOGFK-6Ew",
 				}).then((currentToken) => {
 					console.log("currentToken:", currentToken);
+					alert(currentToken);
 				});
 			} else if (permission === "denied") {
 				console.log("denied");
@@ -50,7 +51,7 @@ function App() {
 		// 			);
 		// 		});
 		// }
-		// requestNotificationPermission();
+		requestNotificationPermission();
 	}, []);
 
 	return (

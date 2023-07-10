@@ -60,16 +60,18 @@ export const FollowUpActivities = (props: AuctionProps) => {
 			),
 		},
 		{
+			title: "Apartado",
+			buttonText: "Apartar",
+			function: props.nextPhaseLead,
+		},
+	];
+	const motivadores = [
+		{
 			title: "Motivadores de Compra",
 			buttonText: "ir",
 			function: goTo(
 				"https://jac-crm-pdf.s3.amazonaws.com/Deteccio%CC%81n_de_motivadores_de_compra.pdf"
 			),
-		},
-		{
-			title: "Apartado",
-			buttonText: "Apartar",
-			function: props.nextPhaseLead,
 		},
 	];
 
@@ -162,6 +164,36 @@ export const FollowUpActivities = (props: AuctionProps) => {
 	return (
 		<>
 			<CardFunnel
+				mainText="Motivadores de Compra"
+				icon={<IconCheck size="100%" color="#000" />}
+				cardContent={
+					<div>
+						{motivadores.map((cotizacion, index) => {
+							return (
+								<div key={index}>
+									<p className="p4 no-margin secondary semi-bold">
+										{cotizacion.title}
+									</p>
+									<div className={styles.cardContainerClasic}>
+										<p
+											className="p3 link no-margin"
+											onClick={() => {
+												return;
+											}}
+										></p>
+										<Button
+											text={cotizacion.buttonText}
+											func={() => cotizacion.function()}
+											full={false}
+										/>
+									</div>
+								</div>
+							);
+						})}
+					</div>
+				}
+			/>
+			<CardFunnel
 				mainText="Envió de Documentación"
 				icon={<IconCheck size="100%" color="#000" />}
 				cardContent={
@@ -211,7 +243,7 @@ export const FollowUpActivities = (props: AuctionProps) => {
 				}
 			/>
 			<CardFunnel
-				mainText="Prueba de Manejo"
+				mainText="Experiencia JAC"
 				icon={<IconCheck size="100%" color="#000" />}
 				cardContent={
 					<BasicBody
@@ -222,7 +254,7 @@ export const FollowUpActivities = (props: AuctionProps) => {
 								<RegisterTestDrive />
 							);
 						}}
-						alternativeText=""
+						alternativeText="Agendar Prueba de Manejo"
 						alternativeFunc={() => console.log("")}
 					/>
 				}

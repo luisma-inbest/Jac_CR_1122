@@ -52,6 +52,7 @@ export const Admin = () => {
 					<br />
 					<Link to="/admin/agencies">ir a agencias</Link>
 					<hr />
+					<p>ir a usuarios</p>
 
 					{/* <button onClick={requestNotificationPermission}>
 						Enable Push Notifications

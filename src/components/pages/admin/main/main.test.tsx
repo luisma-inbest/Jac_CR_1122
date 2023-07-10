@@ -2,9 +2,13 @@ import { Admin } from "./index";
 import { render, screen } from "@testing-library/react";
 
 describe("Admin", () => {
-	test("should add two numbers", () => {
+	test("should render Admdin", () => {
 		render(<Admin />);
 	});
 
-	expect(screen.getByText("ir a usuarios")).toBeDefined();
+	test("should render 'ir a usuarios' text", () => {
+		expect(
+			screen.getByText((content, element) => content === "ir a usuarios")
+		).toBeDefined();
+	});
 });
