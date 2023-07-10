@@ -9,7 +9,7 @@ import { UserAPI } from "@/apis";
 import { User } from "@/models";
 
 export const Admin = () => {
-	// const [token, setToken] = React.useState("");
+	const [token, setToken] = React.useState("");
 	// //
 	// const requestNotificationPermission = () => {
 	// 	Notification.requestPermission().then((permission) => {
@@ -44,7 +44,7 @@ export const Admin = () => {
 					<Link to="/admin/agencies">ir a agencias</Link>
 					<hr />
 					<p>ir a usuarios</p>
-					{/* <p>{token}</p> */}
+					<p>{token}</p>
 
 					{/* <button onClick={requestNotificationPermission}>
 						Enable Push Notifications
