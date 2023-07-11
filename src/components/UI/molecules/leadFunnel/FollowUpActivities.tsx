@@ -1,5 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Button, CardFunnel, Input } from "@/components/UI/atoms";
+import {
+	Button,
+	CardFunnel,
+	Input,
+	StyledTextArea,
+} from "@/components/UI/atoms";
 import styles from "./LeadFunnel.module.css";
 import { IconCheck, IconWhatsapp } from "@/assets";
 import { BasicBody } from "./Activities";
@@ -77,6 +82,12 @@ export const FollowUpActivities = (props: AuctionProps) => {
 
 	const [editRFC, setEditRFC] = useState(false);
 	const [rfc, setRFC] = useState(props.leadData.rfc);
+	const [concreteNeeds, setConcreteNeeds] = useState(
+		props.leadData.concreteNeeds
+	);
+	const [clientProfile, setClientProfile] = useState(
+		props.leadData.clientProfile
+	);
 	const [dataSheet, setDataSheet] = useState(false);
 	const [dataSheetInput, setDataSheetInput] = useState(false);
 	const [galery, setGalery] = useState(false);
@@ -87,11 +98,17 @@ export const FollowUpActivities = (props: AuctionProps) => {
 			LeadAPI.updateFields(String(props.leadData.id), {
 				data: {
 					rfc: rfc,
+					concreteNeeds: concreteNeeds,
+					clientProfile: clientProfile,
 				},
 			}),
 		onSuccess(data, variables, context) {
 			console.log(data);
-			createAlert("success", "Lead Actualizado", "El RFC se actualizó");
+			createAlert(
+				"success",
+				"Lead Actualizado",
+				"La información se actualizó"
+			);
 		},
 		onError(error, variables, context) {
 			console.log(error);
@@ -123,6 +140,7 @@ export const FollowUpActivities = (props: AuctionProps) => {
 				LeadId: CurrentLead.id,
 				leadActivityType: promise.activityType,
 				title: `Se envió la ${promise.activityText}`,
+				leadActivityChannelType: "otro",
 				comments: "",
 				status: "1",
 				date: new Date(),
@@ -193,6 +211,33 @@ export const FollowUpActivities = (props: AuctionProps) => {
 					</div>
 				}
 			/>
+			<CardFunnel
+				mainText="Perfil Cliente"
+				icon={<IconCheck size="100%" color="#000" />}
+				cardContent={
+					<div className={styles.cardContainerClasic}>
+						<StyledTextArea
+							placeholder="Comentarios"
+							value={clientProfile}
+							onChange={(e) => setClientProfile(e.target.value)}
+						/>
+					</div>
+				}
+			/>
+			<CardFunnel
+				mainText="Necesidades Concretas"
+				icon={<IconCheck size="100%" color="#000" />}
+				cardContent={
+					<div className={styles.cardContainerClasic}>
+						<StyledTextArea
+							placeholder="Comentarios"
+							value={concreteNeeds}
+							onChange={(e) => setConcreteNeeds(e.target.value)}
+						/>
+					</div>
+				}
+			/>
+
 			<CardFunnel
 				mainText="Envió de Documentación"
 				icon={<IconCheck size="100%" color="#000" />}
@@ -316,6 +361,23 @@ export const FollowUpActivities = (props: AuctionProps) => {
 					</div>
 				}
 			/>
+			<div className="mt-2">
+				<Button
+					text="Guardar"
+					full={true}
+					func={() => {
+						console.log("actualizar lead info");
+						editRFCFunc.mutate();
+					}}
+				/>
+				{/* <Button
+					text="Imprimir"
+					full={true}
+					func={() => {
+						console.log(fields);
+					}}
+				/> */}
+			</div>
 		</>
 	);
 };
