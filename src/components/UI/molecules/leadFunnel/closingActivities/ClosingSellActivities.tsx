@@ -378,6 +378,12 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 						</div>
 						{/* task */}
 						<div>
+							<p className="p4 bold secondary">Previa</p>
+							{/* <input type="checkbox" name="scales" checked={true} /> */}
+							<input type="checkbox" name="scales" />
+						</div>
+						{/* task */}
+						<div>
 							<p className="p4 bold secondary">
 								Explicación y firma de seguro, garantía plan de
 								seguros

@@ -182,6 +182,33 @@ export const FollowUpActivities = (props: AuctionProps) => {
 	return (
 		<>
 			<CardFunnel
+				mainText="Perfil Cliente"
+				icon={<IconCheck size="100%" color="#000" />}
+				cardContent={
+					<div className={styles.cardContainerClasic}>
+						<StyledTextArea
+							placeholder="Comentarios"
+							value={clientProfile}
+							onChange={(e) => setClientProfile(e.target.value)}
+						/>
+					</div>
+				}
+			/>
+			<CardFunnel
+				mainText="Necesidades Concretas"
+				icon={<IconCheck size="100%" color="#000" />}
+				cardContent={
+					<div className={styles.cardContainerClasic}>
+						<StyledTextArea
+							placeholder="Comentarios"
+							value={concreteNeeds}
+							onChange={(e) => setConcreteNeeds(e.target.value)}
+						/>
+					</div>
+				}
+			/>
+
+			<CardFunnel
 				mainText="Motivadores de Compra"
 				icon={<IconCheck size="100%" color="#000" />}
 				cardContent={
@@ -208,32 +235,6 @@ export const FollowUpActivities = (props: AuctionProps) => {
 								</div>
 							);
 						})}
-					</div>
-				}
-			/>
-			<CardFunnel
-				mainText="Perfil Cliente"
-				icon={<IconCheck size="100%" color="#000" />}
-				cardContent={
-					<div className={styles.cardContainerClasic}>
-						<StyledTextArea
-							placeholder="Comentarios"
-							value={clientProfile}
-							onChange={(e) => setClientProfile(e.target.value)}
-						/>
-					</div>
-				}
-			/>
-			<CardFunnel
-				mainText="Necesidades Concretas"
-				icon={<IconCheck size="100%" color="#000" />}
-				cardContent={
-					<div className={styles.cardContainerClasic}>
-						<StyledTextArea
-							placeholder="Comentarios"
-							value={concreteNeeds}
-							onChange={(e) => setConcreteNeeds(e.target.value)}
-						/>
 					</div>
 				}
 			/>
@@ -295,7 +296,7 @@ export const FollowUpActivities = (props: AuctionProps) => {
 						buttonText="Agendar"
 						buttonFunc={() => {
 							SetLeadWindow(
-								"Agendar Prueba de Manejo",
+								"Agendar Cita",
 								<RegisterTestDrive />
 							);
 						}}
