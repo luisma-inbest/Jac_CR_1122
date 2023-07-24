@@ -4,6 +4,7 @@ import { LeadAPI } from "./APILeads";
 import { LeadOriginAPI } from "./APILeadOrigin";
 import { ProductAPI } from "./APIProduct";
 import { AgencyChartAPI } from "./charts/APIChartsAgency";
+import { LeadActivityAPI } from "./APILeadActivity";
 
 export {
 	UserAPI,
@@ -12,4 +13,5 @@ export {
 	LeadOriginAPI,
 	ProductAPI,
 	AgencyChartAPI,
+	LeadActivityAPI,
 };

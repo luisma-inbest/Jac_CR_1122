@@ -135,6 +135,25 @@ export const RegisterTestDrive = (props: Props) => {
 				})}
 			</StyledSelect>
 
+			<StyledSelect
+				customType="secondary"
+				defaultValue=""
+				onChange={(e) => {
+					console.log(e.target.value);
+					dispatch({
+						type: "ProductId",
+						value: products[e.target.value].id,
+					});
+				}}
+			>
+				<option value="" disabled>
+					-- Tipo --
+				</option>
+				<option value="1">Prueba de Menajo</option>
+				<option value="1">Prueba Estática</option>
+				<option value="1">Demo Showroom 360</option>
+			</StyledSelect>
+
 			<div className={styles.datePicker}>
 				<StyledInputDate
 					customType="secondary"

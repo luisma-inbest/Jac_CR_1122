@@ -13,11 +13,11 @@ import {
 } from "@/components/UI/atoms";
 import { IconCross } from "@/assets";
 import { LeadActivityType } from "@/models";
-import { LeadAPI } from "@/apis";
-import { useMutation } from "react-query";
+import { LeadAPI, LeadActivityAPI } from "@/apis";
+import { useMutation, useQuery } from "react-query";
 import AlertsContext, { AlertsContextType } from "@/context/AlertsContext";
 import { reducer, initial } from "./reducer";
-import activitytypes from "./activitiyTypes";
+// import activitytypes from "./activitiyTypes";
 import CurrentLeadContext, {
 	CurrentLeadContextType,
 } from "@/context/currentLeadContext/CurrentLeadContext";
@@ -29,6 +29,9 @@ export const RegisterActivity = (props: Props) => {
 		AlertsContext
 	) as AlertsContextType;
 	const [fields, dispatch] = useReducer(reducer, initial);
+	const [isLoading, setIsLoading] = useState(true);
+	const [activitytypes, setActivityTypes] = useState([]);
+	const [channelTypes, setChannelTypes] = useState([]);
 	const { CurrentLead, DispatchCurrentLead } = useContext(
 		CurrentLeadContext
 	) as CurrentLeadContextType;
@@ -72,7 +75,16 @@ export const RegisterActivity = (props: Props) => {
 	useEffect(() => {
 		dispatch({ type: "date", value: new Date() });
 		dispatch({ type: "LeadId", value: CurrentLead.id });
+
+		LeadActivityAPI.getActivities().then((res) => {
+			console.log(res);
+			setActivityTypes(res.types);
+			setChannelTypes(res.channels);
+			setIsLoading(false);
+		});
 	}, []);
+
+	if (isLoading) return <p>Loading...</p>;
 
 	return (
 		<form
@@ -85,13 +97,33 @@ export const RegisterActivity = (props: Props) => {
 				defaultValue=""
 				onChange={(e) =>
 					dispatch({
+						type: "channel",
+						value: e.target.value,
+					})
+				}
+			>
+				<option value="" disabled>
+					*-- Canal --
+				</option>
+				{channelTypes.map((type: any) => (
+					<option value={type.slug} key={type.slug}>
+						{type.description}
+					</option>
+				))}
+			</StyledSelect>
+
+			<StyledSelect
+				customType="secondary"
+				defaultValue=""
+				onChange={(e) =>
+					dispatch({
 						type: "typeActivity",
 						value: e.target.value,
 					})
 				}
 			>
 				<option value="" disabled>
-					*-- Tipo --
+					*-- Actividad --
 				</option>
 				{activitytypes.map((type: any) => (
 					<option value={type.slug} key={type.slug}>
