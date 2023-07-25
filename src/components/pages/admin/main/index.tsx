@@ -10,29 +10,30 @@ import { User } from "@/models";
 
 export const Admin = () => {
 	const [token, setToken] = React.useState("");
-	//
-	const requestNotificationPermission = () => {
-		Notification.requestPermission().then((permission) => {
-			console.log("permission:", permission);
-			if (permission === "granted") {
-				// sendPushNotification();
-				getToken(getMessaging(app), {
-					vapidKey:
-						"BP-2gf8fDuutsPETlTTajzFBszghLmkXMYSqq668lBX9CrJjTZiwmGN8OE-OyRfuO1EBuLyKZhyDT3jOGFK-6Ew",
-				}).then((currentToken) => {
-					console.log("currentToken:", currentToken);
-					setToken(currentToken);
-				});
-			} else if (permission === "denied") {
-				console.log("denied");
-				// alert("No podrás recibir notificaciones");
-			}
-		});
-	};
+	// //
+	// const requestNotificationPermission = () => {
+	// 	Notification.requestPermission().then((permission) => {
+	// 		console.log("permission:", permission);
 
-	useEffect(() => {
-		requestNotificationPermission();
-	}, []);
+	// 		if (permission === "granted") {
+	// 			// sendPushNotification();
+	// 			getToken(getMessaging(app), {
+	// 				vapidKey:
+	// 					"BP-2gf8fDuutsPETlTTajzFBszghLmkXMYSqq668lBX9CrJjTZiwmGN8OE-OyRfuO1EBuLyKZhyDT3jOGFK-6Ew",
+	// 			}).then((currentToken) => {
+	// 				console.log("currentToken:", currentToken);
+	// 				setToken(currentToken);
+	// 			});
+	// 		} else if (permission === "denied") {
+	// 			console.log("denied");
+	// 			// alert("No podrás recibir notificaciones");
+	// 		}
+	// 	});
+	// };
+
+	// useEffect(() => {
+	// 	requestNotificationPermission();
+	// }, []);
 
 	return (
 		<div className="contentVerticalPadding">
