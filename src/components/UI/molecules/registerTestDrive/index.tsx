@@ -141,17 +141,17 @@ export const RegisterTestDrive = (props: Props) => {
 				onChange={(e) => {
 					console.log(e.target.value);
 					dispatch({
-						type: "ProductId",
-						value: products[e.target.value].id,
+						type: "type",
+						value: e.target.value,
 					});
 				}}
 			>
 				<option value="" disabled>
 					-- Tipo --
 				</option>
-				<option value="1">Prueba de Menajo</option>
-				<option value="1">Prueba Estática</option>
-				<option value="1">Demo Showroom 360</option>
+				<option value="prueba-de-manejo">Prueba de Menajo</option>
+				<option value="prueba-estatica">Prueba Estática</option>
+				<option value="demo-showroom-360">Demo Showroom 360</option>
 			</StyledSelect>
 
 			<div className={styles.datePicker}>

@@ -6,7 +6,8 @@ type Action =
 	| { type: "AgencyId"; value: string }
 	| { type: "ProductId"; value: string }
 	| { type: "date"; value: string }
-	| { type: "time"; value: string };
+	| { type: "time"; value: string }
+	| { type: "type"; value: string };
 
 const initial: any = {
 	LeadId: 0,
@@ -15,6 +16,7 @@ const initial: any = {
 	ProductId: 0,
 	date: new Date(Date.parse("2000-01-01T00:00:00")),
 	time: "00:00:00",
+	type: "",
 };
 
 function reducer(state: LeadActivityType, action: Action): any {
@@ -31,7 +33,8 @@ function reducer(state: LeadActivityType, action: Action): any {
 			return { ...state, date: action.value };
 		case "time":
 			return { ...state, time: action.value };
-
+		case "type":
+			return { ...state, type: action.value };
 		default:
 			return state;
 	}

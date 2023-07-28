@@ -40,6 +40,30 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 	) as CurrentLeadContextType;
 	const [fields, dispatch] = useReducer(reducer, initial);
 
+	const [editInvoice, setEditInvoice] = useState(false);
+	const [invoice, setInvoice] = useState("");
+
+	const editInvoiceFunc = useMutation({
+		mutationFn: () =>
+			LeadAPI.updateFields(String(props.leadData.id), {
+				data: {
+					rfc: invoice,
+				},
+			}),
+		onSuccess(data, variables, context) {
+			console.log(data);
+			createAlert(
+				"success",
+				"Lead Actualizado",
+				"La información se actualizó"
+			);
+		},
+		onError(error, variables, context) {
+			console.log(error);
+			createAlert("error", "Error", "Hubo un error al actualizar");
+		},
+	});
+
 	function nextPhaseLead() {
 		LeadAPI.nextPhase(CurrentLead.id)
 			.then((res) => {
@@ -405,6 +429,34 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 							{/* <input type="checkbox" name="scales" checked={true} /> */}
 							<input type="checkbox" name="scales" />
 						</div>
+					</div>
+				}
+			/>
+
+			<CardFunnel
+				mainText="Facturar Venta"
+				icon={<IconCheck size="100%" color="#000" />}
+				cardContent={
+					<div className={styles.cardContainerClasic}>
+						<input
+							className={styles.input}
+							placeholder="Factura"
+							value={invoice!}
+							disabled={!editInvoice}
+							type="text"
+							onChange={(e) => setInvoice(e.target.value)}
+						/>
+						<Button
+							text={editInvoice ? "Guardar" : "Editar"}
+							func={() => {
+								if (editInvoice) {
+									console.log("llamo backend");
+									editInvoiceFunc.mutate();
+								}
+								setEditInvoice(!editInvoice);
+							}}
+							full={false}
+						/>
 					</div>
 				}
 			/>
