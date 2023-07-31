@@ -2,15 +2,14 @@ import { api, API_ROUTE } from "./axiosConfig";
 import { Lead, LeadDataType } from "@/models";
 import { LeadActivityType } from "@/models";
 
-export const LeadAPI = {
-	create: async function (leadId: number, token: string) {
+export const NotificationAPI = {
+	addToken: async function (leadId: number, token: string) {
 		return api
 			.request({
-				url: `/lead/notification/`,
+				url: `/user/NotificationToken/${leadId}}`,
 				method: "POST",
 				data: {
 					data: {
-						lead_id: leadId,
 						token: token,
 					},
 				},

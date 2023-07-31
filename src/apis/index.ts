@@ -5,6 +5,7 @@ import { LeadOriginAPI } from "./APILeadOrigin";
 import { ProductAPI } from "./APIProduct";
 import { AgencyChartAPI } from "./charts/APIChartsAgency";
 import { LeadActivityAPI } from "./APILeadActivity";
+import { NotificationAPI } from "./APINotifications";
 
 export {
 	UserAPI,
@@ -14,4 +15,5 @@ export {
 	ProductAPI,
 	AgencyChartAPI,
 	LeadActivityAPI,
+	NotificationAPI,
 };
