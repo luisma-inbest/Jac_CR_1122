@@ -41,28 +41,6 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 	const [fields, dispatch] = useReducer(reducer, initial);
 
 	const [editInvoice, setEditInvoice] = useState(false);
-	const [invoice, setInvoice] = useState("");
-
-	const editInvoiceFunc = useMutation({
-		mutationFn: () =>
-			LeadAPI.updateFields(String(props.leadData.id), {
-				data: {
-					rfc: invoice,
-				},
-			}),
-		onSuccess(data, variables, context) {
-			console.log(data);
-			createAlert(
-				"success",
-				"Lead Actualizado",
-				"La información se actualizó"
-			);
-		},
-		onError(error, variables, context) {
-			console.log(error);
-			createAlert("error", "Error", "Hubo un error al actualizar");
-		},
-	});
 
 	function nextPhaseLead() {
 		LeadAPI.nextPhase(CurrentLead.id)
@@ -118,6 +96,7 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 				taxRegime: CurrentLead.Sales[0].TaxRegime || "",
 				saleType: CurrentLead.Sales[0].SaleType.description || "",
 				digitalSale: false,
+				invoiceNumber: CurrentLead.Sales[0].InvoiceNumber || "",
 			},
 		});
 	}, []);
@@ -441,17 +420,22 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 						<input
 							className={styles.input}
 							placeholder="Factura"
-							value={invoice!}
+							value={fields.invoiceNumber!}
 							disabled={!editInvoice}
 							type="text"
-							onChange={(e) => setInvoice(e.target.value)}
+							onChange={(e) =>
+								dispatch({
+									type: "invoiceNumber",
+									value: e.target.value,
+								})
+							}
 						/>
 						<Button
 							text={editInvoice ? "Guardar" : "Editar"}
 							func={() => {
 								if (editInvoice) {
 									console.log("llamo backend");
-									editInvoiceFunc.mutate();
+									SaleMutation.mutate();
 								}
 								setEditInvoice(!editInvoice);
 							}}

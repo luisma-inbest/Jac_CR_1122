@@ -26,7 +26,7 @@ export const LeadRow = (props: Props) => {
 	const [totalMins, setTotalMins] = useState(0);
 
 	// const deadline = props.date.split("-");
-	const oldDate = new Date(props.createdAt.toString());
+	const oldDate = new Date(props.updatedAt.toString());
 
 	const getTime = () => {
 		const time = Date.now() - Number(oldDate);

@@ -50,7 +50,7 @@ function App() {
 		// 			);
 		// 		});
 		// }
-		requestNotificationPermission();
+		// requestNotificationPermission();
 	}, []);
 
 	return (

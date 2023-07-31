@@ -1,9 +1,31 @@
 .row {
-	border-bottom: 0.1rem solid var(--selectedTab);
-	margin-bottom: 2rem;
+	border-bottom: 1px solid var(--gray2);
+	padding-bottom: 1rem;
+	margin-bottom: 1rem;
 }
 
 .row td {
 	padding-top: 2rem;
 	min-width: 20rem;
+}
+
+.firstColumn {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 1rem;
+}
+
+.status {
+	height: 20px;
+	width: 7px;
+	background-color: var(--white);
+	border-radius: var(--br-2);
+}
+
+.active {
+	background-color: var(--active-agency);
+}
+.unactive {
+	background-color: var(--unactive-agency);
 }
