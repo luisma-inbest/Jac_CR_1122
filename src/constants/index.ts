@@ -19,7 +19,7 @@ switch (enviroment) {
 	case "dev":
 		// Domain =
 		// 	"http://jac-crm-front-end-dev.s3-website-us-east-1.amazonaws.com";
-		Domain = "http://http://beta.crmjac.mx";
+		Domain = "http://beta.crmjac.mx";
 		Backend = "https://umc61eqno5.execute-api.us-east-1.amazonaws.com/";
 		BackendDashboards =
 			" https://hxiejwf6b2.execute-api.us-east-1.amazonaws.com/";
