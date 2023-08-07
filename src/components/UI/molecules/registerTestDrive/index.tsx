@@ -49,6 +49,7 @@ export const RegisterTestDrive = (props: Props) => {
 				ProductId: fields.ProductId,
 				LeadId: fields.LeadId,
 				AgencyId: fields.AgencyId,
+				type: fields.type,
 			}),
 		onSuccess(data, variables, context) {
 			createAlert(
