@@ -149,7 +149,7 @@ export const RegisterTestDrive = (props: Props) => {
 				<option value="" disabled>
 					-- Tipo --
 				</option>
-				<option value="prueba-de-manejo">Prueba de Menajo</option>
+				<option value="prueba-de-manejo">Prueba de Manejo</option>
 				<option value="prueba-estatica">Prueba Estática</option>
 				<option value="demo-showroom-360">Demo Showroom 360</option>
 			</StyledSelect>

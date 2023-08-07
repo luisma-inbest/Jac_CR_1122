@@ -351,6 +351,39 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 			/>
 
 			<CardFunnel
+				mainText="Facturar Venta"
+				icon={<IconCheck size="100%" color="#000" />}
+				cardContent={
+					<div className={styles.cardContainerClasic}>
+						<input
+							className={styles.input}
+							placeholder="Factura"
+							value={fields.invoiceNumber!}
+							disabled={!editInvoice}
+							type="text"
+							onChange={(e) =>
+								dispatch({
+									type: "invoiceNumber",
+									value: e.target.value,
+								})
+							}
+						/>
+						<Button
+							text={editInvoice ? "Guardar" : "Editar"}
+							func={() => {
+								if (editInvoice) {
+									console.log("llamo backend");
+									SaleMutation.mutate();
+								}
+								setEditInvoice(!editInvoice);
+							}}
+							full={false}
+						/>
+					</div>
+				}
+			/>
+
+			<CardFunnel
 				mainText="Entrega"
 				icon={<IconCheck size="100%" color="#000" />}
 				cardContent={
@@ -408,39 +441,6 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 							{/* <input type="checkbox" name="scales" checked={true} /> */}
 							<input type="checkbox" name="scales" />
 						</div>
-					</div>
-				}
-			/>
-
-			<CardFunnel
-				mainText="Facturar Venta"
-				icon={<IconCheck size="100%" color="#000" />}
-				cardContent={
-					<div className={styles.cardContainerClasic}>
-						<input
-							className={styles.input}
-							placeholder="Factura"
-							value={fields.invoiceNumber!}
-							disabled={!editInvoice}
-							type="text"
-							onChange={(e) =>
-								dispatch({
-									type: "invoiceNumber",
-									value: e.target.value,
-								})
-							}
-						/>
-						<Button
-							text={editInvoice ? "Guardar" : "Editar"}
-							func={() => {
-								if (editInvoice) {
-									console.log("llamo backend");
-									SaleMutation.mutate();
-								}
-								setEditInvoice(!editInvoice);
-							}}
-							full={false}
-						/>
 					</div>
 				}
 			/>
