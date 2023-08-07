@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { BrowserRouter, HashRouter } from "react-router-dom";
 import { useEffect } from "react";
 import { getMessaging, getToken } from "firebase/messaging";
@@ -8,11 +8,11 @@ import { app } from "./constants/firebase";
 import "./GlobalStyles/flexboxgrid.css";
 import "./GlobalStyles/GlobalStyles.css";
 import "./GlobalStyles/fonts.css";
-import { UserProvider } from "./context/UserContext";
-import { AlertsProvider } from "@/context/AlertsContext";
 import { Routing } from "./routes/Routing";
+import { NotificationAPI } from "./apis";
 
 function App() {
+<<<<<<< HEAD
 	//
 	// const requestNotificationPermission = () => {
 	// 	Notification.requestPermission().then((permission) => {
@@ -53,14 +53,12 @@ function App() {
 	// 	requestNotificationPermission();
 	// }, []);
 
+=======
+>>>>>>> develop
 	return (
-		<UserProvider>
-			<AlertsProvider>
-				<HashRouter>
-					<Routing />
-				</HashRouter>
-			</AlertsProvider>
-		</UserProvider>
+		<HashRouter>
+			<Routing />
+		</HashRouter>
 	);
 }
 //

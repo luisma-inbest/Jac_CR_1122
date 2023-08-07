@@ -40,6 +40,8 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 	) as CurrentLeadContextType;
 	const [fields, dispatch] = useReducer(reducer, initial);
 
+	const [editInvoice, setEditInvoice] = useState(false);
+
 	function nextPhaseLead() {
 		LeadAPI.nextPhase(CurrentLead.id)
 			.then((res) => {
@@ -94,6 +96,7 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 				taxRegime: CurrentLead.Sales[0].TaxRegime || "",
 				saleType: CurrentLead.Sales[0].SaleType.description || "",
 				digitalSale: false,
+				invoiceNumber: CurrentLead.Sales[0].InvoiceNumber || "",
 			},
 		});
 	}, []);
@@ -348,6 +351,39 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 			/>
 
 			<CardFunnel
+				mainText="Facturar Venta"
+				icon={<IconCheck size="100%" color="#000" />}
+				cardContent={
+					<div className={styles.cardContainerClasic}>
+						<input
+							className={styles.input}
+							placeholder="Factura"
+							value={fields.invoiceNumber!}
+							disabled={!editInvoice}
+							type="text"
+							onChange={(e) =>
+								dispatch({
+									type: "invoiceNumber",
+									value: e.target.value,
+								})
+							}
+						/>
+						<Button
+							text={editInvoice ? "Guardar" : "Editar"}
+							func={() => {
+								if (editInvoice) {
+									console.log("llamo backend");
+									SaleMutation.mutate();
+								}
+								setEditInvoice(!editInvoice);
+							}}
+							full={false}
+						/>
+					</div>
+				}
+			/>
+
+			<CardFunnel
 				mainText="Entrega"
 				icon={<IconCheck size="100%" color="#000" />}
 				cardContent={
@@ -373,6 +409,12 @@ export const ClosingSellsActivities = (props: AuctionProps) => {
 							<p className="p4 bold secondary">
 								Programación de documentos
 							</p>
+							{/* <input type="checkbox" name="scales" checked={true} /> */}
+							<input type="checkbox" name="scales" />
+						</div>
+						{/* task */}
+						<div>
+							<p className="p4 bold secondary">Previa</p>
 							{/* <input type="checkbox" name="scales" checked={true} /> */}
 							<input type="checkbox" name="scales" />
 						</div>

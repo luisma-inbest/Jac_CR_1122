@@ -142,6 +142,7 @@ export const LeadAPI = {
 			});
 	},
 	updateFields: async function (leadId: string, data: any) {
+		console.log("data", data);
 		return api
 			.request({
 				url: `/lead/${leadId}`,

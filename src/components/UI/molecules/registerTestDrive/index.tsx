@@ -49,6 +49,7 @@ export const RegisterTestDrive = (props: Props) => {
 				ProductId: fields.ProductId,
 				LeadId: fields.LeadId,
 				AgencyId: fields.AgencyId,
+				type: fields.type,
 			}),
 		onSuccess(data, variables, context) {
 			createAlert(
@@ -133,6 +134,25 @@ export const RegisterTestDrive = (props: Props) => {
 						</option>
 					);
 				})}
+			</StyledSelect>
+
+			<StyledSelect
+				customType="secondary"
+				defaultValue=""
+				onChange={(e) => {
+					console.log(e.target.value);
+					dispatch({
+						type: "type",
+						value: e.target.value,
+					});
+				}}
+			>
+				<option value="" disabled>
+					-- Tipo --
+				</option>
+				<option value="prueba-de-manejo">Prueba de Manejo</option>
+				<option value="prueba-estatica">Prueba Estática</option>
+				<option value="demo-showroom-360">Demo Showroom 360</option>
 			</StyledSelect>
 
 			<div className={styles.datePicker}>

@@ -11,4 +11,5 @@ export type Sale = {
 	taxRegime: string;
 	saleType: string;
 	digitalSale: boolean;
+	invoiceNumber: string;
 };

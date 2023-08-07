@@ -11,6 +11,7 @@ type Action =
 const initial: LeadActivityType = {
 	LeadId: 0,
 	leadActivityType: "",
+	leadActivityChannelType: "",
 	title: "",
 	comments: "",
 	status: "1",

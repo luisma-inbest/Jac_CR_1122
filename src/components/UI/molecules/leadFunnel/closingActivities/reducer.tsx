@@ -12,6 +12,7 @@ type Action =
 	| { type: "taxRegime"; value: string }
 	| { type: "saleType"; value: string }
 	| { type: "businessName"; value: string }
+	| { type: "invoiceNumber"; value: string }
 	| { type: "digitalSale"; value: boolean };
 
 const initial: Sale = {
@@ -27,6 +28,7 @@ const initial: Sale = {
 	insuranceCarrier: "0",
 	takeCarInExange: false,
 	digitalSale: false,
+	invoiceNumber: "",
 };
 
 function reducer(state: Sale, action: Action): Sale {
@@ -49,6 +51,8 @@ function reducer(state: Sale, action: Action): Sale {
 			return { ...state, taxRegime: action.value };
 		case "businessName":
 			return { ...state, businessName: action.value };
+		case "invoiceNumber":
+			return { ...state, invoiceNumber: action.value };
 
 		case "vin":
 			let vins = [...state.vins];

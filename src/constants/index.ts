@@ -8,7 +8,7 @@ var poolData: any;
 switch (enviroment) {
 	case "local":
 		Domain = "http://localhost:5173";
-		Backend = "https://39kvm7kjwh.execute-api.us-east-1.amazonaws.com/";
+		Backend = "https://umc61eqno5.execute-api.us-east-1.amazonaws.com/";
 		BackendDashboards =
 			"https://hxiejwf6b2.execute-api.us-east-1.amazonaws.com/";
 		poolData = {
@@ -17,9 +17,10 @@ switch (enviroment) {
 		};
 		break;
 	case "dev":
-		Domain =
-			"http://jac-crm-front-end-dev.s3-website-us-east-1.amazonaws.com";
-		Backend = "https://39kvm7kjwh.execute-api.us-east-1.amazonaws.com/";
+		// Domain =
+		// 	"http://jac-crm-front-end-dev.s3-website-us-east-1.amazonaws.com";
+		Domain = "https://beta.crmjac.mx";
+		Backend = "https://umc61eqno5.execute-api.us-east-1.amazonaws.com/";
 		BackendDashboards =
 			" https://hxiejwf6b2.execute-api.us-east-1.amazonaws.com/";
 		poolData = {

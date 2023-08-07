@@ -174,6 +174,8 @@ export const LeadDashboardBody = () => {
 					updatedAt: data.updatedAt,
 					UserId: data.UserId,
 					rfc: data.rfc,
+					clientProfile: data.clientProfile,
+					concreteNeeds: data.concreteNeeds,
 					buyType: data.SaleType.description,
 					Sales: data.Sales,
 				},

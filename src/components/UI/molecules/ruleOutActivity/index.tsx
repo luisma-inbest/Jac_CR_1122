@@ -30,10 +30,10 @@ interface Props {
 const frezzeLead = [
 	"Los datos del lead son incorrectos",
 	"Solo pidio informacion, no tiene interés de compra",
-	"No se tiene el modelo enn inventario",
+	"No se tiene el modelo en inventario",
 	"El modelo no cubre sus necesiddades",
 	"El precio es alto",
-	"ya compró en otra marca",
+	"Ya compró en otra marca",
 	"Oferta comercial poco atractiva",
 	"Solicitud de crédito rechazada",
 ];

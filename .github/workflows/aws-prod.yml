@@ -4,6 +4,11 @@ on:
     push:
         branches:
             - master
+
+permissions:
+  id-token: write   # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
+  
 jobs:
     deploy:
         runs-on: ubuntu-latest
@@ -17,10 +22,10 @@ jobs:
                   key: ${{ runner.os }}-npm-${{ hashFiles('**/.package-lock') }}
                   restore-keys: ${{ runner.os }}-npm-
             - name: Configure AWS credentials
-              uses: aws-actions/configure-aws-credentials@v1
+              uses: aws-actions/configure-aws-credentials@v1.7.0
               with:
-                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-                  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                  role-to-assume: arn:aws:iam::272772253521:role/Role_GithubActions #change to reflect your IAM role’s ARN
+                  role-session-name: GitHub_to_AWS_via_FederatedOIDC
                   aws-region: us-east-2
             - name: Use Node.js 18.x
               uses: actions/setup-node@v1
