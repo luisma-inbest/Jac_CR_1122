@@ -12,7 +12,6 @@ import UserContext, { UserContextType } from "@/context/UserContext";
 
 export const Admin = () => {
 	const [token, setToken] = React.useState("");
-<<<<<<< HEAD
 	// //
 	// const requestNotificationPermission = () => {
 	// 	Notification.requestPermission().then((permission) => {
@@ -37,51 +36,6 @@ export const Admin = () => {
 	// useEffect(() => {
 	// 	requestNotificationPermission();
 	// }, []);
-=======
-	const { User, SetUser } = useContext(UserContext) as UserContextType;
-	//
-	// const requestNotificationPermission = () => {
-	// 	Notification.requestPermission().then((permission) => {
-	// 		console.log("permission:", permission);
-	// 		if (permission === "granted") {
-	// 			// sendPushNotification();
-	// 			getToken(getMessaging(app), {
-	// 				vapidKey:
-	// 					"BP-2gf8fDuutsPETlTTajzFBszghLmkXMYSqq668lBX9CrJjTZiwmGN8OE-OyRfuO1EBuLyKZhyDT3jOGFK-6Ew",
-	// 			}).then((currentToken) => {
-	// 				console.log("currentToken:", currentToken);
-	// 				setToken(currentToken);
-	// 				NotificationAPI.addToken(User!.id, currentToken);
-	// 				console.warn("se envió petición");
-	// 			});
-	// 		} else if (permission === "denied") {
-	// 			console.log("denied");
-	// 			// alert("No podrás recibir notificaciones");
-	// 		}
-	// 	});
-	// };
-
-	useEffect(() => {
-		// if ("serviceWorker" in navigator) {
-		// 	navigator.serviceWorker
-		// 		.register("/push-sw.js")
-		// 		.then((registration) => {
-		// 			console.log(
-		// 				"Push service worker registered:",
-		// 				registration
-		// 			);
-		// 			// You can handle additional logic here if needed
-		// 		})
-		// 		.catch((error) => {
-		// 			console.log(
-		// 				"Push service worker registration failed:",
-		// 				error
-		// 			);
-		// 		});
-		// }
-		// requestNotificationPermission();
-	}, []);
->>>>>>> develop
 
 	return (
 		<div className="contentVerticalPadding">

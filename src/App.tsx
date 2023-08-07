@@ -12,7 +12,6 @@ import { Routing } from "./routes/Routing";
 import { NotificationAPI } from "./apis";
 
 function App() {
-<<<<<<< HEAD
 	//
 	// const requestNotificationPermission = () => {
 	// 	Notification.requestPermission().then((permission) => {
@@ -53,8 +52,6 @@ function App() {
 	// 	requestNotificationPermission();
 	// }, []);
 
-=======
->>>>>>> develop
 	return (
 		<HashRouter>
 			<Routing />
